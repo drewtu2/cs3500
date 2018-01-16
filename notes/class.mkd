@@ -1,3 +1,25 @@
+# Tuesday, Jan 16, 2018
+# Shesh
+All object inherit from the object class
+All have .equals method with interface as follows
+`public boolean equals(Object a)`
+therefore for comparing two objects as equal, overload as follows....
+
+``` java
+// First: make sure that given object is of correct type, if its not, then
+// you know they can't be equal. 
+if(!(a instanceof Duration)) return false;
+
+// Now that we know the object is of the same type, we can cast to the desired type.
+// This will give us access to the class functions in order to begin comparing 
+// them together. 
+Duration other = (Duration)a;
+
+// Finally, perform a comparision that will assert wether or not the two objects
+// are the same. 
+return this.inSeconds() == other.inSeconds();
+```
+
 # Friday, Jan 12, 2018
 # Clark Frefield
 
