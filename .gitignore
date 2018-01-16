@@ -1,0 +1,7 @@
+*.swp
+*.tar.gz
+*.idea**
+**javadoc
+**target
+*.iml
+**pom.xml
