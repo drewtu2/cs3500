@@ -30,8 +30,7 @@ public abstract class AbstractDurationFormatTest {
 
   /**
    * Tests the case where a "%" symbol is followed by a character that does not appear in the given
-   * table of characters.
-   * Expect the Illegal Argument Exception to be thrown
+   * table of characters. Expect the Illegal Argument Exception to be thrown
    */
   @Test(expected = java.lang.IllegalArgumentException.class)
   public void testIllegalSpecifier() {
@@ -39,8 +38,8 @@ public abstract class AbstractDurationFormatTest {
   }
 
   /**
-   * Tests the case where a % symbol is NOT followed by an additional symbol.
-   * Expect the Illegal Argument Exception to be thrown
+   * Tests the case where a % symbol is NOT followed by an additional symbol. Expect the Illegal
+   * Argument Exception to be thrown
    */
   @Test(expected = java.lang.IllegalArgumentException.class)
   public void testHangingPercent() {
@@ -52,7 +51,16 @@ public abstract class AbstractDurationFormatTest {
    */
   @Test(expected = java.lang.IllegalArgumentException.class)
   public void testNullSequence() {
-    hms(1, 0, 0).format("");
+    hms(1, 0, 0).format(null);
+  }
+
+  /**
+   * Tests the case where the input is an empty string.
+   */
+  @Test
+  public void testEmptyString() {
+    assertEquals("",
+        hms(1, 0, 0).format(""));
   }
 
   /**

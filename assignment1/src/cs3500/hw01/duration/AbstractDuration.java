@@ -14,11 +14,11 @@ abstract class AbstractDuration implements Duration {
   protected abstract Duration fromSeconds(long inSeconds);
 
   @Override
-  public String format(String template) {
+  public String format(String template) throws IllegalArgumentException {
 
     // Handle the case where we receive an empty string
-    if (template.length() <= 0) {
-      throw new IllegalArgumentException();
+    if (template == null) {
+      throw new IllegalArgumentException("Input argument cannot be null");
     }
 
     String formattedString = "";
@@ -31,7 +31,7 @@ abstract class AbstractDuration implements Duration {
           // The "%" symbol was the last character in the list so it is a hanging
           // percent. Because we're running this check on it, the previous character
           // wasn't an escape... Throw IllegalArgumentException.
-          throw new IllegalArgumentException();
+          throw new IllegalArgumentException("Hanging \"%\" symbol.");
         } else {
           formattedString += handleSpecifier(template.charAt(ii + 1));
           ++ii;
@@ -52,7 +52,7 @@ abstract class AbstractDuration implements Duration {
    * @return The string corresponding to the specifier requested.
    * @throws IllegalArgumentException if specifier is not one of the given 8 characters
    */
-  private String handleSpecifier(char specifier) {
+  private String handleSpecifier(char specifier) throws IllegalArgumentException {
     long inSeconds = this.inSeconds();
     switch (specifier) {
       case 't':
@@ -72,7 +72,7 @@ abstract class AbstractDuration implements Duration {
       case '%':
         return "%";
       default:
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("\"%\" followed by invalid character.");
     }
   }
 
