@@ -26,20 +26,20 @@ then
     cp -r $1 $new_dir
     cd $new_dir
     
-    cd ..
-
-    files=($new_dir/test $new_dir/src)
-    if [ -f $new_dir/report.txt ]; then
+    files=(test src)
+    if [ -f report.txt ]; then
             echo "Including report.txt"
-            files+=($new_dir/report.txt)
+            files+=(report.txt)
     fi
-    if [ -f $new_dir/graph.png ]; then
+    if [ -f graph.png ]; then
             echo "Including graph.png"
-            files+=($new_dir/graph.png)
+            files+=(graph.png)
     fi
 
     tar -czvf $tar_file ${files[@]}
     
+    mv $tar_file ..
+    cd ..
     rm -rf $new_dir
 else
     echo Couldn\'t find the directory specified....
