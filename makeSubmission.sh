@@ -2,10 +2,9 @@
 
 function usage {
     echo Usage:
-    echo "./makeSubmission <folder> <directory structure flag>"
-    echo "The directory structure can be one of the following:"
-    echo "    0: Structured directory i.e. src and include folders..."
-    echo "    1: Flat directory (no internal organization)..."
+    echo "./makeSubmission <folder>"
+    echo "The directory structure should be the following:"
+    echo "  - Must contain a src and test folder containing the java files"
 }
 
 if [ "$#" -lt 1 ];
@@ -19,11 +18,12 @@ then
     tar_suffix=".tar.gz"
     submission_suffix="_submission"
     
-    new_dir=$1$submission_suffix
-    tar_file=$1$tar_suffix
+    target_dir=${1%/}
+    new_dir=$target_dir$submission_suffix
+    tar_file=$target_dir$tar_suffix
    
     # Copy the targeted directory into a scratch directory we can manipulate 
-    cp -r $1 $new_dir
+    cp -r $target_dir $new_dir
     cd $new_dir
     
     files=(test src)
