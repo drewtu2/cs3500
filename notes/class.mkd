@@ -1,0 +1,126 @@
+# Friday, Jan 12, 2018
+# Clark Frefield
+
+| Citation | Book | Article | Web|
+|----------|------|---------|----|
+| .........| ...  | ........| ...|
+| .........| ...  | ........| ...|
+| .........| ...  | ........| ...|
+| .........| ...  | ........| ...|
+
+In the functional paradigm, adding a new type of citation (col) requires making
+changing to every function that uses these publications. This is bad because
+as the system scales, making changes in *EVERY* function becomes difficult. 
+Further, you may not have access to the original source code enabling you to 
+make these changes. 
+
+Moving to an OOD enables you to make an object for each type of publication. 
+Adding a new publication just means creating a new object; all of the code 
+related to that type of publication will be contained within the object that is 
+created. 
+
+This alleviates the problem of adding new columns, however, it comes at the cost
+of making it difficult to add new TYPES of citations. Adding a new type of citation
+means that every type of publication needs to be updated with methods for the 
+new citation. Note: Adding new rows is easier in a functional implementation
+
+In this case, we expect it to be more likely to need to add new cols as opposed 
+to add new rows. (Also this is an OOD class so.... we're going to focus on the 
+OOD implementaiton)
+
+
+## Interfaces
+```java
+/**
+ * Interface documentaiton...
+ * Lives in Publication.java
+ */
+public interface Publication {
+    /** 
+     * Method Documentation
+     * Methods don't need to be declared public becauses its implied by nature
+     * of being in the interface.
+     */
+    String CiteMLA();
+
+    String CiteAPA();
+}
+```
+
+## Class
+```java
+/**
+ * Class documentation....
+ * Lives in Book.java
+ */
+public class Book implements Publication {
+
+    
+    // Member variables should always be private... don't give the user direct
+    // access to these...
+    private final String title, author, publisher, location;
+    private final int year; // Note the use of "final".... makes this field immutable
+    
+    // constructor
+    public Book(String title, String author, ....) {
+        this.title = title;
+        ...
+        ...
+    }
+
+    // Override method improves human readability and adds additonal functionality 
+    // to the compiler enforcing constraints on methods...
+    @Override
+    public String citeAPA() {
+        return this.title + ", " + this.author ...;
+    }
+    
+    @Override
+    public String citeMLA() {
+        return this.title + ", " + this.author ...;
+    }
+}
+
+```
+## Packages
+A method for organizing code. Groups code together
+Top of file, `package cs3500.lec2`
+
+Can be imported...
+`import java.util.ArrayList;`
+
+Java is "package private" meaning classes w/in the same package have access to 
+other things in the package. 
+
+## Testing w/ JUnit4
+lives in BookTest.java
+```
+public class BookTest {
+    private Publication b = new Book(..);
+
+    // brief explanation on what this thing is testing....
+    @Test
+    public void testCiteAPA() {
+        // assertEquals(Expected, Actual)
+        // assertEquals uses the ".equals" method, which uses == by default
+        // == will compare whether the instances are the same instance in memory
+        // overiding the ".equals" method allows you to perform your own comparison
+        // (i.e. extentional comparison)
+        // intentional => nicknames
+        // extentional => field by field value comparision
+        assertEquals("the string we expect", b.citeApa())
+    }
+
+}
+```
+
+
+
+
+
+
+
+
+
+
+
