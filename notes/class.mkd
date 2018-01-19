@@ -1,3 +1,164 @@
+# Friday, Jan 19, 2018
+# Shesh
+
+Rule in Java: If you overwrite the equals(), you must also overwrite
+the hashCode().
+
+``` java
+public int hashCode() {
+    return Long.hash(<some long>);
+}
+```
+
+`Objects.hash(...)` also exists
+
+## "Interface Polymorphism"
+Objects hold should hold the interface of a class, not the implementation of the
+interface.
+
+**"Whenever you're trying to use objects, always use the names of the interfaces"**
+
+``` java
+class myThing {
+  duration myDuration;
+
+  public void doSomethingWithDuration(duration newDuration) {
+    ...
+  }
+}
+```
+
+Now, the utilization of duration is implementation independent. We can use the
+class with either a compactDuration OR hmsDuration (as both implement the
+duration interface).
+
+Comparing implementations of two classes inheriting from the duration interface,
+it becomes evident that there is a lot of overlap between the functions. Therefore
+you can abstract the overlap in implementation and create an abstract class which
+implements these overlap in classes.
+
+## Factory Method
+Problem: Superclass doesn't know what class to construct, but subclasses do
+
+Solution: Factory method pattern, in which the Superclass
+
+- defers object construction to subclass
+- by declaring an abstract factory methods
+- that subclasses must implement
+
+``` java
+// In AbstractDuration Class
+public Duration plus(Duration d) {
+  return fromSeconds(inSeconds() + d.inSeconds())
+}
+
+protected abstract Duration fromSeconds(long);
+
+// In any ConcreteClass
+@Override
+public Duration fromSeconds(long) {
+  return new ConcreteClass(long);
+}
+```
+Can alternatively create an DurationFactory class which implements the method
+as static.
+``` Java
+// In DurationFactory
+/** Making the method static enables it to be called without instantiating the
+ * object
+ */
+public static Duration fromSeconds(int selector, long seconds) {
+    if (selector == 1) {
+      return new ConcreteClass1(seconds);
+    } else if (selector == 2) {
+      return new ConcreteClass2(seconds);
+    }
+    ...
+}
+```
+### The Beauty of the Factory Method
+With the factory method implementation, you consolidate all of the use of
+constructors into the a single location. Because that decision to use one constructor
+over another constructor can be relegated to an input flag/string, this allows
+you to easily change which object implementation is being used.
+
+For example, that value can be set in a config file and read in at initialization;
+thus you can change how the code behaves simply by updating the config file without
+needing to recompile.
+
+Taking this a step further, those configurations can actually be changed at runtime,
+perhaps based on a radial button on a GUI! Changing the state of the button (e.g. the flag)
+will switch the type of constructor used which, in turn, changes how the code
+behaves!
+
+## Java Safari
+A mix of topics that don't really fit in anywhere, but are important concepts to
+learn.
+
+### Enums
+Usually used to declare a limited set of values.
+```java
+enum UsCoin {
+  Penny(1),
+  Nickel(5),
+  Dime(10),
+  Quarter(25),
+  HalfDollar(50)
+}
+```
+https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html
+
+### Switch Statements
+Use for multiple conditions
+
+`Case` statements declare entry points but do not declare exit points. Need to
+manually declare when to `Break` from the statement.
+
+Declare `default` for a default value.
+https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
+
+### Arrays
+A sequence of objects.
+
+- mutable,
+- fixed length
+- constant-time index
+
+```java
+int[] array1 = new int[] { 2, 4, 6, 8 };
+
+int[] array2 = new int[64]; //auto-initialized to all 0s
+
+String[] array3 = new String[21]; //auto-initialized to all null
+```
+
+Have a length property
+
+Aliasing...
+```java
+int[] a1 = new int[16];
+int[] a2 = new int[16];
+
+// The a1 references the same location in memory as a3. i.e. they're modifying
+// the same point in memory.
+int[] a3 = a1;
+```
+*Behave the same way as in C, where the variable points to the head of an array*
+
+Can use arrays to simulate a variable number of arguments.
+```java
+// Note the "...", they serve as an indication of variable number of arguments.
+public void printInts (int... intArray) {
+  for (int i : intArray) {
+    System.out.println(i);
+  }
+}
+
+// Both of these are valid uses of the variable number of arguments.
+printInts(new int[] {8, 6, 7});
+printInts(8, 6, 7);
+```
+
 # Tuesday, Jan 16, 2018
 # Shesh
 All object inherit from the object class
@@ -7,16 +168,16 @@ therefore for comparing two objects as equal, overload as follows....
 
 ``` java
 // First: make sure that given object is of correct type, if its not, then
-// you know they can't be equal. 
+// you know they can't be equal.
 if(!(a instanceof Duration)) return false;
 
 // Now that we know the object is of the same type, we can cast to the desired type.
-// This will give us access to the class functions in order to begin comparing 
-// them together. 
+// This will give us access to the class functions in order to begin comparing
+// them together.
 Duration other = (Duration)a;
 
 // Finally, perform a comparision that will assert wether or not the two objects
-// are the same. 
+// are the same.
 return this.inSeconds() == other.inSeconds();
 ```
 
@@ -32,22 +193,22 @@ return this.inSeconds() == other.inSeconds();
 
 In the functional paradigm, adding a new type of citation (col) requires making
 changing to every function that uses these publications. This is bad because
-as the system scales, making changes in *EVERY* function becomes difficult. 
-Further, you may not have access to the original source code enabling you to 
-make these changes. 
+as the system scales, making changes in *EVERY* function becomes difficult.
+Further, you may not have access to the original source code enabling you to
+make these changes.
 
-Moving to an OOD enables you to make an object for each type of publication. 
-Adding a new publication just means creating a new object; all of the code 
-related to that type of publication will be contained within the object that is 
-created. 
+Moving to an OOD enables you to make an object for each type of publication.
+Adding a new publication just means creating a new object; all of the code
+related to that type of publication will be contained within the object that is
+created.
 
 This alleviates the problem of adding new columns, however, it comes at the cost
 of making it difficult to add new TYPES of citations. Adding a new type of citation
-means that every type of publication needs to be updated with methods for the 
+means that every type of publication needs to be updated with methods for the
 new citation. Note: Adding new rows is easier in a functional implementation
 
-In this case, we expect it to be more likely to need to add new cols as opposed 
-to add new rows. (Also this is an OOD class so.... we're going to focus on the 
+In this case, we expect it to be more likely to need to add new cols as opposed
+to add new rows. (Also this is an OOD class so.... we're going to focus on the
 OOD implementaiton)
 
 
@@ -58,7 +219,7 @@ OOD implementaiton)
  * Lives in Publication.java
  */
 public interface Publication {
-    /** 
+    /**
      * Method Documentation
      * Methods don't need to be declared public becauses its implied by nature
      * of being in the interface.
@@ -77,12 +238,12 @@ public interface Publication {
  */
 public class Book implements Publication {
 
-    
+
     // Member variables should always be private... don't give the user direct
     // access to these...
     private final String title, author, publisher, location;
     private final int year; // Note the use of "final".... makes this field immutable
-    
+
     // constructor
     public Book(String title, String author, ....) {
         this.title = title;
@@ -90,13 +251,13 @@ public class Book implements Publication {
         ...
     }
 
-    // Override method improves human readability and adds additonal functionality 
+    // Override method improves human readability and adds additonal functionality
     // to the compiler enforcing constraints on methods...
     @Override
     public String citeAPA() {
         return this.title + ", " + this.author ...;
     }
-    
+
     @Override
     public String citeMLA() {
         return this.title + ", " + this.author ...;
@@ -111,8 +272,8 @@ Top of file, `package cs3500.lec2`
 Can be imported...
 `import java.util.ArrayList;`
 
-Java is "package private" meaning classes w/in the same package have access to 
-other things in the package. 
+Java is "package private" meaning classes w/in the same package have access to
+other things in the package.
 
 ## Testing w/ JUnit4
 lives in BookTest.java
@@ -135,14 +296,3 @@ public class BookTest {
 
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
