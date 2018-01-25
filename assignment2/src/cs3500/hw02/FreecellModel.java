@@ -40,4 +40,24 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
 
     return "";
   }
+
+  /**
+   * Returns a boolean
+   * @param inputDeck
+   * @return
+   */
+  private boolean deckValid(List<PlayingCard> inputDeck) {
+    return true;
+  }
+
+  /**
+   * Takes a deck and returns the deck in a randomized order
+   * @param inputDeck   A List of cards to mix
+   * @return a deck with all of the same cards in a different order
+   */
+  private List<PlayingCard> shuffle(List<PlayingCard> inputDeck) {
+    List<PlayingCard> shuffledList = new ArrayList<>();
+
+    return shuffledList;
+  }
 }

@@ -31,9 +31,9 @@ public class PlayingCard {
   }
 
   /**
-   * Returns whether another playing card is equal to this playing card
-   * @param testCard  The playing card to compare to
-   * @return          Whether the two cards are equal
+   * Returns whether another playing card is equal to this playing card.
+   * @param a The playing card to compare to.
+   * @return Whether the two cards are equal.
    */
   @Override
   public boolean equals(Object a){
@@ -60,6 +60,40 @@ public class PlayingCard {
    */
   @Override
   public int hashCode(){
-    return this.value;
+    StringBuilder myBuilder = new StringBuilder();
+    myBuilder.append(value).append(suit);
+    return myBuilder.toString().hashCode();
+  }
+
+  /**
+   * Returns true if the given suit matches the suit of this card.
+   *
+   */
+  public boolean suitIs(CardSuit testSuit) {
+    return suit.equals(testSuit);
+  }
+
+  /**
+   * Returns true if this card is one greater than the previous card.
+   */
+  public boolean isAfter(PlayingCard prevCard) {
+
+    // Return False if either card is KING
+    if (prevCard.getValue() == 13)
+    {
+      return false;
+    } else if (value == 13) {
+      return  false;
+    }
+
+    return value == prevCard.getValue() + 1;
+  }
+
+  /**
+   * Getter method for the card.
+   * @return The value of the card.
+   */
+  public int getValue() {
+    return value;
   }
 }
