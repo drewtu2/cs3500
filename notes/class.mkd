@@ -1,3 +1,113 @@
+# Friday, Jan 26, 2018
+# Shesh
+
+## MVC: Model, View, Controller
+
+- Controller: takes input from the user and decides what to do.
+- View: Knows how to display the interface to the user
+- Model: the domain information that the user manipulates
+
+breaks down program into set of responsibilities...
+each level takes care of a given task
+
+## Model
+
+The model is responsible for ENFORCING information integrity, also can be referred
+to the "back end" of an application (while the view is the "front end").
+
+### Example: Tic Tac Toe
+
+- Is the game over?
+- Has a game started/is game ongoing?
+- Make a move
+- Is a move valid
+- Start a game
+- Whose turn is it?
+- Who won?
+- Get Game State
+
+Potential Errors
+
+1. Move on occupied cell
+2. Move on non-existent cell
+3. Move after game over
+4. Invalid victory
+5. Playing out of turn
+
+These lists will grow as you begin exploring/writing code. Keep iterating!
+
+
+# Tuesday, Jan 24, 2018
+# Shesh
+
+Arrays are stored in contiguous blocks of memory
+Because of arithmetic, arrays have property of random acces: can access any element
+in constant time.
+
+```java
+// A is a primitive type. Primitive types are stored directly in memory
+int a;
+a = 2;
+/*
+Memory location 2000
+[0|0|0|2]
+*/
+a = a + 1;
+/*
+Memory location 2000
+[0|0|0|3]
+*/
+
+/* Objects in java are "Reference Types".
+ * With reference types, the variable is a pointer to the location of the object
+ * in memory.
+ *
+ * When two or more references point to the same object in memory, they are called
+ * "aliases" of the same object.
+ */
+Posn p = new Posn(2,3);
+Posn p2 = p;
+Posn p3 = new Posn(3,4);
+
+// p2 points to the same object in memory. Modifying the value of a will modify
+// the object that a points to. Since p2 and p point to the same object, the value
+// of p will also "change"
+a.setX(5);
+
+// Yep, comparing the values of primitive types
+assertEquals(a, 6);
+
+/*
+ * T: Uses .equals() method. Without overriding the .equals() method, compares
+ * the memory address that the object points to (i.e. do they point to the same)
+ * memory location. In this case, yes!
+ */
+assertEquals(p, p2);
+
+/*
+ * F: In this case however, even though the VALUES of the object are the same,
+ * without overriding the .equals() method, they do NOT point to the same
+ * location in memory. Therefore, they are not equal.
+ */
+assertEquals(p, p3);
+```
+
+
+
+## Java Safari cont.
+`Null` is evil... avoid using as much as possible.....
+
+### Requirements for equality
+1. a = a                            (Reflexivity)
+2. if a = b, then b = a             (Symmetry)
+3. if a = b and b = c, then a = c   (Transitivity)
+
+`instanceof` can be used sparingly...
+
+
+
+
+
 # Friday, Jan 19, 2018
 # Shesh
 
