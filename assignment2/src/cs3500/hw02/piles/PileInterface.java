@@ -1,4 +1,5 @@
-package cs3500.hw02;
+package cs3500.hw02.piles;
+import cs3500.hw02.cards.PlayingCard;
 import java.util.List;
 
 /**
@@ -21,4 +22,10 @@ public interface PileInterface {
    * @throws IllegalArgumentException if the index is out of range
    */
   List<PlayingCard> popCards(int index) throws IllegalArgumentException;
+
+  /**
+   * Returns a string representing the state of the the pile.
+   * @param index the index this pile is in a list of piles
+   */
+  String toString(int index);
 }

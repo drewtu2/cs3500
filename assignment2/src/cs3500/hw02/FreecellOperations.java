@@ -1,5 +1,6 @@
 package cs3500.hw02;
 
+import cs3500.hw02.piles.PileType;
 import java.util.List;
 
 /**

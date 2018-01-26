@@ -1,5 +1,6 @@
-package cs3500.hw02;
+package cs3500.hw02.piles;
 
+import cs3500.hw02.cards.PlayingCard;
 import java.util.List;
 import java.util.Stack;
 import java.util.Collections;
@@ -44,6 +45,44 @@ public abstract class AbstractPile implements PileInterface {
     return ReturnStack;
   }
 
+  /**
+   * Prints the pile with bottom of the pile appearing at the left and going to the right. The index
+   * is used to indicate which pile this is.
+   * @param index The index of the pile
+   */
+  public String toString(int index) {
+    StringBuilder myBuilder = new StringBuilder();
+
+    switch (type) {
+      case OPEN:
+        myBuilder.append("O");
+        break;
+      case CASCADE:
+        myBuilder.append("C");
+        break;
+      case FOUNDATION:
+        myBuilder.append("F");
+        break;
+    }
+    myBuilder.append(index);
+    myBuilder.append(":");
+
+    if (pile.empty()) {
+      // Do nothing
+    } else {
+      for (PlayingCard card : pile) {
+        myBuilder.append(" ");
+        myBuilder.append(card.toString());
+        myBuilder.append(",");
+      }
+      // Delete the last comma
+      myBuilder.deleteCharAt(myBuilder.length() - 1);
+      myBuilder.append("\n");
+    }
+    //System.out.println(myBuilder.toString());
+
+    return myBuilder.toString();
+  }
 
   /**
    * Returns true if the given card can be added to the current state of the pile.

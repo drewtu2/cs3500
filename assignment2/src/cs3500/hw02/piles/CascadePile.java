@@ -1,5 +1,6 @@
-package cs3500.hw02;
+package cs3500.hw02.piles;
 
+import cs3500.hw02.cards.PlayingCard;
 import java.util.Stack;
 
 public class CascadePile extends AbstractPile{
@@ -19,6 +20,21 @@ public class CascadePile extends AbstractPile{
    */
   @Override
   protected boolean validAddition(PlayingCard inputCard) {
-    return false;
+    PlayingCard topCard = pile.peek();
+
+    // Input card is the opposite color
+    boolean differentColor = topCard.differentColor(inputCard);
+    // Input card is one less than top card
+    boolean oneLess = topCard.isOneGreater(inputCard);
+
+    return differentColor && oneLess;
+  }
+
+  /**
+   * Unconditionally adds cards to the pile
+   * @param inputCard the card to add
+   */
+  public void unconditionalAdd(PlayingCard inputCard) {
+    pile.push(inputCard);
   }
 }

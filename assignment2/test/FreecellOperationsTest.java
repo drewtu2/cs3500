@@ -1,12 +1,24 @@
 import cs3500.hw02.FreecellModel;
 import cs3500.hw02.FreecellOperations;
-import cs3500.hw02.PlayingCard;
-import org.junit.Test;
+import cs3500.hw02.cards.CardSuit;
+import cs3500.hw02.cards.CardValue;
+import cs3500.hw02.cards.PlayingCard;
+import java.util.List;
 
+import org.junit.Test;
+import org.junit.Before;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class FreecellOperationsTest {
-  FreecellOperations<PlayingCard> myFreecell = new FreecellModel();
+  FreecellOperations<PlayingCard> myFreecell;
+  List<PlayingCard> myDeck;
+
+  @Before
+  public void initConds() {
+    myFreecell = new FreecellModel();
+    myDeck = myFreecell.getDeck();
+  }
 
   // **********************************************************************************************
   // Tests of Deck Validity
@@ -18,17 +30,33 @@ public class FreecellOperationsTest {
   @Test
   public void TestValidDeck() {
 
+    // If no exception is thrown with a valid deck.
+    myFreecell.startGame(myDeck, 1, 1, true);
+
   }
-  // **********************************************************************************************
-  // Tests Starting Game
-  // **********************************************************************************************
 
   /**
    * A deck is invalid for this game if it does not have 52 cards
    */
   @Test(expected = java.lang.IllegalArgumentException.class)
   public void TestShortDeck() {
+    // One TOO few cards
+    myDeck.remove(myDeck.size() - 1);
 
+    // Exepect Exception
+    myFreecell.startGame(myDeck, 1, 1, true);
+  }
+
+  /**
+   * A deck is invalid for this game if it does not have 52 cards
+   */
+  @Test(expected = java.lang.IllegalArgumentException.class)
+  public void TestLongDeck() {
+    // One TOO many cards
+    myDeck.add(new PlayingCard(CardSuit.HEART, CardValue.ACE));
+
+    // Exepect Exception
+    myFreecell.startGame(myDeck, 1, 1, true);
   }
 
   /**
@@ -36,7 +64,13 @@ public class FreecellOperationsTest {
    */
   @Test(expected = java.lang.IllegalArgumentException.class)
   public void TestDuplicateCards() {
+    // Remove the last card
+    myDeck.remove(myDeck.size() - 1);
+    // Add another Ace of Hearts
+    myDeck.add(new PlayingCard(CardSuit.HEART, CardValue.ACE));
 
+    // Exepect Exception
+    myFreecell.startGame(myDeck, 1, 1, true);
   }
 
   /**
@@ -44,7 +78,7 @@ public class FreecellOperationsTest {
    */
   @Test(expected = java.lang.IllegalArgumentException.class)
   public void TestDeckInvalidCards() {
-
+    throw new IllegalArgumentException("Impossible to create invalid card");
   }
 
   /**
@@ -52,20 +86,16 @@ public class FreecellOperationsTest {
    */
   @Test
   public void TestShuffled() {
+    // If no exception is thrown with a valid deck.
+    myFreecell.startGame(myDeck, 1, 1, false);
+    FreecellOperations<PlayingCard> shuffledGame = new FreecellModel();
+    shuffledGame.startGame(myDeck, 1, 1, true);
+
+    // If the decks have been shuffled, their game states should not be equal.
+    assertNotEquals(myFreecell.getGameState(), shuffledGame.getGameState());
+
 
   }
-  // **********************************************************************************************
-  // Tests Moving Cards
-  // **********************************************************************************************
-
-  /**
-   * Tests
-   */
-  @Test
-
-
-
-
 
   // **********************************************************************************************
   // Tests of Game State
@@ -73,10 +103,12 @@ public class FreecellOperationsTest {
 
   /**
    * Test Game State prints correct values of the game.
+   * TODO: Generate that string!
    */
   @Test
   public void TestGameState() {
-
+    myFreecell.startGame(myDeck, 1, 1, false);
+    assertEquals("", myFreecell.getGameState());
   }
 
   /**
@@ -84,14 +116,12 @@ public class FreecellOperationsTest {
    */
   @Test
   public void TestGameStateNotBegun() {
-
+    assertEquals("", myFreecell.getGameState());
   }
 
-
-
-
-
-
+  // **********************************************************************************************
+  // Tests Moving Cards
+  // **********************************************************************************************
 
 
 

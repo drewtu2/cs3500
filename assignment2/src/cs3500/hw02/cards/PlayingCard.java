@@ -1,16 +1,16 @@
-package cs3500.hw02;
+package cs3500.hw02.cards;
 
 public class PlayingCard {
 
   private CardSuit suit;
-  private int value;
+  private CardValue value;
 
   /**
    * Constructs a playing card with a given suit and value.
    * @param suit    The suit of the playing card (ACE, CLUB, HEART, SPADE)
    * @param value   The value of the playing card.
    */
-  public PlayingCard(CardSuit suit, int value) {
+  public PlayingCard(CardSuit suit, CardValue value) {
     this.suit = suit;
     this.value = value;
   }
@@ -23,9 +23,8 @@ public class PlayingCard {
   @Override
   public String toString() {
     StringBuilder representation = new StringBuilder();
-    representation.append(this.value);
-    representation.append(" of ");
-    representation.append(this.suit);
+    representation.append(this.value.toString());
+    representation.append(this.suit.toString());
 
     return representation.toString();
   }
@@ -48,10 +47,10 @@ public class PlayingCard {
     // them together.
     PlayingCard other = (PlayingCard)a;
 
-    // Finally, perform a comparision that will assert wether or not the two objects
+    // Finally, perform a comparision that will assert whether or not the two objects
     // are the same.
-    //return (this.value == other.value) && (this.suit == other.suit);
-    return this.value == other.value;
+    return (this.value == other.value) && (this.suit == other.suit);
+    //return this.value == other.value;
   }
 
   /**
@@ -66,34 +65,59 @@ public class PlayingCard {
   }
 
   /**
-   * Returns true if the given suit matches the suit of this card.
-   *
+   * Returns true if the suit of the given card matches the suit of this card.
+   * @return true if the suit of the given card matches the suit of this card.
    */
-  public boolean suitIs(CardSuit testSuit) {
-    return suit.equals(testSuit);
+  public boolean sameSuitAs(PlayingCard testCard) {
+    return suit.equals(testCard.getSuit());
   }
 
   /**
-   * Returns true if this card is one greater than the previous card.
+   * Returns true if the given value matches the value of this card.
+   * @return true if the given value matches the value of this card.
    */
-  public boolean isAfter(PlayingCard prevCard) {
+  public boolean valueIs(CardValue testValue) {
+    return value.equals(testValue);
+  }
+
+   /**
+    * Returns true if this card is one greater than the previous card.
+    * @return true if this card is one greater than the previous card.
+    */
+  public boolean isOneGreater(PlayingCard prevCard) {
 
     // Return False if either card is KING
-    if (prevCard.getValue() == 13)
+    if (prevCard.getValue() == CardValue.KING)
     {
       return false;
-    } else if (value == 13) {
+    } else if (value == CardValue.KING) {
       return  false;
     }
 
-    return value == prevCard.getValue() + 1;
+    return value == prevCard.getValue().next();
+  }
+
+  /**
+   * Returns true if this card is a different color from the given card.
+   * @return true if this card is a different color from the given card.
+   */
+  public boolean differentColor(PlayingCard testCard) {
+    return suit.getCardColor() != testCard.getSuit().getCardColor();
+  }
+
+  /**
+   * Getter method for the card.
+   * @return The suit of the card.
+   */
+  public CardSuit getSuit() {
+    return suit;
   }
 
   /**
    * Getter method for the card.
    * @return The value of the card.
    */
-  public int getValue() {
+  public CardValue getValue() {
     return value;
   }
 }
