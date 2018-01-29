@@ -11,6 +11,7 @@ public enum CardSuit {
 
   /**
    * Constructs a card suit with a given color.
+   *
    * @param myCardColor the color of this card.
    */
   CardSuit(Color myCardColor, String inputSymbol) {
@@ -20,6 +21,7 @@ public enum CardSuit {
 
   /**
    * Returns the color of this card suit.
+   *
    * @return the color of this card suit.
    */
   public Color getCardColor() {

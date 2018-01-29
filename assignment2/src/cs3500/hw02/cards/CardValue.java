@@ -29,8 +29,7 @@ public enum CardValue {
     return this.value;
   }
 
-  public CardValue next()
-  {
+  public CardValue next() {
     CardValue values[] = CardValue.values();
     int ordinal = (this.ordinal() + 1) % values.length;
     return values[ordinal];

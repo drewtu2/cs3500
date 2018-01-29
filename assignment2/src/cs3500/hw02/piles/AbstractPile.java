@@ -14,15 +14,24 @@ public abstract class AbstractPile implements PileInterface {
   PileType type;
 
   @Override
-  public void addToPile(PlayingCard inputCard) throws IllegalArgumentException {
+  public void addToPile(PlayingCard inputCard) throws IllegalStateException {
     if (validAddition(inputCard)) {
       pile.push(inputCard);
     } else {
-      throw new IllegalArgumentException("Card cannot be added");
+      throw new IllegalStateException("Card cannot be added");
     }
   }
 
   @Override
+  public PlayingCard popCard(int index) throws IllegalStateException {
+    if (index != pile.size() - 1) {
+      throw new IllegalStateException("Cannot move this card. Not the top!");
+    }
+
+    return pile.pop();
+  }
+
+  /*@Override
   public List<PlayingCard> popCards(int index) {
     Stack<PlayingCard> ReturnStack = new Stack<>();
 
@@ -44,10 +53,12 @@ public abstract class AbstractPile implements PileInterface {
 
     return ReturnStack;
   }
+  */
 
   /**
    * Prints the pile with bottom of the pile appearing at the left and going to the right. The index
    * is used to indicate which pile this is.
+   *
    * @param index The index of the pile
    */
   public String toString(int index) {
@@ -77,7 +88,6 @@ public abstract class AbstractPile implements PileInterface {
       }
       // Delete the last comma
       myBuilder.deleteCharAt(myBuilder.length() - 1);
-      myBuilder.append("\n");
     }
     //System.out.println(myBuilder.toString());
 

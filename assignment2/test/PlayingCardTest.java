@@ -50,7 +50,7 @@ public class PlayingCardTest {
 
   @Test
   public void TestNotSameSuit() {
-    assertEquals(false, AceOfSpades.sameSuitAs(AceOfSpades));
+    assertEquals(false, AceOfSpades.sameSuitAs(AceOfHearts));
   }
 
   @Test
@@ -60,13 +60,19 @@ public class PlayingCardTest {
 
   @Test
   public void TestNotValueIs() {
-    assertEquals(false, AceOfSpades.valueIs(CardValue.ACE));
+    assertEquals(false, AceOfSpades.valueIs(CardValue.TWO));
   }
 
   @Test
   public void TestOneGreater() {
     PlayingCard TwoOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.TWO);
     assertEquals(true, TwoOfSpades.isOneGreater(AceOfSpades));
+
+    PlayingCard QueenOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.QUEEN);
+    PlayingCard KingOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.KING);
+    assertEquals(true, KingOfSpades.isOneGreater(QueenOfSpades));
+
+
   }
 
   @Test
@@ -76,6 +82,10 @@ public class PlayingCardTest {
 
     assertEquals(false, ThreeOfSpades.isOneGreater(AceOfSpades));
     assertEquals(false, TwoOfSpades.isOneGreater(ThreeOfSpades));
+
+    PlayingCard KingOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.KING);
+    assertEquals(false, KingOfSpades.isOneGreater(AceOfSpades));
+    assertEquals(false, AceOfSpades.isOneGreater(KingOfSpades));
   }
 
   @Test
