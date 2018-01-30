@@ -38,13 +38,4 @@ public class FoundationPile extends AbstractPile {
       return correctSuit && correctValue;
     }
   }
-
-  /**
-   * Returns true if this pile has all the values Ace - King of a particular suit.
-   *
-   * @return true if this pile has all the values Ace - King of a particular suit.
-   */
-  public boolean isComplete() {
-    return (pile.size() == CardValue.values().length);
-  }
 }

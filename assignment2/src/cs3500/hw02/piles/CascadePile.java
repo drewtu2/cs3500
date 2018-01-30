@@ -35,6 +35,11 @@ public class CascadePile extends AbstractPile {
    */
   @Override
   protected boolean validAddition(PlayingCard inputCard) {
+
+    if (pile.empty()) {
+      return true;
+    }
+
     PlayingCard topCard = pile.peek();
 
     // Input card is the opposite color
@@ -43,14 +48,5 @@ public class CascadePile extends AbstractPile {
     boolean oneLess = topCard.isOneGreater(inputCard);
 
     return differentColor && oneLess;
-  }
-
-  /**
-   * Unconditionally adds cards to the pile.
-   *
-   * @param inputCard the card to add
-   */
-  public void unconditionalAdd(PlayingCard inputCard) {
-    pile.push(inputCard);
   }
 }

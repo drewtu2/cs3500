@@ -87,13 +87,12 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
     int index;
     List<List<PlayingCard>> deltPiles = new ArrayList<>();
 
+    while (deltPiles.size() < numCascadePiles) {
+      deltPiles.add(new ArrayList<>());
+    }
+
     for (PlayingCard card : myDeck) {
       index = counter % numCascadePiles;
-
-      // We need to create this list first, then add the card
-      if (index == deltPiles.size()) {
-        deltPiles.add(new ArrayList<>());
-      }
 
       deltPiles.get(index).add(card);
       ++counter;
@@ -237,9 +236,14 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
     int max;
     int index;
 
-    // Generate a random number from 0 to size of inputDeck
+    // Take the last card in the deck and put it in the front of the new deck to ensure we don't
+    // accidentally create the old deck
     int sizeOfDeck = inputDeck.size();
+    shuffledList.add(inputDeck.get(sizeOfDeck - 1));
+    inputDeck.remove(sizeOfDeck - 1);
+    sizeOfDeck = inputDeck.size();
 
+    // Generate a random number from 0 to size of inputDeck
     for (int i = 0; i < sizeOfDeck; ++i) {
       max = inputDeck.size();
       index = rand.nextInt(max);

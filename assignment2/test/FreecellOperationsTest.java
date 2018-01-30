@@ -47,6 +47,74 @@ public class FreecellOperationsTest {
   }*/
 
   /**
+   * Tests what happens when any card is added to the empty spot.
+   */
+  @Test
+  public void Test53CascadePiles() {
+    myFreecell.startGame(myDeck, 53, 1, false);
+    myFreecell.move(PileType.CASCADE, 1, 0, PileType.CASCADE, 52);
+
+    assertEquals("F1:\n"
+        + "F2:\n"
+        + "F3:\n"
+        + "F4:\n"
+        + "O1:\n"
+        + "C1: A♠\n"
+        + "C2:\n"
+        + "C3: A♥\n"
+        + "C4: A♦\n"
+        + "C5: 2♠\n"
+        + "C6: 2♣\n"
+        + "C7: 2♥\n"
+        + "C8: 2♦\n"
+        + "C9: 3♠\n"
+        + "C10: 3♣\n"
+        + "C11: 3♥\n"
+        + "C12: 3♦\n"
+        + "C13: 4♠\n"
+        + "C14: 4♣\n"
+        + "C15: 4♥\n"
+        + "C16: 4♦\n"
+        + "C17: 5♠\n"
+        + "C18: 5♣\n"
+        + "C19: 5♥\n"
+        + "C20: 5♦\n"
+        + "C21: 6♠\n"
+        + "C22: 6♣\n"
+        + "C23: 6♥\n"
+        + "C24: 6♦\n"
+        + "C25: 7♠\n"
+        + "C26: 7♣\n"
+        + "C27: 7♥\n"
+        + "C28: 7♦\n"
+        + "C29: 8♠\n"
+        + "C30: 8♣\n"
+        + "C31: 8♥\n"
+        + "C32: 8♦\n"
+        + "C33: 9♠\n"
+        + "C34: 9♣\n"
+        + "C35: 9♥\n"
+        + "C36: 9♦\n"
+        + "C37: 10♠\n"
+        + "C38: 10♣\n"
+        + "C39: 10♥\n"
+        + "C40: 10♦\n"
+        + "C41: J♠\n"
+        + "C42: J♣\n"
+        + "C43: J♥\n"
+        + "C44: J♦\n"
+        + "C45: Q♠\n"
+        + "C46: Q♣\n"
+        + "C47: Q♥\n"
+        + "C48: Q♦\n"
+        + "C49: K♠\n"
+        + "C50: K♣\n"
+        + "C51: K♥\n"
+        + "C52: K♦\n"
+        + "C53: A♣", myFreecell.getGameState());
+  }
+
+  /**
    * A deck is invalid for this game if it does not have 52 cards.
    */
   @Test(expected = java.lang.IllegalArgumentException.class)
@@ -116,6 +184,14 @@ public class FreecellOperationsTest {
     myFreecell.startGame(null, 4, 1, false);
   }
 
+  /**
+   * Tests being given too few open piles.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void Test0OpenPiles() {
+    myFreecell.startGame(myDeck, 4, 0, false);
+  }
+
   // **********************************************************************************************
   // Tests of Game State
   // **********************************************************************************************
@@ -136,6 +212,39 @@ public class FreecellOperationsTest {
         + "C3: A♥, 2♥, 3♥, 4♥, 5♥, 6♥, 7♥, 8♥, 9♥, 10♥, J♥, Q♥, K♥\n"
         + "C4: A♦, 2♦, 3♦, 4♦, 5♦, 6♦, 7♦, 8♦, 9♦, 10♦, J♦, Q♦, K♦";
     assertEquals(expected, myFreecell.getGameState());
+  }
+
+  @Test
+  public void TestGameResetState() {
+    // Reversing the default deck should let us just move everything to foundation piles
+    Collections.reverse(myDeck);
+    myFreecell.startGame(myDeck, 4, 1, false);
+
+    int counter = CardValue.values().length - 1;
+    for (CardValue value : CardValue.values()) { // Iterate over all possible card types
+      for (int pileNum = 0; pileNum < 4; ++pileNum) {
+        myFreecell.move(PileType.CASCADE, pileNum, counter, PileType.FOUNDATION, pileNum);
+      }
+      --counter;
+    }
+    assertEquals(true, myFreecell.isGameOver());
+    myFreecell.startGame(myDeck, 4, 1, false);
+    assertEquals(false, myFreecell.isGameOver());
+
+  }
+
+  /**
+   * Test to make sure a game remains not started when an exception occurs in start game.
+   */
+  @Test
+  public void TestFalseStart() {
+    try {
+      myFreecell.startGame(myDeck, 0, 1, false);
+    } catch (Exception e) {
+      // Want an exception to be thrown.... do need to use it.
+    }
+    assertEquals("", myFreecell.getGameState());
+
   }
 
   /**
