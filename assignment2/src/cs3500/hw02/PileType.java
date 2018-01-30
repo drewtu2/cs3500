@@ -1,4 +1,4 @@
-package cs3500.hw02.piles;
+package cs3500.hw02;
 
 /**
  * Type for the three types of piles in a game of Freecell. <br> Open: This pile can hold only one

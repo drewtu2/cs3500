@@ -3,12 +3,8 @@ package cs3500.hw02;
 import cs3500.hw02.cards.CardSuit;
 import cs3500.hw02.cards.CardValue;
 import cs3500.hw02.cards.PlayingCard;
-import cs3500.hw02.piles.CascadePile;
-import cs3500.hw02.piles.FoundationPile;
-import cs3500.hw02.piles.OpenPile;
 import cs3500.hw02.piles.PileFactory;
 import cs3500.hw02.piles.PileInterface;
-import cs3500.hw02.piles.PileType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +13,9 @@ import java.util.Random;
 
 public class FreecellModel implements FreecellOperations<PlayingCard> {
 
-  private List<PileInterface> FoundationPiles;
-  private List<PileInterface> OpenPiles;
-  private List<PileInterface> CascadePiles;
+  private List<PileInterface> foundationPiles;
+  private List<PileInterface> openPiles;
+  private List<PileInterface> cascadePiles;
 
   private boolean gameStarted;
 
@@ -28,13 +24,13 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
   private static final int C_NUM_FOUNDATION_PILES = 4;
 
   /**
-   * Constructs a default Freecell Model TODO: Write Constructor
+   * Constructs a default Freecell Model.
    */
   public FreecellModel() {
     gameStarted = false;
-    FoundationPiles = null;
-    OpenPiles = null;
-    CascadePiles = null;
+    foundationPiles = null;
+    openPiles = null;
+    cascadePiles = null;
 
   }
 
@@ -71,36 +67,41 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
     gameStarted = true;
 
     // Create our piles
-    FoundationPiles = PileFactory.makeListOfPiles(PileType.FOUNDATION, C_NUM_FOUNDATION_PILES);
-    OpenPiles = PileFactory.makeListOfPiles(PileType.OPEN, numOpenPiles);
-    CascadePiles = PileFactory.makeListOfPiles(PileType.CASCADE, numCascadePiles);
+    foundationPiles = PileFactory.makeListOfPiles(PileType.FOUNDATION, C_NUM_FOUNDATION_PILES);
+    openPiles = PileFactory.makeListOfPiles(PileType.OPEN, numOpenPiles);
 
     // Shuffle the Deck as necessary
     if (shuffle) {
       deck = shuffle(deck);
     }
 
-    dealRoundRobin(deck);
+    List<List<PlayingCard>> listOfDealtCards = dealRoundRobin(deck, numCascadePiles);
+    cascadePiles = PileFactory.makeListOfPiles(PileType.CASCADE, listOfDealtCards);
   }
 
   /**
-   * Deal cards in a round robin fashion across all cascade piles
+   * Deal cards in a round robin fashion across all cascade piles.
    */
-  private void dealRoundRobin(List<PlayingCard> myDeck) {
+  private List<List<PlayingCard>> dealRoundRobin(List<PlayingCard> myDeck, int numCascadePiles) {
     int counter = 0;
     int index;
-    PileInterface pile;
+    List<List<PlayingCard>> deltPiles = new ArrayList<>();
 
     for (PlayingCard card : myDeck) {
-      index = counter % CascadePiles.size();
-      pile = CascadePiles.get(index);
-      // TODO: Is there a more elegant way of doing this?
-      ((CascadePile) pile).unconditionalAdd(card);
+      index = counter % numCascadePiles;
+
+      // We need to create this list first, then add the card
+      if (index == deltPiles.size()) {
+        deltPiles.add(new ArrayList<>());
+      }
+
+      deltPiles.get(index).add(card);
       ++counter;
     }
+
+    return deltPiles;
   }
 
-  // TODO: Do we need to throw illegal argument exceptions if the pile/card doesn't exist?
   @Override
   public void move(PileType source, int pileNumber, int cardIndex, PileType destination,
       int destPileNumber) throws IllegalStateException {
@@ -114,50 +115,55 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
   }
 
   /**
-   * Returns the requested pile
+   * Returns the requested pile.
    *
    * @param type The type of pile that is being requested
    * @param pileNumber The pile number that is being requested
    * @return the requested pile interface
    */
-  private PileInterface getPile(PileType type, int pileNumber) {
-    switch (type) {
-      case FOUNDATION:
-        return FoundationPiles.get(pileNumber);
-      case CASCADE:
-        return CascadePiles.get(pileNumber);
-      case OPEN:
-        return OpenPiles.get(pileNumber);
-      default:
-        throw new IllegalArgumentException("Invalid requested type");
+  private PileInterface getPile(PileType type, int pileNumber)
+      throws IllegalStateException, IllegalArgumentException {
+    try {
+      switch (type) {
+        case FOUNDATION:
+          return foundationPiles.get(pileNumber);
+        case CASCADE:
+          return cascadePiles.get(pileNumber);
+        case OPEN:
+          return openPiles.get(pileNumber);
+        default:
+          throw new IllegalArgumentException("Invalid requested type");
+      }
+    } catch (NullPointerException e) {
+      throw new IllegalStateException();
+    } catch (IndexOutOfBoundsException e) {
+      // If we threw an index out of bounds exception, it means we requested something out of
+      // bounds.
+      throw new IllegalStateException("That pile doesn't exist");
     }
   }
 
   @Override
   public boolean isGameOver() {
-    boolean gameOver = true;
 
-    for (PileInterface pile : FoundationPiles) {
-      //TODO: Is there a more elegant way of doing this?
-      gameOver = ((FoundationPile) pile).isComplete();
-
+    for (PileInterface pile : foundationPiles) {
       // If any of the piles are not complete, we break
-      if (!gameOver) {
-        break;
+      if (pile.size() != CardValue.values().length) {
+        return false;
       }
     }
 
-    return gameOver;
+    return true;
   }
 
   @Override
   public String getGameState() {
     if (gameStarted) {
-      return loPileToString(FoundationPiles)
+      return loPileToString(foundationPiles)
           + "\n"
-          + loPileToString(OpenPiles)
+          + loPileToString(openPiles)
           + "\n"
-          + loPileToString(CascadePiles);
+          + loPileToString(cascadePiles);
     } else {
       return "";
     }
@@ -195,6 +201,10 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
     int last_instance = 0;
     PlayingCard testCard;
 
+    if (inputDeck == null) {
+      return false;
+    }
+
     for (CardValue value : CardValue.values()) {
       for (CardSuit suit : CardSuit.values()) {
         testCard = new PlayingCard(suit, value);
@@ -215,7 +225,7 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
   }
 
   /**
-   * Takes a deck and returns the deck in a randomized order
+   * Takes a deck and returns the deck in a randomized order.
    *
    * @param inputDeck A List of cards to mix
    * @return a deck with all of the same cards in a different order
@@ -224,7 +234,8 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
     List<PlayingCard> shuffledList = new ArrayList<>();
     Random rand = new Random();
 
-    int max, index;
+    int max;
+    int index;
 
     // Generate a random number from 0 to size of inputDeck
     int sizeOfDeck = inputDeck.size();

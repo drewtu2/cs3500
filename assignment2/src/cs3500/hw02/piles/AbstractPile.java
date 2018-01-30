@@ -1,9 +1,8 @@
 package cs3500.hw02.piles;
 
 import cs3500.hw02.cards.PlayingCard;
-import java.util.List;
 import java.util.Stack;
-import java.util.Collections;
+import cs3500.hw02.PileType;
 
 public abstract class AbstractPile implements PileInterface {
 
@@ -60,8 +59,9 @@ public abstract class AbstractPile implements PileInterface {
    * is used to indicate which pile this is.
    *
    * @param index The index of the pile
+   * @throws IllegalArgumentException on invalid type
    */
-  public String toString(int index) {
+  public String toString(int index) throws IllegalArgumentException {
     StringBuilder myBuilder = new StringBuilder();
 
     switch (type) {
@@ -74,8 +74,10 @@ public abstract class AbstractPile implements PileInterface {
       case FOUNDATION:
         myBuilder.append("F");
         break;
+      default:
+        throw new IllegalArgumentException("Invalid type");
     }
-    myBuilder.append(index);
+    myBuilder.append(index + 1);
     myBuilder.append(":");
 
     if (pile.empty()) {
@@ -92,6 +94,11 @@ public abstract class AbstractPile implements PileInterface {
     //System.out.println(myBuilder.toString());
 
     return myBuilder.toString();
+  }
+
+  @Override
+  public int size() {
+    return pile.size();
   }
 
   /**

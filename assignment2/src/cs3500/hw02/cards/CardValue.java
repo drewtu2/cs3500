@@ -18,7 +18,7 @@ public enum CardValue {
   private final String value;
 
   /**
-   * Creates a CardValue with a given value
+   * Creates a CardValue with a given value.
    */
   CardValue(String value) {
     this.value = value;
@@ -29,8 +29,12 @@ public enum CardValue {
     return this.value;
   }
 
+  /**
+   * Returns the next value in the sequence of cards.
+   * @return the next value in the sequence of cards.
+   */
   public CardValue next() {
-    CardValue values[] = CardValue.values();
+    CardValue[] values = CardValue.values();
     int ordinal = (this.ordinal() + 1) % values.length;
     return values[ordinal];
   }

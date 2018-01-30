@@ -4,125 +4,127 @@ import cs3500.hw02.cards.PlayingCard;
 
 import org.junit.Test;
 import org.junit.Before;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 
 public class PlayingCardTest {
-  private PlayingCard AceOfSpades;
-  private PlayingCard AceOfHearts;
+
+  private PlayingCard aceOfSpades;
+  private PlayingCard aceOfHearts;
 
   @Before
   public void initCond() {
-    AceOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.ACE);
-    AceOfHearts = new PlayingCard(CardSuit.HEART, CardValue.ACE);
+    aceOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.ACE);
+    aceOfHearts = new PlayingCard(CardSuit.HEART, CardValue.ACE);
   }
 
   @Test
   public void TestString() {
-    assertEquals("A♠", AceOfSpades.toString());
+    assertEquals("A♠", aceOfSpades.toString());
   }
 
   @Test
   public void TestEquals() {
-    assertEquals(AceOfSpades, AceOfSpades);
+    assertEquals(aceOfSpades, aceOfSpades);
   }
 
   @Test
   public void TestNotEquals() {
-    assertNotEquals(AceOfHearts, AceOfSpades);
+    assertNotEquals(aceOfHearts, aceOfSpades);
   }
 
   @Test
   public void TestHashEquals() {
-    assertEquals(AceOfSpades.hashCode(), AceOfSpades.hashCode());
+    assertEquals(aceOfSpades.hashCode(), aceOfSpades.hashCode());
   }
 
   @Test
   public void TestHashNotEquals() {
-    assertNotEquals(AceOfHearts.toString(), AceOfSpades.toString());
+    assertNotEquals(aceOfHearts.toString(), aceOfSpades.toString());
   }
 
   @Test
   public void TestSameSuit() {
-    assertEquals(true, AceOfSpades.sameSuitAs(AceOfSpades));
+    assertEquals(true, aceOfSpades.sameSuitAs(aceOfSpades));
   }
 
   @Test
   public void TestNotSameSuit() {
-    assertEquals(false, AceOfSpades.sameSuitAs(AceOfHearts));
+    assertEquals(false, aceOfSpades.sameSuitAs(aceOfHearts));
   }
 
   @Test
   public void TestValueIs() {
-    assertEquals(true, AceOfSpades.valueIs(CardValue.ACE));
+    assertEquals(true, aceOfSpades.valueIs(CardValue.ACE));
   }
 
   @Test
   public void TestNotValueIs() {
-    assertEquals(false, AceOfSpades.valueIs(CardValue.TWO));
+    assertEquals(false, aceOfSpades.valueIs(CardValue.TWO));
   }
 
   @Test
   public void TestOneGreater() {
-    PlayingCard TwoOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.TWO);
-    assertEquals(true, TwoOfSpades.isOneGreater(AceOfSpades));
+    PlayingCard twoOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.TWO);
+    assertEquals(true, twoOfSpades.isOneGreater(aceOfSpades));
 
-    PlayingCard QueenOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.QUEEN);
-    PlayingCard KingOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.KING);
-    assertEquals(true, KingOfSpades.isOneGreater(QueenOfSpades));
+    PlayingCard queenOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.QUEEN);
+    PlayingCard kingOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.KING);
+    assertEquals(true, kingOfSpades.isOneGreater(queenOfSpades));
 
 
   }
 
   @Test
   public void TestNotOneGreater() {
-    PlayingCard ThreeOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.THREE);
-    PlayingCard TwoOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.TWO);
+    PlayingCard threeOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.THREE);
+    PlayingCard twoOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.TWO);
 
-    assertEquals(false, ThreeOfSpades.isOneGreater(AceOfSpades));
-    assertEquals(false, TwoOfSpades.isOneGreater(ThreeOfSpades));
+    assertEquals(false, threeOfSpades.isOneGreater(aceOfSpades));
+    assertEquals(false, twoOfSpades.isOneGreater(threeOfSpades));
 
-    PlayingCard KingOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.KING);
-    assertEquals(false, KingOfSpades.isOneGreater(AceOfSpades));
-    assertEquals(false, AceOfSpades.isOneGreater(KingOfSpades));
+    PlayingCard kingOfSpades = new PlayingCard(CardSuit.SPADE, CardValue.KING);
+    assertEquals(false, kingOfSpades.isOneGreater(aceOfSpades));
+    assertEquals(false, aceOfSpades.isOneGreater(kingOfSpades));
   }
 
   @Test
   public void TestDifferentColor() {
-    PlayingCard AceOfDiamonds = new PlayingCard(CardSuit.DIAMOND, CardValue.ACE);
+    PlayingCard aceOfDiamonds = new PlayingCard(CardSuit.DIAMOND, CardValue.ACE);
 
-    assertEquals(true, AceOfSpades.differentColor(AceOfHearts));
-    assertEquals(true, AceOfSpades.differentColor(AceOfDiamonds));
+    assertEquals(true, aceOfSpades.differentColor(aceOfHearts));
+    assertEquals(true, aceOfSpades.differentColor(aceOfDiamonds));
   }
 
   @Test
   public void TestNotDifferentColor() {
-    PlayingCard AceOfClubs = new PlayingCard(CardSuit.CLUB, CardValue.ACE);
+    PlayingCard aceOfClubs = new PlayingCard(CardSuit.CLUB, CardValue.ACE);
 
-    assertEquals(false, AceOfSpades.differentColor(AceOfClubs));
-    assertEquals(false, AceOfSpades.differentColor(AceOfSpades));
+    assertEquals(false, aceOfSpades.differentColor(aceOfClubs));
+    assertEquals(false, aceOfSpades.differentColor(aceOfSpades));
   }
 
   @Test
   public void TestGetSuit() {
-    assertEquals(CardSuit.SPADE, AceOfSpades.getSuit());
-    assertEquals(CardSuit.HEART, AceOfHearts.getSuit());
+    assertEquals(CardSuit.SPADE, aceOfSpades.getSuit());
+    assertEquals(CardSuit.HEART, aceOfHearts.getSuit());
   }
 
   @Test
   public void TestNotGetSuit() {
-    assertNotEquals(CardSuit.HEART, AceOfSpades.getSuit());
-    assertNotEquals(CardSuit.SPADE, AceOfHearts.getSuit());
+    assertNotEquals(CardSuit.HEART, aceOfSpades.getSuit());
+    assertNotEquals(CardSuit.SPADE, aceOfHearts.getSuit());
   }
 
   @Test
   public void TestGetValue() {
-    assertEquals(CardValue.ACE, AceOfSpades.getValue());
+    assertEquals(CardValue.ACE, aceOfSpades.getValue());
   }
 
   @Test
   public void TestNotGetValue() {
-    assertNotEquals(CardValue.TWO, AceOfHearts.getValue());
+    assertNotEquals(CardValue.TWO, aceOfHearts.getValue());
   }
 }

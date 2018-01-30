@@ -2,6 +2,7 @@ package cs3500.hw02.piles;
 
 import cs3500.hw02.cards.PlayingCard;
 import java.util.Stack;
+import cs3500.hw02.PileType;
 
 public class OpenPile extends AbstractPile {
 

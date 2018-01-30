@@ -1,7 +1,6 @@
 package cs3500.hw02.piles;
 
 import cs3500.hw02.cards.PlayingCard;
-import java.util.List;
 
 /**
  * This is the interface for a Pile.
@@ -28,6 +27,14 @@ public interface PileInterface {
    * Returns a string representing the state of the the pile.
    *
    * @param index the index this pile is in a list of piles
+   * @return the string representation of the pile.
    */
   String toString(int index);
+
+  /**
+   * Returns the pile size.
+   *
+   * @return the size of the pile
+   */
+  int size();
 }
