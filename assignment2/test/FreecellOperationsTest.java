@@ -248,6 +248,19 @@ public class FreecellOperationsTest {
   }
 
   /**
+   * Test to make sure the deck remains intact after dealing.
+   */
+  @Test
+  public void TestDeckIntact() {
+    try {
+      myFreecell.startGame(myDeck, 4, 1, false);
+    } catch (Exception e) {
+      // Want an exception to be thrown.... do need to use it.
+    }
+    assertEquals(52, myDeck.size());
+  }
+
+  /**
    * Test the Game State when the game has not yet begun (should return empty string).
    */
   @Test
@@ -496,6 +509,27 @@ public class FreecellOperationsTest {
   */
 
   /**
+   * Tests a move if the game hasn't started.
+   */
+  @Test(expected = IllegalStateException.class)
+  public void TestMoveGameNotStarted() {
+    myFreecell.move(PileType.CASCADE, 0, 0, PileType.OPEN, 0);
+  }
+
+  /**
+   * Tests move to self does nothing.
+   */
+  @Test
+  public void TestMoveSelf() {
+    myFreecell.startGame(myDeck, 4, 1, false);
+    String preDeck = myFreecell.getGameState();
+    myFreecell.move(PileType.CASCADE, 0, 12, PileType.CASCADE, 0);
+
+    assertEquals(preDeck, myFreecell.getGameState());
+
+  }
+
+  /**
    * Test a valid move to open pile.
    */
   @Test
@@ -546,7 +580,7 @@ public class FreecellOperationsTest {
   /**
    * Tests trying to move non existent piles.
    */
-  @Test(expected = IllegalStateException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void TestNonExistentPiles() {
     myFreecell.startGame(myDeck, 4, 1, false);
 
@@ -557,7 +591,7 @@ public class FreecellOperationsTest {
   /**
    * Tests trying to move non existent card.
    */
-  @Test(expected = IllegalStateException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void TestNonExistentCard() {
     myFreecell.startGame(myDeck, 4, 1, false);
 
@@ -568,7 +602,7 @@ public class FreecellOperationsTest {
   /**
    * Tests attempting to move a card of the wrong color but correct value onto a cascade pile.
    */
-  @Test(expected = IllegalStateException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void TestInvalidMoveCascadePileWrongColor() {
     myFreecell.startGame(myDeck, 52, 1, false);
 
@@ -580,7 +614,7 @@ public class FreecellOperationsTest {
   /**
    * Tests attempting to move a card of the right color but wrong value onto a cascade pile.
    */
-  @Test(expected = IllegalStateException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void TestInvalidMoveCascadePileWrongValue() {
     myFreecell.startGame(myDeck, 52, 1, false);
 
@@ -592,7 +626,7 @@ public class FreecellOperationsTest {
   /**
    * Tests attempting to move a card of the wrong suit but right value onto a foundation pile.
    */
-  @Test(expected = IllegalStateException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void TestInvalidMoveFoundationPileWrongSuit() {
     myFreecell.startGame(myDeck, 52, 1, false);
 
@@ -608,7 +642,7 @@ public class FreecellOperationsTest {
   /**
    * Tests attempting to move a card of the right suit but wrong value onto a foundation pile.
    */
-  @Test(expected = IllegalStateException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void TestInvalidMoveFoundationPileWrongValue() {
     myFreecell.startGame(myDeck, 52, 1, false);
 
@@ -624,12 +658,23 @@ public class FreecellOperationsTest {
   /**
    * Tests attempting to move a card onto a non empty open pile.
    */
-  @Test(expected = IllegalStateException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void TestInvalidMoveOpenOccupied() {
     myFreecell.startGame(myDeck, 4, 1, false);
     myFreecell.move(PileType.CASCADE, 0, 13, PileType.OPEN,
         0);
     myFreecell.move(PileType.CASCADE, 0, 12, PileType.OPEN,
+        0);
+
+  }
+
+  /**
+   * Tests attempting to move not the top card.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void TestMoveNotTop() {
+    myFreecell.startGame(myDeck, 4, 1, false);
+    myFreecell.move(PileType.CASCADE, 0, 10, PileType.OPEN,
         0);
 
   }

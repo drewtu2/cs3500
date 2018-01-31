@@ -103,13 +103,21 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
 
   @Override
   public void move(PileType source, int pileNumber, int cardIndex, PileType destination,
-      int destPileNumber) throws IllegalStateException {
-    PileInterface sourcePile = getPile(source, pileNumber);
-    PileInterface destinationPile = getPile(destination, destPileNumber);
+      int destPileNumber) throws IllegalArgumentException, IllegalStateException {
+    if (gameStarted) {
+      if (source == destination && pileNumber == destPileNumber) {
+        // Do nothing
+      } else {
 
-    PlayingCard selectedCard = sourcePile.popCard(cardIndex);
-    destinationPile.addToPile(selectedCard);
+        PileInterface sourcePile = getPile(source, pileNumber);
+        PileInterface destinationPile = getPile(destination, destPileNumber);
 
+        PlayingCard selectedCard = sourcePile.popCard(cardIndex);
+        destinationPile.addToPile(selectedCard);
+      }
+    } else {
+      throw new IllegalStateException("Game not started!");
+    }
 
   }
 
@@ -121,7 +129,7 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
    * @return the requested pile interface
    */
   private PileInterface getPile(PileType type, int pileNumber)
-      throws IllegalStateException, IllegalArgumentException {
+      throws IllegalArgumentException {
     try {
       switch (type) {
         case FOUNDATION:
@@ -134,20 +142,42 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
           throw new IllegalArgumentException("Invalid requested type");
       }
     } catch (NullPointerException e) {
-      throw new IllegalStateException();
+      throw new IllegalArgumentException();
     } catch (IndexOutOfBoundsException e) {
       // If we threw an index out of bounds exception, it means we requested something out of
       // bounds.
-      throw new IllegalStateException("That pile doesn't exist");
+      throw new IllegalArgumentException("That pile doesn't exist");
     }
   }
 
   @Override
   public boolean isGameOver() {
+    String spades = "C1: A♠, 2♠, 3♠, 4♠, 5♠, 6♠, 7♠, 8♠, 9♠, 10♠, J♠, Q♠, K♠";
+    String clubs = "C1: A♣, 2♣, 3♣, 4♣, 5♣, 6♣, 7♣, 8♣, 9♣, 10♣, J♣, Q♣, K♣";
+    String hearts = "C1: A♥, 2♥, 3♥, 4♥, 5♥, 6♥, 7♥, 8♥, 9♥, 10♥, J♥, Q♥, K♥";
+    String diamonds = "C1: A♦, 2♦, 3♦, 4♦, 5♦, 6♦, 7♦, 8♦, 9♦, 10♦, J♦, Q♦, K♦";
+
+    List<String> winConds = new ArrayList<>();
+    winConds.add(spades);
+    winConds.add(clubs);
+    winConds.add(hearts);
+    winConds.add(diamonds);
+
+    boolean complete = false;
 
     for (PileInterface pile : foundationPiles) {
+      complete = false;
+
       // If any of the piles are not complete, we break
       if (pile.size() != CardValue.values().length) {
+        return false;
+      }
+
+      // If any of the winConds are true, complete will be true
+      for (String cond : winConds) {
+        complete = complete || cond.equals(pile.toString(1));
+      }
+      if (complete) {
         return false;
       }
     }

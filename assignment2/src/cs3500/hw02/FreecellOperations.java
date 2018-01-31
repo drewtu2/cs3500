@@ -46,12 +46,14 @@ public interface FreecellOperations<K> {
    * @param destination the type of the destination pile (see
    * @param destPileNumber the pile number of the given type, starting at 0
    * @throws IllegalArgumentException if the move is not possible {@link PileType})
+   * @throws IllegalStateException if a move is attempted before the game has starts
    */
   void move(PileType source,
       int pileNumber,
       int cardIndex,
       PileType destination,
-      int destPileNumber) throws IllegalArgumentException;
+      int destPileNumber) throws IllegalArgumentException,
+      IllegalStateException;
 
   /**
    * Signal if the game is over or not.

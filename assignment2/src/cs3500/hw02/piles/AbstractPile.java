@@ -13,18 +13,18 @@ public abstract class AbstractPile implements PileInterface {
   PileType type;
 
   @Override
-  public void addToPile(PlayingCard inputCard) throws IllegalStateException {
+  public void addToPile(PlayingCard inputCard) throws IllegalArgumentException {
     if (validAddition(inputCard)) {
       pile.push(inputCard);
     } else {
-      throw new IllegalStateException("Card cannot be added");
+      throw new IllegalArgumentException("Card cannot be added");
     }
   }
 
   @Override
-  public PlayingCard popCard(int index) throws IllegalStateException {
+  public PlayingCard popCard(int index) throws IllegalArgumentException {
     if (index != pile.size() - 1) {
-      throw new IllegalStateException("Cannot move this card. Not the top!");
+      throw new IllegalArgumentException("Cannot move this card. Not the top!");
     }
 
     return pile.pop();
