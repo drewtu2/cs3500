@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 
 
@@ -231,6 +232,15 @@ public class FreecellOperationsTest {
     myFreecell.startGame(myDeck, 4, 1, false);
     assertEquals(false, myFreecell.isGameOver());
 
+  }
+
+  @Test
+  public void TestResetGameNotFinished() {
+    myFreecell.startGame(myDeck, 4, 1, false);
+    String play1 = myFreecell.getGameState();
+    myFreecell.startGame(myDeck, 4, 1, true);
+
+    assertNotEquals(play1 , myFreecell.getGameState());
   }
 
   /**
@@ -508,6 +518,8 @@ public class FreecellOperationsTest {
   }
   */
 
+
+
   /**
    * Tests a move if the game hasn't started.
    */
@@ -597,6 +609,23 @@ public class FreecellOperationsTest {
 
     myFreecell.move(PileType.CASCADE, 4, 14, PileType.OPEN, 1);
 
+  }
+
+  @Test
+  public void TestInvalidMoveCorrectReset() {
+    myFreecell.startGame(myDeck, 52, 1, false);
+
+    String myState = myFreecell.getGameState();
+
+    try {
+      // Trying to move 1 of spades on to 2 of spades
+      myFreecell.move(PileType.CASCADE, 0, 0, PileType.CASCADE,
+          4);
+    } catch (IllegalArgumentException e) {
+      // Do nothing.
+    }
+
+    assertEquals(myState, myFreecell.getGameState());
   }
 
   /**
