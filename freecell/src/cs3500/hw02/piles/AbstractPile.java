@@ -22,6 +22,11 @@ public abstract class AbstractPile implements PileInterface {
   }
 
   @Override
+  public void unconditionalAdd(PlayingCard card) {
+    pile.push(card);
+  }
+
+  @Override
   public PlayingCard popCard(int index) throws IllegalArgumentException {
     if (index != pile.size() - 1) {
       throw new IllegalArgumentException("Cannot move this card. Not the top!");

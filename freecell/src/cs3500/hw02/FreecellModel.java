@@ -113,7 +113,14 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
         PileInterface destinationPile = getPile(destination, destPileNumber);
 
         PlayingCard selectedCard = sourcePile.popCard(cardIndex);
-        destinationPile.addToPile(selectedCard);
+
+        try {
+          destinationPile.addToPile(selectedCard);
+        } catch (IllegalArgumentException e) {
+          // Couldn't add, revert previous pop
+          sourcePile.unconditionalAdd(selectedCard);
+          throw e;
+        }
       }
     } else {
       throw new IllegalStateException("Game not started!");
