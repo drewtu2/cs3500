@@ -1,4 +1,46 @@
 
+# Tuesday Feb 6, 2018
+# Shesh
+
+## Testing the Controller
+Writing a scanner to pull from `System.in` prevents you from easily testing it.
+`System.in` requires input from the user/keyboard -> how do you expect to automatically
+test something that pulls from the user?
+
+Digging into the documentation for `System.in` reveals it is of type `InputStream`.
+`InputStream` is an "abstract class is the superclass of all input streams"
+Documentation shows that we could abstract the scanner away from a hardcode to
+`System.in` to the more general `InputStream`.
+
+Comparisons with Strings can be made using `ByteArrayInputStream` and `ByteArrayOutputStream`.
+Methods exist to convert to and from ByteArrays from a String
+
+More generally, you can write/design to Appendable/Readable interfaces -> more general,
+interface that is still used by the Scanner class. (Interfaces are actually implemented
+by the classes).
+
+
+## Checked vs Unchecked exceptions:
+Checked (hot potato rule): must be caught by the caller OR must declare that it throws the error.
+Java forces you to do one of the other -> else, compile time error. (most exceptions)
+
+Unchecked Exceptions: not forced to handle the error.... but still should.
+(IllegalArgumentException is an unchecked exception)
+
+## Refactoring vs Re-design
+- Refactoring does not change how the component is used, redesign may change client
+- Refactoring does not change the interface of the main component
+- Refactoring is often done in small, incremental steps
+- Refactoring does not do anything new, just makes existing code better.
+  - More readable, easily understandable
+  - More modular
+  - Distribute functions and data more efficiently
+  - More efficient
+
+Reasons for Refactoring: "Code Smells"
+
+
+
 # Friday, Feb 2, 2018
 # Shesh
 
