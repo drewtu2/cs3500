@@ -64,7 +64,7 @@ public class MoveSequence implements IMoveSequence {
 
     PileType sourceType = extractType(sourcePile);
     int sourceIndex = extractIndex(sourcePile);
-    int cIndex = Integer.parseInt(cardIndex);
+    int cIndex = Integer.parseInt(cardIndex) - 1;
     PileType destinationType = extractType(destinationPile);
     int destinationIndex = extractIndex(destinationPile);
 
@@ -143,7 +143,7 @@ public class MoveSequence implements IMoveSequence {
    * @throws IllegalStateException on invalid input
    */
   private static PileType extractType(String input) {
-    String indicator = input.substring(0, 0).toLowerCase();
+    String indicator = input.substring(0, 1).toLowerCase();
 
     switch (indicator) {
       case "f": return PileType.FOUNDATION;
@@ -160,7 +160,7 @@ public class MoveSequence implements IMoveSequence {
   private static int extractIndex(String input) {
     String string_int = input.substring(1);
 
-    return Integer.parseInt(string_int);
+    return Integer.parseInt(string_int) - 1;
 
   }
 

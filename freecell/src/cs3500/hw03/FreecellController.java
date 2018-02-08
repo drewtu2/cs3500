@@ -7,9 +7,7 @@ import cs3500.hw03.inputScanner.InputScanner;
 import cs3500.hw03.moveSequence.IMoveSequence;
 import cs3500.hw03.moveSequence.MoveSequence;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class FreecellController implements IFreecellController<PlayingCard> {
 
@@ -46,7 +44,7 @@ public class FreecellController implements IFreecellController<PlayingCard> {
     try {
       model.startGame(deck, numCascades, numOpens, shuffle);
     } catch (Exception e) {
-      outputStream.append("Could not start game.");
+      outputStream.append("Could not start game.\n");
       return;
     }
 
@@ -55,6 +53,7 @@ public class FreecellController implements IFreecellController<PlayingCard> {
 
       // Transmit game state to appendable
       outputStream.append(model.getGameState());
+      outputStream.append("\n");
 
       // Wait on valid user input
       moveSequence = MoveSequence.readMoveSequence(inputScanner);
@@ -81,30 +80,31 @@ public class FreecellController implements IFreecellController<PlayingCard> {
 
     // If detected a quit command
     if (moveSequence.isQuit()) {
-      outputStream.append("\nGame quit prematurely");
+      outputStream.append("Game quit prematurely.\n");
     }
 
     // If game over
     if (model.isGameOver()) {
       // transmit final game state
       outputStream.append(model.getGameState());
+      outputStream.append("\n");
 
       // Print "Game over"
-      outputStream.append("\nGame Over");
+      outputStream.append("Game Over.\n");
     }
   }
 
-  /**
-   * Throws an IllegalArgumentException in the case that the deck or model is invalid.
-   */
-  private void validatePlayGameInputs(List<PlayingCard> deck,
-      FreecellOperations<PlayingCard> model) {
-    if (deck == null) {
-      throw new IllegalArgumentException("Deck cannot be null");
-    } else if (model == null) {
-      throw new IllegalArgumentException("Model cannot be null");
-    }
-  }
+  ///**
+  // * Throws an IllegalArgumentException in the case that the deck or model is invalid.
+  // */
+  //private void validatePlayGameInputs(List<PlayingCard> deck,
+  //    FreecellOperations<PlayingCard> model) {
+  //  if (deck == null) {
+  //    throw new IllegalArgumentException("Deck cannot be null");
+  //  } else if (model == null) {
+  //    throw new IllegalArgumentException("Model cannot be null");
+  //  }
+  //}
 
 
 }

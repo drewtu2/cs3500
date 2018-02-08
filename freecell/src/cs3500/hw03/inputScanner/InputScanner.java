@@ -1,6 +1,5 @@
 package cs3500.hw03.inputScanner;
 
-import cs3500.hw02.PileType;
 import java.util.Scanner;
 
 /**
@@ -13,7 +12,7 @@ import java.util.Scanner;
  */
 public class InputScanner implements IInputScanner{
 
-  private Scanner inputScanner;
+  private static Scanner inputScanner;
 
   public InputScanner(Readable inputStream) {
     inputScanner = new Scanner(inputStream);
@@ -53,14 +52,14 @@ public class InputScanner implements IInputScanner{
       return false;
     }
 
-    String indicator = token.substring(0, 0).toLowerCase();
+    String indicator = token.substring(0, 1).toLowerCase();
     String index = token.substring(1);
 
     if(token.equals("q")) {
       return true;
     }
 
-    if (!indicator.equals("f") || !indicator.equals("o") || !indicator.equals("c")) {
+    if (!indicator.equals("f") && !indicator.equals("o") && !indicator.equals("c")) {
       return false;
     }
 
