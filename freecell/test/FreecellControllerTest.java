@@ -22,7 +22,7 @@ public class FreecellControllerTest {
   FreecellOperations myModel;
   Readable myRd;
   Appendable myAp;
-  String Start53 = "F1:\n"
+  String start53 = "F1:\n"
       + "F2:\n"
       + "F3:\n"
       + "F4:\n"
@@ -80,7 +80,7 @@ public class FreecellControllerTest {
       + "C51: K♥\n"
       + "C52: K♦\n"
       + "C53:";
-  String C1ToC53 = "F1:\n"
+  String c1ToC53 = "F1:\n"
       + "F2:\n"
       + "F3:\n"
       + "F4:\n"
@@ -138,8 +138,12 @@ public class FreecellControllerTest {
       + "C51: K♥\n"
       + "C52: K♦\n"
       + "C53: A♠";
-  String InvalidMove = "Invalid Move. Try Again.\n";
 
+  String invalidMove = "Invalid Move. Try Again. Bad Inputs.\n";
+
+  /**
+   * Preinitialize tests.
+   */
   @Before
   public void initTests() {
     myModel = new FreecellModel();
@@ -191,7 +195,7 @@ public class FreecellControllerTest {
       // do nothing...
     }
 
-    assertEquals(myAp.toString(), "Could not start game.\n");
+    assertEquals(myAp.toString(), "Could not start game.");
 
     try {
       myController.playGame(myDeck, myModel, 4, 0, false);
@@ -199,7 +203,7 @@ public class FreecellControllerTest {
       // do nothing...
     }
 
-    assertEquals(myAp.toString(), "Could not start game.\nCould not start game.\n");
+    assertEquals(myAp.toString(), "Could not start game.Could not start game.");
   }
 
   /**
@@ -238,8 +242,8 @@ public class FreecellControllerTest {
       // Do nothing
     }
 
-    assertEquals(Start53
-            + "\n" + C1ToC53 + "\nGame quit prematurely.\n",
+    assertEquals(start53
+            + "\n" + c1ToC53 + "\nGame quit prematurely.\n",
         myAp.toString());
   }
 
@@ -259,9 +263,7 @@ public class FreecellControllerTest {
       // Do nothing
     }
 
-    assertEquals(Start53
-            + "\n" + C1ToC53 + "\nGame quit prematurely.\n"
-        , myAp.toString());
+    assertEquals(start53 + "\n" + c1ToC53 + "\nGame quit prematurely.\n", myAp.toString());
   }
 
   /**
@@ -280,8 +282,8 @@ public class FreecellControllerTest {
       // Do nothing
     }
 
-    assertEquals(Start53
-            + "\n" + C1ToC53 + "\nGame quit prematurely.\n",
+    assertEquals(start53
+            + "\n" + c1ToC53 + "\nGame quit prematurely.\n",
         myAp.toString());
   }
 
@@ -301,7 +303,64 @@ public class FreecellControllerTest {
       // Do nothing
     }
 
-    assertEquals(Start53 + "\nGame quit prematurely.\n", myAp.toString());
+    assertEquals(start53 + "\nGame quit prematurely.\n", myAp.toString());
+  }
+
+  /**
+   * Tests if the program quits and sends quit message.
+   */
+  @Test
+  public void TestQuitUpper() {
+    myRd = new StringReader("Q C1 fd 1 C12");
+    myAp = new StringBuffer("");
+
+    myController = new FreecellController(myRd, myAp);
+
+    try {
+      myController.playGame(myDeck, myModel, 53, 1, false);
+    } catch (IOException e) {
+      // Do nothing
+    }
+
+    assertEquals(start53 + "\nGame quit prematurely.\n", myAp.toString());
+  }
+
+  /**
+   * Tests if the program quits and sends quit message.
+   */
+  @Test
+  public void TestQuitDestinationPile() {
+    myRd = new StringReader("C1 fd 1 q");
+    myAp = new StringBuffer("");
+
+    myController = new FreecellController(myRd, myAp);
+
+    try {
+      myController.playGame(myDeck, myModel, 53, 1, false);
+    } catch (IOException e) {
+      // Do nothing
+    }
+
+    assertEquals(start53 + "\nGame quit prematurely.\n", myAp.toString());
+  }
+
+  /**
+   * Tests if the program quits and sends quit message.
+   */
+  @Test
+  public void TestQuitIndexToken() {
+    myRd = new StringReader("C1 q fd 1 q");
+    myAp = new StringBuffer("");
+
+    myController = new FreecellController(myRd, myAp);
+
+    try {
+      myController.playGame(myDeck, myModel, 53, 1, false);
+    } catch (IOException e) {
+      // Do nothing
+    }
+
+    assertEquals(start53 + "\nGame quit prematurely.\n", myAp.toString());
   }
 
   /**
@@ -322,22 +381,46 @@ public class FreecellControllerTest {
 
     assertEquals(
         myModel.getGameState()
-            + "\nInvalid Move. Try Again. Bad Inputs.\n"
+            + "\n" + invalidMove
             + myModel.getGameState() + "\n"
-            + "Game quit prematurely.\n"
-        , myAp.toString());
+            + "Game quit prematurely.\n",
+        myAp.toString());
   }
 
   /**
    * Tests the error thrown by the model is caught and handled.
    */
   @Test
-  public void TestMoveGameNotStarted() {
-    // TODO: Write this. This is mpossible to do through the controller.
+  public void TestMoveMixedCascadePile() {
+    myRd = new StringReader("C1s C1 1 C2 q");
+    myAp = new StringBuffer("");
+
+    myController = new FreecellController(myRd, myAp);
+
+    try {
+      myController.playGame(myDeck, myModel, 53, 1, false);
+    } catch (IOException e) {
+      // Do nothing
+    }
+
+    assertEquals(
+        myModel.getGameState()
+            + "\n" + invalidMove
+            + myModel.getGameState() + "\n"
+            + "Game quit prematurely.\n",
+        myAp.toString());
   }
 
+  ///**
+  // * Tests the error thrown by the model is caught and handled.
+  // */
+  //@Test
+  //public void TestMoveGameNotStarted() {
+  //  // TODO: Write this. This is impossible to do through the controller.
+  //}
+
   /**
-   * Tests the gameover message is played.
+   * Tests the game over message is played.
    */
   @Test
   public void TestWinning() {
@@ -354,7 +437,7 @@ public class FreecellControllerTest {
     }
 
     myModel = winGameModel();
-    assertEquals(myAp.toString().contains("\nGame Over.\n"), true);
+    assertEquals(myAp.toString().contains("\nGame over.\n"), true);
   }
 
   /**

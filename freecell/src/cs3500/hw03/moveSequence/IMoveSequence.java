@@ -1,4 +1,4 @@
-package cs3500.hw03.moveSequence;
+package cs3500.hw03.movesequence;
 
 import cs3500.hw02.PileType;
 

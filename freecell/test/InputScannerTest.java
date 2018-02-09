@@ -3,8 +3,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-import cs3500.hw03.inputScanner.IInputScanner;
-import cs3500.hw03.inputScanner.InputScanner;
+import cs3500.hw03.inputscanner.IInputScanner;
+import cs3500.hw03.inputscanner.InputScanner;
 
 
 public class InputScannerTest {
@@ -15,7 +15,7 @@ public class InputScannerTest {
     Readable myReadable = new StringReader(myString);
     IInputScanner myScanner = new InputScanner(myReadable);
 
-    assertEquals(myScanner.getPileToken(), myString);
+    assertEquals(myString, myScanner.getPileToken());
 
   }
 
@@ -26,7 +26,7 @@ public class InputScannerTest {
     Readable myReadable = new StringReader(myString);
     IInputScanner myScanner = new InputScanner(myReadable);
 
-    assertEquals(myScanner.getPileToken(), "C1");
+    assertEquals("C1", myScanner.getPileToken());
   }
 
   @Test

@@ -2,16 +2,15 @@ package cs3500.hw03;
 
 import cs3500.hw02.FreecellOperations;
 import cs3500.hw02.cards.PlayingCard;
-import cs3500.hw03.inputScanner.IInputScanner;
-import cs3500.hw03.inputScanner.InputScanner;
-import cs3500.hw03.moveSequence.IMoveSequence;
-import cs3500.hw03.moveSequence.MoveSequence;
+import cs3500.hw03.inputscanner.IInputScanner;
+import cs3500.hw03.inputscanner.InputScanner;
+import cs3500.hw03.movesequence.IMoveSequence;
+import cs3500.hw03.movesequence.MoveSequence;
 import java.io.IOException;
 import java.util.List;
 
 public class FreecellController implements IFreecellController<PlayingCard> {
 
-  private Readable inputStream;
   private Appendable outputStream;
   private IInputScanner inputScanner;
 
@@ -21,9 +20,11 @@ public class FreecellController implements IFreecellController<PlayingCard> {
    * @throws IllegalArgumentException if rd or ap is null
    */
   public FreecellController(Readable rd, Appendable ap) throws IllegalArgumentException {
-    inputStream = rd;
+    if (rd == null || ap == null) {
+      throw new IllegalArgumentException("Null inputs");
+    }
     outputStream = ap;
-    inputScanner = new InputScanner(inputStream);
+    inputScanner = new InputScanner(rd);
   }
 
   @Override
@@ -42,7 +43,7 @@ public class FreecellController implements IFreecellController<PlayingCard> {
     try {
       model.startGame(deck, numCascades, numOpens, shuffle);
     } catch (Exception e) {
-      outputStream.append("Could not start game.\n");
+      outputStream.append("Could not start game.");
       return;
     }
 
@@ -88,7 +89,7 @@ public class FreecellController implements IFreecellController<PlayingCard> {
       outputStream.append("\n");
 
       // Print "Game over"
-      outputStream.append("Game Over.\n");
+      outputStream.append("Game over.\n");
     }
   }
 

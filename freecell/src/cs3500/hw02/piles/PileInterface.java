@@ -16,7 +16,7 @@ public interface PileInterface {
   void addToPile(PlayingCard inputCard) throws IllegalStateException;
 
   /**
-   *  Unconditionally adds card to the top of the pile
+   *  Unconditionally adds card to the top of the pile.
    *
    *  @param card the card to add
    */

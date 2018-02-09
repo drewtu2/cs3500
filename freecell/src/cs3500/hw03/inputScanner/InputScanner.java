@@ -1,4 +1,4 @@
-package cs3500.hw03.inputScanner;
+package cs3500.hw03.inputscanner;
 
 import java.util.Scanner;
 
@@ -26,7 +26,8 @@ public class InputScanner implements IInputScanner {
     String token;
     do {
       token = inputScanner.next();
-    } while (!validPile(token));
+    }
+    while (!validPile(token));
 
     return token;
   }
@@ -36,7 +37,8 @@ public class InputScanner implements IInputScanner {
     String token;
     do {
       token = inputScanner.next();
-    } while (!validIndex(token));
+    }
+    while (!validIndex(token));
 
     return token;
   }
@@ -58,7 +60,7 @@ public class InputScanner implements IInputScanner {
     String indicator = token.substring(0, 1).toLowerCase();
     String index = token.substring(1);
 
-    if (token.equals("q")) {
+    if (token.toLowerCase().equals("q")) {
       return true;
     }
 
@@ -66,12 +68,7 @@ public class InputScanner implements IInputScanner {
       return false;
     }
 
-    if (!validIndex(index)) {
-
-      return false;
-    }
-
-    return true;
+    return validIndex(index);
   }
 
   /**

@@ -1,4 +1,4 @@
-package cs3500.hw03.inputScanner;
+package cs3500.hw03.inputscanner;
 
 public interface IInputScanner {
 

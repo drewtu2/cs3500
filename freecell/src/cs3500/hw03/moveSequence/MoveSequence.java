@@ -1,7 +1,7 @@
-package cs3500.hw03.moveSequence;
+package cs3500.hw03.movesequence;
 
 import cs3500.hw02.PileType;
-import cs3500.hw03.inputScanner.IInputScanner;
+import cs3500.hw03.inputscanner.IInputScanner;
 
 public class MoveSequence implements IMoveSequence {
 
