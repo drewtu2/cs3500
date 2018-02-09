@@ -34,11 +34,9 @@ public class FreecellController implements IFreecellController<PlayingCard> {
 
     // Validate Inputs
     //validatePlayGameInputs(deck, model);
-    if(deck == null || model == null)
-    {
+    if (deck == null || model == null) {
       throw new IllegalArgumentException("Null inputs");
     }
-
 
     // Start game with provided parameters
     try {

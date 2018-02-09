@@ -1,14 +1,10 @@
 import java.io.StringReader;
-import java.nio.CharBuffer;
 import org.junit.Test;
-import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 import cs3500.hw03.inputScanner.IInputScanner;
 import cs3500.hw03.inputScanner.InputScanner;
-
 
 
 public class InputScannerTest {
@@ -22,6 +18,7 @@ public class InputScannerTest {
     assertEquals(myScanner.getPileToken(), myString);
 
   }
+
   @Test
 
   public void TestGetPile2ndInput() {
@@ -58,7 +55,6 @@ public class InputScannerTest {
 
     assertEquals(myScanner.getIndexToken(), "Q");
   }
-
 
 
 }

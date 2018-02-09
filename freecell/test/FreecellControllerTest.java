@@ -1,5 +1,4 @@
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.IO;
 import cs3500.hw02.FreecellOperations;
 import cs3500.hw02.PileType;
 import cs3500.hw02.cards.CardValue;
@@ -15,7 +14,6 @@ import org.junit.Test;
 import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 public class FreecellControllerTest {
 
@@ -24,7 +22,7 @@ public class FreecellControllerTest {
   FreecellOperations myModel;
   Readable myRd;
   Appendable myAp;
-  String C1ToC53 = "F1:\n"
+  String Start53 = "F1:\n"
       + "F2:\n"
       + "F3:\n"
       + "F4:\n"
@@ -82,13 +80,71 @@ public class FreecellControllerTest {
       + "C51: K♥\n"
       + "C52: K♦\n"
       + "C53:";
+  String C1ToC53 = "F1:\n"
+      + "F2:\n"
+      + "F3:\n"
+      + "F4:\n"
+      + "O1:\n"
+      + "C1:\n"
+      + "C2: A♣\n"
+      + "C3: A♥\n"
+      + "C4: A♦\n"
+      + "C5: 2♠\n"
+      + "C6: 2♣\n"
+      + "C7: 2♥\n"
+      + "C8: 2♦\n"
+      + "C9: 3♠\n"
+      + "C10: 3♣\n"
+      + "C11: 3♥\n"
+      + "C12: 3♦\n"
+      + "C13: 4♠\n"
+      + "C14: 4♣\n"
+      + "C15: 4♥\n"
+      + "C16: 4♦\n"
+      + "C17: 5♠\n"
+      + "C18: 5♣\n"
+      + "C19: 5♥\n"
+      + "C20: 5♦\n"
+      + "C21: 6♠\n"
+      + "C22: 6♣\n"
+      + "C23: 6♥\n"
+      + "C24: 6♦\n"
+      + "C25: 7♠\n"
+      + "C26: 7♣\n"
+      + "C27: 7♥\n"
+      + "C28: 7♦\n"
+      + "C29: 8♠\n"
+      + "C30: 8♣\n"
+      + "C31: 8♥\n"
+      + "C32: 8♦\n"
+      + "C33: 9♠\n"
+      + "C34: 9♣\n"
+      + "C35: 9♥\n"
+      + "C36: 9♦\n"
+      + "C37: 10♠\n"
+      + "C38: 10♣\n"
+      + "C39: 10♥\n"
+      + "C40: 10♦\n"
+      + "C41: J♠\n"
+      + "C42: J♣\n"
+      + "C43: J♥\n"
+      + "C44: J♦\n"
+      + "C45: Q♠\n"
+      + "C46: Q♣\n"
+      + "C47: Q♥\n"
+      + "C48: Q♦\n"
+      + "C49: K♠\n"
+      + "C50: K♣\n"
+      + "C51: K♥\n"
+      + "C52: K♦\n"
+      + "C53: A♠";
   String InvalidMove = "Invalid Move. Try Again.\n";
 
   @Before
   public void initTests() {
     myModel = new FreecellModel();
     myDeck = myModel.getDeck();
-    myRd = new StringReader("hello");
+    myRd = new StringReader("q");
     myAp = new StringBuffer("");
 
     myController = new FreecellController(myRd, myAp);
@@ -129,7 +185,7 @@ public class FreecellControllerTest {
   @Test
   public void TestInvalidStartPiles() {
 
-    try{
+    try {
       myController.playGame(myDeck, myModel, 0, 1, false);
     } catch (IOException e) {
       // do nothing...
@@ -137,8 +193,8 @@ public class FreecellControllerTest {
 
     assertEquals(myAp.toString(), "Could not start game.\n");
 
-    try{
-      myController.playGame(myDeck, myModel, 4,0, false);
+    try {
+      myController.playGame(myDeck, myModel, 4, 0, false);
     } catch (IOException e) {
       // do nothing...
     }
@@ -152,13 +208,13 @@ public class FreecellControllerTest {
   @Test
   public void TestGameStart() {
     // TODO: Write this -> compare to output
-    try{
+    try {
       myController.playGame(myDeck, myModel, 4, 1, false);
     } catch (IOException e) {
       // Do nothing
     }
 
-    assertEquals(myAp.toString(), myModel.getGameState());
+    assertEquals(myModel.getGameState() + "\nGame quit prematurely.\n", myAp.toString());
 
   }
 
@@ -171,7 +227,7 @@ public class FreecellControllerTest {
    */
   @Test
   public void TestInvalidSourcePile() {
-    myRd = new StringReader("R1 C1 1 C53");
+    myRd = new StringReader("R1 C1 1 C53 q");
     myAp = new StringBuffer("");
 
     myController = new FreecellController(myRd, myAp);
@@ -182,7 +238,9 @@ public class FreecellControllerTest {
       // Do nothing
     }
 
-    assertEquals(myAp.toString(), C1ToC53);
+    assertEquals(Start53
+            + "\n" + C1ToC53 + "\nGame quit prematurely.\n",
+        myAp.toString());
   }
 
   /**
@@ -190,7 +248,7 @@ public class FreecellControllerTest {
    */
   @Test
   public void TestInvalidDestinationPile() {
-    myRd = new StringReader("C1 1 Cd C53");
+    myRd = new StringReader("C1 1 Cd C53 q");
     myAp = new StringBuffer("");
 
     myController = new FreecellController(myRd, myAp);
@@ -201,7 +259,9 @@ public class FreecellControllerTest {
       // Do nothing
     }
 
-    assertEquals(myAp.toString(), C1ToC53);
+    assertEquals(Start53
+            + "\n" + C1ToC53 + "\nGame quit prematurely.\n"
+        , myAp.toString());
   }
 
   /**
@@ -209,7 +269,7 @@ public class FreecellControllerTest {
    */
   @Test
   public void TestInvalidCardIndex() {
-    myRd = new StringReader("C1 fd 1 C12");
+    myRd = new StringReader("C1 fd 1 C53 q");
     myAp = new StringBuffer("");
 
     myController = new FreecellController(myRd, myAp);
@@ -220,7 +280,9 @@ public class FreecellControllerTest {
       // Do nothing
     }
 
-    assertEquals(myAp.toString(), myModel.getGameState()+ InvalidMove + C1ToC53);
+    assertEquals(Start53
+            + "\n" + C1ToC53 + "\nGame quit prematurely.\n",
+        myAp.toString());
   }
 
   /**
@@ -239,7 +301,7 @@ public class FreecellControllerTest {
       // Do nothing
     }
 
-    assertEquals(myAp.toString(), C1ToC53 + "\nGame quit prematurely.\n");
+    assertEquals(Start53 + "\nGame quit prematurely.\n", myAp.toString());
   }
 
   /**
@@ -247,7 +309,7 @@ public class FreecellControllerTest {
    */
   @Test
   public void TestMoveBadCascadePile() {
-    myRd = new StringReader("C1 1 C2");
+    myRd = new StringReader("C1 1 C2 q");
     myAp = new StringBuffer("");
 
     myController = new FreecellController(myRd, myAp);
@@ -258,7 +320,12 @@ public class FreecellControllerTest {
       // Do nothing
     }
 
-    assertEquals(myAp.toString(), myModel.getGameState() + "\nInvalid Move. Try Again. Bad Inputs.\n");
+    assertEquals(
+        myModel.getGameState()
+            + "\nInvalid Move. Try Again. Bad Inputs.\n"
+            + myModel.getGameState() + "\n"
+            + "Game quit prematurely.\n"
+        , myAp.toString());
   }
 
   /**
@@ -281,7 +348,7 @@ public class FreecellControllerTest {
 
     Collections.reverse(myDeck);
     try {
-      myController.playGame(myDeck, myModel,4, 1, false);
+      myController.playGame(myDeck, myModel, 4, 1, false);
     } catch (IOException e) {
       // Do nothing
     }
@@ -291,7 +358,8 @@ public class FreecellControllerTest {
   }
 
   /**
-   * Returns a won model
+   * Returns a won model.
+   *
    * @return a "won" model
    */
   public FreecellOperations winGameModel() {
@@ -313,7 +381,9 @@ public class FreecellControllerTest {
   }
 
   /**
-   * Returns the sequence of moves to win the game. There need to be 4 cascade piles for this to work.
+   * Returns the sequence of moves to win the game. There need to be 4 cascade piles for this to
+   * work.
+   *
    * @return a sequence of strings representing winning the game.
    */
   public String winGameSequence() {

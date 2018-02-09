@@ -2,8 +2,6 @@ package cs3500.hw03.moveSequence;
 
 import cs3500.hw02.PileType;
 import cs3500.hw03.inputScanner.IInputScanner;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MoveSequence implements IMoveSequence {
 
@@ -15,7 +13,7 @@ public class MoveSequence implements IMoveSequence {
   private boolean quitSequence;
 
   /**
-   * Constructs a MoveSequence
+   * Constructs a MoveSequence.
    *
    * @param sourceType the type of pile to move it from
    * @param sourceIndex which pile to move it from
@@ -138,7 +136,8 @@ public class MoveSequence implements IMoveSequence {
   }
 
   /**
-   * Returns the pile type of a given string where the string is in valid pile format
+   * Returns the pile type of a given string where the string is in valid pile format.
+   *
    * @return the PileType of a string representation
    * @throws IllegalStateException on invalid input
    */
@@ -146,15 +145,20 @@ public class MoveSequence implements IMoveSequence {
     String indicator = input.substring(0, 1).toLowerCase();
 
     switch (indicator) {
-      case "f": return PileType.FOUNDATION;
-      case "o": return PileType.OPEN;
-      case "c": return PileType.CASCADE;
-      default: throw new IllegalArgumentException("Invalid Input");
+      case "f":
+        return PileType.FOUNDATION;
+      case "o":
+        return PileType.OPEN;
+      case "c":
+        return PileType.CASCADE;
+      default:
+        throw new IllegalArgumentException("Invalid Input");
     }
   }
 
   /**
-   * Returns the index of a given string where the string is in valid pile format
+   * Returns the index of a given string where the string is in valid pile format.
+   *
    * @return the PileType of a string representation
    */
   private static int extractIndex(String input) {
