@@ -1,5 +1,8 @@
 package cs3500.hw02.cards;
 
+/**
+ * Represents a single playing card in a freecell game. Has a suit and value.
+ */
 public class PlayingCard {
 
   private CardSuit suit;

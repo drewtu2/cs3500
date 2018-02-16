@@ -1,5 +1,8 @@
 package cs3500.hw03.inputscanner;
 
+/**
+ * An interface for an object that extract piles and tokens from a readable.
+ */
 public interface IInputScanner {
 
   /**

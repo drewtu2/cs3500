@@ -1,9 +1,9 @@
 package cs3500.hw02.piles;
 
+import cs3500.hw02.PileType;
 import cs3500.hw02.cards.PlayingCard;
 import java.util.List;
 import java.util.Stack;
-import cs3500.hw02.PileType;
 
 public class CascadePile extends AbstractPile {
 
@@ -34,7 +34,7 @@ public class CascadePile extends AbstractPile {
    * @return true if the card is valid
    */
   @Override
-  protected boolean validAddition(PlayingCard inputCard) {
+  public boolean validAddition(PlayingCard inputCard) {
 
     if (pile.empty()) {
       return true;

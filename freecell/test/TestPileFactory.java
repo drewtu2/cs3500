@@ -1,3 +1,6 @@
+import static org.junit.Assert.assertEquals;
+
+import cs3500.hw02.PileType;
 import cs3500.hw02.cards.CardSuit;
 import cs3500.hw02.cards.CardValue;
 import cs3500.hw02.cards.PlayingCard;
@@ -6,13 +9,10 @@ import cs3500.hw02.piles.FoundationPile;
 import cs3500.hw02.piles.OpenPile;
 import cs3500.hw02.piles.PileFactory;
 import cs3500.hw02.piles.PileInterface;
-import cs3500.hw02.PileType;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public class TestPileFactory {
 

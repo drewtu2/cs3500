@@ -1,10 +1,9 @@
-import java.io.StringReader;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 
 import cs3500.hw03.inputscanner.IInputScanner;
 import cs3500.hw03.inputscanner.InputScanner;
+import java.io.StringReader;
+import org.junit.Test;
 
 
 public class InputScannerTest {

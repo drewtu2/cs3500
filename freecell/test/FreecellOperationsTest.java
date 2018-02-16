@@ -1,18 +1,16 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 import cs3500.hw02.FreecellModel;
 import cs3500.hw02.FreecellOperations;
+import cs3500.hw02.PileType;
 import cs3500.hw02.cards.CardSuit;
 import cs3500.hw02.cards.CardValue;
 import cs3500.hw02.cards.PlayingCard;
-import cs3500.hw02.PileType;
-
-import java.util.List;
 import java.util.Collections;
-
-import org.junit.Test;
+import java.util.List;
 import org.junit.Before;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import org.junit.Test;
 
 
 public class FreecellOperationsTest {
@@ -192,6 +190,14 @@ public class FreecellOperationsTest {
     myFreecell.startGame(myDeck, 4, 0, false);
   }
 
+  /**
+   * Tests being given too few cascade piles.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void Test0CascadePiles() {
+    myFreecell.startGame(myDeck, 0, 1, false);
+  }
+
   // **********************************************************************************************
   // Tests of Game State
   // **********************************************************************************************
@@ -239,7 +245,7 @@ public class FreecellOperationsTest {
     String play1 = myFreecell.getGameState();
     myFreecell.startGame(myDeck, 4, 1, true);
 
-    assertNotEquals(play1 , myFreecell.getGameState());
+    assertNotEquals(play1, myFreecell.getGameState());
   }
 
   /**
@@ -516,7 +522,6 @@ public class FreecellOperationsTest {
 
   }
   */
-
 
 
   /**

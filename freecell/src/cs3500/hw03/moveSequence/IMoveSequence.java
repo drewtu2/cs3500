@@ -2,6 +2,10 @@ package cs3500.hw03.movesequence;
 
 import cs3500.hw02.PileType;
 
+/**
+ * Interface that defines a move sequence. A move sequence represents a single move to be given to
+ * the model.
+ */
 public interface IMoveSequence {
 
   /**

@@ -31,6 +31,7 @@ public enum CardValue {
 
   /**
    * Returns the next value in the sequence of cards.
+   *
    * @return the next value in the sequence of cards.
    */
   public CardValue next() {

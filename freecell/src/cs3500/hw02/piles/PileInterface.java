@@ -1,6 +1,7 @@
 package cs3500.hw02.piles;
 
 import cs3500.hw02.cards.PlayingCard;
+import java.util.List;
 
 /**
  * This is the interface for a Pile.
@@ -16,19 +17,29 @@ public interface PileInterface {
   void addToPile(PlayingCard inputCard) throws IllegalStateException;
 
   /**
-   *  Unconditionally adds card to the top of the pile.
+   * Unconditionally adds card to the top of the pile.
    *
-   *  @param card the card to add
+   * @param card the card to add
    */
   void unconditionalAdd(PlayingCard card);
 
   /**
    * Returns the cards starting at index to the top of the deck as a list. (Bottom is index 0)
+   * Removes the cards from the pile.
    *
    * @return the requested PlayingCard
-   * @throws IllegalStateException if the index is not the top card
+   * @throws IllegalArgumentException if the index is not the top card
    */
-  PlayingCard popCard(int index) throws IllegalStateException;
+  List<PlayingCard> popCard(int index) throws IllegalArgumentException;
+
+  /**
+   * Returns the cards starting at index to the top of the deck as a list. (Bottom is index 0)
+   * Does not remove pile.
+   *
+   * @return the requested PlayingCard
+   * @throws IllegalArgumentException if the index is not the top card
+   */
+  List<PlayingCard> peekBuild(int index) throws IllegalArgumentException;
 
   /**
    * Returns a string representing the state of the the pile.
@@ -44,4 +55,12 @@ public interface PileInterface {
    * @return the size of the pile
    */
   int size();
+
+  /**
+   * Returns true if the given card can be added to the current state of the pile.
+   *
+   * @param inputCard The card to add
+   * @return returns true if the given card can be added.
+   */
+  boolean validAddition(PlayingCard inputCard);
 }

@@ -1,12 +1,11 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 import cs3500.hw02.cards.CardSuit;
 import cs3500.hw02.cards.CardValue;
 import cs3500.hw02.cards.PlayingCard;
-
-import org.junit.Test;
 import org.junit.Before;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import org.junit.Test;
 
 
 public class PlayingCardTest {

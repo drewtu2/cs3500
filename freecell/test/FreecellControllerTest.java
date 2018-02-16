@@ -1,19 +1,17 @@
+import static org.junit.Assert.assertEquals;
 
+import cs3500.hw02.FreecellModel;
 import cs3500.hw02.FreecellOperations;
 import cs3500.hw02.PileType;
 import cs3500.hw02.cards.CardValue;
-import cs3500.hw03.FreecellController;
-
-import cs3500.hw02.FreecellModel;
 import cs3500.hw02.cards.PlayingCard;
+import cs3500.hw03.FreecellController;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collections;
 import java.util.List;
-import org.junit.Test;
 import org.junit.Before;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 public class FreecellControllerTest {
 
@@ -211,7 +209,6 @@ public class FreecellControllerTest {
    */
   @Test
   public void TestGameStart() {
-    // TODO: Write this -> compare to output
     try {
       myController.playGame(myDeck, myModel, 4, 1, false);
     } catch (IOException e) {

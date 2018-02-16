@@ -1,8 +1,8 @@
 package cs3500.hw02.piles;
 
+import cs3500.hw02.PileType;
 import cs3500.hw02.cards.PlayingCard;
 import java.util.Stack;
-import cs3500.hw02.PileType;
 
 public class OpenPile extends AbstractPile {
 
@@ -19,7 +19,7 @@ public class OpenPile extends AbstractPile {
    * @return Returns true if the list is currently empty.
    */
   @Override
-  protected boolean validAddition(PlayingCard inputCard) {
+  public boolean validAddition(PlayingCard inputCard) {
     return pile.empty();
   }
 }

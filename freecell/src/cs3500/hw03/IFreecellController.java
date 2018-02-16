@@ -1,9 +1,12 @@
 package cs3500.hw03;
 
 import cs3500.hw02.FreecellOperations;
-import java.util.List;
 import java.io.IOException;
+import java.util.List;
 
+/**
+ * The interface of a FreeCellController. Allows control over a freecell game.
+ */
 public interface IFreecellController<K> {
 
   /**
@@ -28,7 +31,7 @@ public interface IFreecellController<K> {
    * @param shuffle a boolean representing whether the deck should be shuffled
    * @throws IllegalArgumentException if the model or deck are null.
    * @throws IOException if the controller is unable to successfully receive input or transmit
-   *         output
+   *          output
    */
   void playGame(List<K> deck, FreecellOperations<K> model, int numCascades,
       int numOpens, boolean shuffle) throws IllegalArgumentException, IOException;

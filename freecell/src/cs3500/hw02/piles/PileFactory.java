@@ -1,10 +1,10 @@
 package cs3500.hw02.piles;
 
 
+import cs3500.hw02.PileType;
 import cs3500.hw02.cards.PlayingCard;
 import java.util.ArrayList;
 import java.util.List;
-import cs3500.hw02.PileType;
 
 public class PileFactory {
 

@@ -1,16 +1,22 @@
 package cs3500.hw02.piles;
 
-import cs3500.hw02.cards.PlayingCard;
-import java.util.Stack;
 import cs3500.hw02.PileType;
+import cs3500.hw02.cards.PlayingCard;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Stack;
 
+/**
+ * An abstract implementation of the PileInterface.
+ */
 public abstract class AbstractPile implements PileInterface {
 
   /**
    * The stack stores the data of a pile. Index 0 represents the bottom of the pile.
    */
-  Stack<PlayingCard> pile;
-  PileType type;
+  protected Stack<PlayingCard> pile;
+  protected PileType type;
 
   @Override
   public void addToPile(PlayingCard inputCard) throws IllegalArgumentException {
@@ -26,6 +32,7 @@ public abstract class AbstractPile implements PileInterface {
     pile.push(card);
   }
 
+  /*
   @Override
   public PlayingCard popCard(int index) throws IllegalArgumentException {
     if (index != pile.size() - 1) {
@@ -34,30 +41,36 @@ public abstract class AbstractPile implements PileInterface {
 
     return pile.pop();
   }
+  */
 
-  /*@Override
-  public List<PlayingCard> popCards(int index) {
-    Stack<PlayingCard> ReturnStack = new Stack<>();
+  @Override
+  public List<PlayingCard> popCard(int index) {
+    Stack<PlayingCard> returnStack = new Stack<>();
 
     // Catch the case where the index is out of range.
-    if (index >= pile.size()) {
+    if (index >= pile.size() || index < 0) {
       throw new IllegalArgumentException("Index does not exist!");
     }
 
     int startingPileSize = pile.size();
 
     for (int i = 0; i < startingPileSize - index; i++) {
-      ReturnStack.push(pile.pop());
+      returnStack.push(pile.pop());
     }
 
     // At the end of the popping, we're left with a stack with the original
-    // bottom of card on top. Reverse it so we've essentially pulled the stack
+    // bottom of card on top (right). Reverse it so we've essentially pulled the stack
     // off the top.
-    Collections.reverse(ReturnStack);
+    Collections.reverse(returnStack);
 
-    return ReturnStack;
+    return returnStack;
   }
-  */
+
+  @Override
+  public List<PlayingCard> peekBuild(int index) {
+
+    return new ArrayList<PlayingCard>(pile.subList(index, pile.size()));
+  }
 
   /**
    * Prints the pile with bottom of the pile appearing at the left and going to the right. The index
@@ -112,5 +125,5 @@ public abstract class AbstractPile implements PileInterface {
    * @param inputCard The card to add
    * @return returns true if the given card can be added.
    */
-  protected abstract boolean validAddition(PlayingCard inputCard);
+  public abstract boolean validAddition(PlayingCard inputCard);
 }

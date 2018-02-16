@@ -3,6 +3,10 @@ package cs3500.hw03.movesequence;
 import cs3500.hw02.PileType;
 import cs3500.hw03.inputscanner.IInputScanner;
 
+/**
+ * Represents a single move in a FreecellOperations Game. The sequence is constructed using the
+ * readMoveSequence factory method. Implements the IMoveSequence interface.
+ */
 public class MoveSequence implements IMoveSequence {
 
   private PileType sourceType;
@@ -123,7 +127,7 @@ public class MoveSequence implements IMoveSequence {
    * @return true if the given token is a quit character
    */
   private static boolean quitToken(String token) {
-    return token.toLowerCase().equals("q");
+    return token.equalsIgnoreCase("q");
   }
 
   /**

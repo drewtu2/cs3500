@@ -7,17 +7,18 @@ import cs3500.hw02.piles.PileFactory;
 import cs3500.hw02.piles.PileInterface;
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Random;
 
-
+/**
+ * A concrete implementation of FreecellOperations built around the PlayingCard type.
+ */
 public class FreecellModel implements FreecellOperations<PlayingCard> {
 
-  private List<PileInterface> foundationPiles;
-  private List<PileInterface> openPiles;
-  private List<PileInterface> cascadePiles;
+  protected List<PileInterface> foundationPiles;
+  protected List<PileInterface> openPiles;
+  protected List<PileInterface> cascadePiles;
 
-  private boolean gameStarted;
+  protected boolean gameStarted;
 
   private static final int C_MIN_CASCADE_PILES = 4;
   private static final int C_MIN_OPEN_PILES = 1;
@@ -104,26 +105,31 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
   @Override
   public void move(PileType source, int pileNumber, int cardIndex, PileType destination,
       int destPileNumber) throws IllegalArgumentException, IllegalStateException {
-    if (gameStarted) {
-      if (source == destination && pileNumber == destPileNumber) {
-        // Do nothing
-      } else {
 
-        PileInterface sourcePile = getPile(source, pileNumber);
-        PileInterface destinationPile = getPile(destination, destPileNumber);
-
-        PlayingCard selectedCard = sourcePile.popCard(cardIndex);
-
-        try {
-          destinationPile.addToPile(selectedCard);
-        } catch (IllegalArgumentException e) {
-          // Couldn't add, revert previous pop
-          sourcePile.unconditionalAdd(selectedCard);
-          throw e;
-        }
-      }
-    } else {
+    if (!gameStarted) {
       throw new IllegalStateException("Game not started!");
+    }
+
+    if (source == destination && pileNumber == destPileNumber) {
+      // Do nothing
+    } else {
+
+      PileInterface sourcePile = getPile(source, pileNumber);
+      PileInterface destinationPile = getPile(destination, destPileNumber);
+
+      if (cardIndex != sourcePile.size() - 1) {
+        throw new IllegalArgumentException("Not top card!");
+      }
+
+      PlayingCard selectedCard = sourcePile.popCard(cardIndex).get(0);
+
+      try {
+        destinationPile.addToPile(selectedCard);
+      } catch (IllegalArgumentException e) {
+        // Couldn't add, revert previous pop
+        sourcePile.unconditionalAdd(selectedCard);
+        throw e;
+      }
     }
 
   }
@@ -135,7 +141,7 @@ public class FreecellModel implements FreecellOperations<PlayingCard> {
    * @param pileNumber The pile number that is being requested
    * @return the requested pile interface
    */
-  private PileInterface getPile(PileType type, int pileNumber)
+  protected PileInterface getPile(PileType type, int pileNumber)
       throws IllegalArgumentException {
     try {
       switch (type) {

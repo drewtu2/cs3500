@@ -9,6 +9,9 @@ import cs3500.hw03.movesequence.MoveSequence;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Concrete implementation of an IFreecellController interface.
+ */
 public class FreecellController implements IFreecellController<PlayingCard> {
 
   private Appendable outputStream;

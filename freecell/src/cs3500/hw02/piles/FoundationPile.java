@@ -1,9 +1,9 @@
 package cs3500.hw02.piles;
 
+import cs3500.hw02.PileType;
 import cs3500.hw02.cards.CardValue;
 import cs3500.hw02.cards.PlayingCard;
 import java.util.Stack;
-import cs3500.hw02.PileType;
 
 public class FoundationPile extends AbstractPile {
 
@@ -26,7 +26,7 @@ public class FoundationPile extends AbstractPile {
    * @return True if the card can be added to the pile.
    */
   @Override
-  protected boolean validAddition(PlayingCard inputCard) {
+  public boolean validAddition(PlayingCard inputCard) {
     if (pile.empty()) {
       // If the pile is empty and the card is an ACE, set the pile's suit and return true
       return (inputCard.valueIs(CardValue.ACE));

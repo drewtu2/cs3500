@@ -60,7 +60,7 @@ public class InputScanner implements IInputScanner {
     String indicator = token.substring(0, 1).toLowerCase();
     String index = token.substring(1);
 
-    if (token.toLowerCase().equals("q")) {
+    if (token.equalsIgnoreCase("q")) {
       return true;
     }
 

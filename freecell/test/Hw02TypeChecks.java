@@ -1,6 +1,5 @@
-import java.util.List;
-
 import cs3500.hw02.PileType;
+import java.util.List;
 
 /**
  * Do not modify this file. This file should compile correctly with your code!
