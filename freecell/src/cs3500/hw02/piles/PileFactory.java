@@ -6,6 +6,9 @@ import cs3500.hw02.cards.PlayingCard;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Used to create types of PileInterface.
+ */
 public class PileFactory {
 
   /**

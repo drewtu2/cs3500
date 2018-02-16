@@ -14,6 +14,7 @@ import java.util.Random;
  */
 public class FreecellModel implements FreecellOperations<PlayingCard> {
 
+  // Updated these to be protected for homework 4 instead of private.
   protected List<PileInterface> foundationPiles;
   protected List<PileInterface> openPiles;
   protected List<PileInterface> cascadePiles;
