@@ -25,8 +25,8 @@ public interface PileInterface {
 
   /**
    * Returns the cards starting at index to the top of the deck as a list. (Bottom is index 0)
-   * Removes the cards from the pile. (Updated for homewokr 4 to return a list of cards instead
-   * of just a single card)
+   * Removes the cards from the pile. (Updated for homewokr 4 to return a list of cards instead of
+   * just a single card)
    *
    * @return the requested PlayingCard
    * @throws IllegalArgumentException if the index is not the top card
@@ -34,8 +34,8 @@ public interface PileInterface {
   List<PlayingCard> popCard(int index) throws IllegalArgumentException;
 
   /**
-   * Returns the cards starting at index to the top of the deck as a list. (Bottom is index 0)
-   * Does not remove pile. (Added for homework 4 so that order could be accessed without removing cards)
+   * Returns the cards starting at index to the top of the deck as a list. (Bottom is index 0) Does
+   * not remove pile. (Added for homework 4 so that order could be accessed without removing cards)
    *
    * @return the requested PlayingCard
    * @throws IllegalArgumentException if the index is not the top card
@@ -58,9 +58,9 @@ public interface PileInterface {
   int size();
 
   /**
-   * Returns true if the given card can be added to the current state of the pile.
-   * (Added to interface from homework3)
-   * 
+   * Returns true if the given card can be added to the current state of the pile. (Added to
+   * interface from homework3)
+   *
    * @param inputCard The card to add
    * @return returns true if the given card can be added.
    */
