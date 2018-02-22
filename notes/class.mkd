@@ -1,3 +1,203 @@
+# Tuesday Feb 19, 2018
+# Shesh
+
+## Using Anonymous Functions.
+```java
+    // Java Anonymous Class
+    "move", new function<Scanner, TTC>() {
+      TTC accept(Scanner s) {
+        return new Move(s.nextDouble());
+      }
+    }
+
+    // Function<Scanner, TracingTurtleCommand> = function interface that takes a
+    // scanner and returns a TracingTurtleCommand
+    // Java8 Lambda Function: (Scanner s) -> {return new Move(s.nextDouble())}
+    // Short Form:           (Argument a) -> {function body}
+    //
+    // Here we've added a bunch of function objects inside the map.
+    //
+    Map<String, Function<Scanner, TracingTurtleCommand>> knownCommands = new HashMap<>();
+    knownCommands.put("move", (Scanner s) -> { return new Move(s.nextDouble()); });
+    knownCommands.put("turn", (Scanner s) -> { return new Turn(s.nextDouble()); });
+    knownCommands.put("trace", (Scanner s) -> { return new Trace(s.nextDouble()); });
+    knownCommands.put("square", (Scanner s) -> { return new Square(s.nextDouble()); });
+    knownCommands.put("koch", (Scanner s) -> { return new Koch(s.nextDouble()); });
+
+
+    // Here is how we use the function object.
+    String in = "move"
+    Function<Scanner, TracingTurtleCommand> cmd = knownCommands.getOrDefault(in, null);
+    if (cmd == null) {
+      throw new IllegalArgumentException();
+    } else {
+      c = cmd.apply(scan);
+      commands.add(c);
+      c.go(m);
+    }
+
+```
+
+This syntax or more concise than writing an equivalent set of statements in a
+Switch Case statement.
+
+Number of different function interfaces -> allows for programming to an interface.
+
+## s
+```java
+/**
+ * Represents a set of numbers, no duplicates.
+ */
+public interface IntSet{
+
+  // Adds a single number
+  void add(int value);
+
+  // Adds multiple vales
+  void addAll(int... values);
+
+  // Removes a value
+  void remove();
+
+  // Tests whether the number exists in the set
+  boolean members(int value);
+
+}
+```
+```java
+public class IntSetImpl implements IntSet {
+  private set<Integer> set;
+
+  public IntSetImpl() {
+    set = newHashSet<Integer>;
+  }
+
+  public void add(int value) {
+    set.add(value);
+  }
+
+  public void addAll(int... values) {
+    for(int v : values) {
+      this.add(v);
+    }
+  }
+
+  public void remove(int value) {
+    set.remove(value);
+  }
+
+  public boolean member(int value) {
+    return set.contains(value);
+  }
+
+}
+
+/*
+'...' represents a variable number of arguments.
+allows a function to be called in any of the following ways:
+- addAll(1)
+- addAll(1, 2, 3)
+- addAll(1, 2)
+- addAll(new int[]{1,2,3,4})
+*/
+```
+
+# Friday Feb 16, 2018
+# Shesh
+
+# Description to Code
+1. Parse for verbs (what are things will we need to do)
+  - walk
+  - turn
+  - retrieve (return to saved state)
+  - save
+2. Parse of nouns
+  - Turtle
+  - Position (mixed w/ direction)
+  - Direction (mixed w/ position)
+  - ~State~ (same as Position + Direction)
+  - Screen (leave off for now...)
+
+
+
+
+# Tuesday Feb 13, 2018
+# Shesh
+
+# Bad Freedoms
+Increased flexibility is NOT always good.
+Restrict freedom: use `final` to ensure values cannot change after initialization
+
+| Modifier  | class   | package  | subclass  | world | scope description |
+| private   | y       | n        |           |       | same class only   |
+| default   | y       | y        |           |       | and package       |
+| protected | y       | y        | y         |       | and subclass      |
+| public    | y       | y        | y         | y     | and world...      |
+
+Class Invariant: a logical statement that can be evaluated as true or false
+about the instantaneous state of an object (at any point in time) that is ensured
+by the constructor and preserved by the methods.
+
+Class invariants are self-imposed "rules" that must be followed by the class.
+While these can be written out in comments, they are not enforced by Java/IntelliJ.
+
+
+
+
+# Friday Feb 9, 2018
+# Shesh
+# Code Smells
+## Refactor vs redesign
+Refactoring is changing your code without changing the overall interface/behavior
+Redesign involves changing how your code behaves.
+
+## Duplicate Code
+- Same code appears in different places.
+- Duplicate code is redundant -> adds complexity with no benefits
+- Duplicate code often duplicates bugs.
+- Creates misleading design
+
+## Long Methods
+- does everything that the method is supposed to do, directly within it.
+- functions can be broken out into smaller methods.
+- often times, a symptom of not properly implementing OO ->  people who come from
+other languages are often guilty of this. I.e. writing code as a set of static Methods
+that take an object and operate on it. If that were the case, it the method should
+have been part of that class!
+
+## Design that is too futuristic
+- Overly apply OO:
+  - too many interfaces
+  - too many abstractions (abstracting the abstractions)
+  - too many helper functions
+- Difficult to judge -> v. subjective.
+  - Litmus test: look at code "oh good design.... but wtf does it do?"
+
+## When and how to refactor
+- When:
+  - post-eval (code walk, code review)
+  - when adding a new feature
+  - when understanding inherited code.
+
+## Refactor recipe: Extract Method
+- helper method.
+
+## Type code -> subclasses
+- What?
+  - Replace a variable that is representing "type" with subclasses
+- Why?
+  -
+- How?
+  - For each source method that decides what to do based on a specific value,
+    - create abstract method for each "what to do"
+    - Move code specific to type to implementation of abstract method in appropriate
+    subclasses
+    - Replace source method with call to the abstract method.
+
+## Replace list with object
+Encapsulate a list within an object that offers methods that work on the list.
+This allows you to provide more restricted, read only access to the list.
+
 
 # Tuesday Feb 6, 2018
 # Shesh
