@@ -35,6 +35,10 @@ then
             echo "Including graph.png"
             files+=(graph.png)
     fi
+    if [ -f README ]; then
+            echo "Including README"
+            files+=(README)
+    fi
 
     tar -czvf $tar_file ${files[@]}
     
