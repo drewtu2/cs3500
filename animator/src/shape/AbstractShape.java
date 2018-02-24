@@ -1,16 +1,46 @@
 package shape;
 
-public abstract class AbstractShape implements IShape{
+import shape.dimension.IDimension;
 
+/**
+ * Represents the discrete representation of a shape. All information pertaining to the
+ * representation of the shape is stored here.
+ */
+public abstract class AbstractShape implements IShape {
+
+  protected String name;
   protected ShapeType type;
-  protected RGBColor color;
   protected Position2D position;
+  protected IDimension dimension;
+  protected RGBColor color;
+  protected float transparency;
 
-  protected float width;
-  protected float height;
-  protected float radiusX;
-  protected float radiusY;
+  @Override
+  public String toString() {
+    StringBuilder myBuilder = new StringBuilder();
 
+    myBuilder.append("Name: ");
+    myBuilder.append(name);
+    myBuilder.append("\n");
+    myBuilder.append("Type: ");
+    myBuilder.append(type.toString());
+    myBuilder.append("\n");
+    myBuilder.append(type.getRef().toString());
+    myBuilder.append(": ");
+    myBuilder.append(position.toString());
+    myBuilder.append(", ");
+    myBuilder.append(dimension.toString());
+    myBuilder.append(", ");
+    myBuilder.append(color.toString());
+
+    return myBuilder.toString();
+
+  }
+
+  @Override
+  public String getName() {
+    return this.name;
+  }
 
   @Override
   public void setColor(RGBColor color) {
@@ -23,23 +53,16 @@ public abstract class AbstractShape implements IShape{
   }
 
   @Override
-  public void setWidth(float width) {
-    this.width = width;
+  public void setDimension(IDimension dim) {
+    this.dimension = dim;
   }
 
   @Override
-  public void setHeight(float height) {
-    this.height = height;
-  }
-
-  @Override
-  public void setRadiusX(float rx) {
-    this.radiusX = rx;
-  }
-
-  @Override
-  public void setRadiusY(float ry) {
-    this.radiusY = ry;
+  public void setTransparency(float input) {
+    if (input < 0) {
+      throw new IllegalArgumentException();
+    }
+    this.transparency = input;
   }
 
   @Override
@@ -58,23 +81,13 @@ public abstract class AbstractShape implements IShape{
   }
 
   @Override
-  public float getWidth() {
-    return this.width;
+  public IDimension getDimension() {
+    return dimension;
   }
 
   @Override
-  public float getHeight() {
-    return this.height;
-  }
-
-  @Override
-  public float getRadiusX() {
-    return this.radiusX;
-  }
-
-  @Override
-  public float getRadiusY() {
-    return this.radiusY;
+  public float getTransparency() {
+    return this.transparency;
   }
 
 

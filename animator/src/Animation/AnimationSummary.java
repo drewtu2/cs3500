@@ -1,13 +1,15 @@
 package Animation;
 
-public class AnimationSummary implements Comparable<AnimationSummary>{
-  protected float time;
-  protected String description;
+/**
+ * Represents a tuple of (start time, description) for animations that is sortable by start time.
+ */
+public class AnimationSummary implements Comparable<AnimationSummary> {
+
+  protected final float time;
+  protected final String description;
 
   /**
    * Constructs an animation summary.
-   * @param time
-   * @param description
    */
   public AnimationSummary(float time, String description) {
     this.time = time;
@@ -16,24 +18,26 @@ public class AnimationSummary implements Comparable<AnimationSummary>{
 
   /**
    * Returns the time.
+   *
    * @return the time
    */
-  float getTime() {
+  public float getTime() {
 
     return time;
   }
 
   /**
    * Returns the description.
+   *
    * @return the description
    */
-  String getDescription() {
+  public String getDescription() {
 
     return description;
   }
 
   @Override
   public int compareTo(AnimationSummary o) {
-    return (int)(this.time - o.getTime());
+    return (int) (this.time - o.getTime());
   }
 }

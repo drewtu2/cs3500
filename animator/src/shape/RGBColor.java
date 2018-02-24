@@ -1,18 +1,26 @@
 package shape;
 
+/**
+ * Represents an RGB Color.
+ */
 public class RGBColor {
 
-  protected int red;
-  protected int green;
-  protected int blue;
+  protected float red;
+  protected float green;
+  protected float blue;
 
   /**
-   * Constructs a RGBColor
+   * Constructs a RGBColor.
+   *
    * @param red the red value
    * @param green the green value
    * @param blue the blue value
    */
-  public RGBColor(int red, int green, int blue) {
+  public RGBColor(float red, float green, float blue) {
+    if (!validRange(red) || !validRange(green) || !validRange(blue)) {
+      throw new IllegalArgumentException("Invalid RGB color");
+    }
+
     this.red = red;
     this.green = green;
     this.blue = blue;
@@ -20,7 +28,19 @@ public class RGBColor {
   }
 
   /**
+   * Returns true if the given float is a valid RGB value
+   *
+   * @param value the value
+   * @return true if the value is valid
+   */
+  private boolean validRange(float value) {
+    return value >= 0 && value <= 1;
+  }
+
+
+  /**
    * Returns this color - subtractColor
+   *
    * @param subtractColor the color to subtract
    * @return the difference betweent the colors
    */
@@ -32,50 +52,70 @@ public class RGBColor {
 
   /**
    * Sets the red value to a given amount.
+   *
    * @param value the value to set to
    */
-  public void setRed(int value) {
+  public void setRed(float value) {
     this.red = value;
   }
 
   /**
    * Sets the blue value to a given amount.
+   *
    * @param value the value to set to
    */
-  public void setGreen(int value) {
+  public void setGreen(float value) {
     this.green = value;
   }
 
   /**
    * Sets the blue value to a given amount.
+   *
    * @param value the value to set to
    */
-  public void setBlue(int value) {
+  public void setBlue(float value) {
     this.blue = value;
   }
 
   /**
    * Returns the red value.
+   *
    * @return the red value
    */
-  public int getRed() {
+  public float getRed() {
     return this.red;
   }
 
   /**
    * Returns the green value.
+   *
    * @return the green value
    */
-  public int getGreen() {
+  public float getGreen() {
     return this.green;
   }
 
   /**
    * Returns the blue value.
+   *
    * @return the blue value
    */
-  public int getBlue() {
-   return this.blue;
+  public float getBlue() {
+    return this.blue;
   }
 
+  @Override
+  public String toString() {
+    StringBuilder myBuiler = new StringBuilder();
+
+    myBuiler.append("Color: (");
+    myBuiler.append(red);
+    myBuiler.append(", ");
+    myBuiler.append(green);
+    myBuiler.append(", ");
+    myBuiler.append(blue);
+    myBuiler.append(")");
+
+    return myBuiler.toString();
+  }
 }

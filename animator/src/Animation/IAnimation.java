@@ -2,30 +2,52 @@ package Animation;
 
 import shape.IShape;
 
-public interface IAnimation {
+/**
+ * Represents any animation that can be applied to a shape.
+ */
+public interface IAnimation extends Comparable<IAnimation> {
 
   /**
    * Returns the start time of the animation.
+   *
    * @return the start time of the animation
    */
   float getStartTime();
 
   /**
    * Returns the end time of the animation.
+   *
    * @return the end time of the animation
    */
   float getEndTime();
 
   /**
-   * Returns true if the given time falls within the bounds of this animation
+   * Returns the type of the animation.
+   *
+   * @return the type of the animation
+   */
+  AnimationType getType();
+
+  /**
+   * Convenience function that returns true if the given time falls within the bounds of this
+   * animation.
+   *
    * @param t the time requested
    * @return true if the given time falls within the bounds of this animation
    */
   boolean inBounds(float t);
 
   /**
-   * Computes the new state of the shape at given time as a result of this animation.
-   * @return the new state of the shape.
+   * Sets the new state of the shape at given time as a result of this animation.
    */
-  IShape getState(float time);
+  void setState(IShape givenShape, float time);
+
+  /**
+   * Returns a string describing the overall animation.
+   *
+   * @param name the name of the object
+   * @return a string describing the overall animation
+   */
+  String toString(String name);
+
 }

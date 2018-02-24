@@ -3,9 +3,12 @@ package shape;
 import java.util.Objects;
 
 /**
- * This class represents a 2D position
+ * This class represents a 2D position.
+ *
+ * **Taken from lecture notes.**
  */
 public final class Position2D {
+
   private final double x;
 
   public double getX() {

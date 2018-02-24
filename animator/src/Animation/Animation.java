@@ -2,12 +2,14 @@ package Animation;
 
 import shape.IShape;
 
+/**
+ * Represents the general body of an animation.
+ */
 public abstract class Animation implements IAnimation {
+
   protected float startTime;
   protected float endTime;
   protected AnimationType type;
-  protected IShape startState;
-  protected IShape endState;
 
   @Override
   public float getStartTime() {
@@ -20,17 +22,33 @@ public abstract class Animation implements IAnimation {
   }
 
   @Override
+  public AnimationType getType() {
+    return type;
+  }
+
+  @Override
   public boolean inBounds(float t) {
     return t >= startTime && t <= endTime;
   }
 
+  @Override
+  public int compareTo(IAnimation o) {
+    return (int) (this.startTime - o.getStartTime());
+  }
+
   /**
    * Returns the total duration of the animation
+   *
    * @return the total duration of the animation
    */
-  float duration() {
+  protected float duration() {
     return endTime - startTime;
   }
 
-  public abstract IShape getState(float time);
+  @Override
+  public abstract void setState(IShape state, float time);
+
+  @Override
+  public abstract String toString(String name);
+
 }

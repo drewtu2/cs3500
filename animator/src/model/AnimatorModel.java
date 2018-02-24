@@ -7,14 +7,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import shape.AnimatedShape;
+import java.util.Set;
 import shape.IAnimatedShape;
 import shape.IShape;
 
 /**
  * A concrete implementation of an animator model.
  */
-public class AnimatorModel implements IAnimatorModel{
+public class AnimatorModel implements IAnimatorModel {
 
   protected Map<String, IAnimatedShape> shapes;
 
@@ -27,26 +27,20 @@ public class AnimatorModel implements IAnimatorModel{
   }
 
   @Override
-  public void addShape(String name, IShape newShape) throws IllegalArgumentException {
+  public void addShape(IAnimatedShape newShape) throws IllegalArgumentException {
 
     // Test to see if the shape exists
-    if(shapes.containsKey(name))
-    {
+    if (shapes.containsKey(newShape.getName())) {
       throw new IllegalArgumentException("A shape by this name already exists!");
     }
 
-    //TODO: Replace with factory method?
-    IAnimatedShape newAnimatedShape = new AnimatedShape(newShape);
-
-
-    shapes.put(name, newAnimatedShape);
+    shapes.put(newShape.getName(), newShape);
   }
 
   @Override
   public void deleteShape(String shapeName) throws IllegalArgumentException {
     // Test to see if the shape exists
-    if(!shapes.containsKey(shapeName))
-    {
+    if (!shapes.containsKey(shapeName)) {
       throw new IllegalArgumentException("This shape doesn't exist!");
     }
 
@@ -57,8 +51,7 @@ public class AnimatorModel implements IAnimatorModel{
   @Override
   public void addAnimation(String shapeName, IAnimation animation) throws IllegalArgumentException {
     // Test to see if the shape exists
-    if(!shapes.containsKey(shapeName))
-    {
+    if (!shapes.containsKey(shapeName)) {
       throw new IllegalArgumentException("This shape doesn't exist!");
     }
 
@@ -68,6 +61,33 @@ public class AnimatorModel implements IAnimatorModel{
     // up.
     // TODO: make sure this updates the object in the map. Should work b/c java passes by reference
     requestedShape.addAnimation(animation);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder myStringBuilder = new StringBuilder();
+    List<AnimationSummary> summaries = new ArrayList<>();
+
+    myStringBuilder.append("Shapes:\n");
+
+    // Extract a list of summaries
+    for (IAnimatedShape animatedShape : shapes.values()) {
+      myStringBuilder.append(animatedShape.toString());
+      myStringBuilder.append("\n");
+      summaries.addAll(animatedShape.getSummary());
+    }
+
+    myStringBuilder.append("Animations:\n");
+    // Sort the summaries by start time
+    Collections.sort(summaries);
+
+    // Add the summaries to the string builder
+    for (AnimationSummary summary : summaries) {
+      myStringBuilder.append(summary.getDescription());
+      myStringBuilder.append("\n");
+    }
+
+    return myStringBuilder.toString();
   }
 
   @Override
@@ -82,6 +102,7 @@ public class AnimatorModel implements IAnimatorModel{
       summaries.addAll(animatedShape.getSummary());
     }
 
+    myStringBuilder.append("Animations:\n");
     // Sort the summaries by start time
     Collections.sort(summaries);
 
@@ -102,5 +123,10 @@ public class AnimatorModel implements IAnimatorModel{
     }
 
     return shapeList;
+  }
+
+  @Override
+  public Set<String> listShapes() {
+    return shapes.keySet();
   }
 }

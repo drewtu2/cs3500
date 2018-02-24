@@ -1,21 +1,26 @@
 package shape;
 
-import java.util.List;
 import Animation.AnimationSummary;
 import Animation.IAnimation;
+import java.util.List;
 
-public interface IAnimatedShape {
+/**
+ * The interfce for a general an animated shape. Animated shapes can be thought of as shapes whose
+ * state is a function of time.
+ */
+public interface IAnimatedShape extends IShape {
 
   /**
    * Adds an animation to the given shape.
+   *
    * @param animation the animation to add
    * @throws IllegalArgumentException if the given animation overlaps with another animation
-   *
    */
   void addAnimation(IAnimation animation) throws IllegalArgumentException;
 
   /**
    * Returns the shape at a given time.
+   *
    * @param t the time requested
    * @return the state at the requested time
    */
@@ -24,6 +29,7 @@ public interface IAnimatedShape {
 
   /**
    * String summary.
+   *
    * @return list of the animation objects.
    */
   List<AnimationSummary> getSummary();
