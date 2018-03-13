@@ -4,6 +4,9 @@ import cs3500.animation.AnimationSummary;
 import cs3500.animation.IAnimation;
 import cs3500.shape.IAnimatedShape;
 import cs3500.shape.IShape;
+
+import cs3500.animator.util.TweenModelBuilder;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -18,6 +21,54 @@ public class AnimatorModel implements IAnimatorModel {
 
   protected Map<String, IAnimatedShape> shapes;
 
+  /**
+   * Static Builder class that constructs a model
+   */
+  public static final class Builder implements TweenModelBuilder<AnimatorModel> {
+
+    @Override
+    public TweenModelBuilder<AnimatorModel> addOval(String name, float cx, float cy, float xRadius,
+        float yRadius, float red, float green, float blue, int startOfLife, int endOfLife) {
+      //TODO implement this
+      return null;
+    }
+
+    @Override
+    public TweenModelBuilder<AnimatorModel> addRectangle(String name, float lx, float ly,
+        float width,
+        float height, float red, float green, float blue, int startOfLife, int endOfLife) {
+      //TODO implement this
+      return null;
+    }
+
+    @Override
+    public TweenModelBuilder<AnimatorModel> addMove(String name, float moveFromX, float moveFromY,
+        float moveToX, float moveToY, int startTime, int endTime) {
+      //TODO implement this
+      return null;
+    }
+
+    @Override
+    public TweenModelBuilder<AnimatorModel> addColorChange(String name, float oldR, float oldG,
+        float oldB, float newR, float newG, float newB, int startTime, int endTime) {
+      //TODO implement this
+      return null;
+    }
+
+    @Override
+    public TweenModelBuilder<AnimatorModel> addScaleToChange(String name, float fromSx,
+        float fromSy,
+        float toSx, float toSy, int startTime, int endTime) {
+      //TODO implement this
+      return null;
+    }
+
+    @Override
+    public AnimatorModel build() {
+      //TODO implement this
+      return null;
+    }
+  }
 
   /**
    * Constructs an Animator animator.model.
