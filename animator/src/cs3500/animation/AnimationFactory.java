@@ -1,13 +1,13 @@
-package animation;
+package cs3500.animation;
 
-import animation.concrete.AppearAnimation;
-import animation.concrete.ColorAnimation;
-import animation.concrete.DisappearAnimation;
-import animation.concrete.MoveAnimation;
-import animation.concrete.ScaleAnimation;
-import shape.Position2D;
-import shape.RGBColor;
-import shape.dimension.IDimension;
+import cs3500.animation.concrete.AppearAnimation;
+import cs3500.animation.concrete.ColorAnimation;
+import cs3500.animation.concrete.DisappearAnimation;
+import cs3500.animation.concrete.MoveAnimation;
+import cs3500.animation.concrete.ScaleAnimation;
+import cs3500.shape.Position2D;
+import cs3500.shape.RGBColor;
+import cs3500.shape.dimension.IDimension;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class AnimationFactory {

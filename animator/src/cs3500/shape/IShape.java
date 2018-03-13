@@ -1,6 +1,6 @@
-package shape;
+package cs3500.shape;
 
-import shape.dimension.IDimension;
+import cs3500.shape.dimension.IDimension;
 
 /**
  * The representation for a shape. This is the shape at a discrete point in time.
@@ -17,7 +17,7 @@ public interface IShape {
   /**
    * Sets the position of a shape to a given value.
    *
-   * @param pos the shape.Position2D to set it to
+   * @param pos the Position2D to set it to
    */
   void setPosition(Position2D pos);
 

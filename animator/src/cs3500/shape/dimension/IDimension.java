@@ -1,4 +1,4 @@
-package shape.dimension;
+package cs3500.shape.dimension;
 
 public interface IDimension {
 

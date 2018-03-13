@@ -1,6 +1,6 @@
-package shape;
+package cs3500.shape;
 
-import shape.concrete.Rectangle;
+import cs3500.shape.concrete.Rectangle;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**

@@ -1,9 +1,9 @@
-package animation.concrete;
+package cs3500.animation.concrete;
 
-import animation.Animation;
-import animation.AnimationType;
-import shape.IShape;
-import shape.Position2D;
+import cs3500.animation.Animation;
+import cs3500.animation.AnimationType;
+import cs3500.shape.IShape;
+import cs3500.shape.Position2D;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**

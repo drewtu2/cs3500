@@ -1,18 +1,18 @@
-package model;
+package cs3500.animator.model;
 
-import animation.AnimationSummary;
-import animation.IAnimation;
+import cs3500.animation.AnimationSummary;
+import cs3500.animation.IAnimation;
+import cs3500.shape.IAnimatedShape;
+import cs3500.shape.IShape;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import shape.IAnimatedShape;
-import shape.IShape;
 
 /**
- * A concrete implementation of an animator model.
+ * A concrete implementation of an animator animator.model.
  */
 public class AnimatorModel implements IAnimatorModel {
 
@@ -20,7 +20,7 @@ public class AnimatorModel implements IAnimatorModel {
 
 
   /**
-   * Constructs an Animator model.
+   * Constructs an Animator animator.model.
    */
   public AnimatorModel() {
     shapes = new HashMap<>();

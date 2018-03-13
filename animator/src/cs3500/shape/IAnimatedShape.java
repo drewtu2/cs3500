@@ -1,7 +1,7 @@
-package shape;
+package cs3500.shape;
 
-import animation.AnimationSummary;
-import animation.IAnimation;
+import cs3500.animation.AnimationSummary;
+import cs3500.animation.IAnimation;
 import java.util.List;
 
 /**

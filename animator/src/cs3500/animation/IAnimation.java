@@ -1,6 +1,6 @@
-package animation;
+package cs3500.animation;
 
-import shape.IShape;
+import cs3500.shape.IShape;
 
 /**
  * Represents any animation that can be applied to a shape.

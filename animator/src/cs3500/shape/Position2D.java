@@ -1,4 +1,4 @@
-package shape;
+package cs3500.shape;
 
 import java.util.Objects;
 

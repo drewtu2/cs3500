@@ -1,18 +1,18 @@
-package model;
+package cs3500.animator.model;
 
-import animation.IAnimation;
+import cs3500.animation.IAnimation;
+import cs3500.shape.IAnimatedShape;
+import cs3500.shape.IShape;
 import java.util.List;
 import java.util.Set;
-import shape.IAnimatedShape;
-import shape.IShape;
 
 /**
- * Interface for an Animator model type.
+ * Interface for an Animator animator.model type.
  */
 public interface IAnimatorModel {
 
   /**
-   * Adds a new shape to the model.
+   * Adds a new shape to the animator.model.
    *
    * @param newShape the shape to add.
    * @throws IllegalArgumentException if a shape with the given name already exists.
@@ -38,7 +38,7 @@ public interface IAnimatorModel {
   void addAnimation(String shapeName, IAnimation animation) throws IllegalArgumentException;
 
   /**
-   * A summary of the Animator model.
+   * A summary of the Animator animator.model.
    *
    * @return String representation of the summary.
    */
@@ -61,9 +61,9 @@ public interface IAnimatorModel {
   List<IShape> getState(float time);
 
   /**
-   * Returns a list of the shapes by name in the model.
+   * Returns a list of the shapes by name in the animator.model.
    *
-   * @return a list of the shapes by name in the model
+   * @return a list of the shapes by name in the animator.model
    */
   Set<String> listShapes();
 
