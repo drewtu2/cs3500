@@ -1,6 +1,6 @@
 package shape;
 
-import shape.concreteShape.Rectangle;
+import shape.concrete.Rectangle;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -14,7 +14,7 @@ public class ShapeFactory {
   }
 
   /**
-   * Copy constructor
+   * Copy constructor.
    */
   public static IAnimatedShape getShape(IShape shape) {
     throw new NotImplementedException();

@@ -1,8 +1,8 @@
 package shape;
 
-import Animation.AnimationSummary;
-import Animation.AnimationType;
-import Animation.IAnimation;
+import animation.AnimationSummary;
+import animation.AnimationType;
+import animation.IAnimation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -58,7 +58,7 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
 
   @Override
   public IShape stateAt(float t) {
-    //TODO
+    //TODO see Interface for explanation
     throw new NotImplementedException();
   }
 

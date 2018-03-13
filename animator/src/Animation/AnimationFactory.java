@@ -1,10 +1,10 @@
-package Animation;
+package animation;
 
-import Animation.concreteAnimations.AppearAnimation;
-import Animation.concreteAnimations.ColorAnimation;
-import Animation.concreteAnimations.DisappearAnimation;
-import Animation.concreteAnimations.MoveAnimation;
-import Animation.concreteAnimations.ScaleAnimation;
+import animation.concrete.AppearAnimation;
+import animation.concrete.ColorAnimation;
+import animation.concrete.DisappearAnimation;
+import animation.concrete.MoveAnimation;
+import animation.concrete.ScaleAnimation;
 import shape.Position2D;
 import shape.RGBColor;
 import shape.dimension.IDimension;
@@ -81,7 +81,7 @@ public class AnimationFactory {
    * @return a copy of the animation
    */
   public static IAnimation copyAnimation(IAnimation copy) {
-    // TODO
+    // TODO Need this for to easily use the copy constructors through a factory method.
     throw new NotImplementedException();
   }
 

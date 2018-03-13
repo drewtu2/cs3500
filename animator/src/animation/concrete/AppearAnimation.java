@@ -1,7 +1,7 @@
-package Animation.concreteAnimations;
+package animation.concrete;
 
-import Animation.Animation;
-import Animation.AnimationType;
+import animation.Animation;
+import animation.AnimationType;
 import shape.IShape;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -41,6 +41,7 @@ public class AppearAnimation extends Animation {
   @Override
   public void setState(IShape state, float time) {
 
+    /*
     if (time >= startTime) {
       // Manipulate state
       // state;
@@ -48,8 +49,9 @@ public class AppearAnimation extends Animation {
       // Manipulate state
       // state;
     }
+    */
 
-    //TODO
+    //TODO see interface for explanation
     throw new NotImplementedException();
   }
 

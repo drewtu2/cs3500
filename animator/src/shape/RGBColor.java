@@ -28,7 +28,7 @@ public class RGBColor {
   }
 
   /**
-   * Returns true if the given float is a valid RGB value
+   * Returns true if the given float is a valid RGB value.
    *
    * @param value the value
    * @return true if the value is valid
@@ -39,7 +39,7 @@ public class RGBColor {
 
 
   /**
-   * Returns this color - subtractColor
+   * Returns this color - subtractColor.
    *
    * @param subtractColor the color to subtract
    * @return the difference betweent the colors

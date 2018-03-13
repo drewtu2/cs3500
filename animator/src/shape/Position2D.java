@@ -4,7 +4,6 @@ import java.util.Objects;
 
 /**
  * This class represents a 2D position.
- *
  * **Taken from lecture notes.**
  */
 public final class Position2D {
@@ -22,7 +21,7 @@ public final class Position2D {
   private final double y;
 
   /**
-   * Initialize this object to the specified position
+   * Initialize this object to the specified position.
    */
   public Position2D(double x, double y) {
     this.x = x;
@@ -30,7 +29,7 @@ public final class Position2D {
   }
 
   /**
-   * Copy constructor
+   * Copy constructor.
    */
   public Position2D(Position2D v) {
     this(v.x, v.y);

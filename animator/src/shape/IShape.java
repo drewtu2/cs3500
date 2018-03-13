@@ -71,7 +71,9 @@ public interface IShape {
   String getName();
 
   /**
+   * The string representation.
    *
+   * @return the string representation
    */
   String toString();
 

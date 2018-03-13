@@ -1,4 +1,4 @@
-package Animation;
+package animation;
 
 import shape.IShape;
 
@@ -37,7 +37,7 @@ public abstract class Animation implements IAnimation {
   }
 
   /**
-   * Returns the total duration of the animation
+   * Returns the total duration of the animation.
    *
    * @return the total duration of the animation
    */

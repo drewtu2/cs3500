@@ -1,4 +1,5 @@
 # Animator Model
+# Andrew Tu
 # Feb 23, 2018
 
 ## Design Overview
@@ -67,9 +68,18 @@ time. The shape interface requires certain functions for accessing color, dimens
 One of the tricky aspects of shapes is that reference points and dimension are unique to the type of shape
 - therefore enums/interfaces were established to represent each respectively.
 
+## Rectangle
+The rectangle represents a concrete implementation of a shape. In the interest of time, I only
+implemented a rectangle, however, due to the abstract shape representations, implementation additonal
+shapes is easily done.
+
 ## Abstract Classes and Factories
 Where applicable, abstract classes were implemented to abstract common functions out of concrete classes.
 Where applicable, factories were created to avoid locking classes into concrete implementations.
 
 
-
+## Other Notes:
+This code needs some refactoring which I was not able to do in time for submission. A number
+of tests are also failing with a "NotImplementedException" due to the nature of not having been
+implemented. I posted twice in the Piazza regarding how to handle tests that have written but are not
+(and cannot) be passed or fully written since we do not know how they are supposed to behave.

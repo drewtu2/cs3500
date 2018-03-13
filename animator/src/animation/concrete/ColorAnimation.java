@@ -1,7 +1,7 @@
-package Animation.concreteAnimations;
+package animation.concrete;
 
-import Animation.Animation;
-import Animation.AnimationType;
+import animation.Animation;
+import animation.AnimationType;
 import shape.IShape;
 import shape.RGBColor;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -49,7 +49,7 @@ public class ColorAnimation extends Animation {
 
   @Override
   public void setState(IShape current, float time) {
-    // Hasn't been tested...
+    // TODO: See interface for explanation
     throw new NotImplementedException();
 
     /*

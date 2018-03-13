@@ -1,6 +1,6 @@
 package model;
 
-import Animation.IAnimation;
+import animation.IAnimation;
 import java.util.List;
 import java.util.Set;
 import shape.IAnimatedShape;
@@ -33,7 +33,7 @@ public interface IAnimatorModel {
    * @param shapeName which shape is being applied to
    * @param animation the animation to be applied
    * @throws IllegalArgumentException if the requested shape doesn't exist or if conflict occurs
-   * with another animation on the same shape
+   *        with another animation on the same shape
    */
   void addAnimation(String shapeName, IAnimation animation) throws IllegalArgumentException;
 

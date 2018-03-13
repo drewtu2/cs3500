@@ -1,4 +1,4 @@
-package Animation;
+package animation;
 
 /**
  * Represents a tuple of (start time, description) for animations that is sortable by start time.

@@ -1,7 +1,7 @@
-package Animation.concreteAnimations;
+package animation.concrete;
 
-import Animation.Animation;
-import Animation.AnimationType;
+import animation.Animation;
+import animation.AnimationType;
 import shape.IShape;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -48,7 +48,7 @@ public class DisappearAnimation extends Animation {
     }
     */
 
-    //TODO
+    //TODO see interface for explanation
     throw new NotImplementedException();
   }
 

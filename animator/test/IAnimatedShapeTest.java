@@ -1,8 +1,8 @@
 import static junit.framework.TestCase.assertEquals;
 
-import Animation.AnimationFactory;
-import Animation.AnimationSummary;
-import Animation.IAnimation;
+import animation.AnimationFactory;
+import animation.AnimationSummary;
+import animation.IAnimation;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -22,6 +22,9 @@ public class IAnimatedShapeTest {
   IAnimation r2g;
   IAnimation g2r;
 
+  /**
+   * Setup the test.
+   */
   @Before
   public void setUp() {
     Position2D pos = new Position2D(10, 10);

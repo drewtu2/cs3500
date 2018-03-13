@@ -17,6 +17,9 @@ public class IShapeTest {
   Position2D pos2;
   IDimension scale1;
 
+  /**
+   * Set up the test.
+   */
   @Before
   public void setUp() {
     pos2 = new Position2D(20, 20);
@@ -68,7 +71,8 @@ public class IShapeTest {
   public void testToString() {
     assertEquals("Name: rect\n"
             + "Type: rectangle\n"
-            + "Lower-left-corner: (20.000000, 20.000000), Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0)",
+            + "Lower-left-corner: (20.000000, 20.000000), "
+            + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0)",
         rect.toString());
   }
 

@@ -9,6 +9,9 @@ public class IDimensionTest {
 
   IDimension myDim;
 
+  /**
+   * Setup the test.
+   */
   @Before
   public void setUp() {
     myDim = new RectangleDim(10, 10);

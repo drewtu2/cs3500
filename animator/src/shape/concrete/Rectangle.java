@@ -1,4 +1,4 @@
-package shape.concreteShape;
+package shape.concrete;
 
 import java.util.HashMap;
 import shape.AbstractAnimatedShape;
@@ -12,6 +12,14 @@ import shape.dimension.RectangleDim;
  */
 public class Rectangle extends AbstractAnimatedShape {
 
+  /**
+   * Constructor for rectangle.
+   * @param name the name
+   * @param pos the position
+   * @param col the color
+   * @param width the width
+   * @param height the height
+   */
   public Rectangle(String name, Position2D pos, RGBColor col, float width, float height) {
     this.name = name;
     this.type = ShapeType.RECTANGLE;
@@ -22,6 +30,10 @@ public class Rectangle extends AbstractAnimatedShape {
     this.animationList = new HashMap<>();
   }
 
+  /**
+   * Copy constructor.
+   * @param copy the shape to copy
+   */
   public Rectangle(Rectangle copy) {
     this.name = copy.name;
     this.type = ShapeType.RECTANGLE;

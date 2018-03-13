@@ -1,4 +1,4 @@
-package Animation;
+package animation;
 
 /**
  * Represents the different tpes of animations.

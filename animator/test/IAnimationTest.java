@@ -1,12 +1,12 @@
-import static Animation.AnimationType.COLOR;
-import static Animation.AnimationType.CREATE;
-import static Animation.AnimationType.DESTROY;
-import static Animation.AnimationType.MOVE;
-import static Animation.AnimationType.SCALE;
+import static animation.AnimationType.COLOR;
+import static animation.AnimationType.CREATE;
+import static animation.AnimationType.DESTROY;
+import static animation.AnimationType.MOVE;
+import static animation.AnimationType.SCALE;
 import static junit.framework.TestCase.assertEquals;
 
-import Animation.AnimationFactory;
-import Animation.IAnimation;
+import animation.AnimationFactory;
+import animation.IAnimation;
 import org.junit.Before;
 import org.junit.Test;
 import shape.IShape;
@@ -25,6 +25,9 @@ public class IAnimationTest {
   IAnimation myDisap;
   IShape test;
 
+  /**
+   * Setup the test.
+   */
   @Before
   public void setUp() {
     Position2D pos = new Position2D(10, 10);

@@ -1,7 +1,7 @@
 package shape;
 
-import Animation.AnimationSummary;
-import Animation.IAnimation;
+import animation.AnimationSummary;
+import animation.IAnimation;
 import java.util.List;
 
 /**
@@ -20,6 +20,9 @@ public interface IAnimatedShape extends IShape {
 
   /**
    * Returns the shape at a given time.
+   * This function is necessary to get the state of a shape at a given point in time. The view will
+   * need to see what every animated shape looks like as a result of all of the applied animations.
+   * This function will return the animation of tis particular shape up to whomever needs to see it.
    *
    * @param t the time requested
    * @return the state at the requested time

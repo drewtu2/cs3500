@@ -1,7 +1,7 @@
 package model;
 
-import Animation.AnimationSummary;
-import Animation.IAnimation;
+import animation.AnimationSummary;
+import animation.IAnimation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -20,7 +20,7 @@ public class AnimatorModel implements IAnimatorModel {
 
 
   /**
-   * Constructs an Animator model
+   * Constructs an Animator model.
    */
   public AnimatorModel() {
     shapes = new HashMap<>();
