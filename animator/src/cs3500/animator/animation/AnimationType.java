@@ -1,4 +1,4 @@
-package cs3500.animation;
+package cs3500.animator.animation;
 
 /**
  * Represents the different tpes of animations.

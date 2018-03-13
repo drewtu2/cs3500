@@ -1,6 +1,6 @@
-package cs3500.animation;
+package cs3500.animator.animation;
 
-import cs3500.shape.IShape;
+import cs3500.animator.shape.IShape;
 
 /**
  * Represents the general body of an animation.

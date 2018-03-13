@@ -1,4 +1,4 @@
-package cs3500.shape;
+package cs3500.animator.shape;
 
 /**
  * Represents an RGB Color.

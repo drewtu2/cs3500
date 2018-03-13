@@ -1,4 +1,4 @@
-package cs3500.shape;
+package cs3500.animator.shape;
 
 /**
  * Represents the set of locations that a shape can be referenced by.

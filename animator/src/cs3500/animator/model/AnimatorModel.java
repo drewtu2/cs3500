@@ -1,9 +1,9 @@
 package cs3500.animator.model;
 
-import cs3500.animation.AnimationSummary;
-import cs3500.animation.IAnimation;
-import cs3500.shape.IAnimatedShape;
-import cs3500.shape.IShape;
+import cs3500.animator.animation.AnimationSummary;
+import cs3500.animator.animation.IAnimation;
+import cs3500.animator.shape.IAnimatedShape;
+import cs3500.animator.shape.IShape;
 
 import cs3500.animator.util.TweenModelBuilder;
 

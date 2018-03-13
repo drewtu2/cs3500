@@ -1,4 +1,4 @@
-package cs3500.animation;
+package cs3500.animator.animation;
 
 /**
  * Represents a tuple of (start time, description) for animations that is sortable by start time.

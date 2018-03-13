@@ -1,6 +1,6 @@
-package cs3500.shape;
+package cs3500.animator.shape;
 
-import cs3500.shape.dimension.IDimension;
+import cs3500.animator.shape.dimension.IDimension;
 
 /**
  * Represents the discrete representation of a shape. All information pertaining to the

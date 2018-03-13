@@ -1,8 +1,8 @@
-package cs3500.shape;
+package cs3500.animator.shape;
 
-import cs3500.animation.AnimationSummary;
-import cs3500.animation.AnimationType;
-import cs3500.animation.IAnimation;
+import cs3500.animator.animation.AnimationSummary;
+import cs3500.animator.animation.AnimationType;
+import cs3500.animator.animation.IAnimation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

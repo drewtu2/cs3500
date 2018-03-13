@@ -1,6 +1,6 @@
-package cs3500.shape;
+package cs3500.animator.shape;
 
-import cs3500.shape.dimension.IDimension;
+import cs3500.animator.shape.dimension.IDimension;
 
 /**
  * The representation for a shape. This is the shape at a discrete point in time.

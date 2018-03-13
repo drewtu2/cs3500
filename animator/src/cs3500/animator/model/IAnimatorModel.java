@@ -1,8 +1,8 @@
 package cs3500.animator.model;
 
-import cs3500.animation.IAnimation;
-import cs3500.shape.IAnimatedShape;
-import cs3500.shape.IShape;
+import cs3500.animator.animation.IAnimation;
+import cs3500.animator.shape.IAnimatedShape;
+import cs3500.animator.shape.IShape;
 import java.util.List;
 import java.util.Set;
 

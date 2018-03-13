@@ -1,11 +1,11 @@
-package cs3500.shape.concrete;
+package cs3500.animator.shape.concrete;
 
-import cs3500.shape.Position2D;
-import cs3500.shape.RGBColor;
-import cs3500.shape.ShapeType;
-import cs3500.shape.dimension.RectangleDim;
+import cs3500.animator.shape.AbstractAnimatedShape;
+import cs3500.animator.shape.Position2D;
+import cs3500.animator.shape.RGBColor;
+import cs3500.animator.shape.ShapeType;
+import cs3500.animator.shape.dimension.RectangleDim;
 import java.util.HashMap;
-import cs3500.shape.AbstractAnimatedShape;
 
 /**
  * Represents a rectangle object.

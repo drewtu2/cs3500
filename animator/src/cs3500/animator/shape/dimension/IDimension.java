@@ -1,4 +1,4 @@
-package cs3500.shape.dimension;
+package cs3500.animator.shape.dimension;
 
 public interface IDimension {
 

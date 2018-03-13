@@ -1,4 +1,4 @@
-package cs3500.shape;
+package cs3500.animator.shape;
 
 /**
  * Represents the different possible shapes. Since reference point is determined by shape type, the
