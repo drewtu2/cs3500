@@ -28,10 +28,10 @@ The first two lines indicated the need of for someway to create a shape with 4 p
 4. Shape color
 
 This led me to create a shape class that represented the data needed to create a shape. This also meant
-we needed a function to add a shape to our model, hence the creation of the `addShape` method.
+we needed a function to add a shape to our animator.model, hence the creation of the `addShape` method.
 
-Given that a user can add a shape to the model, it also seemed natural to give the user the ability
-to remove the shape from the model. Thus, I also added a `deleteShape` method to the model interface.
+Given that a user can add a shape to the animator.model, it also seemed natural to give the user the ability
+to remove the shape from the animator.model. Thus, I also added a `deleteShape` method to the animator.model interface.
 
 The remaining lines of the description yielded a number of important characteristics, there existed
 a number of defined animations that had some effect on a particular shape. Furthermore, animations
@@ -45,15 +45,15 @@ shape name.
 The `toString` methods return the textual representation of the animator where an optional
 time parameter can be given to see the state of the animator as a function of time.
 
-Since the model will be used to supply information to the view, I also wanted to provide an easy to
+Since the animator.model will be used to supply information to the view, I also wanted to provide an easy to
 use, machine readable version of the state. Therefore, I included a `getState(float time)` method that
-returned a List of shapes representing every state in the model at a given time.
+returned a List of shapes representing every state in the animator.model at a given time.
 
 Finally, as a convenience function to the user, I exposed a `listShapes()` method which simply returned
-a list of the shapes (names) in the model. This
+a list of the shapes (names) in the animator.model. This
 
 ## IAnimatedShape
-While implementing the `addAnimation` function for the model, it became apparent that there needed to be a
+While implementing the `addAnimation` function for the animator.model, it became apparent that there needed to be a
 distinction between a shape's representation at a discrete point in time, and the shapes representation as a
 function of time. Thus, I created an IAnimatedShape class which represents the shape as a function of time.
 This interface exposes the ability to add animations to a particular shape and then get the state of the shape

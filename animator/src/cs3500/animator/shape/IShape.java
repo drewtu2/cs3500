@@ -50,18 +50,20 @@ public interface IShape {
   ShapeType getType();
 
   /**
-   * Returns the transparency of the shape.
+   * Returns the opacity of the shape.
    *
-   * @return the transparency of the shape
+   * @return the opacity of the shape
    */
-  float getTransparency();
+  float getOpacity();
 
   /**
-   * Sets the transparency of the shape.
+   * Sets the opacity of the shape.
+   * 0: invisible
+   * 1: visible
    *
-   * @param input the transparency to set
+   * @param input the opacity to set
    */
-  void setTransparency(float input);
+  void setOpacity(float input);
 
   /**
    * Returns the shape's name.

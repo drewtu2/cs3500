@@ -31,6 +31,12 @@ public interface IControllerBuilder {
   void setSpeed(int speed);
 
   /**
+   * Sets the given view type.
+   * @param type the view type
+   */
+  void setView(String type);
+
+  /**
    * Builds the a controller.
    * @return a IController
    */

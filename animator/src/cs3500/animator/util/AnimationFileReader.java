@@ -1,4 +1,4 @@
-package cs3500.animator.util;
+package util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,20 +9,20 @@ import java.util.Scanner;
 
 /**
  * This class represents a file reader for the animation file. This reads in the
- * file in the prescribed file format, and relies on a animator.model builder interface.
- * The user of this class should create a animator.model builder that implements this
+ * file in the prescribed file format, and relies on a model builder interface.
+ * The user of this class should create a model builder that implements this
  * interface.
  */
 
 public class AnimationFileReader {
 
   /**
-   * Read the animation file and use the builder to build a animator.model.
+   * Read the animation file and use the builder to build a model.
    *
    * @param fileName the path of the file to be read
-   * @param builder  the builder used to build the animator.model
-   * @param <T>      the type of animator.model
-   * @return the animator.model
+   * @param builder  the builder used to build the model
+   * @param <T>      the type of model
+   * @return the model
    * @throws FileNotFoundException  if the specified file cannot be read
    * @throws InputMismatchException if some data value is not of the expected
    *                                type
@@ -105,10 +105,10 @@ public class AnimationFileReader {
     while (!info.isAllInitialized()) {
       String command = sc.next();
       switch (command) {
-        case "lower-left-x":
+        case "min-x":
           info.setX(sc.nextFloat());
           break;
-        case "lower-left-y":
+        case "min-y":
           info.setY(sc.nextFloat());
           break;
         case "width":

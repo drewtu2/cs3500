@@ -1,15 +1,15 @@
-package cs3500.animator.util;
+package util;
 
 /**
  * This interface contains all the methods that the AnimationFileReader class
- * calls as it reads a file containing the animation and builds a animator.model It is
- * parameterized over the actual animator.model type.
+ * calls as it reads a file containing the animation and builds a model It is
+ * parameterized over the actual model type.
  */
 
 public interface TweenModelBuilder<T> {
 
   /**
-   * Add a new oval to the animator.model with the given specifications
+   * Add a new oval to the model with the given specifications
    *
    * @param name        the unique name given to this shape
    * @param cx          the x-coordinate of the center of the oval
@@ -31,12 +31,12 @@ public interface TweenModelBuilder<T> {
           int startOfLife, int endOfLife);
 
   /**
-   * Add a new rectangle to the animator.model with the given specifications
+   * Add a new rectangle to the model with the given specifications
    *
    * @param name        the unique name given to this shape
-   * @param lx          the x-coordinate of the lower left corner of the
+   * @param lx          the minimum x-coordinate of a corner of the
    *                    rectangle
-   * @param ly          the y-coordinate of the lower left corner of the
+   * @param ly          the minimum y-coordinate of a corner of the
    *                    rectangle
    * @param width       the width of the rectangle
    * @param height      the height of the rectangle
@@ -103,9 +103,9 @@ public interface TweenModelBuilder<T> {
           fromSy, float toSx, float toSy, int startTime, int endTime);
 
   /**
-   * Return the animator.model built so far
+   * Return the model built so far
    *
-   * @return the animator.model that was constructed so far
+   * @return the model that was constructed so far
    */
   T build();
 

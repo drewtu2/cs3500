@@ -4,7 +4,7 @@ import cs3500.animator.shape.AbstractAnimatedShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeType;
-import cs3500.animator.shape.dimension.RectangleDim;
+import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.util.HashMap;
 
 /**
@@ -26,7 +26,7 @@ public class Rectangle extends AbstractAnimatedShape {
     this.position = pos;
     this.color = col;
     this.transparency = (float) 1.0;
-    this.dimension = new RectangleDim(width, height);
+    this.dimension = new WidthHeightDim(width, height);
     this.animationList = new HashMap<>();
   }
 
