@@ -4,6 +4,7 @@ import cs3500.animator.animation.concrete.AppearAnimation;
 import cs3500.animator.animation.concrete.ColorAnimation;
 import cs3500.animator.animation.concrete.DisappearAnimation;
 import cs3500.animator.animation.concrete.MoveAnimation;
+import cs3500.animator.animation.concrete.NameAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
@@ -72,6 +73,20 @@ public class AnimationFactory {
   public static IAnimation getScaleAnimation(IDimension start, IDimension end, float startTime,
       float endTime) {
     return new ScaleAnimation(start, end, startTime, endTime);
+  }
+
+  /**
+   * Changes the name of the shape.
+   *
+   * @param start the shape with original name
+   * @param end the shape with the final name
+   * @param startTime time the change in name starts
+   * @param endTime the time the name change ends
+   * @return a name animation
+   */
+  public static IAnimation getNameAnimation(String start, String end, float startTime,
+                                             float endTime) {
+    return new NameAnimation(start, end, startTime, endTime);
   }
 
   /**

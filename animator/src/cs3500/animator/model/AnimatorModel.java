@@ -1,10 +1,14 @@
 package cs3500.animator.model;
 
+import cs3500.animator.animation.AnimationFactory;
 import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.IAnimation;
+import cs3500.animator.animation.concrete.AppearAnimation;
 import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IShape;
 
+import cs3500.animator.shape.Position2D;
+import cs3500.animator.shape.RGBColor;
 import cs3500.animator.util.TweenModelBuilder;
 
 import java.util.ArrayList;
@@ -30,7 +34,8 @@ public class AnimatorModel implements IAnimatorModel {
     public TweenModelBuilder<AnimatorModel> addOval(String name, float cx, float cy, float xRadius,
         float yRadius, float red, float green, float blue, int startOfLife, int endOfLife) {
       //TODO implement this
-      return null;
+      AnimationFactory.getAppearAnimation(startOfLife);
+      return this;
     }
 
     @Override
@@ -38,21 +43,28 @@ public class AnimatorModel implements IAnimatorModel {
         float width,
         float height, float red, float green, float blue, int startOfLife, int endOfLife) {
       //TODO implement this
-      return null;
+      AnimationFactory.getAppearAnimation(startOfLife);
+      return this;
     }
 
     @Override
     public TweenModelBuilder<AnimatorModel> addMove(String name, float moveFromX, float moveFromY,
         float moveToX, float moveToY, int startTime, int endTime) {
       //TODO implement this
-      return null;
+      Position2D from = new Position2D(moveFromX, moveFromY);
+      Position2D to = new Position2D(moveToX, moveToY);
+      AnimationFactory.getMoveAnimation(from, to, startTime, endTime);
+      return this;
     }
 
     @Override
     public TweenModelBuilder<AnimatorModel> addColorChange(String name, float oldR, float oldG,
         float oldB, float newR, float newG, float newB, int startTime, int endTime) {
       //TODO implement this
-      return null;
+      RGBColor original = new RGBColor(oldR, oldG, oldB);
+      RGBColor newCol = new RGBColor(newR, newG, newB);
+      AnimationFactory.getColorAnimation(original, newCol, startTime, endTime);
+      return this;
     }
 
     @Override
@@ -60,20 +72,21 @@ public class AnimatorModel implements IAnimatorModel {
         float fromSy,
         float toSx, float toSy, int startTime, int endTime) {
       //TODO implement this
-      return null;
+      AnimationFactory.getScaleAnimation();
+      return this;
     }
 
     @Override
     public AnimatorModel build() {
       //TODO implement this
-      return null;
+      return new AnimatorModel(this);
     }
   }
 
   /**
    * Constructs an Animator animator.model.
    */
-  public AnimatorModel() {
+  public AnimatorModel(Builder b) {
     shapes = new HashMap<>();
   }
 

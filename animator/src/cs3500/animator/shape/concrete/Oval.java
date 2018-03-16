@@ -1,5 +1,6 @@
 package cs3500.animator.shape.concrete;
 
+
 import cs3500.animator.shape.AbstractAnimatedShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
@@ -44,5 +45,4 @@ public class Oval extends AbstractAnimatedShape {
       this.animationList = copy.animationList;
 
     }
-
 }
