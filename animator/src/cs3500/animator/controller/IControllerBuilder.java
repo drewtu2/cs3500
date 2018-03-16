@@ -1,6 +1,7 @@
 package cs3500.animator.controller;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Interface of a controller builder. The controller builder will construct a builder with the following
@@ -15,7 +16,7 @@ public interface IControllerBuilder {
    * Sets the given input file to create our model from
    * @param inputFile name of the input file
    */
-  void setInputFile(String inputFile) throws FileNotFoundException;
+  void setInputFile(String inputFile);
 
   /**
    * Sets the output file to create our model from
@@ -39,8 +40,9 @@ public interface IControllerBuilder {
   /**
    * Builds the a controller.
    * @return a IController
+   * @throws FileNotFoundException
    */
-  IController build();
+  IController build() throws FileNotFoundException, IOException;
 
   /**
    * Constructs the controller from the input arguments. Acceptable arguments are as follows:
@@ -50,7 +52,8 @@ public interface IControllerBuilder {
    * - speed: speed
    * @param args list of arguments
    * @return a controller constructed from the given arguments
+   * @throws FileNotFoundException
    */
-  IController buildFromInputArgs(String[] args);
+  IController buildFromInputArgs(String[] args) throws FileNotFoundException, IOException;
 
 }
