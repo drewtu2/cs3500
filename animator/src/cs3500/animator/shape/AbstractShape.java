@@ -13,7 +13,7 @@ public abstract class AbstractShape implements IShape {
   protected Position2D position;
   protected IDimension dimension;
   protected RGBColor color;
-  protected float transparency;
+  protected float opacity;
 
   @Override
   public String toString() {
@@ -58,11 +58,11 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setTransparency(float input) {
+  public void setOpacity(float input) {
     if (input < 0) {
       throw new IllegalArgumentException();
     }
-    this.transparency = input;
+    this.opacity = input;
   }
 
   @Override
@@ -86,8 +86,8 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public float getTransparency() {
-    return this.transparency;
+  public float getOpacity() {
+    return this.opacity;
   }
 
 

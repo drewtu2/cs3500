@@ -34,9 +34,9 @@ public interface TweenModelBuilder<T> {
    * Add a new rectangle to the model with the given specifications
    *
    * @param name        the unique name given to this shape
-   * @param lx          the x-coordinate of the lower left corner of the
+   * @param lx          the minimum x-coordinate of a corner of the
    *                    rectangle
-   * @param ly          the y-coordinate of the lower left corner of the
+   * @param ly          the minimum y-coordinate of a corner of the
    *                    rectangle
    * @param width       the width of the rectangle
    * @param height      the height of the rectangle

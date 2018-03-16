@@ -1,29 +1,29 @@
-import static animation.AnimationType.COLOR;
-import static animation.AnimationType.CREATE;
-import static animation.AnimationType.DESTROY;
-import static animation.AnimationType.MOVE;
-import static animation.AnimationType.SCALE;
+import static cs3500.animator.animation.AnimationType.COLOR;
+import static cs3500.animator.animation.AnimationType.CREATE;
+import static cs3500.animator.animation.AnimationType.DESTROY;
+import static cs3500.animator.animation.AnimationType.MOVE;
+import static cs3500.animator.animation.AnimationType.SCALE;
 import static junit.framework.TestCase.assertEquals;
 
-import animation.AnimationFactory;
-import animation.IAnimation;
+import cs3500.animator.animation.AnimationFactory;
+import cs3500.animator.animation.IAnimation;
+import cs3500.animator.shape.IShape;
+import cs3500.animator.shape.Position2D;
+import cs3500.animator.shape.RGBColor;
+import cs3500.animator.shape.ShapeFactory;
+import cs3500.animator.shape.dimension.IDimension;
+import cs3500.animator.shape.dimension.WidthHeightDim;
 import org.junit.Before;
 import org.junit.Test;
-import shape.IShape;
-import shape.Position2D;
-import shape.RGBColor;
-import shape.ShapeFactory;
-import shape.dimension.IDimension;
-import shape.dimension.RectangleDim;
 
 public class IAnimationTest {
 
-  IAnimation appear;
-  IAnimation mv1;
-  IAnimation r2g;
-  IAnimation myScale;
-  IAnimation myDisap;
-  IShape test;
+  private IAnimation appear;
+  private IAnimation mv1;
+  private IAnimation r2g;
+  private IAnimation myScale;
+  private IAnimation myDisap;
+  private IShape test;
 
   /**
    * Setup the test.
@@ -36,8 +36,8 @@ public class IAnimationTest {
     RGBColor red = new RGBColor(1, 0, 0);
     RGBColor green = new RGBColor(0, 1, 0);
 
-    IDimension scale1 = new RectangleDim(10, 10);
-    IDimension scale2 = new RectangleDim(20, 20);
+    IDimension scale1 = new WidthHeightDim(10, 10);
+    IDimension scale2 = new WidthHeightDim(20, 20);
 
     appear = AnimationFactory.getAppearAnimation(2);
     mv1 = AnimationFactory.getMoveAnimation(pos, pos2, 2, 4);

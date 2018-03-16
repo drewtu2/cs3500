@@ -1,26 +1,29 @@
 import static junit.framework.TestCase.assertEquals;
 
-import animation.AnimationFactory;
-import animation.AnimationSummary;
-import animation.IAnimation;
+import cs3500.animator.animation.AnimationFactory;
+import cs3500.animator.animation.AnimationSummary;
+import cs3500.animator.animation.IAnimation;
+import cs3500.animator.shape.IAnimatedShape;
+import cs3500.animator.shape.Position2D;
+import cs3500.animator.shape.RGBColor;
+import cs3500.animator.shape.ShapeFactory;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-import shape.IAnimatedShape;
-import shape.Position2D;
-import shape.RGBColor;
-import shape.ShapeFactory;
 
+/**
+ * Class to test Animated Shapes.
+ */
 public class IAnimatedShapeTest {
 
-  IAnimatedShape s;
-  IAnimation appear;
-  IAnimation mv1;
-  IAnimation mvBad;
-  IAnimation mv2;
-  IAnimation r2g;
-  IAnimation g2r;
+  private IAnimatedShape s;
+  private IAnimation appear;
+  private IAnimation mv1;
+  private IAnimation mvBad;
+  private IAnimation mv2;
+  private IAnimation r2g;
+  private IAnimation g2r;
 
   /**
    * Setup the test.

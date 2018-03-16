@@ -4,7 +4,6 @@ import cs3500.animator.animation.Animation;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Represents an animation that changes the shapes position.
@@ -50,30 +49,16 @@ public class MoveAnimation extends Animation {
 
   @Override
   public void setState(IShape state, float time) {
-    /*
+
     if (!inBounds(time)) {
       throw new IllegalArgumentException("Time out of bounds");
     }
+    float currentX = this.interpolate(startPos.getX(), endPos.getX(), time);
+    float currentY = this.interpolate(startPos.getY(), endPos.getY(), time);
 
-    float startX = (float) startPos.getX();
-    float startY = (float) startPos.getY();
-    float endX = (float) endPos.getX();
-    float endY = (float) endPos.getY();
-
-    float deltX = (endX - startX);
-    float deltY = (endY - startY);
-
-    float deltT = duration();
-    float slopeX = deltX / deltT;
-    float slopeY = deltY / deltT;
-
-    Position2D newPos = new Position2D(startX + (slopeX * time), startY + (slopeY * time));
+    Position2D newPos = new Position2D(currentX, currentY);
 
     state.setPosition(newPos);
-    */
-
-    //TODO: See interface for explanation
-    throw new NotImplementedException();
   }
 
   @Override

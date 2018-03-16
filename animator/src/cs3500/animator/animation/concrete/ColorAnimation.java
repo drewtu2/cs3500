@@ -4,7 +4,6 @@ import cs3500.animator.animation.Animation;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.RGBColor;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * An animation that changes in color.
@@ -50,23 +49,12 @@ public class ColorAnimation extends Animation {
   @Override
   public void setState(IShape current, float time) {
     // TODO: See interface for explanation
-    throw new NotImplementedException();
+    float newRed = interpolate(startColor.getRed(), endColor.getRed(), time);
+    float newGreen = interpolate(startColor.getGreen(), endColor.getGreen(), time);
+    float newBlue = interpolate(startColor.getBlue(), endColor.getBlue(), time);
 
-    /*
-    RGBColor deltColor = endColor.subtract(startColor);
-
-    float deltT = duration();
-    int slopeR = (int) (deltColor.getRed() / duration());
-    int slopeG = (int) (deltColor.getGreen() / duration());
-    int slopeB = (int) (deltColor.getBlue() / duration());
-
-    RGBColor newColor = new RGBColor(
-        (int) (startColor.getRed() + (slopeR * time)),
-        (int) (startColor.getGreen() + (slopeG * time)),
-        (int) (startColor.getBlue() + (slopeB * time)));
-
+    RGBColor newColor = new RGBColor(newRed, newGreen, newBlue);
     current.setColor(newColor);
-    */
   }
 
   @Override

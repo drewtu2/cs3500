@@ -5,12 +5,12 @@ import java.util.Objects;
 /**
  * Represents the dimensions for a Width x Height rectangle.
  */
-public class RectangleDim implements IDimension {
+public class WidthHeightDim implements IDimension {
 
   float width;
   float height;
 
-  public RectangleDim(float width, float height) {
+  public WidthHeightDim(float width, float height) {
     this.width = width;
     this.height = height;
   }
@@ -25,10 +25,10 @@ public class RectangleDim implements IDimension {
       throw new IllegalArgumentException("Time out of bonunds");
     }
 
-    float slopeHeight = (((RectangleDim) end).height - this.height) / duration;
-    float slopeWidth = (((RectangleDim) end).width - this.width) / duration;
+    float slopeHeight = (((WidthHeightDim) end).height - this.height) / duration;
+    float slopeWidth = (((WidthHeightDim) end).width - this.width) / duration;
 
-    return new RectangleDim(width + (time * slopeWidth), height + (time * slopeHeight));
+    return new WidthHeightDim(width + (time * slopeWidth), height + (time * slopeHeight));
   }
 
   @Override
@@ -36,7 +36,7 @@ public class RectangleDim implements IDimension {
     if (this.getClass() != test.getClass()) {
       return false;
     }
-    RectangleDim tester = (RectangleDim) (test);
+    WidthHeightDim tester = (WidthHeightDim) (test);
     return (this.width == tester.width) && (this.height == tester.height);
 
   }

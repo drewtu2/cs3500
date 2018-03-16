@@ -8,22 +8,30 @@ import java.util.Objects;
  */
 public final class Position2D {
 
-  private final double x;
+  private final float x;
+  private final float y;
 
-  public double getX() {
+  /**
+   * Returns the pos x value.
+   * @return the pos x value
+   */
+  public float getX() {
     return x;
   }
 
-  public double getY() {
+  /**
+   * Returns the pos y value.
+   * @return the pos y value
+   */
+  public float getY() {
     return y;
   }
 
-  private final double y;
 
   /**
    * Initialize this object to the specified position.
    */
-  public Position2D(double x, double y) {
+  public Position2D(float x, float y) {
     this.x = x;
     this.y = y;
   }

@@ -3,7 +3,6 @@ package cs3500.animator.animation.concrete;
 import cs3500.animator.animation.Animation;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.shape.IShape;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Represents an appear animation.
@@ -40,19 +39,13 @@ public class AppearAnimation extends Animation {
 
   @Override
   public void setState(IShape state, float time) {
-
-    /*
     if (time >= startTime) {
       // Manipulate state
-      // state;
+      state.setOpacity(1);
     } else {
       // Manipulate state
-      // state;
+      state.setOpacity(0);
     }
-    */
-
-    //TODO see interface for explanation
-    throw new NotImplementedException();
   }
 
   @Override

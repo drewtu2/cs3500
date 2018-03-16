@@ -1,16 +1,16 @@
 import static org.junit.Assert.assertEquals;
 
-import animation.AnimationFactory;
+import cs3500.animator.animation.AnimationFactory;
+import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.IAnimatorModel;
+import cs3500.animator.shape.IAnimatedShape;
+import cs3500.animator.shape.Position2D;
+import cs3500.animator.shape.RGBColor;
+import cs3500.animator.shape.ShapeFactory;
 import java.util.ArrayList;
 import java.util.List;
-import model.AnimatorModel;
-import model.IAnimatorModel;
 import org.junit.Before;
 import org.junit.Test;
-import shape.IAnimatedShape;
-import shape.Position2D;
-import shape.RGBColor;
-import shape.ShapeFactory;
 
 
 public class AnimatorModelTest {
