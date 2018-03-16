@@ -1,5 +1,7 @@
 package cs3500.animator.shape;
 
+import java.util.Objects;
+
 /**
  * Represents an RGB Color.
  */
@@ -118,4 +120,27 @@ public class RGBColor {
 
     return myBuiler.toString();
   }
+
+  @Override
+  public boolean equals(Object a) {
+    if (this == a) {
+      return true;
+    }
+    if (!(a instanceof RGBColor)) {
+      return false;
+    }
+
+    RGBColor that = (RGBColor) a;
+
+    return ((Math.abs(this.red - that.red) < 0.01)
+            && (Math.abs(this.green - that.green) < 0.01)
+            && (Math.abs(this.blue - that.blue) < 0.01));
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.red, this.green, this.blue);
+  }
+
+
 }
