@@ -9,6 +9,8 @@ import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeFactory;
 import cs3500.animator.shape.concrete.Oval;
+import cs3500.animator.shape.dimension.IDimension;
+import cs3500.animator.shape.dimension.WidthHeightDim;
 import cs3500.animator.util.TweenModelBuilder;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,10 +67,17 @@ public class AnimatorModel implements IAnimatorModel {
       //TODO implement this
 
       // Creates a shape
+      Position2D center = new Position2D(lx, ly);
+      RGBColor color = new RGBColor(red, green , blue);
+
+      IAnimatedShape myRec = ShapeFactory.getRectangle(name, center, color, width, height);
+
+      myRec.addAnimation(AnimationFactory.getAppearAnimation(startOfLife));
+      myRec.addAnimation(AnimationFactory.getDisappearAnimation(endOfLife));
       // Adds shape to map
+      shapes.put(name, myRec);
       // Add appear animation to shape
       // Add disappear animation to shape
-      AnimationFactory.getAppearAnimation(startOfLife);
       return this;
     }
 
@@ -78,7 +87,8 @@ public class AnimatorModel implements IAnimatorModel {
       //TODO implement this
       Position2D from = new Position2D(moveFromX, moveFromY);
       Position2D to = new Position2D(moveToX, moveToY);
-      AnimationFactory.getMoveAnimation(from, to, startTime, endTime);
+      shapes.get(name).addAnimation(AnimationFactory.getMoveAnimation(from, to, startTime,
+              endTime));
       // Add animation to shape
       return this;
     }
@@ -89,7 +99,8 @@ public class AnimatorModel implements IAnimatorModel {
       //TODO implement this
       RGBColor original = new RGBColor(oldR, oldG, oldB);
       RGBColor newCol = new RGBColor(newR, newG, newB);
-      AnimationFactory.getColorAnimation(original, newCol, startTime, endTime);
+      shapes.get(name).addAnimation(AnimationFactory.getColorAnimation(original, newCol, startTime,
+              endTime));
       // Add animation to shape
       return this;
     }
@@ -99,7 +110,10 @@ public class AnimatorModel implements IAnimatorModel {
         float fromSy,
         float toSx, float toSy, int startTime, int endTime) {
       //TODO implement this
-      AnimationFactory.getScaleAnimation();
+      IDimension from = new WidthHeightDim(fromSx, fromSy);
+      IDimension to = new WidthHeightDim(toSx, toSy);
+      shapes.get(name).addAnimation(AnimationFactory.getScaleAnimation(from, to, startTime,
+              endTime));
       // Add animation to shape
       return this;
     }

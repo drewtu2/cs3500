@@ -22,7 +22,7 @@ public class WidthHeightDim implements IDimension {
     }
 
     if (time > duration || time < 0) {
-      throw new IllegalArgumentException("Time out of bonunds");
+      throw new IllegalArgumentException("Time out of bounds");
     }
 
     float slopeHeight = (((WidthHeightDim) end).height - this.height) / duration;
