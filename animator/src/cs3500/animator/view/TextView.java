@@ -1,10 +1,12 @@
 package cs3500.animator.view;
 
-import java.util.List;
-
-import cs3500.animator.shape.IShape;
-
 public class TextView implements IView{
+  private Appendable output;
+
+  public TextView(Appendable outputFile) {
+    output  = outputFile;
+  }
+
   @Override
   public void show(int tempo) {
 
