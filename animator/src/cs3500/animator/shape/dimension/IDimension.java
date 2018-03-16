@@ -12,15 +12,15 @@ public interface IDimension {
    * requested dimension with repsect to time.
    *
    * @param end the end state we want to reach
-   * @param duration the total duration we have for the transition
+   * @param startTime the start time we have for the transition
+   * @param endTime the end time we have for the transition
    * @param time the time we're looking at
    * @return the dimension at that time
    * @throws IllegalArgumentException if the time is outside the duration or is not of the correct
    *        IDimension
    */
-  IDimension getIntermediate(IDimension end, float duration, float time)
+  IDimension getIntermediate(IDimension end, float startTime, float endTime, float time)
       throws IllegalArgumentException;
-
 
 }
 

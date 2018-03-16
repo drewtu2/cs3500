@@ -1,5 +1,6 @@
 package cs3500.animator.shape.dimension;
 
+import cs3500.animator.util.myMath;
 import java.util.Objects;
 
 /**
@@ -7,8 +8,8 @@ import java.util.Objects;
  */
 public class WidthHeightDim implements IDimension {
 
-  float width;
-  float height;
+  private float width;
+  private float height;
 
   public WidthHeightDim(float width, float height) {
     this.width = width;
@@ -16,19 +17,21 @@ public class WidthHeightDim implements IDimension {
   }
 
   @Override
-  public IDimension getIntermediate(IDimension end, float duration, float time) {
+  public IDimension getIntermediate(IDimension end, float startTime, float endTime, float time) {
     if (end.getClass() != this.getClass()) {
       throw new IllegalArgumentException("The given dimension is of a different class");
     }
 
-    if (time > duration || time < 0) {
+    if (time > endTime || time < startTime) {
       throw new IllegalArgumentException("Time out of bonunds");
     }
 
-    float slopeHeight = (((WidthHeightDim) end).height - this.height) / duration;
-    float slopeWidth = (((WidthHeightDim) end).width - this.width) / duration;
+    float newHeight = myMath.interpolate(this.height, ((WidthHeightDim)end).height,
+        startTime, endTime, time);
+    float newWidth = myMath.interpolate(this.width, ((WidthHeightDim)end).width,
+        startTime, endTime, time);
 
-    return new WidthHeightDim(width + (time * slopeWidth), height + (time * slopeHeight));
+    return new WidthHeightDim(newWidth, newHeight);
   }
 
   @Override

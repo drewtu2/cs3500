@@ -8,7 +8,8 @@ import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeFactory;
-import cs3500.animator.shape.concrete.Oval;
+import cs3500.animator.shape.dimension.IDimension;
+import cs3500.animator.shape.dimension.WidthHeightDim;
 import cs3500.animator.util.TweenModelBuilder;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -99,7 +100,9 @@ public class AnimatorModel implements IAnimatorModel {
         float fromSy,
         float toSx, float toSy, int startTime, int endTime) {
       //TODO implement this
-      AnimationFactory.getScaleAnimation();
+      IDimension startDim = new WidthHeightDim(fromSx, fromSy);
+      IDimension endDim = new WidthHeightDim(toSx, toSy);
+      AnimationFactory.getScaleAnimation(startDim, endDim, startTime, endTime);
       // Add animation to shape
       return this;
     }

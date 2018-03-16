@@ -4,7 +4,6 @@ import cs3500.animator.animation.Animation;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.dimension.IDimension;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Represents a scale animation.
@@ -54,17 +53,10 @@ public class ScaleAnimation extends Animation {
 
   @Override
   public void setState(IShape current, float time) {
-    /*
-    float deltT = duration();
 
-    IDimension newDim = startDimension
-        .getIntermediate(endDimension, deltT, time);
+    IDimension newDim = startDimension.getIntermediate(endDimension, startTime, endTime, time);
 
     current.setDimension(newDim);
-    */
-    //TODO: See interface for explanation
-    throw new NotImplementedException();
-
   }
 
   @Override
