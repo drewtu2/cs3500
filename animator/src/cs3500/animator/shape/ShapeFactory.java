@@ -1,5 +1,6 @@
 package cs3500.animator.shape;
 
+import cs3500.animator.shape.concrete.Oval;
 import cs3500.animator.shape.concrete.Rectangle;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -8,9 +9,31 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  */
 public class ShapeFactory {
 
+  /**
+   * Creates a rectangle.
+   * @param name
+   * @param pos
+   * @param color
+   * @param width
+   * @param height
+   */
   public static IAnimatedShape getRectangle(String name, Position2D pos, RGBColor color,
       float width, float height) {
     return new Rectangle(name, pos, color, width, height);
+  }
+
+  /**
+   * Creates oval.
+   * @param name
+   * @param pos
+   * @param color
+   * @param width
+   * @param height
+   * @return
+   */
+  public static IAnimatedShape getOval(String name, Position2D pos, RGBColor color,
+      float width, float height) {
+    return new Oval(name, pos, color, width, height);
   }
 
   /**

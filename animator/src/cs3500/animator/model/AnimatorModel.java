@@ -3,14 +3,13 @@ package cs3500.animator.model;
 import cs3500.animator.animation.AnimationFactory;
 import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.IAnimation;
-import cs3500.animator.animation.concrete.AppearAnimation;
 import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IShape;
-
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
+import cs3500.animator.shape.ShapeFactory;
+import cs3500.animator.shape.concrete.Oval;
 import cs3500.animator.util.TweenModelBuilder;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,18 +22,39 @@ import java.util.Set;
  */
 public class AnimatorModel implements IAnimatorModel {
 
-  protected Map<String, IAnimatedShape> shapes;
+
 
   /**
    * Static Builder class that constructs a model
    */
   public static final class Builder implements TweenModelBuilder<AnimatorModel> {
+    private Map<String, IAnimatedShape> shapes;
+
+    /**
+     * Default constructor for a builder
+     */
+    public Builder()
+    {
+      shapes = new HashMap<>();
+    }
 
     @Override
     public TweenModelBuilder<AnimatorModel> addOval(String name, float cx, float cy, float xRadius,
         float yRadius, float red, float green, float blue, int startOfLife, int endOfLife) {
-      //TODO implement this
-      AnimationFactory.getAppearAnimation(startOfLife);
+      // Creates a shape
+      Position2D center = new Position2D(cx, cy);
+      RGBColor color = new RGBColor(red, green, blue);
+
+      IAnimatedShape myOval = ShapeFactory.getOval(name, center, color, xRadius, yRadius);
+
+      // Add appear animation to shape
+      myOval.addAnimation(AnimationFactory.getAppearAnimation(startOfLife));
+      myOval.addAnimation(AnimationFactory.getDisappearAnimation(endOfLife));
+
+      // Adds shape to map
+      shapes.put(name, myOval);
+
+
       return this;
     }
 
@@ -43,6 +63,11 @@ public class AnimatorModel implements IAnimatorModel {
         float width,
         float height, float red, float green, float blue, int startOfLife, int endOfLife) {
       //TODO implement this
+
+      // Creates a shape
+      // Adds shape to map
+      // Add appear animation to shape
+      // Add disappear animation to shape
       AnimationFactory.getAppearAnimation(startOfLife);
       return this;
     }
@@ -54,6 +79,7 @@ public class AnimatorModel implements IAnimatorModel {
       Position2D from = new Position2D(moveFromX, moveFromY);
       Position2D to = new Position2D(moveToX, moveToY);
       AnimationFactory.getMoveAnimation(from, to, startTime, endTime);
+      // Add animation to shape
       return this;
     }
 
@@ -64,6 +90,7 @@ public class AnimatorModel implements IAnimatorModel {
       RGBColor original = new RGBColor(oldR, oldG, oldB);
       RGBColor newCol = new RGBColor(newR, newG, newB);
       AnimationFactory.getColorAnimation(original, newCol, startTime, endTime);
+      // Add animation to shape
       return this;
     }
 
@@ -73,6 +100,7 @@ public class AnimatorModel implements IAnimatorModel {
         float toSx, float toSy, int startTime, int endTime) {
       //TODO implement this
       AnimationFactory.getScaleAnimation();
+      // Add animation to shape
       return this;
     }
 
@@ -83,12 +111,25 @@ public class AnimatorModel implements IAnimatorModel {
     }
   }
 
+  protected Map<String, IAnimatedShape> shapes;
+
   /**
-   * Constructs an Animator animator.model.
+   * Default constructor of an Animator animator.model.
    */
-  public AnimatorModel(Builder b) {
+  public AnimatorModel() {
     shapes = new HashMap<>();
   }
+
+  public AnimatorModel(Builder b) {
+    shapes = new HashMap(b.shapes);
+
+  }
+
+  /**
+   *
+   * @param newShape the shape to add.
+   * @throws IllegalArgumentException
+   */
 
   @Override
   public void addShape(IAnimatedShape newShape) throws IllegalArgumentException {
