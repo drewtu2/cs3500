@@ -25,7 +25,7 @@ public class Oval extends AbstractAnimatedShape {
       this.type = ShapeType.OVAL;
       this.position = pos;
       this.color = col;
-      this.transparency = (float) 1.0;
+      this.opacity = (float) 0.0;
       this.dimension = new WidthHeightDim(width, height);
       this.animationList = new HashMap<>();
     }
@@ -39,7 +39,7 @@ public class Oval extends AbstractAnimatedShape {
       this.type = ShapeType.OVAL;
       this.position = copy.position;
       this.color = copy.color;
-      this.transparency = copy.transparency;
+      this.opacity = copy.opacity;
       this.dimension = copy.dimension;
       this.animationList = copy.animationList;
 
