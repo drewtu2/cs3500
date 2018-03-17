@@ -8,7 +8,9 @@ import cs3500.animator.view.ViewFactory;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class AnimatorController {
+public class AnimatorController implements IController{
+
+
   public static final class Builder implements IControllerBuilder {
     private String inputFile;
     private String outputFile;
@@ -53,6 +55,7 @@ public class AnimatorController {
       IView myView = ViewFactory.getView(vt, outputFile);
 
       return new AnimatorController(myModel, myView, speed);
+
     }
 
     @Override
@@ -60,6 +63,8 @@ public class AnimatorController {
       String id;
       String value;
 
+
+      // Extract arguments values from the arg array
       for (int i = 0; i < args.length/2; i += 2) {
         id = args[i];
         value = args[i + 1];
@@ -85,4 +90,24 @@ public class AnimatorController {
     }
   }
 
+  private IAnimatorModel myModel;
+  private IView myView;
+  private int speed;
+
+  /**
+   * Constructs a controller.
+   * @param inputModel the model we're using.
+   * @param inputView the view we're using.
+   * @param inputSpeed the speed we're using.
+   */
+  public AnimatorController(IAnimatorModel inputModel, IView inputView, int inputSpeed) {
+    myModel = inputModel;
+    myView = inputView;
+    speed = inputSpeed;
+  }
+
+  @Override
+  public void playAnimation() {
+    myView.show(speed);
+  }
 }
