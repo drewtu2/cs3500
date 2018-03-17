@@ -2,6 +2,7 @@ package cs3500.animator.controller;
 
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.IAnimatorModel;
+import cs3500.animator.model.IModelView;
 import cs3500.animator.util.AnimationFileReader;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.ViewFactory;
@@ -108,6 +109,11 @@ public class AnimatorController implements IController{
 
   @Override
   public void playAnimation() {
-    myView.show(speed);
+    IModelView myMV = myModel;
+    myView.show(myModel, speed);
+  }
+
+  public void updatedModel() {
+    //TODO
   }
 }

@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Interface for an Animator animator.model type.
  */
-public interface IAnimatorModel {
+public interface IAnimatorModel extends IModelView{
 
   /**
    * Adds a new shape to the animator.model.

@@ -21,7 +21,7 @@ import java.util.Set;
 /**
  * A concrete implementation of an animator animator.model.
  */
-public class AnimatorModel implements IAnimatorModel {
+public class AnimatorModel implements IAnimatorModel, IModelView{
 
   /**
    * Static Builder class that constructs a model
@@ -228,6 +228,11 @@ public class AnimatorModel implements IAnimatorModel {
     }
 
     return myStringBuilder.toString();
+  }
+
+  @Override
+  public Map<String, IAnimatedShape> getFullState() {
+    return new HashMap(shapes);
   }
 
   @Override
