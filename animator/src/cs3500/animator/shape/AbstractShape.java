@@ -33,6 +33,8 @@ public abstract class AbstractShape implements IShape {
     myBuilder.append(dimension.toString());
     myBuilder.append(", ");
     myBuilder.append(color.toString());
+    myBuilder.append(", Opacity: ");
+    myBuilder.append(opacity);
 
     return myBuilder.toString();
 

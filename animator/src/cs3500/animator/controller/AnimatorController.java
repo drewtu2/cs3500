@@ -17,7 +17,7 @@ public class AnimatorController implements IController{
     private int speed;
     private String vt;
 
-    private Builder() {
+    public Builder() {
       inputFile = null;
       vt = null;
       outputFile = null;

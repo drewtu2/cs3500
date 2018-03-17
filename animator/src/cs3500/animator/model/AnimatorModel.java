@@ -23,8 +23,6 @@ import java.util.Set;
  */
 public class AnimatorModel implements IAnimatorModel {
 
-
-
   /**
    * Static Builder class that constructs a model
    */

@@ -99,30 +99,30 @@ public class IAnimationTest {
     appear.setState(test, 1);
     assertEquals("Name: rect\n"
         + "Type: rectangle\n"
-        + "Lower-left-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0)", test.toString());
+        + "Lower-left-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0), Opacity: 0.0", test.toString());
 
     appear.setState(test, 2);
-    assertEquals("", test.toString());
+    assertEquals("Name: rect\n"
+        + "Type: rectangle\n"
+        + "Lower-left-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0), Opacity: 1.0", test.toString());
 
     appear.setState(test, 3);
-    assertEquals("", test.toString());
+    assertEquals("Name: rect\n"
+        + "Type: rectangle\n"
+        + "Lower-left-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0), Opacity: 1.0", test.toString());
 
-    mv1.setState(test, 1);
-    assertEquals("", test.toString());
     mv1.setState(test, 2);
-    assertEquals("", test.toString());
+    assertEquals("Name: rect\n"
+        + "Type: rectangle\n"
+        + "Lower-left-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0), Opacity: 1.0", test.toString());
     mv1.setState(test, 4);
-    assertEquals("", test.toString());
-    mv1.setState(test, 5);
-    assertEquals("", test.toString());
+    assertEquals("Name: rect\n"
+        + "Type: rectangle\n"
+        + "Lower-left-corner: (20.000000, 20.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0), Opacity: 1.0", test.toString());
 
-    r2g.setState(test, 1);
-    assertEquals("", test.toString());
     r2g.setState(test, 2);
     assertEquals("", test.toString());
     r2g.setState(test, 4);
-    assertEquals("", test.toString());
-    r2g.setState(test, 5);
     assertEquals("", test.toString());
 
     myScale.setState(test, 1);
