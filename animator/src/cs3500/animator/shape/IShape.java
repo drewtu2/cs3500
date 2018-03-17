@@ -15,25 +15,18 @@ public interface IShape {
   void setColor(RGBColor color);
 
   /**
-   * Sets the position of a shape to a given value.
-   *
-   * @param pos the Position2D to set it to
-   */
-  void setPosition(Position2D pos);
-
-  /**
-   * Sets the dimension of a shape to a given value.
-   *
-   * @param dim the value to set the dimension to
-   */
-  void setDimension(IDimension dim);
-
-  /**
    * Returns the color of the shape.
    *
    * @return the color the shape
    */
   RGBColor getColor();
+
+  /**
+   * Sets the position of a shape to a given value.
+   *
+   * @param pos the Position2D to set it to
+   */
+  void setPosition(Position2D pos);
 
   /**
    * Returns the position of the shape.
@@ -43,18 +36,25 @@ public interface IShape {
   Position2D getPosition();
 
   /**
+   * Sets the dimension of a shape to a given value.
+   *
+   * @param dim the value to set the dimension to
+   */
+  void setDimension(IDimension dim);
+
+  /**
+   * Return the shape's dimensions.
+   *
+   * @return the shape's dimensions
+   */
+  IDimension getDimension();
+
+  /**
    * Returns the type of the shape.
    *
    * @return the type of the shape
    */
   ShapeType getType();
-
-  /**
-   * Returns the opacity of the shape.
-   *
-   * @return the opacity of the shape
-   */
-  float getOpacity();
 
   /**
    * Sets the opacity of the shape.
@@ -64,6 +64,13 @@ public interface IShape {
    * @param input the opacity to set
    */
   void setOpacity(float input);
+
+  /**
+   * Returns the opacity of the shape.
+   *
+   * @return the opacity of the shape
+   */
+  float getOpacity();
 
   /**
    * Returns the shape's name.
@@ -79,10 +86,4 @@ public interface IShape {
    */
   String toString();
 
-  /**
-   * Return the shape's dimensions.
-   *
-   * @return the shape's dimensions
-   */
-  IDimension getDimension();
 }

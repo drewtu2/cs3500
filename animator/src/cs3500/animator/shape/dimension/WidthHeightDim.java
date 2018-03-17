@@ -1,6 +1,6 @@
 package cs3500.animator.shape.dimension;
 
-import cs3500.animator.util.myMath;
+import cs3500.animator.util.myUtil;
 import java.util.Objects;
 
 /**
@@ -25,9 +25,9 @@ public class WidthHeightDim implements IDimension {
       throw new IllegalArgumentException("Time out of bonunds");
     }
 
-    float newHeight = myMath.interpolate(this.height, ((WidthHeightDim)end).height,
+    float newHeight = myUtil.interpolate(this.height, ((WidthHeightDim)end).height,
         startTime, endTime, time);
-    float newWidth = myMath.interpolate(this.width, ((WidthHeightDim)end).width,
+    float newWidth = myUtil.interpolate(this.width, ((WidthHeightDim)end).width,
         startTime, endTime, time);
 
     return new WidthHeightDim(newWidth, newHeight);

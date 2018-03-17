@@ -97,7 +97,9 @@ public class IAnimationTest {
 
     // Before
     appear.setState(test, 1);
-    assertEquals("", test.toString());
+    assertEquals("Name: rect\n"
+        + "Type: rectangle\n"
+        + "Lower-left-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0)", test.toString());
 
     appear.setState(test, 2);
     assertEquals("", test.toString());

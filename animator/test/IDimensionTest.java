@@ -1,9 +1,9 @@
 import static junit.framework.TestCase.assertEquals;
 
+import cs3500.animator.shape.dimension.IDimension;
+import cs3500.animator.shape.dimension.WidthHeightDim;
 import org.junit.Before;
 import org.junit.Test;
-import shape.dimension.IDimension;
-import shape.dimension.RectangleDim;
 
 public class IDimensionTest {
 
@@ -14,7 +14,7 @@ public class IDimensionTest {
    */
   @Before
   public void setUp() {
-    myDim = new RectangleDim(10, 10);
+    myDim = new WidthHeightDim(10, 10);
   }
 
   @Test
@@ -25,15 +25,22 @@ public class IDimensionTest {
 
   @Test
   public void testIntermediate() {
-    IDimension dim2 = new RectangleDim(20, 20);
-    IDimension result = new RectangleDim(15, 15);
-    assertEquals(result, myDim.getIntermediate(dim2, 2, 1));
+    IDimension dim2 = new WidthHeightDim(20, 20);
+    IDimension result = new WidthHeightDim(15, 15);
+    assertEquals(result, myDim.getIntermediate(dim2, 0, 2, 1));
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIntermediateOutOfBound() {
-    IDimension dim2 = new RectangleDim(20, 20);
-    IDimension result = new RectangleDim(15, 15);
-    assertEquals(result, myDim.getIntermediate(dim2, 2, 3));
+    IDimension dim2 = new WidthHeightDim(20, 20);
+    IDimension result = new WidthHeightDim(15, 15);
+    assertEquals(result, myDim.getIntermediate(dim2, 1,2, 3));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIntermediateOutOfBoundBefore() {
+    IDimension dim2 = new WidthHeightDim(20, 20);
+    IDimension result = new WidthHeightDim(15, 15);
+    assertEquals(result, myDim.getIntermediate(dim2, 2,4, 1));
   }
 }

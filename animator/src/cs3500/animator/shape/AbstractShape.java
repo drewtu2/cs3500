@@ -1,7 +1,8 @@
 package cs3500.animator.shape;
 
-import cs3500.animator.shape.dimension.IDimension;
+import static cs3500.animator.util.myUtil.checkNull;
 
+import cs3500.animator.shape.dimension.IDimension;
 /**
  * Represents the discrete representation of a shape. All information pertaining to the
  * representation of the shape is stored here.
@@ -44,16 +45,21 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setColor(RGBColor color) {
+    checkNull(color);
     this.color = color;
   }
 
   @Override
   public void setPosition(Position2D pos) {
+    checkNull(pos);
+
     this.position = pos;
   }
 
   @Override
   public void setDimension(IDimension dim) {
+    checkNull(dim);
+
     this.dimension = dim;
   }
 
@@ -77,18 +83,20 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public Position2D getPosition() {
-    return position;
+    return this.position;
   }
 
   @Override
   public IDimension getDimension() {
-    return dimension;
+    return this.dimension;
   }
 
   @Override
   public float getOpacity() {
     return this.opacity;
   }
+
+
 
 
 }

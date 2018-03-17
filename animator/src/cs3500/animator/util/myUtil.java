@@ -1,6 +1,6 @@
 package cs3500.animator.util;
 
-public class myMath {
+public class myUtil {
 
   /**
    * Performs a linear interpolation on the given values.
@@ -22,6 +22,16 @@ public class myMath {
     float componentB = endValue * (time - startTime)/(endTime - startTime);
 
     return componentA + componentB;
+  }
+
+  /**
+   * Throws null pointer exception if the given input is null
+   * @param input input to check
+   */
+  public static void checkNull(Object input) {
+    if (input == null) {
+      throw new NullPointerException("Input cannot be null");
+    }
   }
 
 }

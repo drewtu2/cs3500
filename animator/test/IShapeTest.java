@@ -1,21 +1,24 @@
 import static junit.framework.TestCase.assertEquals;
 
+import cs3500.animator.shape.IShape;
+import cs3500.animator.shape.Position2D;
+import cs3500.animator.shape.RGBColor;
+import cs3500.animator.shape.ShapeFactory;
+import cs3500.animator.shape.ShapeType;
+import cs3500.animator.shape.dimension.IDimension;
+import cs3500.animator.shape.dimension.WidthHeightDim;
 import org.junit.Before;
 import org.junit.Test;
-import shape.IShape;
-import shape.Position2D;
-import shape.RGBColor;
-import shape.ShapeFactory;
-import shape.ShapeType;
-import shape.dimension.IDimension;
-import shape.dimension.RectangleDim;
 
+/**
+ * Tests the IShape interface.
+ */
 public class IShapeTest {
 
-  IShape rect;
-  RGBColor red;
-  Position2D pos2;
-  IDimension scale1;
+  private IShape rect;
+  private RGBColor red;
+  private Position2D pos2;
+  private IDimension scale1;
 
   /**
    * Set up the test.
@@ -24,7 +27,7 @@ public class IShapeTest {
   public void setUp() {
     pos2 = new Position2D(20, 20);
     red = new RGBColor(1, 0, 0);
-    scale1 = new RectangleDim(10, 10);
+    scale1 = new WidthHeightDim(10, 10);
 
     rect = ShapeFactory.getRectangle("rect", pos2, red, 10, 10);
   }
@@ -38,14 +41,9 @@ public class IShapeTest {
     assertEquals(green, rect.getColor());
   }
 
-  @Test
-  public void testSetAndGetDimension() {
-    RectangleDim scale2 = new RectangleDim(20, 10);
-
-    assertEquals(scale1, rect.getDimension());
-    rect.setDimension(scale2);
-    assertEquals(scale2, rect.getDimension());
-
+  @Test(expected = NullPointerException.class)
+  public void testNullColor() {
+    rect.setColor(null);
   }
 
   @Test
@@ -58,13 +56,40 @@ public class IShapeTest {
 
   }
 
+  @Test(expected = NullPointerException.class)
+  public void testNullPos() {
+    rect.setPosition(null);
+  }
+
   @Test
-  public void testSetAndGetTransparency() {
+  public void testSetAndGetDimension() {
+    IDimension scale2 = new WidthHeightDim(20, 10);
 
-    assertEquals((float) 1.0, rect.getTransparency());
-    rect.setTransparency((float) 0.0);
-    assertEquals((float) 0.0, rect.getTransparency());
+    assertEquals(scale1, rect.getDimension());
+    rect.setDimension(scale2);
+    assertEquals(scale2, rect.getDimension());
+  }
 
+  @Test(expected = NullPointerException.class)
+  public void testNullDim() {
+    rect.setDimension(null);
+  }
+
+  @Test
+  public void testSetAndGetOpacity() {
+    assertEquals((float) 0.0, rect.getOpacity());
+    rect.setOpacity((float) 1.0);
+    assertEquals((float) 1.0, rect.getOpacity());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testInvalidOpacity() {
+    rect.setOpacity(-1);
+  }
+
+  @Test
+  public void testGetType() {
+    assertEquals(ShapeType.RECTANGLE, rect.getType());
   }
 
   @Test
@@ -76,14 +101,5 @@ public class IShapeTest {
         rect.toString());
   }
 
-  @Test
-  public void testGetType() {
-    assertEquals(ShapeType.RECTANGLE, rect.getType());
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testInvalidTransparency() {
-    rect.setTransparency(-1);
-  }
 
 }
