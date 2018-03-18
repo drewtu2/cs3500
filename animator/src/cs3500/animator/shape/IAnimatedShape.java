@@ -1,8 +1,10 @@
 package cs3500.animator.shape;
 
 import cs3500.animator.animation.AnimationSummary;
+import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The interfce for a general an animated shape. Animated shapes can be thought of as shapes whose
@@ -29,6 +31,11 @@ public interface IAnimatedShape extends IShape {
    */
   IShape stateAt(float t);
 
+  /**
+   * Returns the map of animations associated with this shape.
+   * @return the map of animations associated with this shape
+   */
+  Map<AnimationType, List<IAnimation>> getAnimations();
 
   /**
    * String summary.

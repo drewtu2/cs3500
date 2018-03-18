@@ -30,6 +30,18 @@ public class RGBColor {
   }
 
   /**
+   * Copy constructor for a RGBColor.
+   *
+   * @param copy thing to copy
+   */
+  public RGBColor(RGBColor copy) {
+    this.red = copy.red;
+    this.green = copy.green;
+    this.blue = copy.blue;
+
+  }
+
+  /**
    * Returns true if the given float is a valid RGB value.
    *
    * @param value the value

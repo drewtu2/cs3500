@@ -5,6 +5,7 @@ import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -77,5 +78,10 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
     }
 
     return los;
+  }
+
+  @Override
+  public Map<AnimationType, List<IAnimation>> getAnimations() {
+    return new HashMap<>(animationList);
   }
 }

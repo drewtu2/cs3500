@@ -22,5 +22,10 @@ public interface IDimension {
   IDimension getIntermediate(IDimension end, float startTime, float endTime, float time)
       throws IllegalArgumentException;
 
+  /**
+   * Create copy of this IDimension.
+   * @return copy of this IDimension
+   */
+  IDimension getCopy();
 }
 

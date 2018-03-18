@@ -1,3 +1,62 @@
+# Friday, Mar 02, 2018
+# Shesh
+
+## Writing GUIs
+1. Construct layout
+2. Write what happens when interactions are clicked
+
+View = GUI
+Model = underlying method of the functioning program
+Controller = changes program state
+
+Using swing for GUIs in Java. 
+All classes in swing start with "J"
+
+Pane = Largest container
+Frame = containers inside the pane, default, only takes a single item per frame. 
+- in order to add more things, you need to tell it how to arrange multiple things
+- give the frame a layout manager
+    - Flow layout
+    - Box layout
+    - Horizontal layout
+    - vertical layout
+    - card layout
+    - grid layout
+    - group layout
+
+## Events + Listeners
+When buttons are clicked (/events occur), an action event is fired. Fired events
+can be detected w/ action listeners.
+
+Creating events/listeners are done by overriding corresponding classes from swing
+library
+Specific buttons can be identifed by a unique "action command", execute on events 
+by action command
+
+``` java
+echoButton = new JButton(text:"Echo what was typed");
+echoButton.setActionCommand("Echo Button");
+echoButton.addActionListener(this);
+this.add(echoButton);
+```
+
+
+## Dividing out into MVC
+
+Controller is now responsible for holding the model and the view: interface
+between the two. 
+
+```java
+IModel model = new Model();
+IView view = new JFrameView(...);
+IController controller = new Controller(model, view);
+```
+
+```java
+```
+
+
+
 # Tuesday Feb 19, 2018
 # Shesh
 

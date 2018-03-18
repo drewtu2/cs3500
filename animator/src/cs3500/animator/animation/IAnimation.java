@@ -45,6 +45,7 @@ public interface IAnimation extends Comparable<IAnimation> {
    */
   void setState(IShape givenShape, float time);
 
+
   /**
    * Returns a string describing the overall animation.
    *

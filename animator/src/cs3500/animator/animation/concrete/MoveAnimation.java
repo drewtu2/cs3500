@@ -79,4 +79,20 @@ public class MoveAnimation extends Animation {
     return myBuilder.toString();
 
   }
+
+  /**
+   * Returns the start position.
+   * @return the start position.
+   */
+  public Position2D getStartPos() {
+    return new Position2D(startPos);
+  }
+
+  /**
+   * Returns the end position.
+   * @return the end position.
+   */
+  public Position2D getEndPos() {
+    return new Position2D(endPos);
+  }
 }
