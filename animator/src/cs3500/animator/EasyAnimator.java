@@ -11,6 +11,7 @@ public class EasyAnimator {
       myAnimation.playAnimation();
     } catch (IOException e) {
       System.out.println("An IOException occured....");
+
     }
   }
 }

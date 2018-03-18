@@ -16,7 +16,7 @@ public class SVGView implements IView {
   }
 
   @Override
-  public void show(int tempo) {
+  public void show(IModelView model, int tempo) {
 
   }
 }
