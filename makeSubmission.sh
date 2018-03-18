@@ -39,6 +39,10 @@ then
             echo "Including README"
             files+=(README)
     fi
+    if [ -d resource ]; then
+            echo "Including resource dir"
+            files+=(resource)
+    fi
 
     tar -czvf $tar_file ${files[@]}
     
