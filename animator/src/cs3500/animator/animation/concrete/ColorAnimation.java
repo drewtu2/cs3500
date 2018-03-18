@@ -81,7 +81,7 @@ public class ColorAnimation extends Animation {
    * @return the start color.
    */
   public RGBColor getStartColor() {
-    return startColor;
+    return new RGBColor(startColor);
   }
 
   /**
@@ -89,6 +89,6 @@ public class ColorAnimation extends Animation {
    * @return the end color.
    */
   public RGBColor getEndColor() {
-    return endColor;
+    return new RGBColor(endColor);
   }
 }

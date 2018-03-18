@@ -34,6 +34,11 @@ public class WidthHeightDim implements IDimension {
   }
 
   @Override
+  public IDimension getCopy() {
+    return new WidthHeightDim(this.width, this.height);
+  }
+
+  @Override
   public boolean equals(Object test) {
     if (this.getClass() != test.getClass()) {
       return false;
