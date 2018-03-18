@@ -16,6 +16,14 @@ public class WidthHeightDim implements IDimension {
     this.height = height;
   }
 
+  public float getWidth() {
+    return width;
+  }
+
+  public float getHeight() {
+    return height;
+  }
+
   @Override
   public IDimension getIntermediate(IDimension end, float startTime, float endTime, float time) {
     if (end.getClass() != this.getClass()) {

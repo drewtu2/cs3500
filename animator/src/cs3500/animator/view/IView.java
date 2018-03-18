@@ -1,5 +1,7 @@
 package cs3500.animator.view;
 
+import java.io.IOException;
+
 import cs3500.animator.model.IModelView;
 
 /**
@@ -14,5 +16,5 @@ public interface IView {
    * @param state the model view of current state
    * @param tempo ticks/sec in this game
    */
-  void show(IModelView state, int tempo);
+  void show(IModelView state, int tempo) throws IOException;
 }
