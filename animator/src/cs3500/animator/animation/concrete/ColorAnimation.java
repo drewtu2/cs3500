@@ -75,4 +75,20 @@ public class ColorAnimation extends Animation {
     return myBuilder.toString();
 
   }
+
+  /**
+   * Returns the start color.
+   * @return the start color.
+   */
+  public RGBColor getStartColor() {
+    return startColor;
+  }
+
+  /**
+   * Returns the end color.
+   * @return the end color.
+   */
+  public RGBColor getEndColor() {
+    return endColor;
+  }
 }

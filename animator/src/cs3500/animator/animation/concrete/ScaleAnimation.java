@@ -76,4 +76,20 @@ public class ScaleAnimation extends Animation {
 
     return myBuilder.toString();
   }
+
+  /**
+   * Returns the start position.
+   * @return the start position.
+   */
+  public IDimension getStartDimension() {
+    return startDimension;
+  }
+
+  /**
+   * Returns the end dimension.
+   * @return the end dimension.
+   */
+  public IDimension getEndDimension() {
+    return endDimension;
+  }
 }
