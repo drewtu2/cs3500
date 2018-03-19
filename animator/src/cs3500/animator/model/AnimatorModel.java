@@ -217,7 +217,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView{
       myStringBuilder.append(animatedShape.stateAt(time).toString());
       summaries.addAll(animatedShape.getSummary());
     }
-
+    myStringBuilder.append("\n");
     myStringBuilder.append("Animations:\n");
     // Sort the summaries by start time
     Collections.sort(summaries);
@@ -225,6 +225,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView{
     // Add the summaries to the string builder
     for (AnimationSummary summary : summaries) {
       myStringBuilder.append(summary.getDescription());
+      myStringBuilder.append("\n");
     }
 
     return myStringBuilder.toString();

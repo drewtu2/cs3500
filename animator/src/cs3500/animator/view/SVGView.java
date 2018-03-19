@@ -9,6 +9,7 @@ import cs3500.animator.animation.IAnimation;
 import cs3500.animator.animation.concrete.ColorAnimation;
 import cs3500.animator.animation.concrete.MoveAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
+
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IShape;
@@ -17,7 +18,8 @@ import cs3500.animator.shape.concrete.Oval;
 import cs3500.animator.shape.concrete.Rectangle;
 import cs3500.animator.shape.dimension.WidthHeightDim;
 
-import static cs3500.animator.util.myUtil.checkNull;
+import static cs3500.animator.util.MyUtil.checkNull;
+
 
 /**
  * Class representing the SVG view of an animator.
@@ -221,4 +223,5 @@ public class SVGView implements IView {
   private float tick2Time(float tick) {
     return tick * speed;
   }
+
 }

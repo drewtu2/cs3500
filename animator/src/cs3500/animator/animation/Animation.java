@@ -1,7 +1,7 @@
 package cs3500.animator.animation;
 
 import cs3500.animator.shape.IShape;
-import cs3500.animator.util.myUtil;
+import cs3500.animator.util.MyUtil;
 
 /**
  * Represents the general body of an animation.
@@ -60,7 +60,7 @@ public abstract class Animation implements IAnimation {
    * @param time the point in time we're looking for
    */
   protected float interpolate(float startValue, float endValue, float time) {
-    return myUtil.interpolate(startValue, endValue, startTime, endTime, time);
+    return MyUtil.interpolate(startValue, endValue, startTime, endTime, time);
   }
 
 }

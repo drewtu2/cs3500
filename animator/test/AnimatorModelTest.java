@@ -79,7 +79,7 @@ public class AnimatorModelTest {
             + "Name: square\n"
             + "Type: rectangle\n"
             + "Lower-left-corner: (30.000000, 30.000000), "
-            + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0)\n"
+            + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "Animations:\n"
             + "Shape square appears at t=1.0\n"
             + "Shape square moves from (10.000000, 20.000000) to "
@@ -92,11 +92,11 @@ public class AnimatorModelTest {
             + "Name: square\n"
             + "Type: rectangle\n"
             + "Lower-left-corner: (30.000000, 30.000000), Width: 10.0 "
-            + "Height: 10.0, Color: (1.0, 0.0, 0.0)\n"
+            + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "Name: square2\n"
             + "Type: rectangle\n"
             + "Lower-left-corner: (30.000000, 30.000000), Width: 10.0 "
-            + "Height: 10.0, Color: (1.0, 0.0, 0.0)\n"
+            + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "Animations:\n"
             + "Shape square appears at t=1.0\n"
             + "Shape square moves from (10.000000, 20.000000) to "
@@ -110,11 +110,11 @@ public class AnimatorModelTest {
             + "Name: square\n"
             + "Type: rectangle\n"
             + "Lower-left-corner: (30.000000, 30.000000), Width: 10.0 "
-            + "Height: 10.0, Color: (1.0, 0.0, 0.0)\n"
+            + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "Name: square2\n"
             + "Type: rectangle\n"
             + "Lower-left-corner: (30.000000, 30.000000), Width: 10.0 "
-            + "Height: 10.0, Color: (1.0, 0.0, 0.0)\n"
+            + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "Animations:\n"
             + "Shape square appears at t=1.0\n"
             + "Shape square2 appears at t=1.0\n"
@@ -154,13 +154,13 @@ public class AnimatorModelTest {
             + "Name: square\n"
             + "Type: rectangle\n"
             + "Lower-left-corner: (30.000000, 30.000000), "
-            + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0)\n"
+            + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "Animations:\n"
             + "Shape square appears at t=1.0\n"
-            + "Shape square changes color from Color: (1.0, 0.0, 0.0) to "
-            + "Color: (0.0, 0.0, 1.0) from time t=2.0 to time t=5.0\n"
             + "Shape square moves from (10.000000, 20.000000) to "
             + "(30.000000, 50.000000) from time t=2.0 to time t=5.0\n"
+            + "Shape square changes color from Color: (1.0, 0.0, 0.0) to "
+            + "Color: (0.0, 0.0, 1.0) from time t=2.0 to time t=5.0\n"
             + "Shape square disappears at t=10.0\n",
         myAnimator.toString());
 
@@ -179,7 +179,15 @@ public class AnimatorModelTest {
     myAnimator.addAnimation("square", AnimationFactory.getColorAnimation(startCol, endCol, 2, 5));
     myAnimator.addAnimation("square", AnimationFactory.getDisappearAnimation(10));
 
-    assertEquals("", myAnimator.toString(5));
+    assertEquals("Name: square\n"
+        + "Type: rectangle\n"
+        + "Lower-left-corner: (30.000000, 50.000000), Width: 10.0 Height: 10.0, Color: (0.0, 0.0, 1.0), Opacity: 1.0\n"
+        + "Animations:\n"
+        + "Shape square appears at t=1.0\n"
+        + "Shape square moves from (10.000000, 20.000000) to (30.000000, 50.000000) from time t=2.0 to time t=5.0\n"
+        + "Shape square changes color from Color: (1.0, 0.0, 0.0) to Color: (0.0, 0.0, 1.0) from time t=2.0 to time t=5.0\n"
+        + "Shape square disappears at t=10.0\n",
+        myAnimator.toString(5));
   }
 
   @Test
@@ -195,7 +203,11 @@ public class AnimatorModelTest {
     myAnimator.addAnimation("square", AnimationFactory.getColorAnimation(startCol, endCol, 2, 5));
     myAnimator.addAnimation("square", AnimationFactory.getDisappearAnimation(10));
 
-    assertEquals("", myAnimator.getState(5));
+    IAnimatedShape expectedShape = ShapeFactory.getRectangle("square", endPos, endCol,10, 10);
+    expectedShape.setOpacity(1);
+
+    assertEquals(1, myAnimator.getState(5).size());
+    assertEquals(expectedShape.toString(), (myAnimator.getState(5)).get(0).toString());
   }
 
 
