@@ -3,6 +3,8 @@ package cs3500.animator.shape;
 import static cs3500.animator.util.MyUtil.checkNull;
 
 import cs3500.animator.shape.dimension.IDimension;
+import java.util.Objects;
+
 /**
  * Represents the discrete representation of a shape. All information pertaining to the
  * representation of the shape is stored here.
@@ -98,7 +100,27 @@ public abstract class AbstractShape implements IShape {
     return this.opacity;
   }
 
+  @Override
+  public boolean equals(Object compare) {
+    boolean bType = this.type.equals(((IShape)compare).getType());
+    boolean bDim = this.dimension.equals(((IShape)compare).getDimension());
+    boolean bCol = this.color.equals(((IShape)compare).getColor());
+    boolean bPos = this.position.equals(((IShape)compare).getPosition());
+    boolean bName = this.name.equals(((IShape)compare).getName());
+    boolean bOpacity = this.opacity == (((IShape)compare).getOpacity());
 
+    return bType && bCol && bDim && bPos && bName && bOpacity;
+  }
+  @Override
+  public int hashCode() {
+    return Objects.hash(
+        this.type,
+        this.dimension,
+        this.color,
+        this.name,
+        this.opacity,
+        this.position);
+  }
 
 
 }

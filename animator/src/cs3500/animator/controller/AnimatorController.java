@@ -110,7 +110,12 @@ public class AnimatorController implements IController{
   @Override
   public void playAnimation() {
     IModelView myMV = myModel;
-    myView.show(myModel, speed);
+    try {
+      myView.show(myModel, speed);
+    } catch (IOException e) {
+      System.err.println("IOException occured...");
+      System.err.println(e.toString());
+    }
   }
 
   public void updatedModel() {

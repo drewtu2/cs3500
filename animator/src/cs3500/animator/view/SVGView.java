@@ -1,19 +1,14 @@
 package cs3500.animator.view;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
-import cs3500.animator.animation.AnimationType;
-import cs3500.animator.animation.IAnimation;
 import cs3500.animator.model.IModelView;
-import cs3500.animator.shape.AbstractAnimatedShape;
 import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.ShapeType;
 import cs3500.animator.shape.concrete.Oval;
 import cs3500.animator.shape.concrete.Rectangle;
 import cs3500.animator.shape.dimension.WidthHeightDim;
+import java.io.IOException;
+import java.util.Map;
 
 /**
  * Class representing the SVG view of an animator.
@@ -92,12 +87,12 @@ public class SVGView implements IView {
   }
 
 
-  private void showAnimations(IAnimatedShape s){
-    Map<AnimationType, List<IAnimation>> animaMap = ((AbstractAnimatedShape)s).animationList;
-    for(List<IAnimation> anim : animaMap.values()) {
+  //private void showAnimations(IAnimatedShape s){
+  //  Map<AnimationType, List<IAnimation>> animaMap = ((AbstractAnimatedShape)s).animationList;
+  //  for(List<IAnimation> anim : animaMap.values()) {
 
-    }
-    //write svg format of animations here
+  //  }
+  //  //write svg format of animations here
 
-  }
+  //}
 }

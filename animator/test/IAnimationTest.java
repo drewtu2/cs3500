@@ -24,6 +24,7 @@ public class IAnimationTest {
   private IAnimation myScale;
   private IAnimation myDisap;
   private IShape test;
+  private IShape comparison;
 
   /**
    * Setup the test.
@@ -41,11 +42,12 @@ public class IAnimationTest {
 
     appear = AnimationFactory.getAppearAnimation(2);
     mv1 = AnimationFactory.getMoveAnimation(pos, pos2, 2, 4);
-    r2g = AnimationFactory.getColorAnimation(red, green, 2, 4);
+    r2g = AnimationFactory.getColorAnimation(green, red, 2, 4);
     myScale = AnimationFactory.getScaleAnimation(scale1, scale2, 2, 4);
     myDisap = AnimationFactory.getDisappearAnimation(2);
 
     test = ShapeFactory.getRectangle("rect", pos, green, 10, 10);
+    comparison = ShapeFactory.getRectangle("rect", pos, green, 10, 10);
   }
 
   @Test
@@ -95,50 +97,43 @@ public class IAnimationTest {
   @Test
   public void testSetState() {
 
+    assertEquals(comparison.toString(), test.toString());
     // Before
     appear.setState(test, 1);
-    assertEquals("Name: rect\n"
-        + "Type: rectangle\n"
-        + "Lower-left-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0), Opacity: 0.0", test.toString());
+    assertEquals(comparison.toString(), test.toString());
 
     appear.setState(test, 2);
-    assertEquals("Name: rect\n"
-        + "Type: rectangle\n"
-        + "Lower-left-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0), Opacity: 1.0", test.toString());
+    comparison.setOpacity(1);
+    assertEquals(comparison.toString(), test.toString());
 
     appear.setState(test, 3);
-    assertEquals("Name: rect\n"
-        + "Type: rectangle\n"
-        + "Lower-left-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0), Opacity: 1.0", test.toString());
+    assertEquals(comparison.toString(), test.toString());
 
     mv1.setState(test, 2);
-    assertEquals("Name: rect\n"
-        + "Type: rectangle\n"
-        + "Lower-left-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0), Opacity: 1.0", test.toString());
+    assertEquals(comparison.toString(), test.toString());
+
     mv1.setState(test, 4);
-    assertEquals("Name: rect\n"
-        + "Type: rectangle\n"
-        + "Lower-left-corner: (20.000000, 20.000000), Width: 10.0 Height: 10.0, Color: (0.0, 1.0, 0.0), Opacity: 1.0", test.toString());
+    comparison.setPosition(new Position2D(20, 20));
+    assertEquals(comparison.toString(), test.toString());
 
     r2g.setState(test, 2);
-    assertEquals("", test.toString());
-    r2g.setState(test, 4);
-    assertEquals("", test.toString());
+    assertEquals(comparison.toString(), test.toString());
 
-    myScale.setState(test, 1);
-    assertEquals("", test.toString());
+    r2g.setState(test, 4);
+    comparison.setColor(new RGBColor(1, 0, 0));
+    assertEquals(comparison.toString(), test.toString());
+
     myScale.setState(test, 2);
-    assertEquals("", test.toString());
+    assertEquals(comparison.toString(), test.toString());
     myScale.setState(test, 4);
-    assertEquals("", test.toString());
-    myScale.setState(test, 5);
+    comparison.setDimension(new WidthHeightDim(20, 20));
+    assertEquals(comparison.toString(), test.toString());
 
     myDisap.setState(test, 1);
-    assertEquals("", test.toString());
+    assertEquals(comparison.toString(), test.toString());
     myDisap.setState(test, 2);
-    assertEquals("", test.toString());
-    myDisap.setState(test, 3);
-    assertEquals("", test.toString());
+    comparison.setOpacity(0);
+    assertEquals(comparison.toString(), test.toString());
   }
 
 }

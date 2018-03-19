@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Represents a shape that animations can be applied to. This can be thought of a shape that is a
@@ -59,8 +58,28 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
 
   @Override
   public IShape stateAt(float t) {
-    //TODO see Interface for explanation
-    throw new NotImplementedException();
+
+    if (t < 0 ) {
+      throw new IllegalArgumentException("Cannot have negative value");
+    }
+
+    // Iterate over every list of animations
+    for (List<IAnimation> aList : animationList.values()) {
+      // Iterate over every animation in the list
+      for (IAnimation animation : aList) {
+        // If the time we're searching for occurs after this animation,
+        // apply this animation completely...
+        if(t > animation.getEndTime()) {
+          animation.setState(this, animation.getEndTime());
+        } else {
+          // We're looking for a state part way through this animation...
+          animation.setState(this, t);
+          break;
+        }
+      }
+    }
+
+    return this;
   }
 
   @Override

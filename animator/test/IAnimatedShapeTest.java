@@ -4,6 +4,7 @@ import cs3500.animator.animation.AnimationFactory;
 import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.IAnimation;
 import cs3500.animator.shape.IAnimatedShape;
+import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeFactory;
@@ -63,8 +64,8 @@ public class IAnimatedShapeTest {
 
   @Test
   public void testAddOverlapAnimationDifferentType() {
-    s.addAnimation(mv1);
     s.addAnimation(r2g);
+    s.addAnimation(mv1);
 
     List<AnimationSummary> sums = s.getSummary();
 
@@ -81,19 +82,29 @@ public class IAnimatedShapeTest {
   public void testAddOverlapAnimationSameType() {
     s.addAnimation(mv1);
     s.addAnimation(mvBad);
-    assertEquals("", s.getSummary());
   }
 
   @Test
   public void testStateAt0() {
     s.addAnimation(appear);
-    assertEquals("", s.stateAt(0));
+
+    Position2D pos = new Position2D(10, 10);
+    RGBColor red = new RGBColor(1, 0, 0);
+
+    IShape s_expected = ShapeFactory.getRectangle("square", pos, red, 10, 10);
+    s_expected.setOpacity(1);
+    assertEquals(s_expected.toString(), s.stateAt(0).toString());
   }
 
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testStateAtNegativeTime() {
     s.addAnimation(appear);
-    assertEquals("", s.stateAt(-1));
+    s.stateAt(-1);
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void testAddNullAnimation() {
+    s.addAnimation(null);
   }
 
 }
