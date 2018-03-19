@@ -1,6 +1,6 @@
 package cs3500.animator.util;
 
-public class myUtil {
+public class MyUtil {
 
   /**
    * Performs a linear interpolation on the given values.

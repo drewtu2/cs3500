@@ -1,6 +1,6 @@
 package cs3500.animator.view;
 
-import static cs3500.animator.util.myUtil.checkNull;
+import static cs3500.animator.util.MyUtil.checkNull;
 
 import java.io.FileWriter;
 import java.io.IOException;
