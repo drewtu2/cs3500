@@ -29,7 +29,7 @@ public interface IAnimatedShape extends IShape {
    * @param t the time requested
    * @return the state at the requested time
    */
-  IShape stateAt(float t);
+  IShape stateAt(int t);
 
   /**
    * Returns the map of animations associated with this shape.

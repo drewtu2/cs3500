@@ -8,14 +8,14 @@ import java.util.Objects;
  */
 public final class Position2D {
 
-  private final int x;
-  private final int y;
+  private final float x;
+  private final float y;
 
   /**
    * Returns the pos x value.
    * @return the pos x value
    */
-  public int getX() {
+  public float getX() {
     return x;
   }
 
@@ -23,7 +23,7 @@ public final class Position2D {
    * Returns the pos y value.
    * @return the pos y value
    */
-  public int getY() {
+  public float getY() {
     return y;
   }
 
@@ -31,7 +31,7 @@ public final class Position2D {
   /**
    * Initialize this object to the specified position.
    */
-  public Position2D(int x, int y) {
+  public Position2D(float x, float y) {
     this.x = x;
     this.y = y;
   }

@@ -21,8 +21,8 @@ public class ScaleAnimation extends Animation {
    * @param startTime the start time
    * @param endTime the end time
    */
-  public ScaleAnimation(IDimension startDimension, IDimension endDimension, float startTime,
-      float endTime) {
+  public ScaleAnimation(IDimension startDimension, IDimension endDimension, int startTime,
+      int endTime) {
 
     if (endTime < startTime || startTime < 0) {
       throw new IllegalArgumentException("Invalid times");
@@ -52,7 +52,7 @@ public class ScaleAnimation extends Animation {
   }
 
   @Override
-  public void setState(IShape current, float time) {
+  public void setState(IShape current, int time) {
 
     IDimension newDim = startDimension.getIntermediate(endDimension, startTime, endTime, time);
 

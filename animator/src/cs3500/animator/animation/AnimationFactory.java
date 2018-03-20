@@ -19,7 +19,7 @@ public class AnimationFactory {
    * @param appearTime the time to show it at
    * @return the animation representing the appearance
    */
-  public static IAnimation getAppearAnimation(float appearTime) {
+  public static IAnimation getAppearAnimation(int appearTime) {
     return new AppearAnimation(appearTime);
   }
 
@@ -29,7 +29,7 @@ public class AnimationFactory {
    * @param disappearTime the time to remove
    * @return the animation representing the disappearance
    */
-  public static IAnimation getDisappearAnimation(float disappearTime) {
+  public static IAnimation getDisappearAnimation(int disappearTime) {
     return new DisappearAnimation(disappearTime);
   }
 
@@ -42,8 +42,8 @@ public class AnimationFactory {
    * @param endTime the time the color change finishes by
    * @return the animation representing the color change
    */
-  public static IAnimation getColorAnimation(RGBColor start, RGBColor end, float startTime,
-      float endTime) {
+  public static IAnimation getColorAnimation(RGBColor start, RGBColor end, int startTime,
+      int endTime) {
     return new ColorAnimation(start, end, startTime, endTime);
   }
 
@@ -56,8 +56,8 @@ public class AnimationFactory {
    * @param endTime the time the move finishes by
    * @return the animation representing the move
    */
-  public static IAnimation getMoveAnimation(Position2D start, Position2D end, float startTime,
-      float endTime) {
+  public static IAnimation getMoveAnimation(Position2D start, Position2D end, int startTime,
+      int endTime) {
     return new MoveAnimation(start, end, startTime, endTime);
   }
 
@@ -70,8 +70,8 @@ public class AnimationFactory {
    * @param endTime the time the scale shift ends
    * @return a scale animation
    */
-  public static IAnimation getScaleAnimation(IDimension start, IDimension end, float startTime,
-      float endTime) {
+  public static IAnimation getScaleAnimation(IDimension start, IDimension end, int startTime,
+      int endTime) {
     return new ScaleAnimation(start, end, startTime, endTime);
   }
 
@@ -84,8 +84,8 @@ public class AnimationFactory {
    * @param endTime the time the name change ends
    * @return a name animation
    */
-  public static IAnimation getNameAnimation(String start, String end, float startTime,
-                                             float endTime) {
+  public static IAnimation getNameAnimation(String start, String end, int startTime,
+                                             int endTime) {
     return new NameAnimation(start, end, startTime, endTime);
   }
 

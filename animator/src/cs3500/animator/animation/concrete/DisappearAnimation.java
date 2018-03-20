@@ -14,7 +14,7 @@ public class DisappearAnimation extends Animation {
    *
    * @param disappearTime the time to disappear.
    */
-  public DisappearAnimation(float disappearTime) {
+  public DisappearAnimation(int disappearTime) {
 
     if (disappearTime < 0) {
       throw new IllegalArgumentException("Invalid times");
@@ -35,7 +35,7 @@ public class DisappearAnimation extends Animation {
   }
 
   @Override
-  public void setState(IShape state, float time) {
+  public void setState(IShape state, int time) {
 
     if (time >= startTime) {
       // Manipulate state

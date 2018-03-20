@@ -207,7 +207,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView{
   }
 
   @Override
-  public String toString(float time) {
+  public String toString(int time) {
     List<AnimationSummary> summaries = new ArrayList<>();
 
     StringBuilder myStringBuilder = new StringBuilder();
@@ -237,7 +237,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView{
   }
 
   @Override
-  public List<IShape> getState(float time) {
+  public List<IShape> getState(int time) {
     List<IShape> shapeList = new ArrayList<>();
 
     for (IAnimatedShape animatedShape : shapes.values()) {

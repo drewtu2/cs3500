@@ -22,7 +22,7 @@ public class Oval extends AbstractAnimatedShape {
      * @param width the width
      * @param height the height
      */
-    public Oval(String name, Position2D pos, RGBColor col, int width, int height) {
+    public Oval(String name, Position2D pos, RGBColor col, float width, float height) {
       this.name = name;
       this.type = ShapeType.OVAL;
       this.position = pos;

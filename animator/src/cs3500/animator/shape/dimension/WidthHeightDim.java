@@ -8,19 +8,19 @@ import java.util.Objects;
  */
 public class WidthHeightDim implements IDimension {
 
-  private int width;
-  private int height;
+  private float width;
+  private float height;
 
-  public WidthHeightDim(int width, int height) {
+  public WidthHeightDim(float width, float height) {
     this.width = width;
     this.height = height;
   }
 
-  public int getWidth() {
+  public float getWidth() {
     return width;
   }
 
-  public int getHeight() {
+  public float getHeight() {
     return height;
   }
 
@@ -33,9 +33,9 @@ public class WidthHeightDim implements IDimension {
       throw new IllegalArgumentException("Time out of bonunds");
     }
 
-    int newHeight = MyUtil.interpolate(this.height, ((WidthHeightDim)end).height,
+    float newHeight = MyUtil.interpolate(this.height, ((WidthHeightDim)end).height,
         startTime, endTime, time);
-    int newWidth = MyUtil.interpolate(this.width, ((WidthHeightDim)end).width,
+    float newWidth = MyUtil.interpolate(this.width, ((WidthHeightDim)end).width,
         startTime, endTime, time);
 
     return new WidthHeightDim(newWidth, newHeight);

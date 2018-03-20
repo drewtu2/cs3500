@@ -20,7 +20,7 @@ public interface IModelView {
    * @param time the time we want the state at
    * @return a list of states representing the shapes at the given time
    */
-  List<IShape> getState(float time);
+  List<IShape> getState(int time);
 
   /**
    * Returns a list of the shapes by name in the animator.model.
@@ -42,5 +42,5 @@ public interface IModelView {
    * @param time the time we want the state at
    * @return the text representation of the animator
    */
-  String toString(float time);
+  String toString(int time);
 }

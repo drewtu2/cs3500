@@ -57,7 +57,7 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
   }
 
   @Override
-  public IShape stateAt(float t) {
+  public IShape stateAt(int t) {
 
     if (t < 0 ) {
       throw new IllegalArgumentException("Cannot have negative value");

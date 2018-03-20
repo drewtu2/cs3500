@@ -12,14 +12,14 @@ public interface IAnimation extends Comparable<IAnimation> {
    *
    * @return the start time of the animation
    */
-  float getStartTime();
+  int getStartTime();
 
   /**
    * Returns the end time of the animation.
    *
    * @return the end time of the animation
    */
-  float getEndTime();
+  int getEndTime();
 
   /**
    * Returns the type of the animation.
@@ -43,7 +43,7 @@ public interface IAnimation extends Comparable<IAnimation> {
    * When every animation has this function, the state of a shape at a given point in time is given
    * by the applying every type of animation to the state and displaying the result.
    */
-  void setState(IShape givenShape, float time);
+  void setState(IShape givenShape, int time);
 
 
   /**

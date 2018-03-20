@@ -21,7 +21,7 @@ public class ColorAnimation extends Animation {
    * @param startTime the starting time
    * @param endTime the ending time
    */
-  public ColorAnimation(RGBColor startColor, RGBColor endColor, float startTime, float endTime) {
+  public ColorAnimation(RGBColor startColor, RGBColor endColor, int startTime, int endTime) {
     if (endTime < startTime || startTime < 0) {
       throw new IllegalArgumentException("Invalid times");
     }
@@ -47,7 +47,7 @@ public class ColorAnimation extends Animation {
   }
 
   @Override
-  public void setState(IShape current, float time) {
+  public void setState(IShape current, int time) {
     // TODO: See interface for explanation
     float newRed = interpolate(startColor.getRed(), endColor.getRed(), time);
     float newGreen = interpolate(startColor.getGreen(), endColor.getGreen(), time);

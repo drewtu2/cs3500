@@ -8,17 +8,17 @@ import cs3500.animator.util.MyUtil;
  */
 public abstract class Animation implements IAnimation {
 
-  protected float startTime;
-  protected float endTime;
+  protected int startTime;
+  protected int endTime;
   protected AnimationType type;
 
   @Override
-  public float getStartTime() {
+  public int getStartTime() {
     return startTime;
   }
 
   @Override
-  public float getEndTime() {
+  public int getEndTime() {
     return endTime;
   }
 
@@ -38,7 +38,7 @@ public abstract class Animation implements IAnimation {
   }
 
   @Override
-  public abstract void setState(IShape state, float time);
+  public abstract void setState(IShape state, int time);
 
   @Override
   public abstract String toString(String name);
@@ -59,7 +59,7 @@ public abstract class Animation implements IAnimation {
    * @param endValue the end value
    * @param time the point in time we're looking for
    */
-  protected float interpolate(float startValue, float endValue, float time) {
+  protected float interpolate(float startValue, float endValue, int time) {
     return MyUtil.interpolate(startValue, endValue, startTime, endTime, time);
   }
 

@@ -90,7 +90,7 @@ public class SVGView implements IView {
         output.append(Float.toString(((WidthHeightDim) curShape.getDimension()).getWidth()));
         output.append("\" ry=\"");
         output.append(Float.toString(((WidthHeightDim) curShape.getDimension()).getHeight()));
-        output.append(" fill=\"rgb(");
+        output.append("\" fill=\"rgb(");
         output.append(Float.toString(curShape.getColor().getRed()));
         output.append("," + Float.toString(curShape.getColor().getGreen()));
         output.append(","+ Float.toString(curShape.getColor().getBlue()));

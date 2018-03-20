@@ -20,7 +20,7 @@ public class NameAnimation extends Animation {
    * @param startTime the starting time
    * @param endTime the ending time
    */
-  public NameAnimation(String oldName, String newName, float startTime, float endTime) {
+  public NameAnimation(String oldName, String newName, int startTime, int endTime) {
     if (endTime < startTime || startTime < 0) {
       throw new IllegalArgumentException("Invalid times");
     }
@@ -46,7 +46,7 @@ public class NameAnimation extends Animation {
   }
 
   @Override
-  public void setState(IShape state, float time) {
+  public void setState(IShape state, int time) {
     // TODO: See interface for explanation
     throw new NotImplementedException();
 

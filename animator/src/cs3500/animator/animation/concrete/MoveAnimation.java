@@ -21,7 +21,7 @@ public class MoveAnimation extends Animation {
    * @param startTime the start time
    * @param endTime the end time
    */
-  public MoveAnimation(Position2D startPos, Position2D endPos, float startTime, float endTime) {
+  public MoveAnimation(Position2D startPos, Position2D endPos, int startTime, int endTime) {
 
     if (endTime < startTime || startTime < 0) {
       throw new IllegalArgumentException("Invalid times");
@@ -48,7 +48,7 @@ public class MoveAnimation extends Animation {
   }
 
   @Override
-  public void setState(IShape state, float time) {
+  public void setState(IShape state, int time) {
 
     if (!inBounds(time)) {
       throw new IllegalArgumentException("Time out of bounds");

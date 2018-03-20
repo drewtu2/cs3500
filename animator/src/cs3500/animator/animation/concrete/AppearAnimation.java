@@ -12,7 +12,7 @@ public class AppearAnimation extends Animation {
   /**
    * Constructs an appear animation.
    */
-  public AppearAnimation(float appearTime) {
+  public AppearAnimation(int appearTime) {
 
     if (appearTime < 0) {
       throw new IllegalArgumentException("Invalid times");
@@ -38,7 +38,7 @@ public class AppearAnimation extends Animation {
   }
 
   @Override
-  public void setState(IShape state, float time) {
+  public void setState(IShape state, int time) {
     if (time >= startTime) {
       // Manipulate state
       state.setOpacity(1);

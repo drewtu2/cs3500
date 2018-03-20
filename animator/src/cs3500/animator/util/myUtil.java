@@ -11,15 +11,15 @@ public class MyUtil {
    * @param time
    * @return
    */
-  public static int interpolate(
-      int startValue,
-      int endValue,
+  public static float interpolate(
+      float startValue,
+      float endValue,
       int startTime,
       int endTime,
       int time)
   {
-    int componentA = startValue * (endTime - time)/(endTime - startTime);
-    int componentB = endValue * (time - startTime)/(endTime - startTime);
+    float componentA = startValue * (endTime - time)/(endTime - startTime);
+    float componentB = endValue * (time - startTime)/(endTime - startTime);
 
     return componentA + componentB;
   }
