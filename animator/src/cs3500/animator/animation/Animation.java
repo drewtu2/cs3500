@@ -11,6 +11,13 @@ public abstract class Animation implements IAnimation {
   protected int startTime;
   protected int endTime;
   protected AnimationType type;
+  protected int creationIndex;
+  protected static int numCreated = 0;
+
+  @Override
+  public int getCreationIndex() {
+    return creationIndex;
+  }
 
   @Override
   public int getStartTime() {
@@ -42,6 +49,7 @@ public abstract class Animation implements IAnimation {
 
   @Override
   public abstract String toString(String name);
+
 
   /**
    * Returns the total duration of the animation.

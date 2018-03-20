@@ -25,7 +25,8 @@ public class ColorAnimation extends Animation {
     if (endTime < startTime || startTime < 0) {
       throw new IllegalArgumentException("Invalid times");
     }
-
+    this.creationIndex = numCreated;
+    this.numCreated++;
     this.type = AnimationType.COLOR;
     this.startColor = startColor;
     this.endColor = endColor;

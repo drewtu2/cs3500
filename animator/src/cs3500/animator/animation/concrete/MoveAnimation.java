@@ -26,6 +26,8 @@ public class MoveAnimation extends Animation {
     if (endTime < startTime || startTime < 0) {
       throw new IllegalArgumentException("Invalid times");
     }
+    this.creationIndex = numCreated;
+    numCreated++;
 
     this.type = AnimationType.MOVE;
     this.startPos = startPos;

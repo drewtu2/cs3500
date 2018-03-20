@@ -93,7 +93,8 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
     for (List<IAnimation> aList : animationList.values()) {
       for (IAnimation animation : aList) {
         summary = new AnimationSummary(animation.getStartTime(),
-            animation.toString(this.getName()));
+            animation.toString(this.getName()),
+            animation.getCreationIndex());
         los.add(summary);
       }
     }

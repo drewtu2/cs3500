@@ -6,14 +6,16 @@ package cs3500.animator.animation;
 public class AnimationSummary implements Comparable<AnimationSummary> {
 
   protected final float time;
+  protected final int creationIndex;
   protected final String description;
 
   /**
    * Constructs an animation summary.
    */
-  public AnimationSummary(float time, String description) {
+  public AnimationSummary(float time, String description, int creationIndex) {
     this.time = time;
     this.description = description;
+    this.creationIndex = creationIndex;
   }
 
   /**
@@ -38,6 +40,11 @@ public class AnimationSummary implements Comparable<AnimationSummary> {
 
   @Override
   public int compareTo(AnimationSummary o) {
-    return (int) (this.time - o.getTime());
+    int startTime = (int) (this.time - o.getTime());
+    if (startTime == 0) {
+      return this.creationIndex - o.creationIndex;
+    } else {
+      return startTime;
+    }
   }
 }

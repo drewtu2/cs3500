@@ -110,7 +110,8 @@ public class TextView implements IView {
     for (List<IAnimation> aList : animationMap.values()) {
       for (IAnimation animation : aList) {
         summary = new AnimationSummary(animation.getStartTime(),
-            reprAnimation(animation, shape.getName()));
+            reprAnimation(animation, shape.getName()),
+            animation.getCreationIndex());
         animationSummaries.add(summary);
       }
     }
@@ -165,8 +166,9 @@ public class TextView implements IView {
       default:
         builder.append(" does something from t=");
         builder.append(tick2Time(animation.getStartTime()));
-        builder.append(" to t=");
+        builder.append("s to t=");
         builder.append(tick2Time(animation.getEndTime()));
+        builder.append("s");
         break;
 
     }
@@ -197,9 +199,9 @@ public class TextView implements IView {
     builder.append(endState);
     builder.append(" from t=");
     builder.append(tick2Time(startTick));
-    builder.append(" to t=");
+    builder.append("s to t=");
     builder.append(tick2Time(endTick));
-    builder.append("\n");
+    builder.append("s\n");
 
     return builder.toString();
   }
@@ -219,7 +221,7 @@ public class TextView implements IView {
     builder.append(verb);
     builder.append(" at t=");
     builder.append(tick2Time(tick));
-    builder.append("\n");
+    builder.append("s\n");
 
     return builder.toString();
   }
@@ -230,7 +232,7 @@ public class TextView implements IView {
    * @param tick the tick.
    * @return the time
    */
-  private int tick2Time(int tick) {
-    return tick * speed;
+  private float tick2Time(int tick) {
+    return tick / speed;
   }
 }

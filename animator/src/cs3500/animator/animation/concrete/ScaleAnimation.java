@@ -27,6 +27,8 @@ public class ScaleAnimation extends Animation {
     if (endTime < startTime || startTime < 0) {
       throw new IllegalArgumentException("Invalid times");
     }
+    this.creationIndex = numCreated;
+    numCreated++;
 
     this.type = AnimationType.SCALE;
     this.startDimension = startDimension;

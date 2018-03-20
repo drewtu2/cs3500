@@ -1,11 +1,9 @@
 package cs3500.animator.animation.concrete;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import cs3500.animator.animation.Animation;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.shape.IShape;
-import cs3500.animator.shape.RGBColor;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class NameAnimation extends Animation {
 
@@ -25,6 +23,8 @@ public class NameAnimation extends Animation {
       throw new IllegalArgumentException("Invalid times");
     }
 
+    this.creationIndex = numCreated;
+    numCreated++;
     this.type = AnimationType.NAME;
     this.oldName = oldName;
     this.newName = newName;

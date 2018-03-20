@@ -20,6 +20,9 @@ public class DisappearAnimation extends Animation {
       throw new IllegalArgumentException("Invalid times");
     }
 
+    this.creationIndex = numCreated;
+    numCreated++;
+
     this.type = AnimationType.DESTROY;
     this.startTime = disappearTime;
     this.endTime = disappearTime;

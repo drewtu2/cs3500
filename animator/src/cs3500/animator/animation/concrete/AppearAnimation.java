@@ -17,6 +17,8 @@ public class AppearAnimation extends Animation {
     if (appearTime < 0) {
       throw new IllegalArgumentException("Invalid times");
     }
+    this.creationIndex = numCreated;
+    this.numCreated++;
 
     this.type = AnimationType.CREATE;
 

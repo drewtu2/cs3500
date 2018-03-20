@@ -45,6 +45,11 @@ public interface IAnimation extends Comparable<IAnimation> {
    */
   void setState(IShape givenShape, int time);
 
+  /**
+   * Returns the index of creation.
+   * @return the index of creation
+   */
+  int getCreationIndex();
 
   /**
    * Returns a string describing the overall animation.

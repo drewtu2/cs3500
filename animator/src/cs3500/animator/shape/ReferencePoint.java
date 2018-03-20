@@ -4,7 +4,7 @@ package cs3500.animator.shape;
  * Represents the set of locations that a shape can be referenced by.
  */
 public enum ReferencePoint {
-  CENTER("Center"), LOWER_LEFT_CORNER("Lower-left-corner");
+  CENTER("Center"), LOWER_LEFT_CORNER("Min-corner");
 
   String description;
 
