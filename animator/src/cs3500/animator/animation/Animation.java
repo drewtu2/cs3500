@@ -55,6 +55,7 @@ public abstract class Animation implements IAnimation {
   /**
    * Returns the intermediate value that occurs between two points in time based on linear
    * interpolation.
+   *
    * @param startValue the start value
    * @param endValue the end value
    * @param time the point in time we're looking for

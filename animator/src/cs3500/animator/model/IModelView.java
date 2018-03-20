@@ -6,10 +6,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Represents a read only model object.
+ */
 public interface IModelView {
 
   /**
    * Returns the full map of animated shapes and their corresponding animations.
+   *
    * @return Map of ShapeName, AnimatedShape
    */
   Map<String, IAnimatedShape> getFullState();

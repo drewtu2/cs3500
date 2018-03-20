@@ -21,10 +21,10 @@ public interface IAnimatedShape extends IShape {
   void addAnimation(IAnimation animation) throws IllegalArgumentException;
 
   /**
-   * Returns the shape at a given time.
-   * This function is necessary to get the state of a shape at a given point in time. The view will
-   * need to see what every animated shape looks like as a result of all of the applied animations.
-   * This function will return the animation of tis particular shape up to whomever needs to see it.
+   * Returns the shape at a given time. This function is necessary to get the state of a shape at a
+   * given point in time. The view will need to see what every animated shape looks like as a result
+   * of all of the applied animations. This function will return the animation of tis particular
+   * shape up to whomever needs to see it.
    *
    * @param t the time requested
    * @return the state at the requested time
@@ -33,6 +33,7 @@ public interface IAnimatedShape extends IShape {
 
   /**
    * Returns the map of animations associated with this shape.
+   *
    * @return the map of animations associated with this shape
    */
   Map<AnimationType, List<IAnimation>> getAnimations();

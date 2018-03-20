@@ -102,15 +102,16 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public boolean equals(Object compare) {
-    boolean bType = this.type.equals(((IShape)compare).getType());
-    boolean bDim = this.dimension.equals(((IShape)compare).getDimension());
-    boolean bCol = this.color.equals(((IShape)compare).getColor());
-    boolean bPos = this.position.equals(((IShape)compare).getPosition());
-    boolean bName = this.name.equals(((IShape)compare).getName());
-    boolean bOpacity = this.opacity == (((IShape)compare).getOpacity());
+    boolean bType = this.type.equals(((IShape) compare).getType());
+    boolean bDim = this.dimension.equals(((IShape) compare).getDimension());
+    boolean bCol = this.color.equals(((IShape) compare).getColor());
+    boolean bPos = this.position.equals(((IShape) compare).getPosition());
+    boolean bName = this.name.equals(((IShape) compare).getName());
+    boolean bOpacity = this.opacity == (((IShape) compare).getOpacity());
 
     return bType && bCol && bDim && bPos && bName && bOpacity;
   }
+
   @Override
   public int hashCode() {
     return Objects.hash(
@@ -119,6 +120,7 @@ public abstract class AbstractShape implements IShape {
         this.color,
         this.name,
         this.opacity,
+        this.type,
         this.position);
   }
 

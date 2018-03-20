@@ -1,15 +1,18 @@
 package cs3500.animator.util;
 
+/**
+ * General purpose utilities.
+ */
 public class MyUtil {
 
   /**
    * Performs a linear interpolation on the given values.
-   * @param startValue
-   * @param endValue
-   * @param startTime
-   * @param endTime
-   * @param time
-   * @return
+   * @param startValue the start value
+   * @param endValue the end value
+   * @param startTime the start time
+   * @param endTime the end time
+   * @param time the time we're requesting
+   * @return the value at the requested time
    */
   public static float interpolate(
       float startValue,
@@ -25,7 +28,7 @@ public class MyUtil {
   }
 
   /**
-   * Throws null pointer exception if the given input is null
+   * Throws null pointer exception if the given input is null.
    * @param input input to check
    */
   public static void checkNull(Object input) {

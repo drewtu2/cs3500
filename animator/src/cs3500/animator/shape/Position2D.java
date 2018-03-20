@@ -3,8 +3,7 @@ package cs3500.animator.shape;
 import java.util.Objects;
 
 /**
- * This class represents a 2D position.
- * **Taken from lecture notes.**
+ * This class represents a 2D position. **Taken from lecture notes.**
  */
 public final class Position2D {
 
@@ -13,6 +12,7 @@ public final class Position2D {
 
   /**
    * Returns the pos x value.
+   *
    * @return the pos x value
    */
   public float getX() {
@@ -21,6 +21,7 @@ public final class Position2D {
 
   /**
    * Returns the pos y value.
+   *
    * @return the pos y value
    */
   public float getY() {

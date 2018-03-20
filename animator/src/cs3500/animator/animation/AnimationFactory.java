@@ -4,13 +4,15 @@ import cs3500.animator.animation.concrete.AppearAnimation;
 import cs3500.animator.animation.concrete.ColorAnimation;
 import cs3500.animator.animation.concrete.DisappearAnimation;
 import cs3500.animator.animation.concrete.MoveAnimation;
-import cs3500.animator.animation.concrete.NameAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.dimension.IDimension;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+/**
+ * Factory for producing animations.
+ */
 public class AnimationFactory {
 
   /**
@@ -85,8 +87,10 @@ public class AnimationFactory {
    * @return a name animation
    */
   public static IAnimation getNameAnimation(String start, String end, int startTime,
-                                             int endTime) {
-    return new NameAnimation(start, end, startTime, endTime);
+      int endTime) {
+    // TODO: no needed yet...
+    throw new NotImplementedException();
+    //return new NameAnimation(start, end, startTime, endTime);
   }
 
   /**

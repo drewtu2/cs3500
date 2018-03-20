@@ -14,38 +14,40 @@ import java.util.Objects;
  */
 public class Oval extends AbstractAnimatedShape {
 
-    /**
-     * Constructor for rectangle.
-     * @param name the name
-     * @param pos the position
-     * @param col the color
-     * @param width the width
-     * @param height the height
-     */
-    public Oval(String name, Position2D pos, RGBColor col, float width, float height) {
-      this.name = name;
-      this.type = ShapeType.OVAL;
-      this.position = pos;
-      this.color = col;
-      this.opacity = (float) 0.0;
-      this.dimension = new WidthHeightDim(width, height);
-      this.animationList = new HashMap<>();
-    }
+  /**
+   * Constructor for rectangle.
+   *
+   * @param name the name
+   * @param pos the position
+   * @param col the color
+   * @param width the width
+   * @param height the height
+   */
+  public Oval(String name, Position2D pos, RGBColor col, float width, float height) {
+    this.name = name;
+    this.type = ShapeType.OVAL;
+    this.position = pos;
+    this.color = col;
+    this.opacity = (float) 0.0;
+    this.dimension = new WidthHeightDim(width, height);
+    this.animationList = new HashMap<>();
+  }
 
-    /**
-     * Copy constructor.
-     * @param copy the shape to copy
-     */
-    public Oval(Oval copy) {
-      this.name = copy.name;
-      this.type = ShapeType.OVAL;
-      this.position = copy.position;
-      this.color = copy.color;
-      this.opacity = copy.opacity;
-      this.dimension = copy.dimension;
-      this.animationList = copy.animationList;
+  /**
+   * Copy constructor.
+   *
+   * @param copy the shape to copy
+   */
+  public Oval(Oval copy) {
+    this.name = copy.name;
+    this.type = ShapeType.OVAL;
+    this.position = copy.position;
+    this.color = copy.color;
+    this.opacity = copy.opacity;
+    this.dimension = copy.dimension;
+    this.animationList = copy.animationList;
 
-    }
+  }
 
   @Override
   public boolean equals(Object a) {
@@ -58,18 +60,18 @@ public class Oval extends AbstractAnimatedShape {
 
     Oval that = (Oval) a;
 
-    return ( this.name.equals(that.name)
-            && this.type.equals(that.type)
-            && this.position.equals(that.position)
-            && this.color.equals(that.color)
-            && Math.abs(this.opacity - that.opacity) < 0.01)
-            && this.dimension.equals(that.dimension)
-            && this.animationList.equals(that.animationList);
+    return (this.name.equals(that.name)
+        && this.type.equals(that.type)
+        && this.position.equals(that.position)
+        && this.color.equals(that.color)
+        && Math.abs(this.opacity - that.opacity) < 0.01)
+        && this.dimension.equals(that.dimension)
+        && this.animationList.equals(that.animationList);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(this.name, this.type, this.position, this.color,
-            this.opacity, this.dimension, this.animationList);
+        this.opacity, this.dimension, this.animationList);
   }
 }

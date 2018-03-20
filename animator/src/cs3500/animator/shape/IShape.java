@@ -57,9 +57,7 @@ public interface IShape {
   ShapeType getType();
 
   /**
-   * Sets the opacity of the shape.
-   * 0: invisible
-   * 1: visible
+   * Sets the opacity of the shape. 0: invisible 1: visible
    *
    * @param input the opacity to set
    */

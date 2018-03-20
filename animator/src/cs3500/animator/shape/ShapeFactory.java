@@ -11,11 +11,6 @@ public class ShapeFactory {
 
   /**
    * Creates a rectangle.
-   * @param name
-   * @param pos
-   * @param color
-   * @param width
-   * @param height
    */
   public static IAnimatedShape getRectangle(String name, Position2D pos, RGBColor color,
       float width, float height) {
@@ -24,12 +19,6 @@ public class ShapeFactory {
 
   /**
    * Creates oval.
-   * @param name
-   * @param pos
-   * @param color
-   * @param width
-   * @param height
-   * @return
    */
   public static IAnimatedShape getOval(String name, Position2D pos, RGBColor color,
       float width, float height) {

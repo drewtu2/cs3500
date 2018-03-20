@@ -13,13 +13,13 @@ import java.io.IOException;
 public interface IControllerBuilder {
 
   /**
-   * Sets the given input file to create our model from
+   * Sets the given input file to create our model from.
    * @param inputFile name of the input file
    */
   void setInputFile(String inputFile);
 
   /**
-   * Sets the output file to create our model from
+   * Sets the output file to create our model from.
    * @param outputFile
    */
   void setOutputFile(String outputFile);

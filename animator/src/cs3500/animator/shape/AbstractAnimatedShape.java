@@ -59,7 +59,7 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
   @Override
   public IShape stateAt(int t) {
 
-    if (t < 0 ) {
+    if (t < 0) {
       throw new IllegalArgumentException("Cannot have negative value");
     }
 
@@ -69,9 +69,9 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
       for (IAnimation animation : aList) {
         // If the time we're searching for occurs after this animation,
         // apply this animation completely...
-        if(t > animation.getEndTime()) {
+        if (t > animation.getEndTime()) {
           animation.setState(this, animation.getEndTime());
-        } else if(animation.inBounds(t)) {
+        } else if (animation.inBounds(t)) {
           // We're looking for a state part way through this animation...
           animation.setState(this, t);
           break;

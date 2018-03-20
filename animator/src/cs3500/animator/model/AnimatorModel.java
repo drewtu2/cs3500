@@ -21,19 +21,19 @@ import java.util.Set;
 /**
  * A concrete implementation of an animator animator.model.
  */
-public class AnimatorModel implements IAnimatorModel, IModelView{
+public class AnimatorModel implements IAnimatorModel, IModelView {
 
   /**
-   * Static Builder class that constructs a model
+   * Static Builder class that constructs a model.
    */
   public static final class Builder implements TweenModelBuilder<AnimatorModel> {
+
     private Map<String, IAnimatedShape> shapes;
 
     /**
-     * Default constructor for a builder
+     * Default constructor for a builder.
      */
-    public Builder()
-    {
+    public Builder() {
       shapes = new HashMap<>();
     }
 
@@ -53,7 +53,6 @@ public class AnimatorModel implements IAnimatorModel, IModelView{
       // Adds shape to map
       shapes.put(name, myOval);
 
-
       return this;
     }
 
@@ -61,11 +60,9 @@ public class AnimatorModel implements IAnimatorModel, IModelView{
     public TweenModelBuilder<AnimatorModel> addRectangle(String name, float lx, float ly,
         float width,
         float height, float red, float green, float blue, int startOfLife, int endOfLife) {
-      //TODO implement this
-
       // Creates a shape
       Position2D center = new Position2D(lx, ly);
-      RGBColor color = new RGBColor(red, green , blue);
+      RGBColor color = new RGBColor(red, green, blue);
 
       IAnimatedShape myRec = ShapeFactory.getRectangle(name, center, color, width, height);
 
@@ -81,11 +78,10 @@ public class AnimatorModel implements IAnimatorModel, IModelView{
     @Override
     public TweenModelBuilder<AnimatorModel> addMove(String name, float moveFromX, float moveFromY,
         float moveToX, float moveToY, int startTime, int endTime) {
-      //TODO implement this
       Position2D from = new Position2D(moveFromX, moveFromY);
       Position2D to = new Position2D(moveToX, moveToY);
       shapes.get(name).addAnimation(AnimationFactory.getMoveAnimation(from, to, startTime,
-              endTime));
+          endTime));
       // Add animation to shape
       return this;
     }
@@ -93,11 +89,10 @@ public class AnimatorModel implements IAnimatorModel, IModelView{
     @Override
     public TweenModelBuilder<AnimatorModel> addColorChange(String name, float oldR, float oldG,
         float oldB, float newR, float newG, float newB, int startTime, int endTime) {
-      //TODO implement this
       RGBColor original = new RGBColor(oldR, oldG, oldB);
       RGBColor newCol = new RGBColor(newR, newG, newB);
       shapes.get(name).addAnimation(AnimationFactory.getColorAnimation(original, newCol, startTime,
-              endTime));
+          endTime));
       // Add animation to shape
       return this;
     }
@@ -106,18 +101,16 @@ public class AnimatorModel implements IAnimatorModel, IModelView{
     public TweenModelBuilder<AnimatorModel> addScaleToChange(String name, float fromSx,
         float fromSy,
         float toSx, float toSy, int startTime, int endTime) {
-      //TODO implement this
       IDimension startDim = new WidthHeightDim(fromSx, fromSy);
       IDimension endDim = new WidthHeightDim(toSx, toSy);
       shapes.get(name).addAnimation(AnimationFactory.getScaleAnimation(startDim,
-              endDim, startTime, endTime));
+          endDim, startTime, endTime));
       // Add animation to shape
       return this;
     }
 
     @Override
     public AnimatorModel build() {
-      //TODO implement this
       return new AnimatorModel(this);
     }
   }
@@ -135,12 +128,6 @@ public class AnimatorModel implements IAnimatorModel, IModelView{
     shapes = new HashMap(b.shapes);
 
   }
-
-  /**
-   *
-   * @param newShape the shape to add.
-   * @throws IllegalArgumentException
-   */
 
   @Override
   public void addShape(IAnimatedShape newShape) throws IllegalArgumentException {

@@ -145,8 +145,8 @@ public class RGBColor {
     RGBColor that = (RGBColor) a;
 
     return ((Math.abs(this.red - that.red) < 0.01)
-            && (Math.abs(this.green - that.green) < 0.01)
-            && (Math.abs(this.blue - that.blue) < 0.01));
+        && (Math.abs(this.green - that.green) < 0.01)
+        && (Math.abs(this.blue - that.blue) < 0.01));
   }
 
   @Override

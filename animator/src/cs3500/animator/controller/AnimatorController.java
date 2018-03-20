@@ -9,15 +9,24 @@ import cs3500.animator.view.ViewFactory;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class AnimatorController implements IController{
+/**
+ * A controller for our animation.
+ */
+public class AnimatorController implements IController {
 
-
+  /**
+   * Builder class for our controller.
+   */
   public static final class Builder implements IControllerBuilder {
+
     private String inputFile;
     private String outputFile;
     private int speed;
     private String vt;
 
+    /**
+     * Default constructor for builder.
+     */
     public Builder() {
       inputFile = null;
       vt = null;
@@ -60,27 +69,26 @@ public class AnimatorController implements IController{
     }
 
     @Override
-    public IController buildFromInputArgs(String[] args) throws IOException, FileNotFoundException{
+    public IController buildFromInputArgs(String[] args) throws IOException, FileNotFoundException {
       String id;
       String value;
 
-
       // Extract arguments values from the arg array
-      for (int i = 0; i < args.length/2; i += 2) {
+      for (int i = 0; i < args.length / 2; i += 2) {
         id = args[i];
         value = args[i + 1];
 
-        if(id.toLowerCase().equals("-if")) {
+        if (id.toLowerCase().equals("-if")) {
           inputFile = value;
-        } else if(id.toLowerCase().equals("-iv")) {
+        } else if (id.toLowerCase().equals("-iv")) {
           vt = value;
-        } else if(id.toLowerCase().equals("-speed")) {
+        } else if (id.toLowerCase().equals("-speed")) {
           try {
             speed = Integer.valueOf(value);
           } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Bad Speed");
           }
-        } else if(id.toLowerCase().equals("-o")) {
+        } else if (id.toLowerCase().equals("-o")) {
           outputFile = value;
         } else {
           throw new IllegalArgumentException("Bad flag");
@@ -97,6 +105,7 @@ public class AnimatorController implements IController{
 
   /**
    * Constructs a controller.
+   *
    * @param inputModel the model we're using.
    * @param inputView the view we're using.
    * @param inputSpeed the speed we're using.
@@ -116,9 +125,5 @@ public class AnimatorController implements IController{
       System.err.println("IOException occured...");
       System.err.println(e.toString());
     }
-  }
-
-  public void updatedModel() {
-    //TODO
   }
 }

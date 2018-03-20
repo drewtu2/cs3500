@@ -38,10 +38,10 @@ public interface IAnimation extends Comparable<IAnimation> {
   boolean inBounds(float t);
 
   /**
-   * Sets the new state of the shape at given time as a result of this animation.
-   * This function is necessary in order to calcualte the state of a shape at as a functio of time.
-   * When every animation has this function, the state of a shape at a given point in time is given
-   * by the applying every type of animation to the state and displaying the result.
+   * Sets the new state of the shape at given time as a result of this animation. This function is
+   * necessary in order to calcualte the state of a shape at as a functio of time. When every
+   * animation has this function, the state of a shape at a given point in time is given by the
+   * applying every type of animation to the state and displaying the result.
    */
   void setState(IShape givenShape, int time);
 

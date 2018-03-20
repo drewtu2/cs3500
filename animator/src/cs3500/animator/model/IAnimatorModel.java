@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Interface for an Animator animator.model type.
  */
-public interface IAnimatorModel extends IModelView{
+public interface IAnimatorModel extends IModelView {
 
   /**
    * Adds a new shape to the animator.model.
@@ -33,7 +33,6 @@ public interface IAnimatorModel extends IModelView{
    * @param shapeName which shape is being applied to
    * @param animation the animation to be applied
    * @throws IllegalArgumentException if the requested shape doesn't exist or if conflict occurs
-   *        with another animation on the same shape
    */
   void addAnimation(String shapeName, IAnimation animation) throws IllegalArgumentException;
 
