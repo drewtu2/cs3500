@@ -19,7 +19,7 @@ public interface IDimension {
    * @throws IllegalArgumentException if the time is outside the duration or is not of the correct
    *        IDimension
    */
-  IDimension getIntermediate(IDimension end, float startTime, float endTime, float time)
+  IDimension getIntermediate(IDimension end, int startTime, int endTime, int time)
       throws IllegalArgumentException;
 
   /**

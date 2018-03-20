@@ -23,7 +23,7 @@ public class Rectangle extends AbstractAnimatedShape {
    * @param width  the width
    * @param height the height
    */
-  public Rectangle(String name, Position2D pos, RGBColor col, float width, float height) {
+  public Rectangle(String name, Position2D pos, RGBColor col, int width, int height) {
     this.name = name;
     this.type = ShapeType.RECTANGLE;
     this.position = pos;

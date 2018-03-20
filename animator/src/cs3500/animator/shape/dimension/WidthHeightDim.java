@@ -8,24 +8,24 @@ import java.util.Objects;
  */
 public class WidthHeightDim implements IDimension {
 
-  private float width;
-  private float height;
+  private int width;
+  private int height;
 
-  public WidthHeightDim(float width, float height) {
+  public WidthHeightDim(int width, int height) {
     this.width = width;
     this.height = height;
   }
 
-  public float getWidth() {
+  public int getWidth() {
     return width;
   }
 
-  public float getHeight() {
+  public int getHeight() {
     return height;
   }
 
   @Override
-  public IDimension getIntermediate(IDimension end, float startTime, float endTime, float time) {
+  public IDimension getIntermediate(IDimension end, int startTime, int endTime, int time) {
     if (end.getClass() != this.getClass()) {
       throw new IllegalArgumentException("The given dimension is of a different class");
     }
@@ -33,9 +33,9 @@ public class WidthHeightDim implements IDimension {
       throw new IllegalArgumentException("Time out of bonunds");
     }
 
-    float newHeight = MyUtil.interpolate(this.height, ((WidthHeightDim)end).height,
+    int newHeight = MyUtil.interpolate(this.height, ((WidthHeightDim)end).height,
         startTime, endTime, time);
-    float newWidth = MyUtil.interpolate(this.width, ((WidthHeightDim)end).width,
+    int newWidth = MyUtil.interpolate(this.width, ((WidthHeightDim)end).width,
         startTime, endTime, time);
 
     return new WidthHeightDim(newWidth, newHeight);
