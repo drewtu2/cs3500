@@ -73,7 +73,7 @@ public class TextViewTest {
     assertEquals("Shapes:\n"
             + "Name: test\n"
             + "Type: rectangle\n"
-            + "Lower-left-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
+            + "Min-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "\n"
             + "Name: test2\n"
             + "Type: oval\n"
@@ -81,14 +81,14 @@ public class TextViewTest {
             + "\n"
             + "\n"
             + "Animations:\n"
-            + "Shape test Appears at t=0\n"
-            + "Shape test2 Appears at t=0\n"
-            + "Shape test moves from (10.000000, 10.000000) to (50.000000, 50.000000) from t=1 to t=10\n"
-            + "Shape test2 moves from (10.000000, 10.000000) to (50.000000, 50.000000) from t=1 to t=10\n"
-            + "Shape test changes from Color: (1.0, 0.0, 0.0) to Color: (0.0, 1.0, 0.0) from t=2 to t=5\n"
-            + "Shape test2 changes from Color: (1.0, 0.0, 0.0) to Color: (0.0, 1.0, 0.0) from t=2 to t=5\n"
-            + "Shape test scales from Width: 10.0 Height: 10.0 to Width: 20.0 Height: 20.0 from t=4 to t=10\n"
-            + "Shape test2 scales from Width: 10.0 Height: 10.0 to Width: 20.0 Height: 20.0 from t=4 to t=10\n",
+            + "Shape test Appears at t=0.0s\n"
+            + "Shape test2 Appears at t=0.0s\n"
+            + "Shape test moves from (10.000000, 10.000000) to (50.000000, 50.000000) from t=1.0s to t=10.0s\n"
+            + "Shape test2 moves from (10.000000, 10.000000) to (50.000000, 50.000000) from t=1.0s to t=10.0s\n"
+            + "Shape test changes from Color: (1.0, 0.0, 0.0) to Color: (0.0, 1.0, 0.0) from t=2.0s to t=5.0s\n"
+            + "Shape test2 changes from Color: (1.0, 0.0, 0.0) to Color: (0.0, 1.0, 0.0) from t=2.0s to t=5.0s\n"
+            + "Shape test scales from Width: 10.0 Height: 10.0 to Width: 20.0 Height: 20.0 from t=4.0s to t=10.0s\n"
+            + "Shape test2 scales from Width: 10.0 Height: 10.0 to Width: 20.0 Height: 20.0 from t=4.0s to t=10.0s\n",
         testString.toString());
   }
 

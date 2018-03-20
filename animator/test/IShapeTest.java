@@ -96,7 +96,7 @@ public class IShapeTest {
   public void testToString() {
     assertEquals("Name: rect\n"
             + "Type: rectangle\n"
-            + "Lower-left-corner: (20.000000, 20.000000), "
+            + "Min-corner: (20.000000, 20.000000), "
             + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0",
         rect.toString());
   }
