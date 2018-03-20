@@ -71,10 +71,12 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
         // apply this animation completely...
         if(t > animation.getEndTime()) {
           animation.setState(this, animation.getEndTime());
-        } else {
+        } else if(animation.inBounds(t)) {
           // We're looking for a state part way through this animation...
           animation.setState(this, t);
           break;
+        } else {
+          // time we requested is BEFORE this animation started, don't do anything...
         }
       }
     }

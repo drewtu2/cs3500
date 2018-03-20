@@ -2,6 +2,7 @@ package cs3500.animator.view;
 
 import static cs3500.animator.util.MyUtil.checkNull;
 
+import cs3500.animator.view.visual.VisualView;
 import java.io.FileWriter;
 import java.io.IOException;
 

@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import cs3500.animator.animation.AnimationFactory;
 import cs3500.animator.model.AnimatorModel;
@@ -8,7 +9,9 @@ import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeFactory;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -208,6 +211,26 @@ public class AnimatorModelTest {
 
     assertEquals(1, myAnimator.getState(5).size());
     assertEquals(expectedShape.toString(), (myAnimator.getState(5)).get(0).toString());
+  }
+
+  @Test
+  public void testGetFullState() {
+    Position2D startPos = new Position2D(10, 20);
+    Position2D endPos = new Position2D(30, 50);
+    RGBColor startCol = new RGBColor(1, 0, 0);
+    RGBColor endCol = new RGBColor(0, 0, 1);
+
+    myAnimator.addShape(basicSquare);
+    myAnimator.addAnimation("square", AnimationFactory.getAppearAnimation(1));
+    myAnimator.addAnimation("square", AnimationFactory.getMoveAnimation(startPos, endPos, 2, 5));
+    myAnimator.addAnimation("square", AnimationFactory.getColorAnimation(startCol, endCol, 2, 5));
+    myAnimator.addAnimation("square", AnimationFactory.getDisappearAnimation(10));
+
+    Map<String, IAnimatedShape> expectedMap = new HashMap<>();
+    expectedMap.put("square", basicSquare);
+
+    assertNotEquals(null, myAnimator.getFullState());
+    assertEquals(expectedMap, myAnimator.getFullState());
   }
 
 

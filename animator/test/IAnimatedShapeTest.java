@@ -96,6 +96,19 @@ public class IAnimatedShapeTest {
     assertEquals(s_expected.toString(), s.stateAt(0).toString());
   }
 
+  @Test
+  public void testStateBeforeAnimation() {
+    s.addAnimation(appear);
+    s.addAnimation(mv1);
+
+    Position2D pos = new Position2D(10, 10);
+    RGBColor red = new RGBColor(1, 0, 0);
+
+    IShape s_expected = ShapeFactory.getRectangle("square", pos, red, 10, 10);
+    s_expected.setOpacity(1);
+    assertEquals(s_expected.toString(), s.stateAt(1).toString());
+  }
+
   @Test(expected = IllegalArgumentException.class)
   public void testStateAtNegativeTime() {
     s.addAnimation(appear);
