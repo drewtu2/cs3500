@@ -1,0 +1,11 @@
+# Assignment 6 Model Updates
+There were two primary changes made to our model in this assignment. The first change involved
+adding the requested TweenModelBuilder interface and implementation to our class to allow it to
+integrate well with the AnimationFileReader. By implementing the requested interface, we had an
+easy time integrating the animation file reader into our model.
+
+The second major change involved creating a ModelView interface that allowed the view to have access
+to a read only version of the model. As part of this implementing this new interface, we exposed a
+new method, `getFullState()` which returns the map of AnimatedShapes to the caller. This allows the
+model to directly access the state of the model and draw the contained shapes at any time.
+
