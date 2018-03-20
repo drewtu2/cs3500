@@ -15,67 +15,91 @@ import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-public class CanvasPanel extends JPanel{
-    private IModelView myMv;
-    private Map<String, IAnimatedShape> state;
-    private int tickNum;
+/**
+ * A JPanel that draws out our animation.
+ */
+public class CanvasPanel extends JPanel {
 
-    public CanvasPanel()  {
-      tickNum = 0;
-      setBorder(BorderFactory.createLineBorder(Color.BLACK));
-    }
+  private IModelView myMv;
+  private Map<String, IAnimatedShape> state;
+  private int tickNum;
 
-    public CanvasPanel(BorderLayout bl) {
-      this.setLayout(bl);
-    }
+  /**
+   * Public constructor for the CanvasPanel.
+   */
+  public CanvasPanel() {
+    tickNum = 0;
+    setBorder(BorderFactory.createLineBorder(Color.BLACK));
+  }
 
-    public Dimension getPreferredSize() {
-      return new Dimension(500, 500);
-    }
+  /**
+   * Constructor that allows specification of layout.
+   *
+   * @param bl the layout to use.
+   */
+  public CanvasPanel(BorderLayout bl) {
+    tickNum = 0;
+    this.setLayout(bl);
+  }
 
-    public void setModelView(IModelView mv) {
-      checkNull(mv);
-      myMv = mv;
-      state = myMv.getFullState();
-      checkNull(state);
-    }
+  /**
+   * Sets the modelView to use and the state variable.
+   *
+   * @param mv the model view to use.
+   */
+  public void setModelView(IModelView mv) {
+    checkNull(mv);
+    myMv = mv;
+    state = myMv.getFullState();
+    checkNull(state);
+  }
 
-    public void setTickNumber(int number) {
-      tickNum = number;
-      System.out.println("Tick num: " + Integer.toString(tickNum));
-    }
+  /**
+   * Updates the tick number used to access the state.
+   *
+   * @param number the tick number.
+   */
+  public void setTickNumber(int number) {
+    tickNum = number;
+    System.out.println("Tick num: " + Integer.toString(tickNum));
+  }
 
-    @Override
-    public void paintComponent(Graphics g) {
-      super.paintComponent(g);
-      RGBColor shapeColor;
-      IShape shapeState;
+  @Override
+  public Dimension getPreferredSize() {
+    return new Dimension(500, 500);
+  }
 
-      if(state != null) {
-        for (IAnimatedShape shape : state.values()) {
-          shapeColor = shape.getColor();
-          shapeState = shape.stateAt(tickNum);
+  @Override
+  public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    RGBColor shapeColor;
+    IShape shapeState;
 
-          g.setColor(new Color(shapeColor.getRed(), shapeColor.getGreen(), shapeColor.getBlue()));
-          if(shape.getOpacity() == 1) {
-            switch (shapeState.getType()) {
-              case RECTANGLE:
-                g.drawRect((int) shapeState.getPosition().getX(),
-                    (int) shapeState.getPosition().getY(),
-                    (int) ((WidthHeightDim) shapeState.getDimension()).getWidth(),
-                    (int) ((WidthHeightDim) shapeState.getDimension()).getHeight());
-                break;
-              case OVAL:
-                g.drawOval((int) shapeState.getPosition().getX(),
-                    (int) shapeState.getPosition().getY(),
-                    (int) ((WidthHeightDim) shapeState.getDimension()).getWidth(),
-                    (int) ((WidthHeightDim) shapeState.getDimension()).getHeight());
-                break;
-              default:
-                System.err.println("Unexpected Shape Type...");
-            }
+    if (state != null) {
+      for (IAnimatedShape shape : state.values()) {
+        shapeColor = shape.getColor();
+        shapeState = shape.stateAt(tickNum);
+
+        g.setColor(new Color(shapeColor.getRed(), shapeColor.getGreen(), shapeColor.getBlue()));
+        if (shape.getOpacity() == 1) {
+          switch (shapeState.getType()) {
+            case RECTANGLE:
+              g.drawRect((int) shapeState.getPosition().getX(),
+                  (int) shapeState.getPosition().getY(),
+                  (int) ((WidthHeightDim) shapeState.getDimension()).getWidth(),
+                  (int) ((WidthHeightDim) shapeState.getDimension()).getHeight());
+              break;
+            case OVAL:
+              g.drawOval((int) shapeState.getPosition().getX(),
+                  (int) shapeState.getPosition().getY(),
+                  (int) ((WidthHeightDim) shapeState.getDimension()).getWidth(),
+                  (int) ((WidthHeightDim) shapeState.getDimension()).getHeight());
+              break;
+            default:
+              System.err.println("Unexpected Shape Type...");
           }
         }
       }
     }
+  }
 }

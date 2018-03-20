@@ -28,6 +28,9 @@ public class VisualView extends JFrame implements IView {
 
   private int secondsCount;
 
+  /**
+   * The visual view implementation.
+   */
   public VisualView() {
     super();
 
@@ -72,15 +75,6 @@ public class VisualView extends JFrame implements IView {
     System.out.println("Set Model...");
     timer.start();
     System.out.println("Started Timer...");
-  }
-
-  /**
-   * Returns the time for a corresponding tick.
-   * @param tick the tick.
-   * @return the time
-   */
-  private float tick2Time(float tick) {
-    return tick * speed;
   }
 }
 

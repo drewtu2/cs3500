@@ -16,16 +16,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class TextView implements IView{
+/**
+ * The text view implementation.
+ */
+public class TextView implements IView {
+
   private Appendable output;
-  private float speed;
+  private int speed;
 
   /**
    * Creates a text view.
+   *
    * @param outputFile an appendable to dump the text information.
    */
   public TextView(Appendable outputFile) {
-    output  = outputFile;
+    output = outputFile;
     speed = 1;
   }
 
@@ -44,15 +49,15 @@ public class TextView implements IView{
 
       // Print every shape and generate a list of all of the animations
       for (IAnimatedShape aShape : shapeMap.values()) {
-        print_shape_summary(aShape);
+        output.append(print_shape_summary(aShape));
+        output.append("\n\n");
         animationSummaries.addAll(getSummary(aShape));
       }
-
+      output.append("\nAnimations:\n");
       Collections.sort(animationSummaries);
 
-      for (AnimationSummary summary: animationSummaries) {
+      for (AnimationSummary summary : animationSummaries) {
         output.append(summary.getDescription());
-        output.append("\n");
       }
 
     } catch (IOException e) {
@@ -62,10 +67,11 @@ public class TextView implements IView{
 
   /**
    * Dumps the shape description in the appendable.
+   *
    * @param shape the shape to dump.
    */
-  private void print_shape_summary(IAnimatedShape shape) {
-    StringBuilder builder =  new StringBuilder();
+  private String print_shape_summary(IAnimatedShape shape) {
+    StringBuilder builder = new StringBuilder();
 
     builder.append("Name: ");
     builder.append(shape.getName());
@@ -85,11 +91,13 @@ public class TextView implements IView{
     builder.append(", Opacity: ");
     builder.append(shape.getOpacity());
 
+    return builder.toString();
   }
 
   /**
    * Returns a list of animation summaries of a given shape.
-   * @param shape  the shape containing the animation summaries.
+   *
+   * @param shape the shape containing the animation summaries.
    * @return the list of summaries.
    */
   private List<AnimationSummary> getSummary(IAnimatedShape shape) {
@@ -107,21 +115,22 @@ public class TextView implements IView{
       }
     }
 
-    return  animationSummaries;
+    return animationSummaries;
   }
 
   /**
    * Returns the string representation of the animation.
+   *
    * @param animation the animation to represent.
    * @param shapeName the name of the shape.
    * @return String of the summary.
    */
   private String reprAnimation(IAnimation animation, String shapeName) {
-    StringBuilder builder =  new StringBuilder();
+    StringBuilder builder = new StringBuilder();
     builder.append("Shape ");
     builder.append(shapeName);
 
-    switch(animation.getType()) {
+    switch (animation.getType()) {
       case CREATE:
         builder.append(printAnimationHelper("Appears", animation.getStartTime()));
         break;
@@ -153,21 +162,21 @@ public class TextView implements IView{
             animation.getEndTime()));
         break;
 
-        default:
-          builder.append(" does something from t=");
-          builder.append(tick2Time(animation.getStartTime()));
-          builder.append(" to t=");
-          builder.append(tick2Time(animation.getEndTime()));
-          break;
+      default:
+        builder.append(" does something from t=");
+        builder.append(tick2Time(animation.getStartTime()));
+        builder.append(" to t=");
+        builder.append(tick2Time(animation.getEndTime()));
+        break;
 
     }
-
 
     return builder.toString();
   }
 
   /**
    * Returns the string given an animation.
+   *
    * @param startTick the start tick.
    * @param endTick the end tick.
    * @param startState the start state as a string.
@@ -176,9 +185,9 @@ public class TextView implements IView{
    * @return a string representing the animation
    */
   private String printAnimationHelper(String verb, String startState, String endState,
-      float startTick, float endTick) {
+      int startTick, int endTick) {
 
-    StringBuilder builder =  new StringBuilder();
+    StringBuilder builder = new StringBuilder();
 
     builder.append(" ");
     builder.append(verb);
@@ -197,13 +206,14 @@ public class TextView implements IView{
 
   /**
    * Returns the string given an animation.
+   *
    * @param verb the action verb describing the animation
    * @param tick the tick the action occurs
    * @return a string representing the animation
    */
-  private String printAnimationHelper(String verb, float tick) {
+  private String printAnimationHelper(String verb, int tick) {
 
-    StringBuilder builder =  new StringBuilder();
+    StringBuilder builder = new StringBuilder();
 
     builder.append(" ");
     builder.append(verb);
@@ -216,10 +226,11 @@ public class TextView implements IView{
 
   /**
    * Returns the time for a corresponding tick.
+   *
    * @param tick the tick.
    * @return the time
    */
-  private float tick2Time(float tick) {
+  private int tick2Time(int tick) {
     return tick * speed;
   }
 }
