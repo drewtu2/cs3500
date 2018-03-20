@@ -55,7 +55,7 @@ public class AnimatorController implements IController {
     }
 
     @Override
-    public IController build() throws FileNotFoundException, IOException {
+    public IController build() throws IOException {
 
       AnimationFileReader mr = new AnimationFileReader();
       AnimatorModel.Builder mb = new AnimatorModel.Builder();
@@ -69,7 +69,7 @@ public class AnimatorController implements IController {
     }
 
     @Override
-    public IController buildFromInputArgs(String[] args) throws IOException, FileNotFoundException {
+    public IController buildFromInputArgs(String[] args) throws IOException {
       String id;
       String value;
 
@@ -79,17 +79,26 @@ public class AnimatorController implements IController {
         value = args[i + 1];
 
         if (id.toLowerCase().equals("-if")) {
-          inputFile = value;
+          if(value.charAt(0) == '-') {
+            throw new IllegalArgumentException("bad file input");
+          }
+          setInputFile(value);
         } else if (id.toLowerCase().equals("-iv")) {
-          vt = value;
+          if(value.charAt(0) == '-') {
+            throw new IllegalArgumentException("bad view input");
+          }
+          setView(value);
         } else if (id.toLowerCase().equals("-speed")) {
           try {
-            speed = Integer.valueOf(value);
+            setSpeed(Integer.valueOf(value));
           } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Bad Speed");
           }
         } else if (id.toLowerCase().equals("-o")) {
-          outputFile = value;
+          if(value.charAt(0) == '-') {
+            throw new IllegalArgumentException("bad out input");
+          }
+          setOutputFile(value);
         } else {
           throw new IllegalArgumentException("Bad flag");
         }
