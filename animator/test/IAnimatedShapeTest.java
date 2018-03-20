@@ -70,8 +70,8 @@ public class IAnimatedShapeTest {
     List<AnimationSummary> sums = s.getSummary();
 
     List<String> expected = new ArrayList<>();
-    expected.add(mv1.toString(s.getName()));
     expected.add(r2g.toString(s.getName()));
+    expected.add(mv1.toString(s.getName()));
 
     for (int ii = 0; ii < sums.size(); ++ii) {
       assertEquals(expected.get(ii), sums.get(ii).getDescription());

@@ -52,7 +52,7 @@ public class IAnimationTest {
 
   @Test
   public void testGetStartTime() {
-    float two = (float) 2.0;
+    int two = 2;
     assertEquals(two, appear.getStartTime());
     assertEquals(two, mv1.getStartTime());
     assertEquals(two, r2g.getStartTime());
@@ -62,8 +62,8 @@ public class IAnimationTest {
 
   @Test
   public void testGetEndTime() {
-    float two = (float) 2.0;
-    float four = (float) 4.0;
+    int two = 2;
+    int four = 4;
     assertEquals(two, appear.getEndTime());
     assertEquals(four, mv1.getEndTime());
     assertEquals(four, r2g.getEndTime());

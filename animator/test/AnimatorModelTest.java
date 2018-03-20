@@ -84,10 +84,10 @@ public class AnimatorModelTest {
             + "Lower-left-corner: (30.000000, 30.000000), "
             + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "Animations:\n"
-            + "Shape square appears at t=1.0\n"
+            + "Shape square appears at t=1\n"
             + "Shape square moves from (10.000000, 20.000000) to "
-            + "(30.000000, 50.000000) from time t=2.0 to time t=5.0\n"
-            + "Shape square disappears at t=10.0\n",
+            + "(30.000000, 50.000000) from time t=2 to time t=5\n"
+            + "Shape square disappears at t=10\n",
         myAnimator.toString());
 
     myAnimator.addShape(basicSquare2);
@@ -101,10 +101,10 @@ public class AnimatorModelTest {
             + "Lower-left-corner: (30.000000, 30.000000), Width: 10.0 "
             + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "Animations:\n"
-            + "Shape square appears at t=1.0\n"
+            + "Shape square appears at t=1\n"
             + "Shape square moves from (10.000000, 20.000000) to "
-            + "(30.000000, 50.000000) from time t=2.0 to time t=5.0\n"
-            + "Shape square disappears at t=10.0\n",
+            + "(30.000000, 50.000000) from time t=2 to time t=5\n"
+            + "Shape square disappears at t=10\n",
         myAnimator.toString());
 
     myAnimator.addAnimation("square2", AnimationFactory.getAppearAnimation(1));
@@ -119,11 +119,11 @@ public class AnimatorModelTest {
             + "Lower-left-corner: (30.000000, 30.000000), Width: 10.0 "
             + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "Animations:\n"
-            + "Shape square appears at t=1.0\n"
-            + "Shape square2 appears at t=1.0\n"
+            + "Shape square appears at t=1\n"
+            + "Shape square2 appears at t=1\n"
             + "Shape square moves from (10.000000, 20.000000) to "
-            + "(30.000000, 50.000000) from time t=2.0 to time t=5.0\n"
-            + "Shape square disappears at t=10.0\n",
+            + "(30.000000, 50.000000) from time t=2 to time t=5\n"
+            + "Shape square disappears at t=10\n",
         myAnimator.toString());
   }
 
@@ -159,38 +159,14 @@ public class AnimatorModelTest {
             + "Lower-left-corner: (30.000000, 30.000000), "
             + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "Animations:\n"
-            + "Shape square appears at t=1.0\n"
+            + "Shape square appears at t=1\n"
             + "Shape square moves from (10.000000, 20.000000) to "
-            + "(30.000000, 50.000000) from time t=2.0 to time t=5.0\n"
+            + "(30.000000, 50.000000) from time t=2 to time t=5\n"
             + "Shape square changes color from Color: (1.0, 0.0, 0.0) to "
-            + "Color: (0.0, 0.0, 1.0) from time t=2.0 to time t=5.0\n"
-            + "Shape square disappears at t=10.0\n",
+            + "Color: (0.0, 0.0, 1.0) from time t=2 to time t=5\n"
+            + "Shape square disappears at t=10\n",
         myAnimator.toString());
 
-  }
-
-  @Test
-  public void testToStringAtTime() {
-    Position2D startPos = new Position2D(10, 20);
-    Position2D endPos = new Position2D(30, 50);
-    RGBColor startCol = new RGBColor(1, 0, 0);
-    RGBColor endCol = new RGBColor(0, 0, 1);
-
-    myAnimator.addShape(basicSquare);
-    myAnimator.addAnimation("square", AnimationFactory.getAppearAnimation(1));
-    myAnimator.addAnimation("square", AnimationFactory.getMoveAnimation(startPos, endPos, 2, 5));
-    myAnimator.addAnimation("square", AnimationFactory.getColorAnimation(startCol, endCol, 2, 5));
-    myAnimator.addAnimation("square", AnimationFactory.getDisappearAnimation(10));
-
-    assertEquals("Name: square\n"
-        + "Type: rectangle\n"
-        + "Lower-left-corner: (30.000000, 50.000000), Width: 10.0 Height: 10.0, Color: (0.0, 0.0, 1.0), Opacity: 1.0\n"
-        + "Animations:\n"
-        + "Shape square appears at t=1.0\n"
-        + "Shape square moves from (10.000000, 20.000000) to (30.000000, 50.000000) from time t=2.0 to time t=5.0\n"
-        + "Shape square changes color from Color: (1.0, 0.0, 0.0) to Color: (0.0, 0.0, 1.0) from time t=2.0 to time t=5.0\n"
-        + "Shape square disappears at t=10.0\n",
-        myAnimator.toString(5));
   }
 
   @Test
