@@ -13,9 +13,9 @@ jar:
 	cd build/; jar cvfm animator.jar ../src/META-INF/* *
 
 submission: jar text svg
-	echo making submission
-	@ rm -f resource/animator.jar
-	@ cp $(JAR) resource/animator.jar
+	@echo making submission
+	@rm -f resource/animator.jar
+	@cp $(JAR) resource/animator.jar
 	@cd ..; pwd ;\
 	./makeSubmission.sh animator;
 
@@ -27,6 +27,6 @@ text:
 
 svg:
 	@echo Running svg view...
-	rm -f resource/toh-at-20.svg
+	@rm -f resource/toh-at-20.svg
 	$(RUN) -if assignment6_starter/toh-8.txt -iv svg -o resource/toh-at-20.svg -speed 20
 	@echo Finished running svg view...
