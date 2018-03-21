@@ -1,3 +1,142 @@
+
+# Tuesday, Mar 20, 2018
+# Shesh
+
+## GUIs and key Action Listeners
+Use key codes instead of character values -> makes behavior of keyboard settings
+(Chinese vs English)
+
+### Differentiating Action events
+Switching on Action Command.
+Works, but not scaleable (what happens when you have 50-60 actions? switch
+  cases get pretty nasty...)
+
+Using switch statements to differentiate between different keys...
+```java
+  @Override
+  public void keyTyped(KeyEvent e) {
+    switch (e.getKeyChar()) {
+      case 'd': //toggle color
+        view.toggleColor();
+        break;
+
+    }
+  }
+
+  @Override
+  public void keyPressed(KeyEvent e) {
+    switch (e.getKeyCode()) {
+      case KeyEvent.VK_C: //caps
+        String text = model.getString();
+        text = text.toUpperCase();
+        view.setEchoOutput(text);
+        break;
+
+    }
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e) {
+    switch (e.getKeyCode()) {
+      case KeyEvent.VK_C: //caps
+        String text = model.getString();
+        view.setEchoOutput(text);
+        break;
+    }
+  }
+```
+
+Alternative method.... add Mapping between a particular character/key and a
+runnable object (object that implements the runnable interface)
+this means that we can decouple the key from a specific implementation.
+
+Changing the implementation of what button `VK_C` does can mean just changing
+the `MakeCaps` object definition.
+
+Furthermore, the listener implementation of the code is now greatly simplified:
+regardless of what values you put in the map, the implementation doesn't change...
+1. Does the key exist as a key in the map?
+2. If so, execute the corresponding function
+
+
+```java
+  private void configureKeyBoardListener() {
+    Map<Character, Runnable> keyTypes = new HashMap<>();
+    Map<Integer, Runnable> keyPresses = new HashMap<>();
+    Map<Integer, Runnable> keyReleases = new HashMap<>();
+
+    keyPresses.put(KeyEvent.VK_C, new MakeCaps());
+    keyReleases.put(KeyEvent.VK_C, new MakeOriginalCase());
+
+    // Another possible syntax: instead of defining a new class, just to make a single instance,
+    // you can create an "anonymous class" that implements a particular interface, by writing
+    // "new Interfacename() { all the methods you need to implement }"
+    // Note that "view" is in scope inside this Runnable!  But, also note that within the Runnable,
+    // "this" refers to the Runnable and not to the Controller, so we don't say "this.view".
+    keyTypes.put('r', new Runnable() {
+      public void run() {
+        view.toggleColor();
+      }
+    });
+
+
+    KeyboardListener kbd = new KeyboardListener();
+    kbd.setKeyTypedMap(keyTypes);
+    kbd.setKeyPressedMap(keyPresses);
+    kbd.setKeyReleasedMap(keyReleases);
+
+    view.addKeyListener(kbd);
+
+  }
+
+
+  // Example of the keyEvent Listener...
+  // No matter what, nothing changes in how we execute the function!
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if (keyTypedMap.containsKey(e.getKeyChar()))
+            keyTypedMap.get(e.getKeyChar()).run();
+    }
+```
+
+We can simplify the use of Anonymous classes to just using a lambda function.
+```java
+	private void configureKeyBoardListener()
+	{
+		Map<Character,Runnable> keyTypes = new HashMap<Character,Runnable>();
+		Map<Integer,Runnable> keyPresses = new HashMap<Integer,Runnable>();
+		Map<Integer,Runnable> keyReleases = new HashMap<Integer,Runnable>();
+
+		keyTypes.put('d',() -> view.toggleColor() //the contents of ToggleColor below
+				    );
+		keyPresses.put(KeyEvent.VK_C, () -> { //the contents of MakeCaps below
+					String text = model.getString();
+					text = text.toUpperCase();
+					view.setEchoOutput(text);
+				}
+
+				    );
+		keyReleases.put(KeyEvent.VK_C, () -> { //the contents of MakeOriginal below
+					String text = model.getString();
+					view.setEchoOutput(text);
+				}
+
+				    );
+
+
+        KeyboardListener kbd = new KeyboardListener();
+		kbd.setKeyTypedMap(keyTypes);
+		kbd.setKeyPressedMap(keyPresses);
+		kbd.setKeyReleasedMap(keyReleases);
+
+		view.addKeyListener(kbd);
+
+	}
+```
+
+**Question: doesn't using lambda or anonymous classes reduce the modularity?**
+
+
 # Friday, Mar 02, 2018
 # Shesh
 
@@ -9,11 +148,11 @@ View = GUI
 Model = underlying method of the functioning program
 Controller = changes program state
 
-Using swing for GUIs in Java. 
+Using swing for GUIs in Java.
 All classes in swing start with "J"
 
 Pane = Largest container
-Frame = containers inside the pane, default, only takes a single item per frame. 
+Frame = containers inside the pane, default, only takes a single item per frame.
 - in order to add more things, you need to tell it how to arrange multiple things
 - give the frame a layout manager
     - Flow layout
@@ -30,7 +169,7 @@ can be detected w/ action listeners.
 
 Creating events/listeners are done by overriding corresponding classes from swing
 library
-Specific buttons can be identifed by a unique "action command", execute on events 
+Specific buttons can be identifed by a unique "action command", execute on events
 by action command
 
 ``` java
@@ -44,7 +183,7 @@ this.add(echoButton);
 ## Dividing out into MVC
 
 Controller is now responsible for holding the model and the view: interface
-between the two. 
+between the two.
 
 ```java
 IModel model = new Model();
