@@ -10,6 +10,7 @@ import cs3500.animator.animation.concrete.MoveAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,6 +59,11 @@ public class TextView implements IView {
 
       for (AnimationSummary summary : animationSummaries) {
         output.append(summary.getDescription());
+      }
+
+      if(output.getClass() == FileWriter.class) {
+        ((FileWriter) output).flush();
+        ((FileWriter) output).close();
       }
 
     } catch (IOException e) {
@@ -233,6 +239,6 @@ public class TextView implements IView {
    * @return the time
    */
   private float tick2Time(int tick) {
-    return tick / speed;
+    return (float)tick / (float)speed;
   }
 }

@@ -15,7 +15,7 @@ import cs3500.animator.shape.ShapeType;
 import cs3500.animator.shape.concrete.Oval;
 import cs3500.animator.shape.concrete.Rectangle;
 import cs3500.animator.shape.dimension.WidthHeightDim;
-
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -114,6 +114,11 @@ public class SVGView implements IView {
       output.append("\n" + endTag + "\n\n");
     }
     output.append("</svg>");
+
+    if(output.getClass() == FileWriter.class) {
+      ((FileWriter) output).flush();
+      ((FileWriter) output).close();
+    }
   }
 
   /**
@@ -147,7 +152,7 @@ public class SVGView implements IView {
                       Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
                               .getX())),
                       animation.getStartTime(),
-                      animation.getEndTime(),
+                      animation.getEndTime() - animation.getStartTime(),
                       "freeze"));
             }
             if (typeOfMove(((MoveAnimation) animation).getStartPos(),
@@ -159,7 +164,7 @@ public class SVGView implements IView {
                       Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
                               .getY())),
                       animation.getStartTime(),
-                      animation.getEndTime(),
+                  animation.getEndTime() - animation.getStartTime(),
                       "freeze"));
             }
             break;
@@ -169,7 +174,7 @@ public class SVGView implements IView {
                     ((ColorAnimation) animation).getStartColor().toString(),
                     ((ColorAnimation) animation).getEndColor().toString(),
                     animation.getStartTime(),
-                    animation.getEndTime(),
+                animation.getEndTime() - animation.getStartTime(),
                     "freeze"));
             break;
           case SCALE:
@@ -188,7 +193,7 @@ public class SVGView implements IView {
                             .getEndDimension())
                             .getWidth())),
                     animation.getStartTime(),
-                    animation.getEndTime(),
+                animation.getEndTime() - animation.getStartTime(),
                     "freeze"));
             output.append(printAnimationHelper(
                     attName2,
@@ -198,7 +203,7 @@ public class SVGView implements IView {
                             .getEndDimension())
                             .getHeight())),
                     animation.getStartTime(),
-                    animation.getEndTime(),
+                animation.getEndTime() - animation.getStartTime(),
                     "freeze"));
             break;
           case CREATE:
@@ -207,7 +212,7 @@ public class SVGView implements IView {
             break;
           case DESTROY:
             output.append(printAnimationHelper("visibility", animation.getEndTime(),
-                    "remove"));
+                    "freeze"));
             break;
           default:
             throw new IOException("invalid type used");
@@ -266,7 +271,7 @@ public class SVGView implements IView {
     builder.append("\n\t<animate attributeType=\"xml\" begin=\"");
     builder.append(tick2Time(tick));
     builder.append("s\" dur=\"");
-    builder.append(tick2Time(tick));
+    builder.append(0);
     builder.append("s\" attributeName=\"");
     builder.append(attName);
     builder.append("\" fill=\"");

@@ -6,7 +6,6 @@ import cs3500.animator.model.IModelView;
 import cs3500.animator.util.AnimationFileReader;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.ViewFactory;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -46,6 +45,10 @@ public class AnimatorController implements IController {
 
     @Override
     public void setSpeed(int speed) {
+      if (speed < 0) {
+        System.err.println("exception thrown...");
+        throw new IllegalArgumentException("Cannot be negative");
+      }
       this.speed = speed;
     }
 
@@ -56,6 +59,9 @@ public class AnimatorController implements IController {
 
     @Override
     public IController build() throws IOException {
+      if (inputFile == null || vt == null) {
+        throw new IllegalArgumentException("View type and Inputfile need to be set");
+      }
 
       AnimationFileReader mr = new AnimationFileReader();
       AnimatorModel.Builder mb = new AnimatorModel.Builder();
@@ -74,7 +80,11 @@ public class AnimatorController implements IController {
       String value;
 
       // Extract arguments values from the arg array
-      for (int i = 0; i < args.length / 2; i += 2) {
+      if(args.length %2 != 0) {
+        throw new IllegalArgumentException("Invalid number of arguments");
+      }
+
+      for (int i = 0; i < args.length; i += 2) {
         id = args[i];
         value = args[i + 1];
 
