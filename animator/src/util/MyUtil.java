@@ -1,4 +1,4 @@
-package cs3500.animator.util;
+package util;
 
 /**
  * General purpose utilities.
@@ -7,6 +7,7 @@ public class MyUtil {
 
   /**
    * Performs a linear interpolation on the given values.
+   *
    * @param startValue the start value
    * @param endValue the end value
    * @param startTime the start time
@@ -19,16 +20,16 @@ public class MyUtil {
       float endValue,
       int startTime,
       int endTime,
-      int time)
-  {
-    float componentA = startValue * (endTime - time)/(endTime - startTime);
-    float componentB = endValue * (time - startTime)/(endTime - startTime);
+      int time) {
+    float componentA = startValue * (endTime - time) / (endTime - startTime);
+    float componentB = endValue * (time - startTime) / (endTime - startTime);
 
     return componentA + componentB;
   }
 
   /**
    * Throws null pointer exception if the given input is null.
+   *
    * @param input input to check
    */
   public static void checkNull(Object input) {

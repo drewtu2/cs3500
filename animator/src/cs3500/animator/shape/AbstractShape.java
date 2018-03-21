@@ -1,6 +1,6 @@
 package cs3500.animator.shape;
 
-import static cs3500.animator.util.MyUtil.checkNull;
+import static util.MyUtil.checkNull;
 
 import cs3500.animator.shape.dimension.IDimension;
 import java.util.Objects;

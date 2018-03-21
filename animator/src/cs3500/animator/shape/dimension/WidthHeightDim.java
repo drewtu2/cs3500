@@ -1,6 +1,6 @@
 package cs3500.animator.shape.dimension;
 
-import cs3500.animator.util.MyUtil;
+import util.MyUtil;
 import java.util.Objects;
 
 /**

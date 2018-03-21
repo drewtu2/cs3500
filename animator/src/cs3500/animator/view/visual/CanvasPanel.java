@@ -1,6 +1,6 @@
 package cs3500.animator.view.visual;
 
-import static cs3500.animator.util.MyUtil.checkNull;
+import static util.MyUtil.checkNull;
 
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
@@ -20,7 +20,6 @@ import javax.swing.JPanel;
  */
 public class CanvasPanel extends JPanel {
 
-  private IModelView myMv;
   private Map<String, IAnimatedShape> state;
   private int tickNum;
 
@@ -49,7 +48,7 @@ public class CanvasPanel extends JPanel {
    */
   public void setModelView(IModelView mv) {
     checkNull(mv);
-    myMv = mv;
+    IModelView myMv = mv;
     state = myMv.getFullState();
     checkNull(state);
   }
