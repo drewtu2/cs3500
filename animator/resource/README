@@ -9,6 +9,7 @@ to a read only version of the model. As part of implementing this new interface,
 new method, `getFullState()` which returns the map of AnimatedShapes to the caller. This allows the
 model to directly access the state of the model and draw the contained shapes at any time.
 
+# Further Development
 We created an IView interface that represents all views of the animator. In this interface, there
 exists a show method that takes in the tempo of the animation at this time and performs view
 implementation dependent on type of view. As of right now, each class that implements the IView
@@ -17,14 +18,14 @@ an appendable filewriterr to which the properly formatted output will be added t
 prints the output as a graphical display in a pop up window. This window additionally has scrollable
  capability.
 
- We made a ViewFactory class that is used to determine which view to construct. There is a method in
-  this that creates an appendable and an instance of the proper view class based on string input. It
-   throws an illegal arg exception if the string is invalid. 
+We made a ViewFactory class that is used to determine which view to construct. There is a method in
+this that creates an appendable and an instance of the proper view class based on string input. It
+throws an illegal arg exception if the string is invalid. 
 
- The controller itself has 3 elements. The first is an IController interface that has a void
- playAnimation method that will be called in the EasyAnimator class main method. The second part is
- the IControllerBuilder which is a builder interface that contains methods that will construct a
- builder with the following default values. - speed: 1 - o: System.out The input file and the view
- type MUST be set before construction. The Builder class is created in the AnimatorController class
- that implements from the IController interface. This builds from the args in the main method.
+The controller itself has 3 elements. The first is an IController interface that has a void
+playAnimation method that will be called in the EasyAnimator class main method. The second part is
+the IControllerBuilder which is a builder interface that contains methods that will construct a
+builder with the following default values. - speed: 1 - o: System.out The input file and the view
+type MUST be set before construction. The Builder class is created in the AnimatorController class
+that implements from the IController interface. This builds from the args in the main method.
 
