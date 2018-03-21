@@ -9,8 +9,6 @@ import cs3500.animator.model.IAnimatorModel;
 import cs3500.animator.util.AnimationFileReader;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.ViewFactory;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
