@@ -15,7 +15,7 @@ jar:
 submission: jar text svg
 	echo making submission
 	@ rm -f resource/animator.jar
-	@ cp out/artifacts/animator_jar/animator.jar resource/animator.jar
+	@ cp $(JAR) resource/animator.jar
 	@cd ..; pwd ;\
 	./makeSubmission.sh animator;
 
@@ -28,5 +28,5 @@ text:
 svg:
 	@echo Running svg view...
 	rm -f resource/toh-at-20.svg
-	$(RUN) -if assignment6_starter/toh-3.txt -iv svg -o resource/toh-at-20.svg -speed 20
+	$(RUN) -if assignment6_starter/toh-8.txt -iv svg -o resource/toh-at-20.svg -speed 20
 	@echo Finished running svg view...
