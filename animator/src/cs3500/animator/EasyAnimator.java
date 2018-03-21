@@ -4,8 +4,23 @@ import cs3500.animator.controller.AnimatorController;
 import cs3500.animator.controller.IController;
 import java.io.IOException;
 
+/**
+ * Easy Animator main class.
+ */
 public class EasyAnimator {
+
+  /**
+   * The main method.
+   * @param args input args.
+   */
   public static void main(String[] args) {
+
+    try {
+      IController myAnimation = new AnimatorController.Builder().buildFromInputArgs(args);
+      myAnimation.playAnimation();
+    } catch (IOException e) {
+      System.out.println("An IOException occured....");
+    }
 
     //System.out.println("Showing view");
     //IView myView;
@@ -18,12 +33,6 @@ public class EasyAnimator {
     //  System.err.println("An Exception occured...");
     //  System.err.println(e);
     //}
-    try {
-      IController myAnimation = new AnimatorController.Builder().buildFromInputArgs(args);
-      myAnimation.playAnimation();
-    } catch (IOException e) {
-      System.out.println("An IOException occured....");
-    }
   }
 
   //public static IAnimatorModel setup() {

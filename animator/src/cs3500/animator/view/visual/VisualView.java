@@ -1,6 +1,6 @@
 package cs3500.animator.view.visual;
 
-import static cs3500.animator.util.MyUtil.checkNull;
+import static util.MyUtil.checkNull;
 
 import cs3500.animator.model.IModelView;
 import cs3500.animator.view.IView;
@@ -16,14 +16,10 @@ import javax.swing.Timer;
  */
 public class VisualView extends JFrame implements IView {
 
-  private int frameWidth;
-  private int frameHeight;
   private int speed; // tics/second
 
   private final CanvasPanel canvas;
 
-  private JScrollBar hbar;
-  private JScrollBar vbar;
   private Timer timer;
 
   private int secondsCount;
@@ -33,6 +29,11 @@ public class VisualView extends JFrame implements IView {
    */
   public VisualView() {
     super();
+
+    JScrollBar hbar;
+    JScrollBar vbar;
+    int frameWidth;
+    int frameHeight;
 
     frameHeight = 500;
     frameWidth = 500;

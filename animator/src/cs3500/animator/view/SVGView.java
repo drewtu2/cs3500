@@ -1,6 +1,6 @@
 package cs3500.animator.view;
 
-import static cs3500.animator.util.MyUtil.checkNull;
+import static util.MyUtil.checkNull;
 
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
@@ -32,8 +32,8 @@ public class SVGView implements IView {
   private float speed;
 
   /**
-   * Constructs an instance of an svgview setting the output to be the appendable.
-   * Setting speed default to 1 tick/sec
+   * Constructs an instance of an svgview setting the output to be the appendable. Setting speed
+   * default to 1 tick/sec
    *
    * @param out Appendable to write to.
    */
@@ -53,9 +53,13 @@ public class SVGView implements IView {
     speed = tempo;
     String endTag = "";
     Map<String, IAnimatedShape> mMap = model.getFullState();
-    output.append("<svg width=\"" + Integer.toString(width) +
-            "\" height=\"" + Integer.toString(height) + "\" version=\"1.1\"" +
-            "\n\txmlns=\"http://www.w3.org/2000/svg\"" + ">\n\n");
+    output.append("<svg width=\""
+        + Integer.toString(width)
+        + "\" height=\""
+        + Integer.toString(height)
+        + "\" version=\"1.1\""
+        + "\n\txmlns=\"http://www.w3.org/2000/svg\""
+        + ">\n\n");
 
     for (String sName : model.listShapes()) {
       IShape curShape = mMap.get(sName);
@@ -70,10 +74,10 @@ public class SVGView implements IView {
         output.append(Integer.toString(Math.round(curShape.getPosition().getY())));
         output.append("\" width=\"");
         output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-                .getWidth())));
+            .getWidth())));
         output.append("\" height=\"");
         output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-                .getHeight())));
+            .getHeight())));
         output.append("\" fill=\"rgb(");
         output.append(Integer.toString(Math.round(255 * curShape.getColor().getRed())));
         output.append("," + Integer.toString(Math.round(255 * curShape.getColor().getGreen())));
@@ -95,10 +99,10 @@ public class SVGView implements IView {
         output.append(Integer.toString(Math.round(curShape.getPosition().getY())));
         output.append("\" rx=\"");
         output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-                .getWidth())));
+            .getWidth())));
         output.append("\" ry=\"");
         output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-                .getHeight())));
+            .getHeight())));
         output.append("\" fill=\"rgb(");
         output.append(Integer.toString(Math.round(255 * curShape.getColor().getRed())));
         output.append("," + Integer.toString(Math.round(255 * curShape.getColor().getGreen())));
@@ -115,7 +119,7 @@ public class SVGView implements IView {
     }
     output.append("</svg>");
 
-    if(output.getClass() == FileWriter.class) {
+    if (output.getClass() == FileWriter.class) {
       ((FileWriter) output).flush();
       ((FileWriter) output).close();
     }
@@ -125,7 +129,7 @@ public class SVGView implements IView {
    * Appends svg formatted strings representing the animations to the appendable.
    *
    * @param sType shape type to help determine attributeName
-   * @param s     IAnimatedShape holding list of animations by type
+   * @param s IAnimatedShape holding list of animations by type
    */
   private void showAnimations(ShapeType sType, IAnimatedShape s) throws IOException {
     String attName1 = "";
@@ -144,38 +148,38 @@ public class SVGView implements IView {
               attName2 = "y";
             }
             if (typeOfMove(((MoveAnimation) animation).getStartPos(),
-                    ((MoveAnimation) animation).getEndPos()).contains("x")) {
+                ((MoveAnimation) animation).getEndPos()).contains("x")) {
               output.append(printAnimationHelper(
-                      attName1,
-                      Integer.toString(Math.round(((MoveAnimation) animation).getStartPos()
-                              .getX())),
-                      Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
-                              .getX())),
-                      animation.getStartTime(),
-                      animation.getEndTime() - animation.getStartTime(),
-                      "freeze"));
+                  attName1,
+                  Integer.toString(Math.round(((MoveAnimation) animation).getStartPos()
+                      .getX())),
+                  Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
+                      .getX())),
+                  animation.getStartTime(),
+                  animation.getEndTime() - animation.getStartTime(),
+                  "freeze"));
             }
             if (typeOfMove(((MoveAnimation) animation).getStartPos(),
-                    ((MoveAnimation) animation).getEndPos()).contains("y")) {
+                ((MoveAnimation) animation).getEndPos()).contains("y")) {
               output.append(printAnimationHelper(
-                      attName2,
-                      Integer.toString(Math.round(((MoveAnimation) animation).getStartPos()
-                              .getY())),
-                      Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
-                              .getY())),
-                      animation.getStartTime(),
+                  attName2,
+                  Integer.toString(Math.round(((MoveAnimation) animation).getStartPos()
+                      .getY())),
+                  Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
+                      .getY())),
+                  animation.getStartTime(),
                   animation.getEndTime() - animation.getStartTime(),
-                      "freeze"));
+                  "freeze"));
             }
             break;
           case COLOR:
             output.append(printAnimationHelper(
-                    "fill",
-                    ((ColorAnimation) animation).getStartColor().toString(),
-                    ((ColorAnimation) animation).getEndColor().toString(),
-                    animation.getStartTime(),
+                "fill",
+                ((ColorAnimation) animation).getStartColor().toString(),
+                ((ColorAnimation) animation).getEndColor().toString(),
+                animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime(),
-                    "freeze"));
+                "freeze"));
             break;
           case SCALE:
             if (sType.equals(ShapeType.OVAL)) {
@@ -186,33 +190,33 @@ public class SVGView implements IView {
               attName2 = "height";
             }
             output.append(printAnimationHelper(
-                    attName1,
-                    Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
-                            .getStartDimension()).getWidth())),
-                    Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
-                            .getEndDimension())
-                            .getWidth())),
-                    animation.getStartTime(),
+                attName1,
+                Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
+                    .getStartDimension()).getWidth())),
+                Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
+                    .getEndDimension())
+                    .getWidth())),
+                animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime(),
-                    "freeze"));
+                "freeze"));
             output.append(printAnimationHelper(
-                    attName2,
-                    Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
-                            .getStartDimension()).getHeight())),
-                    Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
-                            .getEndDimension())
-                            .getHeight())),
-                    animation.getStartTime(),
+                attName2,
+                Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
+                    .getStartDimension()).getHeight())),
+                Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
+                    .getEndDimension())
+                    .getHeight())),
+                animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime(),
-                    "freeze"));
+                "freeze"));
             break;
           case CREATE:
             output.append(printAnimationHelper("visibility", animation.getStartTime(),
-                    "freeze"));
+                "freeze"));
             break;
           case DESTROY:
             output.append(printAnimationHelper("visibility", animation.getEndTime(),
-                    "freeze"));
+                "freeze"));
             break;
           default:
             throw new IOException("invalid type used");
@@ -225,17 +229,17 @@ public class SVGView implements IView {
   /**
    * Returns the string given an animation.
    *
-   * @param startTick  the start tick.
-   * @param endTick    the end tick.
+   * @param startTick the start tick.
+   * @param endTick the end tick.
    * @param startState the start state as a string.
-   * @param endState   the end state as a string.
-   * @param attName    attribute on which the animation occurs
-   * @param fillType   string determining if the animation is reset or stays on screen
+   * @param endState the end state as a string.
+   * @param attName attribute on which the animation occurs
+   * @param fillType string determining if the animation is reset or stays on screen
    * @return a string representing the animation
    */
   private String printAnimationHelper(String attName, String startState, String
-          endState, float
-                                              startTick, float endTick, String fillType) {
+      endState, float
+      startTick, float endTick, String fillType) {
 
     StringBuilder builder = new StringBuilder();
 
@@ -259,8 +263,8 @@ public class SVGView implements IView {
   /**
    * Returns the string given an animation.
    *
-   * @param attName  the attribute on which the animation occurs
-   * @param tick     the tick the action occurs
+   * @param attName the attribute on which the animation occurs
+   * @param tick the tick the action occurs
    * @param fillType string determining if the animation is reset or stays on screen
    * @return a string representing the animation
    */
@@ -295,7 +299,7 @@ public class SVGView implements IView {
    * Determine if the position moves in either x-dir, y-dir, or both.
    *
    * @param start position from
-   * @param end   position dest
+   * @param end position dest
    * @return string x, y, or xy representing the direction of motion
    */
   private String typeOfMove(Position2D start, Position2D end) {

@@ -1,6 +1,6 @@
 package cs3500.animator.view;
 
-import static cs3500.animator.util.MyUtil.checkNull;
+import static util.MyUtil.checkNull;
 
 import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.AnimationType;
@@ -50,7 +50,7 @@ public class TextView implements IView {
 
       // Print every shape and generate a list of all of the animations
       for (IAnimatedShape aShape : shapeMap.values()) {
-        output.append(print_shape_summary(aShape));
+        output.append(printShapeSummary(aShape));
         output.append("\n\n");
         animationSummaries.addAll(getSummary(aShape));
       }
@@ -61,7 +61,7 @@ public class TextView implements IView {
         output.append(summary.getDescription());
       }
 
-      if(output.getClass() == FileWriter.class) {
+      if (output.getClass() == FileWriter.class) {
         ((FileWriter) output).flush();
         ((FileWriter) output).close();
       }
@@ -76,7 +76,7 @@ public class TextView implements IView {
    *
    * @param shape the shape to dump.
    */
-  private String print_shape_summary(IAnimatedShape shape) {
+  private String printShapeSummary(IAnimatedShape shape) {
     StringBuilder builder = new StringBuilder();
 
     builder.append("Name: ");
@@ -239,6 +239,6 @@ public class TextView implements IView {
    * @return the time
    */
   private float tick2Time(int tick) {
-    return (float)tick / (float)speed;
+    return (float) tick / (float) speed;
   }
 }

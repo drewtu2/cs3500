@@ -3,7 +3,7 @@ package cs3500.animator.controller;
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.IAnimatorModel;
 import cs3500.animator.model.IModelView;
-import cs3500.animator.util.AnimationFileReader;
+import util.AnimationFileReader;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.ViewFactory;
 import java.io.IOException;
@@ -80,7 +80,7 @@ public class AnimatorController implements IController {
       String value;
 
       // Extract arguments values from the arg array
-      if(args.length %2 != 0) {
+      if (args.length % 2 != 0) {
         throw new IllegalArgumentException("Invalid number of arguments");
       }
 
@@ -89,12 +89,12 @@ public class AnimatorController implements IController {
         value = args[i + 1];
 
         if (id.toLowerCase().equals("-if")) {
-          if(value.charAt(0) == '-') {
+          if (value.charAt(0) == '-') {
             throw new IllegalArgumentException("bad file input");
           }
           setInputFile(value);
         } else if (id.toLowerCase().equals("-iv")) {
-          if(value.charAt(0) == '-') {
+          if (value.charAt(0) == '-') {
             throw new IllegalArgumentException("bad view input");
           }
           setView(value);
@@ -105,7 +105,7 @@ public class AnimatorController implements IController {
             throw new IllegalArgumentException("Bad Speed");
           }
         } else if (id.toLowerCase().equals("-o")) {
-          if(value.charAt(0) == '-') {
+          if (value.charAt(0) == '-') {
             throw new IllegalArgumentException("bad out input");
           }
           setOutputFile(value);

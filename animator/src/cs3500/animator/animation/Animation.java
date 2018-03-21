@@ -1,7 +1,7 @@
 package cs3500.animator.animation;
 
 import cs3500.animator.shape.IShape;
-import cs3500.animator.util.MyUtil;
+import util.MyUtil;
 
 /**
  * Represents the general body of an animation.
