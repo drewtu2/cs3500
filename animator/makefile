@@ -1,11 +1,18 @@
 JC = javac
-JAR = out/artifacts/animator_jar/animator.jar
+JAR = out/artifacts/animator_jar/animator.jar	# Compiled by IntellIJ
+JAR = build/animator.jar						# Compiled by us
+
+BUILD_DIR = ./build
+
 RUN = java -jar $(JAR)
 
-easy_animator:
-	$(JC) $(JFLAGS) src/cs3500/*
+jar:
+	mkdir -p $(BUILD_DIR) 
+	find src -name *.java > $(BUILD_DIR)/sources.txt
+	$(JC) -d $(BUILD_DIR) @$(BUILD_DIR)/sources.txt
+	cd build/; jar cvfm animator.jar ../src/META-INF/* *
 
-submission: text svg
+submission: jar text svg
 	echo making submission
 	@ rm -f resource/animator.jar
 	@ cp out/artifacts/animator_jar/animator.jar resource/animator.jar
