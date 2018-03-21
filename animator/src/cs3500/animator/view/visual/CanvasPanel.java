@@ -5,6 +5,7 @@ import static util.MyUtil.checkNull;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IShape;
+import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.awt.BorderLayout;
@@ -22,13 +23,14 @@ public class CanvasPanel extends JPanel {
 
   private Map<String, IAnimatedShape> state;
   private int tickNum;
+  private Dimension area;
 
   /**
    * Public constructor for the CanvasPanel.
    */
   public CanvasPanel() {
-    tickNum = 0;
     setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    area = new Dimension(500, 500);
   }
 
   /**
@@ -38,6 +40,7 @@ public class CanvasPanel extends JPanel {
    */
   public CanvasPanel(BorderLayout bl) {
     tickNum = 0;
+    area = new Dimension(500, 500);
     this.setLayout(bl);
   }
 
@@ -64,15 +67,12 @@ public class CanvasPanel extends JPanel {
   }
 
   @Override
-  public Dimension getPreferredSize() {
-    return new Dimension(500, 500);
-  }
-
-  @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     RGBColor shapeColor;
     IShape shapeState;
+
+
 
     if (state != null) {
       for (IAnimatedShape shape : state.values()) {
@@ -97,8 +97,31 @@ public class CanvasPanel extends JPanel {
             default:
               System.err.println("Unexpected Shape Type...");
           }
+          if (updateArea(shapeState)) {
+            setPreferredSize(area);
+          }
         }
       }
     }
+  }
+
+  private boolean updateArea(IShape shape) {
+    boolean changed = false;
+    Position2D pos = shape.getPosition();
+    WidthHeightDim dim = (WidthHeightDim)shape.getDimension();
+
+    int thisWidth = (int)(pos.getX() + dim.getWidth());
+    if (thisWidth > area.width) {
+      area.width = (int)(thisWidth * 1.5);
+      changed=true;
+    }
+
+    int thisHeight = (int)(pos.getY() + dim.getHeight());
+    if (thisHeight > area.height) {
+      area.height = (int)(thisHeight * 1.5);
+      changed=true;
+    }
+
+    return changed;
   }
 }

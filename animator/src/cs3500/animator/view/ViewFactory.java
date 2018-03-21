@@ -53,7 +53,7 @@ public class ViewFactory {
     checkNull(outputFile);
 
     // Handle not out case
-    if (outputFile.equals("out")) {
+    if (!outputFile.equals("out")) {
       myAppendable = new FileWriter(outputFile, true); //true tells to append data.
     } else { // Handle out case
       myAppendable = System.out;

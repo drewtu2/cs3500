@@ -4,20 +4,24 @@ import static util.MyUtil.checkNull;
 
 import cs3500.animator.model.IModelView;
 import cs3500.animator.view.IView;
-import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javax.swing.JFrame;
-import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.Timer;
 
 /**
  * Class representing the visual view of an animator.
  */
-public class VisualView extends JFrame implements IView {
+public class VisualView implements IView {
 
   private int speed; // tics/second
 
+  private final JFrame frame;
+  private final JScrollPane scroller;
   private final CanvasPanel canvas;
 
   private Timer timer;
@@ -28,41 +32,40 @@ public class VisualView extends JFrame implements IView {
    * The visual view implementation.
    */
   public VisualView() {
-    super();
 
-    JScrollBar hbar;
-    JScrollBar vbar;
-    int frameWidth;
-    int frameHeight;
+    int panelWidth = 500;
+    int panelHeight = 500;
 
-    frameHeight = 500;
-    frameWidth = 500;
+    // Overall frame
+    frame = new JFrame("Simple Animator");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    this.setTitle("Simple Animator");
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setSize(frameWidth, frameHeight);
+    // Create the Canvas
+    canvas = new CanvasPanel();
+    canvas.setBackground(Color.WHITE);
 
-    //canvas = new JPanel(new BorderLayout());
-    canvas = new CanvasPanel(new BorderLayout());
 
-    hbar = new JScrollBar(JScrollBar.HORIZONTAL);
-    vbar = new JScrollBar(JScrollBar.VERTICAL);
+    // Create Content Pane
+    scroller = new JScrollPane(canvas,
+        ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    scroller.setPreferredSize(new Dimension(panelWidth, panelHeight));
+    scroller.setOpaque(true);
 
-    canvas.add(hbar, BorderLayout.SOUTH);
-    canvas.add(vbar, BorderLayout.EAST);
-
-    this.setContentPane(canvas);
-
-    //myFrame.pack();
-    this.setVisible(true);
+    frame.setContentPane(scroller);
+    frame.setPreferredSize(new Dimension(panelWidth, panelHeight));
+    frame.pack();
+    frame.setVisible(true);
 
     secondsCount = 0;
+
     timer = new Timer(1000,
         (ActionEvent e) -> {
           System.out.println("Timer Event fired");
           canvas.setTickNumber(secondsCount * speed);
+          canvas.revalidate();
+          canvas.repaint();
           secondsCount++;
-          repaint();
         });
 
   }
