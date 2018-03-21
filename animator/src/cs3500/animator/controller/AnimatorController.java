@@ -29,7 +29,7 @@ public class AnimatorController implements IController {
     public Builder() {
       inputFile = null;
       vt = null;
-      outputFile = null;
+      outputFile = "out";
       speed = 1;
     }
 

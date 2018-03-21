@@ -50,10 +50,9 @@ public class ViewFactory {
 
     // Handle null case
     checkNull(name);
-    checkNull(outputFile);
 
     // Handle not out case
-    if (!outputFile.equals("out")) {
+    if (!outputFile.equals("out") || outputFile != null) {
       myAppendable = new FileWriter(outputFile, true); //true tells to append data.
     } else { // Handle out case
       myAppendable = System.out;
