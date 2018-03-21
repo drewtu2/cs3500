@@ -22,9 +22,7 @@ public class IAnimatedShapeTest {
   private IAnimation appear;
   private IAnimation mv1;
   private IAnimation mvBad;
-  private IAnimation mv2;
   private IAnimation r2g;
-  private IAnimation g2r;
 
   /**
    * Setup the test.
@@ -42,10 +40,8 @@ public class IAnimatedShapeTest {
     appear = AnimationFactory.getAppearAnimation(0);
     mv1 = AnimationFactory.getMoveAnimation(pos, pos2, 2, 4);
     mvBad = AnimationFactory.getMoveAnimation(pos, pos2, 2, 4);
-    mv2 = AnimationFactory.getMoveAnimation(pos2, pos, 5, 7);
 
     r2g = AnimationFactory.getColorAnimation(red, green, 2, 4);
-    g2r = AnimationFactory.getColorAnimation(green, red, 5, 7);
 
   }
 

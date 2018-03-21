@@ -13,6 +13,9 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests the text view class.
+ */
 public class TextViewTest {
 
   private StringBuilder testString;
@@ -23,6 +26,9 @@ public class TextViewTest {
   private RGBColor green = new RGBColor(0, 1, 0);
   private RGBColor blue = new RGBColor(0, 0, 1);
 
+  /**
+   * Setup the test.
+   */
   @Before
   public void setup() {
     testString = new StringBuilder();
@@ -73,22 +79,30 @@ public class TextViewTest {
     assertEquals("Shapes:\n"
             + "Name: test\n"
             + "Type: rectangle\n"
-            + "Min-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
+            + "Min-corner: (10.000000, 10.000000), Width: 10.0 Height: 10.0, "
+            + "Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
             + "\n"
             + "Name: test2\n"
             + "Type: oval\n"
-            + "Center: (20.000000, 20.000000), Width: 20.0 Height: 20.0, Color: (0.0, 0.0, 1.0), Opacity: 0.0\n"
+            + "Center: (20.000000, 20.000000), Width: 20.0 Height: 20.0, "
+            + "Color: (0.0, 0.0, 1.0), Opacity: 0.0\n"
             + "\n"
             + "\n"
             + "Animations:\n"
             + "Shape test Appears at t=0.0s\n"
             + "Shape test2 Appears at t=0.0s\n"
-            + "Shape test moves from (10.000000, 10.000000) to (50.000000, 50.000000) from t=1.0s to t=10.0s\n"
-            + "Shape test2 moves from (10.000000, 10.000000) to (50.000000, 50.000000) from t=1.0s to t=10.0s\n"
-            + "Shape test changes from Color: (1.0, 0.0, 0.0) to Color: (0.0, 1.0, 0.0) from t=2.0s to t=5.0s\n"
-            + "Shape test2 changes from Color: (1.0, 0.0, 0.0) to Color: (0.0, 1.0, 0.0) from t=2.0s to t=5.0s\n"
-            + "Shape test scales from Width: 10.0 Height: 10.0 to Width: 20.0 Height: 20.0 from t=4.0s to t=10.0s\n"
-            + "Shape test2 scales from Width: 10.0 Height: 10.0 to Width: 20.0 Height: 20.0 from t=4.0s to t=10.0s\n",
+            + "Shape test moves from (10.000000, 10.000000) "
+            + "to (50.000000, 50.000000) from t=1.0s to t=10.0s\n"
+            + "Shape test2 moves from (10.000000, 10.000000) "
+            + "to (50.000000, 50.000000) from t=1.0s to t=10.0s\n"
+            + "Shape test changes from Color: (1.0, 0.0, 0.0) "
+            + "to Color: (0.0, 1.0, 0.0) from t=2.0s to t=5.0s\n"
+            + "Shape test2 changes from Color: (1.0, 0.0, 0.0) "
+            + "to Color: (0.0, 1.0, 0.0) from t=2.0s to t=5.0s\n"
+            + "Shape test scales from Width: 10.0 Height: 10.0 "
+            + "to Width: 20.0 Height: 20.0 from t=4.0s to t=10.0s\n"
+            + "Shape test2 scales from Width: 10.0 Height: 10.0 "
+            + "to Width: 20.0 Height: 20.0 from t=4.0s to t=10.0s\n",
         testString.toString());
   }
 
