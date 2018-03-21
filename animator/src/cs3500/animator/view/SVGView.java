@@ -156,8 +156,7 @@ public class SVGView implements IView {
                   Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
                       .getX())),
                   animation.getStartTime(),
-                  animation.getEndTime() - animation.getStartTime(),
-                  "freeze"));
+                  animation.getEndTime() - animation.getStartTime()));
             }
             if (typeOfMove(((MoveAnimation) animation).getStartPos(),
                 ((MoveAnimation) animation).getEndPos()).contains("y")) {
@@ -168,8 +167,7 @@ public class SVGView implements IView {
                   Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
                       .getY())),
                   animation.getStartTime(),
-                  animation.getEndTime() - animation.getStartTime(),
-                  "freeze"));
+                  animation.getEndTime() - animation.getStartTime()));
             }
             break;
           case COLOR:
@@ -178,8 +176,7 @@ public class SVGView implements IView {
                 ((ColorAnimation) animation).getStartColor().toString(),
                 ((ColorAnimation) animation).getEndColor().toString(),
                 animation.getStartTime(),
-                animation.getEndTime() - animation.getStartTime(),
-                "freeze"));
+                animation.getEndTime() - animation.getStartTime()));
             break;
           case SCALE:
             if (sType.equals(ShapeType.OVAL)) {
@@ -197,8 +194,7 @@ public class SVGView implements IView {
                     .getEndDimension())
                     .getWidth())),
                 animation.getStartTime(),
-                animation.getEndTime() - animation.getStartTime(),
-                "freeze"));
+                animation.getEndTime() - animation.getStartTime()));
             output.append(printAnimationHelper(
                 attName2,
                 Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
@@ -207,16 +203,13 @@ public class SVGView implements IView {
                     .getEndDimension())
                     .getHeight())),
                 animation.getStartTime(),
-                animation.getEndTime() - animation.getStartTime(),
-                "freeze"));
+                animation.getEndTime() - animation.getStartTime()));
             break;
           case CREATE:
-            output.append(printAnimationHelper("visibility", animation.getStartTime(),
-                "freeze"));
+            output.append(printAnimationHelper("visibility", animation.getStartTime()));
             break;
           case DESTROY:
-            output.append(printAnimationHelper("visibility", animation.getEndTime(),
-                "freeze"));
+            output.append(printAnimationHelper("visibility", animation.getEndTime()));
             break;
           default:
             throw new IOException("invalid type used");
@@ -234,12 +227,10 @@ public class SVGView implements IView {
    * @param startState the start state as a string.
    * @param endState the end state as a string.
    * @param attName attribute on which the animation occurs
-   * @param fillType string determining if the animation is reset or stays on screen
    * @return a string representing the animation
    */
   private String printAnimationHelper(String attName, String startState, String
-      endState, float
-      startTick, float endTick, String fillType) {
+      endState, float startTick, float endTick) {
 
     StringBuilder builder = new StringBuilder();
 
@@ -253,9 +244,7 @@ public class SVGView implements IView {
     builder.append(startState);
     builder.append("\" to=\"");
     builder.append(endState);
-    builder.append("\" fill=\"");
-    builder.append(fillType);
-    builder.append("\" />");
+    builder.append("\" fill=\"freeze\" />");
 
     return builder.toString();
   }
@@ -265,10 +254,9 @@ public class SVGView implements IView {
    *
    * @param attName the attribute on which the animation occurs
    * @param tick the tick the action occurs
-   * @param fillType string determining if the animation is reset or stays on screen
    * @return a string representing the animation
    */
-  private String printAnimationHelper(String attName, float tick, String fillType) {
+  private String printAnimationHelper(String attName, float tick) {
 
     StringBuilder builder = new StringBuilder();
 
@@ -278,9 +266,7 @@ public class SVGView implements IView {
     builder.append(0);
     builder.append("s\" attributeName=\"");
     builder.append(attName);
-    builder.append("\" fill=\"");
-    builder.append(fillType);
-    builder.append("\" />");
+    builder.append("\" fill=\"freeze\" />");
 
     return builder.toString();
   }
