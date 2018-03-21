@@ -72,8 +72,6 @@ public class CanvasPanel extends JPanel {
     RGBColor shapeColor;
     IShape shapeState;
 
-
-
     if (state != null) {
       for (IAnimatedShape shape : state.values()) {
         shapeColor = shape.getColor();
@@ -108,18 +106,18 @@ public class CanvasPanel extends JPanel {
   private boolean updateArea(IShape shape) {
     boolean changed = false;
     Position2D pos = shape.getPosition();
-    WidthHeightDim dim = (WidthHeightDim)shape.getDimension();
+    WidthHeightDim dim = (WidthHeightDim) shape.getDimension();
 
-    int thisWidth = (int)(pos.getX() + dim.getWidth());
+    int thisWidth = (int) (pos.getX() + dim.getWidth());
     if (thisWidth > area.width) {
-      area.width = (int)(thisWidth * 1.5);
-      changed=true;
+      area.width = (int) (thisWidth * 1.5);
+      changed = true;
     }
 
-    int thisHeight = (int)(pos.getY() + dim.getHeight());
+    int thisHeight = (int) (pos.getY() + dim.getHeight());
     if (thisHeight > area.height) {
-      area.height = (int)(thisHeight * 1.5);
-      changed=true;
+      area.height = (int) (thisHeight * 1.5);
+      changed = true;
     }
 
     return changed;

@@ -44,7 +44,6 @@ public class VisualView implements IView {
     canvas = new CanvasPanel();
     canvas.setBackground(Color.WHITE);
 
-
     // Create Content Pane
     scroller = new JScrollPane(canvas,
         ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
