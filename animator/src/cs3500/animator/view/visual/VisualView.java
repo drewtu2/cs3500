@@ -20,8 +20,6 @@ public class VisualView implements IView {
 
   private int speed; // tics/second
 
-  private final JFrame frame;
-  private final JScrollPane scroller;
   private final CanvasPanel canvas;
 
   private Timer timer;
@@ -32,6 +30,8 @@ public class VisualView implements IView {
    * The visual view implementation.
    */
   public VisualView() {
+    JFrame frame;
+    JScrollPane scroller;
 
     int panelWidth = 500;
     int panelHeight = 500;

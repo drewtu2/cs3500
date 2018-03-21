@@ -1,20 +1,10 @@
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 
 import cs3500.animator.controller.AnimatorController;
 import cs3500.animator.controller.AnimatorController.Builder;
-import cs3500.animator.controller.IController;
-import cs3500.animator.model.AnimatorModel;
-import cs3500.animator.model.IAnimatorModel;
-import cs3500.animator.view.IView;
-import cs3500.animator.view.ViewFactory;
-
 import java.io.IOException;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import util.AnimationFileReader;
 
 /**
  * Tests the controller class.
@@ -23,7 +13,7 @@ public class ControllerTest {
 
   private AnimatorController.Builder builder;
 
-  private String[] goodArgs;
+  //private String[] goodArgs;
   private String[] badFlag;
   private String[] badInputFile;
   private String[] noInputFile;
@@ -39,40 +29,41 @@ public class ControllerTest {
   public void setup() {
 
     builder = new Builder();
-    goodArgs = new String[]{"-if", "assignment6_starter/toh-3.txt", "-iv", "visual", "-speed", "20",
-            "-o", "out.txt"};
+    //goodArgs = new String[]{"-if", "assignment6_starter/toh-3.txt", "-iv", "visual", "-speed",
+    // "20",
+    //    "-o", "out.txt"};
     badInputFile = new String[]{"-if", "test.tx", "-iv", "visual", "-speed", "20", "-o", "out.txt"};
     noInputFile = new String[]{"-iv", "visual", "-speed", "20", "-o", "out.txt"};
     noView = new String[]{"-if", "assignment6_starter/toh-3.txt", "-speed", "20", "-o", "out.txt"};
     badFlag = new String[]{"-id", "assignment6_starter/toh-3.txt", "-iv", "visual", "-speed", "20",
-            "-o", "out.txt"};
+        "-o", "out.txt"};
     badView = new String[]{"-if", "assignment6_starter/toh-8.txt", "-iv", "vis", "-speed", "20",
-            "-o", "out.txt"};
+        "-o", "out.txt"};
     badSpeed = new String[]{"-if", "assignment6_starter/toh-8.txt", "-iv", "visual", "-speed",
-            "-20", "-o", "out.txt"};
+        "-20", "-o", "out.txt"};
     missingArgument = new String[]{"-if", "assignment6_starter/toh-3.txt", "-iv", "visual",
-            "-speed", "20", "-o"};
+        "-speed", "20", "-o"};
   }
 
-//  @Test
-//  public void testBuilder() {
-//
-//    IController myController;
-//    IController testValController;
-//    try {
-//      AnimationFileReader mr = new AnimationFileReader();
-//      IAnimatorModel myModel = mr.readFile("assignment6_starter/toh-3.txt",
-//          new AnimatorModel.Builder());
-//      IView myView = ViewFactory.getView("visual", "out.txt");
-//      int speed = 20;
-//      testValController = new AnimatorController(myModel, myView, speed);
-//      myController = builder.buildFromInputArgs(goodArgs);
-//      assertEquals(testValController, myController);
-//    } catch (IOException e) {
-//      // someting
-//      //fail("controller not equal");
-//    }
-//  }
+  //  @Test
+  //  public void testBuilder() {
+  //
+  //    IController myController;
+  //    IController testValController;
+  //    try {
+  //      AnimationFileReader mr = new AnimationFileReader();
+  //      IAnimatorModel myModel = mr.readFile("assignment6_starter/toh-3.txt",
+  //          new AnimatorModel.Builder());
+  //      IView myView = ViewFactory.getView("visual", "out.txt");
+  //      int speed = 20;
+  //      testValController = new AnimatorController(myModel, myView, speed);
+  //      myController = builder.buildFromInputArgs(goodArgs);
+  //      assertEquals(testValController, myController);
+  //    } catch (IOException e) {
+  //      // someting
+  //      //fail("controller not equal");
+  //    }
+  //  }
 
   @Test(expected = NullPointerException.class)
   public void testNullInput() {
