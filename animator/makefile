@@ -14,25 +14,25 @@ jar:
 
 submission: jar text svg
 	@echo making submission
-	@rm -f resource/animator.jar
-	@cp $(JAR) resource/animator.jar
+	@rm -f resources/animator.jar
+	@cp $(JAR) resources/animator.jar
 	@cd ..; pwd ;\
 	./makeSubmission.sh animator;
 
 text: jar
 	@echo Running text view...
-	rm -f resource/text-transcript.txt
-	$(RUN) -if assignment6_starter/toh-3.txt -iv text -o resource/text-transcript.txt -speed 20
+	rm -f resources/text-transcript.txt
+	$(RUN) -if assignment6_starter/toh-3.txt -iv text -o resources/text-transcript.txt -speed 20
 	@echo Finished running text view...
 
 svg: jar
 	@echo Running svg view...
-	@rm -f resource/toh-at-20.svg
-	$(RUN) -if assignment6_starter/toh-8.txt -iv svg -o resource/toh-at-20.svg -speed 20
+	@rm -f resources/toh-at-20.svg
+	$(RUN) -if assignment6_starter/toh-8.txt -iv svg -o resources/toh-at-20.svg -speed 20
 	@echo Finished running svg view...
 
 visual: jar
 	@echo Running svg view...
-	@rm -f resource/toh-at-20.svg
-	$(RUN) -if assignment6_starter/toh-3.txt -iv visual -o resource/toh-at-20.svg -speed 20
+	@rm -f resources/toh-at-20.svg
+	$(RUN) -if assignment6_starter/toh-3.txt -iv visual -o resources/toh-at-20.svg -speed 20
 	@echo Finished running visual view...
