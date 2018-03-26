@@ -8,8 +8,10 @@ import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeFactory;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 

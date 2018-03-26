@@ -8,10 +8,12 @@ import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeFactory;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,26 +52,26 @@ public class AnimatorModelTest {
     builder.addColorChange("test", 1, 0, 0, 0, 1, 0, 5, 6);
 
     assertEquals("Shapes:\n"
-            + "Name: test\n"
-            + "Type: rectangle\n"
-            + "Min-corner: (0.000000, 0.000000), Width: 10.0 Height: 10.0, "
-            + "Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
-            + "Name: atest2\n"
-            + "Type: oval\n"
-            + "Center: (0.000000, 0.000000), Width: 10.0 Height: 10.0, "
-            + "Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
-            + "Animations:\n"
-            + "Shape test appears at t=0\n"
-            + "Shape atest2 appears at t=0\n"
-            + "Shape test moves from (0.000000, 0.000000) "
-            + "to (10.000000, 0.000000) from time t=1 to time t=2\n"
-            + "Shape test scales from Width: 10.0 Height: 10.0 "
-            + "to Width: 20.0 Height: 20.0 from time t=2 to time t=4\n"
-            + "Shape test changes color from Color: (1.0, 0.0, 0.0) "
-            + "to Color: (0.0, 1.0, 0.0) from time t=5 to time t=6\n"
-            + "Shape test disappears at t=10\n"
-            + "Shape atest2 disappears at t=10\n",
-        builder.build().toString());
+                    + "Name: test\n"
+                    + "Type: rectangle\n"
+                    + "Min-corner: (0.000000, 0.000000), Width: 10.0 Height: 10.0, "
+                    + "Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
+                    + "Name: atest2\n"
+                    + "Type: oval\n"
+                    + "Center: (0.000000, 0.000000), Width: 10.0 Height: 10.0, "
+                    + "Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
+                    + "Animations:\n"
+                    + "Shape test appears at t=0\n"
+                    + "Shape atest2 appears at t=0\n"
+                    + "Shape test moves from (0.000000, 0.000000) "
+                    + "to (10.000000, 0.000000) from time t=1 to time t=2\n"
+                    + "Shape test scales from Width: 10.0 Height: 10.0 "
+                    + "to Width: 20.0 Height: 20.0 from time t=2 to time t=4\n"
+                    + "Shape test changes color from Color: (1.0, 0.0, 0.0) "
+                    + "to Color: (0.0, 1.0, 0.0) from time t=5 to time t=6\n"
+                    + "Shape test disappears at t=10\n"
+                    + "Shape atest2 disappears at t=10\n",
+            builder.build().toString());
 
 
   }
@@ -113,52 +115,52 @@ public class AnimatorModelTest {
     myAnimator.addAnimation("square", AnimationFactory.getDisappearAnimation(10));
 
     assertEquals("Shapes:\n"
-            + "Name: square\n"
-            + "Type: rectangle\n"
-            + "Min-corner: (30.000000, 30.000000), "
-            + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
-            + "Animations:\n"
-            + "Shape square appears at t=1\n"
-            + "Shape square moves from (10.000000, 20.000000) to "
-            + "(30.000000, 50.000000) from time t=2 to time t=5\n"
-            + "Shape square disappears at t=10\n",
-        myAnimator.toString());
+                    + "Name: square\n"
+                    + "Type: rectangle\n"
+                    + "Min-corner: (30.000000, 30.000000), "
+                    + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
+                    + "Animations:\n"
+                    + "Shape square appears at t=1\n"
+                    + "Shape square moves from (10.000000, 20.000000) to "
+                    + "(30.000000, 50.000000) from time t=2 to time t=5\n"
+                    + "Shape square disappears at t=10\n",
+            myAnimator.toString());
 
     myAnimator.addShape(basicSquare2);
     assertEquals("Shapes:\n"
-            + "Name: square\n"
-            + "Type: rectangle\n"
-            + "Min-corner: (30.000000, 30.000000), Width: 10.0 "
-            + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
-            + "Name: square2\n"
-            + "Type: rectangle\n"
-            + "Min-corner: (30.000000, 30.000000), Width: 10.0 "
-            + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
-            + "Animations:\n"
-            + "Shape square appears at t=1\n"
-            + "Shape square moves from (10.000000, 20.000000) to "
-            + "(30.000000, 50.000000) from time t=2 to time t=5\n"
-            + "Shape square disappears at t=10\n",
-        myAnimator.toString());
+                    + "Name: square\n"
+                    + "Type: rectangle\n"
+                    + "Min-corner: (30.000000, 30.000000), Width: 10.0 "
+                    + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
+                    + "Name: square2\n"
+                    + "Type: rectangle\n"
+                    + "Min-corner: (30.000000, 30.000000), Width: 10.0 "
+                    + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
+                    + "Animations:\n"
+                    + "Shape square appears at t=1\n"
+                    + "Shape square moves from (10.000000, 20.000000) to "
+                    + "(30.000000, 50.000000) from time t=2 to time t=5\n"
+                    + "Shape square disappears at t=10\n",
+            myAnimator.toString());
 
     myAnimator.addAnimation("square2", AnimationFactory.getAppearAnimation(1));
 
     assertEquals("Shapes:\n"
-            + "Name: square\n"
-            + "Type: rectangle\n"
-            + "Min-corner: (30.000000, 30.000000), Width: 10.0 "
-            + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
-            + "Name: square2\n"
-            + "Type: rectangle\n"
-            + "Min-corner: (30.000000, 30.000000), Width: 10.0 "
-            + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
-            + "Animations:\n"
-            + "Shape square appears at t=1\n"
-            + "Shape square2 appears at t=1\n"
-            + "Shape square moves from (10.000000, 20.000000) to "
-            + "(30.000000, 50.000000) from time t=2 to time t=5\n"
-            + "Shape square disappears at t=10\n",
-        myAnimator.toString());
+                    + "Name: square\n"
+                    + "Type: rectangle\n"
+                    + "Min-corner: (30.000000, 30.000000), Width: 10.0 "
+                    + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
+                    + "Name: square2\n"
+                    + "Type: rectangle\n"
+                    + "Min-corner: (30.000000, 30.000000), Width: 10.0 "
+                    + "Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
+                    + "Animations:\n"
+                    + "Shape square appears at t=1\n"
+                    + "Shape square2 appears at t=1\n"
+                    + "Shape square moves from (10.000000, 20.000000) to "
+                    + "(30.000000, 50.000000) from time t=2 to time t=5\n"
+                    + "Shape square disappears at t=10\n",
+            myAnimator.toString());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -167,11 +169,11 @@ public class AnimatorModelTest {
     Position2D endPos = new Position2D(30, 50);
     myAnimator.addShape(basicSquare);
     myAnimator.addAnimation("square",
-        AnimationFactory.getAppearAnimation(1));
+            AnimationFactory.getAppearAnimation(1));
     myAnimator.addAnimation("square",
-        AnimationFactory.getMoveAnimation(startPos, endPos, 2, 5));
+            AnimationFactory.getMoveAnimation(startPos, endPos, 2, 5));
     myAnimator.addAnimation("square",
-        AnimationFactory.getMoveAnimation(startPos, endPos, 3, 6));
+            AnimationFactory.getMoveAnimation(startPos, endPos, 3, 6));
   }
 
   @Test
@@ -188,18 +190,18 @@ public class AnimatorModelTest {
     myAnimator.addAnimation("square", AnimationFactory.getDisappearAnimation(10));
 
     assertEquals("Shapes:\n"
-            + "Name: square\n"
-            + "Type: rectangle\n"
-            + "Min-corner: (30.000000, 30.000000), "
-            + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
-            + "Animations:\n"
-            + "Shape square appears at t=1\n"
-            + "Shape square moves from (10.000000, 20.000000) to "
-            + "(30.000000, 50.000000) from time t=2 to time t=5\n"
-            + "Shape square changes color from Color: (1.0, 0.0, 0.0) to "
-            + "Color: (0.0, 0.0, 1.0) from time t=2 to time t=5\n"
-            + "Shape square disappears at t=10\n",
-        myAnimator.toString());
+                    + "Name: square\n"
+                    + "Type: rectangle\n"
+                    + "Min-corner: (30.000000, 30.000000), "
+                    + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0\n"
+                    + "Animations:\n"
+                    + "Shape square appears at t=1\n"
+                    + "Shape square moves from (10.000000, 20.000000) to "
+                    + "(30.000000, 50.000000) from time t=2 to time t=5\n"
+                    + "Shape square changes color from Color: (1.0, 0.0, 0.0) to "
+                    + "Color: (0.0, 0.0, 1.0) from time t=2 to time t=5\n"
+                    + "Shape square disappears at t=10\n",
+            myAnimator.toString());
 
   }
 
