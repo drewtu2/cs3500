@@ -47,4 +47,10 @@ public interface IModelView {
    * @return the text representation of the animator
    */
   String toString(int time);
+
+  /**
+   * Returns the end tick of the animation.
+   * @return the end ticke of the animation
+   */
+  int getEndTick();
 }

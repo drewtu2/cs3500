@@ -2,7 +2,6 @@ package cs3500.animator.shape;
 
 import cs3500.animator.shape.concrete.Oval;
 import cs3500.animator.shape.concrete.Rectangle;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * A factory class for shapes.
@@ -29,7 +28,16 @@ public class ShapeFactory {
    * Copy constructor.
    */
   public static IAnimatedShape getShape(IShape shape) {
-    throw new NotImplementedException();
+    switch(shape.getType()) {
+      case OVAL:
+        return new Oval((Oval) shape);
+      case RECTANGLE:
+        return new Rectangle((Rectangle) shape);
+      default:
+        throw new IllegalArgumentException("Unkown shape type");
+
+
+    }
   }
 
 }

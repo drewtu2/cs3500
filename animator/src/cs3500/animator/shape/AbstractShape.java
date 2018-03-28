@@ -101,6 +101,18 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
+  public void setState(IShape state) {
+    if(this.type != state.getType()) {
+      throw new IllegalArgumentException("Shapes need to be the same type");
+    }
+
+    this.opacity = state.getOpacity();
+    this.position = state.getPosition();
+    this.color = state.getColor();
+    this.dimension = state.getDimension();
+  }
+
+  @Override
   public boolean equals(Object compare) {
     boolean bType = this.type.equals(((IShape) compare).getType());
     boolean bDim = this.dimension.equals(((IShape) compare).getDimension());

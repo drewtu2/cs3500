@@ -30,9 +30,12 @@ public class InteractiveView implements IInteractive {
 
   private Timer timer;
 
-  private int secondsCount;
-
   private boolean running;
+
+  private boolean loop;
+
+  private IModelView myMV;
+
 
 
   /**
@@ -44,6 +47,7 @@ public class InteractiveView implements IInteractive {
     int panelWidth = 500;
     int panelHeight = 500;
     running = false;
+    loop = false;
 
     // Overall frame
     frame = new JFrame("Interactive Animator");
@@ -72,8 +76,6 @@ public class InteractiveView implements IInteractive {
     frame.pack();
     frame.setVisible(true);
 
-    secondsCount = 0;
-
     timer = createTimer();
 
   }
@@ -89,7 +91,8 @@ public class InteractiveView implements IInteractive {
     checkNull(state);
     speed = tempo;
     running = true;
-    canvas.setModelView(state);
+    myMV = state;
+    canvas.setModelView(myMV);
     System.out.println("Set Model...");
     timer.start();
     System.out.println("Started Timer...");
@@ -97,33 +100,33 @@ public class InteractiveView implements IInteractive {
 
   @Override
   public void setSpeed(int speed) {
-    this.speed = speed;
-    cp.setSpeed(speed);
     System.out.println("Speed set to " + Integer.toString(speed));
+    this.speed = speed;
+    // Update the control panel view of the speed as well if necessary
+    cp.setSpeed(speed);
   }
 
   @Override
   public void start() {
-    //TODO
-    running = true;
     System.out.println("Started");
+    running = true;
+    //TODO
 
   }
 
   @Override
   public void pause() {
-    running = false;
     System.out.println("Paused");
+    running = false;
 
     //TODO
   }
 
   @Override
   public void reset() {
-    running = false;
-    secondsCount = 0;
-    //TODO
     System.out.println("Reset");
+    canvas.setTickNumber(0);
+    canvas.reset();
   }
 
   @Override
@@ -143,18 +146,29 @@ public class InteractiveView implements IInteractive {
 
   @Override
   public void setLoop(boolean loop) {
-    //TODO
     System.out.println("Set Loop");
+    this.loop = loop;
   }
 
+  /**
+   * Creates the timer driving the time component. Fires every 1 second.
+   * @return the timer
+   */
   private Timer createTimer() {
     return new Timer(1000,
         (ActionEvent e) -> {
           if(running && speed > 0) {
             canvas.incrementTickNumber(speed);
+            if(loop && canvas.getTickNumber() > myMV.getEndTick()) {
+              System.out.println("Looping!");
+              System.out.println("Current Tick Number: " + Integer.toString(canvas.getTickNumber()));
+              System.out.println("End Tick Number: " + Integer.toString(myMV.getEndTick()));
+              int temp = canvas.getTickNumber(); // need value to persist through reset
+              this.reset();
+              //canvas.setTickNumber(temp - myMV.getEndTick());
+            }
             canvas.revalidate();
             canvas.repaint();
-            secondsCount++;
           }
         });
   }

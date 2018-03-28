@@ -7,11 +7,13 @@ import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
+import cs3500.animator.shape.ShapeFactory;
 import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.HashMap;
 import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -22,6 +24,7 @@ import javax.swing.JPanel;
 public class CanvasPane extends JPanel {
 
   private Map<String, IAnimatedShape> state;
+  private Map<String, IShape> originalState;
   private int tickNum;
   private Dimension area;
 
@@ -53,7 +56,15 @@ public class CanvasPane extends JPanel {
     checkNull(mv);
     IModelView myMv = mv;
     state = myMv.getFullState();
+    originalState = duplicate(state);
     checkNull(state);
+  }
+
+  public void reset() {
+    for(String key: state.keySet()) {
+      state.get(key).setState(originalState.get(key));
+    }
+    this.repaint();
   }
 
   /**
@@ -74,6 +85,14 @@ public class CanvasPane extends JPanel {
   public void incrementTickNumber(int numTicks) {
     tickNum += numTicks;
     System.out.println("Tick num: " + Integer.toString(tickNum));
+  }
+
+  /**
+   * Returns the current tick number of the animation.
+   * @return the current tick number of the animation.
+   */
+  public int getTickNumber() {
+    return tickNum;
   }
 
   @Override
@@ -131,5 +150,15 @@ public class CanvasPane extends JPanel {
     }
 
     return changed;
+  }
+
+  private Map<String, IShape> duplicate(Map<String, IAnimatedShape> current) {
+    Map<String, IShape> newMap = new HashMap<>();
+
+    for(String key:current.keySet()) {
+      newMap.put(key, ShapeFactory.getShape(current.get(key)));
+    }
+
+    return newMap;
   }
 }

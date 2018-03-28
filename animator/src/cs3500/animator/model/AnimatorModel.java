@@ -2,6 +2,7 @@ package cs3500.animator.model;
 
 import cs3500.animator.animation.AnimationFactory;
 import cs3500.animator.animation.AnimationSummary;
+import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
 import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IShape;
@@ -29,12 +30,14 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
   public static final class Builder implements TweenModelBuilder<AnimatorModel> {
 
     private Map<String, IAnimatedShape> shapes;
+    private int endTick;
 
     /**
      * Default constructor for a builder.
      */
     public Builder() {
       shapes = new HashMap<>();
+      endTick = 0;
     }
 
     @Override
@@ -49,6 +52,10 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
       // Add appear animation to shape
       myOval.addAnimation(AnimationFactory.getAppearAnimation(startOfLife));
       myOval.addAnimation(AnimationFactory.getDisappearAnimation(endOfLife));
+
+      if(endOfLife > endTick) {
+        endTick = endOfLife;
+      }
 
       // Adds shape to map
       shapes.put(name, myOval);
@@ -68,6 +75,11 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
 
       myRec.addAnimation(AnimationFactory.getAppearAnimation(startOfLife));
       myRec.addAnimation(AnimationFactory.getDisappearAnimation(endOfLife));
+
+      if(endOfLife > endTick) {
+        endTick = endOfLife;
+      }
+
       // Adds shape to map
       shapes.put(name, myRec);
       // Add appear animation to shape
@@ -116,6 +128,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
   }
 
   protected Map<String, IAnimatedShape> shapes;
+  protected int animationEnd;
 
   /**
    * Default constructor of an Animator animator.model.
@@ -126,6 +139,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
 
   public AnimatorModel(Builder b) {
     shapes = new HashMap(b.shapes);
+    animationEnd = b.endTick;
 
   }
 
@@ -164,6 +178,14 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
     // up.
     // TODO: make sure this updates the object in the map. Should work b/c java passes by reference
     requestedShape.addAnimation(animation);
+
+    // If this animation is a destroy animation, see if its the latest occurring destroy. The latest
+    // occurring destroy. The latest destroy represents the end of the animation.
+    if (animation.getType() == AnimationType.DESTROY) {
+      if(animation.getEndTime() > animationEnd) {
+        animationEnd = animation.getEndTime();
+      }
+    }
   }
 
   @Override
@@ -237,5 +259,10 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
   @Override
   public Set<String> listShapes() {
     return shapes.keySet();
+  }
+
+  @Override
+  public int getEndTick() {
+    return animationEnd;
   }
 }
