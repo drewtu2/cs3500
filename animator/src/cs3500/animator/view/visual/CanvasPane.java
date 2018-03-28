@@ -19,16 +19,16 @@ import javax.swing.JPanel;
 /**
  * A JPanel that draws out our animation.
  */
-public class CanvasPanel extends JPanel {
+public class CanvasPane extends JPanel {
 
   private Map<String, IAnimatedShape> state;
   private int tickNum;
   private Dimension area;
 
   /**
-   * Public constructor for the CanvasPanel.
+   * Public constructor for the CanvasPane.
    */
-  public CanvasPanel() {
+  public CanvasPane() {
     setBorder(BorderFactory.createLineBorder(Color.BLACK));
     area = new Dimension(500, 500);
   }
@@ -38,7 +38,7 @@ public class CanvasPanel extends JPanel {
    *
    * @param bl the layout to use.
    */
-  public CanvasPanel(BorderLayout bl) {
+  public CanvasPane(BorderLayout bl) {
     tickNum = 0;
     area = new Dimension(500, 500);
     this.setLayout(bl);
@@ -63,6 +63,16 @@ public class CanvasPanel extends JPanel {
    */
   public void setTickNumber(int number) {
     tickNum = number;
+    System.out.println("Tick num: " + Integer.toString(tickNum));
+  }
+
+  /**
+   * Increments the tick number used to access the state by a given number
+   * of ticks.
+   * @param numTicks the number of ticks to increment by.
+   */
+  public void incrementTickNumber(int numTicks) {
+    tickNum += numTicks;
     System.out.println("Tick num: " + Integer.toString(tickNum));
   }
 

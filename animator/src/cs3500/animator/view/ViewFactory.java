@@ -2,6 +2,7 @@ package cs3500.animator.view;
 
 import static util.MyUtil.checkNull;
 
+import cs3500.animator.view.interactive.InteractiveView;
 import cs3500.animator.view.visual.VisualView;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -51,14 +52,16 @@ public class ViewFactory {
     // Handle null case
     checkNull(name);
 
-    // Handle not out case
-    if (!outputFile.equals("out") || outputFile != null) {
-      myAppendable = new FileWriter(outputFile, true); //true tells to append data.
-    } else { // Handle out case
+    // Handle System.out case
+    if(outputFile == null || outputFile.equals("out")){
       myAppendable = System.out;
+    } else { // Handle file case
+      myAppendable = new FileWriter(outputFile, true); //true tells to append data.
     }
 
     switch (name.toLowerCase()) {
+      case "interactive":
+        return new InteractiveView();
       case "visual":
         return new VisualView();
       case "text":

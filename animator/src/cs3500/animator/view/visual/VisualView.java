@@ -20,7 +20,7 @@ public class VisualView implements IView {
 
   private int speed; // tics/second
 
-  private final CanvasPanel canvas;
+  private final CanvasPane canvas;
 
   private Timer timer;
 
@@ -41,7 +41,7 @@ public class VisualView implements IView {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     // Create the Canvas
-    canvas = new CanvasPanel();
+    canvas = new CanvasPane();
     canvas.setBackground(Color.WHITE);
 
     // Create Content Pane

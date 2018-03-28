@@ -3,10 +3,17 @@ package cs3500.animator.controller;
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.IAnimatorModel;
 import cs3500.animator.model.IModelView;
-import util.AnimationFileReader;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.ViewFactory;
+import cs3500.animator.view.interactive.IInteractive;
+import cs3500.animator.view.interactive.listeners.ButtonListener;
+import cs3500.animator.view.interactive.listeners.SliderChangeListener;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.event.ChangeListener;
+import util.AnimationFileReader;
 
 /**
  * A controller for our animation.
@@ -133,16 +140,56 @@ public class AnimatorController implements IController {
     myModel = inputModel;
     myView = inputView;
     speed = inputSpeed;
+
+    // Configure the listeners if we're using the interactive view
+    if((myView instanceof IInteractive)) {
+      ActionListener buttons = configureButtonListener();
+      ChangeListener speedListener = configureSpeedListener();
+      ((IInteractive)myView).setListeners(buttons, speedListener);
+      ((IInteractive)myView).setSpeed(speed);
+    }
   }
 
   @Override
   public void playAnimation() {
     IModelView myMV = myModel;
+
     try {
-      myView.show(myModel, speed);
+      myView.show(myMV, speed);
     } catch (IOException e) {
       System.err.println("IOException occured...");
       System.err.println(e.toString());
     }
   }
+
+  private ActionListener configureButtonListener() {
+    if(!(myView instanceof IInteractive)) {
+      throw new IllegalArgumentException("Not interactive view...");
+    }
+
+    Map<String, Runnable> buttonClickedMap = new HashMap<>();
+    ButtonListener buttonListener = new ButtonListener();
+
+    IInteractive interactiveView = (IInteractive)myView;
+
+    buttonClickedMap.put("start",()-> { interactiveView.start();});
+    buttonClickedMap.put("pause",()->{ interactiveView.pause();});
+    buttonClickedMap.put("resume",()->{ interactiveView.resume();});
+    buttonClickedMap.put("reset",()->{ interactiveView.reset();});
+    buttonClickedMap.put("export",()->{ interactiveView.export();});
+    buttonClickedMap.put("dont loop",()->{ interactiveView.setLoop(false);});
+    buttonClickedMap.put("loop",()->{ interactiveView.setLoop(true);});
+
+    buttonListener.setButtonClickedActionMap(buttonClickedMap);
+    return buttonListener;
+  }
+
+  private ChangeListener configureSpeedListener() {
+    if(!(myView instanceof IInteractive)) {
+      throw new IllegalArgumentException("Not interactive view...");
+    }
+    ChangeListener listener = new SliderChangeListener((IInteractive)myView);
+    return listener;
+  }
+
 }
