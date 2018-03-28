@@ -71,6 +71,11 @@ public class TextView implements IView {
     }
   }
 
+  @Override
+  public void setLooping() {
+    //nothing should happen
+  }
+
   /**
    * Dumps the shape description in the appendable.
    *

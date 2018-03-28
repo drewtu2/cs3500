@@ -10,7 +10,7 @@ drawn between (0,0) and (width,height) will be visible -->
      -->
 <rect>
     <!-- This is the loop back. Set duration for the duration of one
-    animation before loopback. Ensure that this number is greater than 
+    animation before loopback. Ensure that this number is greater than
     the end of one complete animation-->
     <!-- this example loops back after 10 seconds -->
    <animate id="base" begin="0;base.end" dur="10000.0ms" attributeName="visibility" from="hide" to="hide"/>

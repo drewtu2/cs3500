@@ -30,6 +30,8 @@ public class SVGView implements IView {
   private int height = 500;
   private Appendable output;
   private float speed;
+  private boolean loopable;
+  private float lastAnimTime;
 
   /**
    * Constructs an instance of an svgview setting the output to be the appendable. Setting speed
@@ -44,6 +46,8 @@ public class SVGView implements IView {
 
     output = out;
     speed = 1;
+    loopable = false;
+    lastAnimTime = 0;
   }
 
   @Override
@@ -117,6 +121,14 @@ public class SVGView implements IView {
       showAnimations(curShape.getType(), mMap.get(sName));
       output.append("\n" + endTag + "\n\n");
     }
+
+    if(loopable) {
+      output.append("<rect>\n" +
+              "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"" + Float.toString(lastAnimTime) +
+              "ms\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n" +
+              "</rect>\n\n");
+    }
+
     output.append("</svg>");
 
     if (output.getClass() == FileWriter.class) {
@@ -138,6 +150,7 @@ public class SVGView implements IView {
     Map<AnimationType, List<IAnimation>> animaMap = s.getAnimations();
     for (List<IAnimation> loAnim : animaMap.values()) {
       for (IAnimation animation : loAnim) {
+        findLastAnimation(animation);
         switch (animation.getType()) {
           case MOVE:
             if (sType.equals(ShapeType.OVAL)) {
@@ -220,6 +233,16 @@ public class SVGView implements IView {
   }
 
   /**
+   * Finds the last animation in the animator to account for when to loopback.
+   * @param animation one animation to compare with current last end time
+   */
+  private void findLastAnimation(IAnimation animation) {
+    if(animation.getEndTime() > lastAnimTime) {
+      lastAnimTime = animation.getEndTime();
+    }
+  }
+
+  /**
    * Returns the string given an animation.
    *
    * @param startTick the start tick.
@@ -234,7 +257,7 @@ public class SVGView implements IView {
 
     StringBuilder builder = new StringBuilder();
 
-    builder.append("\n\t<animate attributeType=\"xml\" begin=\"");
+    builder.append("\n\t<animate attributeType=\"xml\" begin=\"base.begin+");
     builder.append(tick2Time(startTick));
     builder.append("s\" dur=\"");
     builder.append(tick2Time(endTick));
@@ -260,7 +283,7 @@ public class SVGView implements IView {
 
     StringBuilder builder = new StringBuilder();
 
-    builder.append("\n\t<animate attributeType=\"xml\" begin=\"");
+    builder.append("\n\t<animate attributeType=\"xml\" begin=\"base.begin+");
     builder.append(tick2Time(tick));
     builder.append("s\" dur=\"");
     builder.append(0);
@@ -269,6 +292,13 @@ public class SVGView implements IView {
     builder.append("\" fill=\"freeze\" />");
 
     return builder.toString();
+  }
+
+  /**
+   * Set the looping of the animation to true;
+   */
+  public void setLooping() {
+    loopable = true;
   }
 
   /**

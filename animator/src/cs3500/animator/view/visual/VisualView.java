@@ -79,5 +79,10 @@ public class VisualView implements IView {
     timer.start();
     System.out.println("Started Timer...");
   }
+
+  @Override
+  public void setLooping() {
+    //nothing should happen
+  }
 }
 

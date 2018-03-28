@@ -17,4 +17,6 @@ public interface IView {
    * @param tempo ticks/sec in this game
    */
   void show(IModelView state, int tempo) throws IOException;
+
+  void setLooping();
 }
