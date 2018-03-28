@@ -5,14 +5,19 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * Listener for the speed change slider.
+ */
 public class SliderChangeListener implements ChangeListener {
 
-  IInteractive view;
+  private IInteractive view;
 
+  /**
+   * Default constructor
+   */
   public SliderChangeListener(IInteractive view) {
     this.view = view;
   }
-
 
   @Override
   public void stateChanged(ChangeEvent e) {

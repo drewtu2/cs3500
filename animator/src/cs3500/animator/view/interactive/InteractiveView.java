@@ -37,7 +37,6 @@ public class InteractiveView implements IInteractive {
   private IModelView myMV;
 
 
-
   /**
    * The visual view implementation.
    */
@@ -110,16 +109,12 @@ public class InteractiveView implements IInteractive {
   public void start() {
     System.out.println("Started");
     running = true;
-    //TODO
-
   }
 
   @Override
   public void pause() {
     System.out.println("Paused");
     running = false;
-
-    //TODO
   }
 
   @Override
@@ -133,8 +128,6 @@ public class InteractiveView implements IInteractive {
   public void resume() {
     running = true;
     System.out.println("Resume");
-
-    //TODO
   }
 
   @Override
@@ -152,18 +145,20 @@ public class InteractiveView implements IInteractive {
 
   /**
    * Creates the timer driving the time component. Fires every 1 second.
+   *
    * @return the timer
    */
   private Timer createTimer() {
     return new Timer(1000,
         (ActionEvent e) -> {
-          if(running && speed > 0) {
+          if (running && speed > 0) {
             canvas.incrementTickNumber(speed);
-            if(loop && canvas.getTickNumber() > myMV.getEndTick()) {
+            if (loop && canvas.getTickNumber() > myMV.getEndTick()) {
               System.out.println("Looping!");
-              System.out.println("Current Tick Number: " + Integer.toString(canvas.getTickNumber()));
+              System.out
+                  .println("Current Tick Number: " + Integer.toString(canvas.getTickNumber()));
               System.out.println("End Tick Number: " + Integer.toString(myMV.getEndTick()));
-              int temp = canvas.getTickNumber(); // need value to persist through reset
+              //int temp = canvas.getTickNumber(); // need value to persist through reset
               this.reset();
               //canvas.setTickNumber(temp - myMV.getEndTick());
             }

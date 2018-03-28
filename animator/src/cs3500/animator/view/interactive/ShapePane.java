@@ -12,10 +12,13 @@ import javax.swing.ScrollPaneConstants;
 
 // Useful Notes: https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
 /**
- *
+ * Information regarding the shapes in the animation.
  */
 public class ShapePane extends JPanel {
 
+  /**
+   * Default constructor.
+   */
   ShapePane() {
     super();
     this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));

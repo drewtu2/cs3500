@@ -60,10 +60,14 @@ public class CanvasPane extends JPanel {
     checkNull(state);
   }
 
+  /**
+   * Reset the state of the canvas. Animation essentially starts over.
+   */
   public void reset() {
-    for(String key: state.keySet()) {
+    for (String key : state.keySet()) {
       state.get(key).setState(originalState.get(key));
     }
+    tickNum = 0;
     this.repaint();
   }
 
@@ -78,8 +82,8 @@ public class CanvasPane extends JPanel {
   }
 
   /**
-   * Increments the tick number used to access the state by a given number
-   * of ticks.
+   * Increments the tick number used to access the state by a given number of ticks.
+   *
    * @param numTicks the number of ticks to increment by.
    */
   public void incrementTickNumber(int numTicks) {
@@ -89,6 +93,7 @@ public class CanvasPane extends JPanel {
 
   /**
    * Returns the current tick number of the animation.
+   *
    * @return the current tick number of the animation.
    */
   public int getTickNumber() {
@@ -132,6 +137,12 @@ public class CanvasPane extends JPanel {
     }
   }
 
+  /**
+   * Update the area to allow for scrolling.
+   *
+   * @param shape the shape we've added
+   * @return true if the shape area was changed.
+   */
   private boolean updateArea(IShape shape) {
     boolean changed = false;
     Position2D pos = shape.getPosition();
@@ -152,10 +163,16 @@ public class CanvasPane extends JPanel {
     return changed;
   }
 
+  /**
+   * Creates a duplicate of the given shape map. The duplicated map only contains IShape Object (os
+   * opposed to IAnimatedShapes because animations are time (aren't modified).
+   *
+   * @param current the given String->Animated Shape map.
+   */
   private Map<String, IShape> duplicate(Map<String, IAnimatedShape> current) {
     Map<String, IShape> newMap = new HashMap<>();
 
-    for(String key:current.keySet()) {
+    for (String key : current.keySet()) {
       newMap.put(key, ShapeFactory.getShape(current.get(key)));
     }
 

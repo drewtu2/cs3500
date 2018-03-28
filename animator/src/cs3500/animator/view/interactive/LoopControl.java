@@ -5,11 +5,17 @@ import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+/**
+ * Panel for determining if this the animation is going to loop or not.
+ */
 public class LoopControl extends JPanel {
 
-  JRadioButton dontLoop;
-  JRadioButton doLoop;
+  protected JRadioButton dontLoop;
+  protected JRadioButton doLoop;
 
+  /**
+   * Default Constructor.
+   */
   LoopControl() {
     super();
 
@@ -28,6 +34,11 @@ public class LoopControl extends JPanel {
     this.add(doLoop);
   }
 
+  /**
+   * Set the action listener for the buttons.
+   *
+   * @param l the listener
+   */
   public void setListeners(ActionListener l) {
     dontLoop.addActionListener(l);
     doLoop.addActionListener(l);
