@@ -22,6 +22,7 @@ We made a ViewFactory class that is used to determine which view to construct. T
 this that creates an appendable and an instance of the proper view class based on string input. It
 throws an illegal arg exception if the string is invalid. 
 
+
 The controller itself has 3 elements. The first is an IController interface that has a void
 playAnimation method that will be called in the EasyAnimator class main method. The second part is
 the IControllerBuilder which is a builder interface that contains methods that will construct a

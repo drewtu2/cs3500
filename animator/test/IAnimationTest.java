@@ -13,6 +13,7 @@ import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeFactory;
 import cs3500.animator.shape.dimension.IDimension;
 import cs3500.animator.shape.dimension.WidthHeightDim;
+
 import org.junit.Before;
 import org.junit.Test;
 

@@ -7,6 +7,7 @@ import cs3500.animator.shape.ShapeFactory;
 import cs3500.animator.shape.ShapeType;
 import cs3500.animator.shape.dimension.IDimension;
 import cs3500.animator.shape.dimension.WidthHeightDim;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -95,10 +96,10 @@ public class IShapeTest {
   @Test
   public void testToString() {
     assertEquals("Name: rect\n"
-            + "Type: rectangle\n"
-            + "Min-corner: (20.000000, 20.000000), "
-            + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0",
-        rect.toString());
+                    + "Type: rectangle\n"
+                    + "Min-corner: (20.000000, 20.000000), "
+                    + "Width: 10.0 Height: 10.0, Color: (1.0, 0.0, 0.0), Opacity: 0.0",
+            rect.toString());
   }
 
 

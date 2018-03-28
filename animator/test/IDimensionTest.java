@@ -2,6 +2,7 @@ import static junit.framework.TestCase.assertEquals;
 
 import cs3500.animator.shape.dimension.IDimension;
 import cs3500.animator.shape.dimension.WidthHeightDim;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,13 +35,13 @@ public class IDimensionTest {
   public void testIntermediateOutOfBound() {
     IDimension dim2 = new WidthHeightDim(20, 20);
     IDimension result = new WidthHeightDim(15, 15);
-    assertEquals(result, myDim.getIntermediate(dim2, 1,2, 3));
+    assertEquals(result, myDim.getIntermediate(dim2, 1, 2, 3));
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIntermediateOutOfBoundBefore() {
     IDimension dim2 = new WidthHeightDim(20, 20);
     IDimension result = new WidthHeightDim(15, 15);
-    assertEquals(result, myDim.getIntermediate(dim2, 2,4, 1));
+    assertEquals(result, myDim.getIntermediate(dim2, 2, 4, 1));
   }
 }
