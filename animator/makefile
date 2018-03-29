@@ -39,6 +39,6 @@ visual: jar
 
 interactive: jar
 	@echo Running interactive view...
-	$(RUN) -if assignment6_starter/toh-3.txt -iv interactive -speed 20
+	$(RUN) -if assignment6_starter/toh-12.txt -iv interactive -speed 20
 	@echo Finished running interactive view...
 
