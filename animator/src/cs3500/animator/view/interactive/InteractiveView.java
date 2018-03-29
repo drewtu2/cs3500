@@ -4,7 +4,6 @@ import static util.MyUtil.checkNull;
 
 import cs3500.animator.model.IModelView;
 import cs3500.animator.view.IView;
-import cs3500.animator.view.SVGView;
 import cs3500.animator.view.ViewFactory;
 import cs3500.animator.view.visual.CanvasPane;
 import java.awt.BorderLayout;
@@ -12,8 +11,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -97,6 +94,7 @@ public class InteractiveView implements IInteractive {
     running = true;
     myMV = state;
     canvas.setModelView(myMV);
+    cp.setModelView(myMV);
     System.out.println("Set Model...");
     timer.start();
     System.out.println("Started Timer...");

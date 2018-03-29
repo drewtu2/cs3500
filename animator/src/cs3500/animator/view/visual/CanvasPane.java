@@ -1,19 +1,18 @@
 package cs3500.animator.view.visual;
 
 import static util.MyUtil.checkNull;
+import static util.MyUtil.duplicateMap;
 
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
-import cs3500.animator.shape.ShapeFactory;
 import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.util.HashMap;
 import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -56,7 +55,7 @@ public class CanvasPane extends JPanel {
     checkNull(mv);
     IModelView myMv = mv;
     state = myMv.getFullState();
-    originalState = duplicate(state);
+    originalState = duplicateMap(state);
     checkNull(state);
   }
 
@@ -64,6 +63,7 @@ public class CanvasPane extends JPanel {
    * Reset the state of the canvas. Animation essentially starts over.
    */
   public void reset() {
+
     for (String key : state.keySet()) {
       state.get(key).setState(originalState.get(key));
     }
@@ -163,19 +163,5 @@ public class CanvasPane extends JPanel {
     return changed;
   }
 
-  /**
-   * Creates a duplicate of the given shape map. The duplicated map only contains IShape Object (os
-   * opposed to IAnimatedShapes because animations are time (aren't modified).
-   *
-   * @param current the given String->Animated Shape map.
-   */
-  private Map<String, IShape> duplicate(Map<String, IAnimatedShape> current) {
-    Map<String, IShape> newMap = new HashMap<>();
 
-    for (String key : current.keySet()) {
-      newMap.put(key, ShapeFactory.getShape(current.get(key)));
-    }
-
-    return newMap;
-  }
 }

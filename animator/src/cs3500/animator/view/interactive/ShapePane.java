@@ -1,13 +1,18 @@
 package cs3500.animator.view.interactive;
 
+import static util.MyUtil.checkNull;
+
+import cs3500.animator.model.IModelView;
+import cs3500.animator.shape.IAnimatedShape;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 
 // Useful Notes: https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
@@ -15,6 +20,8 @@ import javax.swing.ScrollPaneConstants;
  * Information regarding the shapes in the animation.
  */
 public class ShapePane extends JPanel {
+
+  protected Map<String, IAnimatedShape> state;
 
   /**
    * Default constructor.
@@ -24,25 +31,40 @@ public class ShapePane extends JPanel {
     this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
     JLabel title = new JLabel("Shapes");
-    DefaultListModel lm = new DefaultListModel();
-    lm.addElement("test1");
-    lm.addElement("test2");
-    lm.addElement("test3");
+    this.add(title);
+  }
 
-    JList list = new JList(lm);
-    list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-    list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+  public void setModelView(IModelView mv) {
+    checkNull(mv);
 
-    JScrollPane listScroller = new JScrollPane(list,
+    System.out.println("Shape list model view set");
+
+    state = mv.getFullState();
+    Map<String, JCheckBox> buttons = new HashMap<>();
+
+    JCheckBox button;
+    JPanel buttonContainer = new JPanel(new FlowLayout());
+
+    for (IAnimatedShape shape : state.values()) {
+      button = new JCheckBox(shape.getName());
+      button.setActionCommand(shape.getName());
+      button.setSelected(true);
+      buttonContainer.add(button);
+
+      buttons.put(button.getName(), button);
+      System.out.println("Added shape " + button.getName());
+    }
+
+    JScrollPane listScroller;
+    listScroller = new JScrollPane(buttonContainer,
         ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
         ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-    listScroller.add(list);
+    listScroller.add(buttonContainer);
 
 
     this.setPreferredSize(new Dimension(30, 50));
 
-    this.add(title);
-    this.add(list);
+    this.add(listScroller);
 
   }
 

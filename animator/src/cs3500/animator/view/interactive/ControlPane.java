@@ -2,6 +2,7 @@ package cs3500.animator.view.interactive;
 
 import static util.MyUtil.checkNull;
 
+import cs3500.animator.model.IModelView;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -83,5 +84,11 @@ public class ControlPane extends JPanel {
     return exportPane.getFilename();
   }
 
-
+  /**
+   * Pipe model view to shape pane.
+   * @param mv the model view
+   */
+  public void setModelView(IModelView mv) {
+    shapeList.setModelView(mv);
+  }
 }
