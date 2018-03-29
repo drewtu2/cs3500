@@ -60,8 +60,7 @@ public class ControlPane extends JPanel {
     loopRadio.setListeners(buttons);
     exportPane.setListeners(buttons);
     speedSlider.setListeners(speed);
-
-    //shapeList.setListeners(...);
+    shapeList.setListeners(buttons);
 
   }
 

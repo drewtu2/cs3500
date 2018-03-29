@@ -3,6 +3,7 @@ package cs3500.animator.view.interactive;
 import static util.MyUtil.checkNull;
 
 import cs3500.animator.model.IModelView;
+import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.ViewFactory;
 import cs3500.animator.view.visual.CanvasPane;
@@ -12,6 +13,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -38,11 +41,15 @@ public class InteractiveView implements IInteractive {
 
   private IModelView myMV;
 
+  private Map<String, Boolean> shapeEnabled;
 
   /**
    * The visual view implementation.
    */
   public InteractiveView() {
+
+    shapeEnabled = new HashMap<>();
+
     JFrame frame;
     JScrollPane scroller;
     int panelWidth = 500;
@@ -95,6 +102,7 @@ public class InteractiveView implements IInteractive {
     myMV = state;
     canvas.setModelView(myMV);
     cp.setModelView(myMV);
+    configureVisibilityMap(myMV);
     System.out.println("Set Model...");
     timer.start();
     System.out.println("Started Timer...");
@@ -151,6 +159,18 @@ public class InteractiveView implements IInteractive {
     this.loop = loop;
   }
 
+  @Override
+  public void toggleShape(String name) {
+    checkNull(name);
+
+    if(shapeEnabled.containsKey(name)) {
+      shapeEnabled.put(name, !shapeEnabled.get(name));
+      System.out.println(name + " set to " + shapeEnabled.get(name).toString());
+    } else {
+      throw new IllegalArgumentException("invalid shape name");
+    }
+  }
+
   /**
    * Creates the timer driving the time component. Fires every 1 second.
    *
@@ -174,6 +194,19 @@ public class InteractiveView implements IInteractive {
             canvas.repaint();
           }
         });
+  }
+
+  /**
+   * Initialize all values as being true
+   * @param mv the model view
+   */
+  private void configureVisibilityMap(IModelView mv) {
+    Map<String, IAnimatedShape> state = mv.getFullState();
+
+    for (String key : state.keySet()) {
+      shapeEnabled.put(key, true);
+    }
+
   }
 }
 
