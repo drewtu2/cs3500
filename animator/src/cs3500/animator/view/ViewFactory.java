@@ -33,7 +33,7 @@ public class ViewFactory {
       case "text":
         return new TextView(myAppendable);
       case "svg":
-        return new SVGView(myAppendable);
+        return new SVGView(myAppendable, false);
       default:
         throw new IllegalArgumentException("invalid view type");
     }
@@ -67,7 +67,43 @@ public class ViewFactory {
       case "text":
         return new TextView(myAppendable);
       case "svg":
-        return new SVGView(myAppendable);
+        return new SVGView(myAppendable, false);
+      default:
+        throw new IllegalArgumentException("invalid view type");
+    }
+  }
+
+  /**
+   * Factory method that creates a specific instance of a view dependent on given input.
+   *
+   * @param name String representing the type of view required
+   * @param outputFile where to put the output
+   * @param loopable is the animation looping or not
+   * @return IView instance
+   */
+  public static IView getView(String name, String outputFile, boolean loopable) throws IOException {
+    Appendable myAppendable;
+
+    // Handle null case
+    checkNull(name);
+    checkNull(loopable);
+
+    // Handle System.out case
+    if(outputFile == null || outputFile.equals("out")){
+      myAppendable = System.out;
+    } else { // Handle file case
+      myAppendable = new FileWriter(outputFile, true); //true tells to append data.
+    }
+
+    switch (name.toLowerCase()) {
+      case "interactive":
+        return new InteractiveView();
+      case "visual":
+        return new VisualView();
+      case "text":
+        return new TextView(myAppendable);
+      case "svg":
+        return new SVGView(myAppendable, loopable);
       default:
         throw new IllegalArgumentException("invalid view type");
     }

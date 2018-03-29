@@ -39,14 +39,14 @@ public class SVGView implements IView {
    *
    * @param out Appendable to write to.
    */
-  public SVGView(Appendable out) {
+  public SVGView(Appendable out, boolean loop) {
     if (out == null) {
       throw new NullPointerException();
     }
 
     output = out;
     speed = 1;
-    loopable = false;
+    loopable = loop;
     lastAnimTime = 0;
   }
 
@@ -124,8 +124,9 @@ public class SVGView implements IView {
 
     if(loopable) {
       output.append("<rect>\n" +
-              "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"" + Float.toString(lastAnimTime) +
-              "ms\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n" +
+              "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"" + Double.toString
+              (tick2Time(lastAnimTime) + 0.001) +
+              "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n" +
               "</rect>\n\n");
     }
 
