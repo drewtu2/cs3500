@@ -101,6 +101,7 @@ public class InteractiveView implements IInteractive {
     running = true;
     myMV = state;
     canvas.setModelView(myMV);
+    canvas.setEnabledMap(shapeEnabled);
     cp.setModelView(myMV);
     configureVisibilityMap(myMV);
     System.out.println("Set Model...");

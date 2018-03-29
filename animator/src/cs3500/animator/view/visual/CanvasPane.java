@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 public class CanvasPane extends JPanel {
 
   private Map<String, IAnimatedShape> state;
+  private Map<String, Boolean> enabledMap;
   private Map<String, IShape> originalState;
   private int tickNum;
   private Dimension area;
@@ -57,6 +58,16 @@ public class CanvasPane extends JPanel {
     state = myMv.getFullState();
     originalState = duplicateMap(state);
     checkNull(state);
+  }
+
+  /**
+   * Sets the isEnabledMap.
+   *
+   * @param map the map.
+   */
+  public void setEnabledMap(Map<String, Boolean> map) {
+    checkNull(map);
+    enabledMap = map;
   }
 
   /**
@@ -112,7 +123,7 @@ public class CanvasPane extends JPanel {
         shapeState = shape.stateAt(tickNum);
 
         g.setColor(new Color(shapeColor.getRed(), shapeColor.getGreen(), shapeColor.getBlue()));
-        if (shape.getOpacity() == 1) {
+        if (shouldDisplay(shape)) {
           switch (shapeState.getType()) {
             case RECTANGLE:
               g.drawRect((int) shapeState.getPosition().getX(),
@@ -135,6 +146,17 @@ public class CanvasPane extends JPanel {
         }
       }
     }
+  }
+
+
+  /**
+   * Returs true if the given shape should be displayed.
+   * Opacity cannot be 0 and the shape must be enabled.
+   * @param shape the shape
+   * @return true if the shape can be displayed
+   */
+  private boolean shouldDisplay(IShape shape) {
+    return enabledMap.get(shape.getName()) && shape.getOpacity() != 0;
   }
 
   /**
