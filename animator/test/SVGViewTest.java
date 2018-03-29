@@ -42,9 +42,8 @@ public class SVGViewTest {
     loopTestString = new StringBuilder();
     myModel = new AnimatorModel();
     myLoopModel = new AnimatorModel();
-    view = new SVGView(testString);
-    loopView = new SVGView(loopTestString);
-
+    view = new SVGView(testString, false);
+    loopView = new SVGView(loopTestString, true);
   }
 
   @Test
@@ -161,8 +160,6 @@ public class SVGViewTest {
             new WidthHeightDim(20, 20),
             4, 10));
 
-    loopView.setLoop(true);
-
     try {
       loopView.show(myLoopModel, 1);
     } catch (IOException e) {
@@ -206,8 +203,8 @@ public class SVGViewTest {
             +
             "<rect>\n"
             +
-            "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"10.0"
-            + "ms\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n"
+            "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"10.001"
+            + "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n"
             + "</rect>\n\n"
             + "</svg>", loopTestString.toString());
 

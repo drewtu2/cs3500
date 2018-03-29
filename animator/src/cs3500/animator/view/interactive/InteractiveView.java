@@ -136,8 +136,7 @@ public class InteractiveView implements IInteractive {
   @Override
   public void export() {
     try {
-      IView exToSVG = ViewFactory.getView("svg", cp.getExportFilename());
-      exToSVG.setLoop(loop);
+      IView exToSVG = ViewFactory.getView("svg", cp.getExportFilename(), loop);
       exToSVG.show(myMV, speed);
       System.out.println("Export");
       System.out.println("File name: " + cp.getExportFilename());
