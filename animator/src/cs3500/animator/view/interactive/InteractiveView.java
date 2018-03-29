@@ -3,12 +3,17 @@ package cs3500.animator.view.interactive;
 import static util.MyUtil.checkNull;
 
 import cs3500.animator.model.IModelView;
+import cs3500.animator.view.IView;
+import cs3500.animator.view.SVGView;
+import cs3500.animator.view.ViewFactory;
 import cs3500.animator.view.visual.CanvasPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -132,9 +137,15 @@ public class InteractiveView implements IInteractive {
 
   @Override
   public void export() {
-    //TODO
-    System.out.println("Export");
-    System.out.println("File name: " + cp.getExportFilename());
+    try {
+      IView exToSVG = ViewFactory.getView("svg", cp.getExportFilename());
+      exToSVG.setLoop(loop);
+      exToSVG.show(myMV, speed);
+      System.out.println("Export");
+      System.out.println("File name: " + cp.getExportFilename());
+    } catch (IOException e) {
+      // stuff
+    }
   }
 
   @Override

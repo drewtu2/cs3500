@@ -161,7 +161,7 @@ public class SVGViewTest {
             new WidthHeightDim(20, 20),
             4, 10));
 
-    loopView.setLooping();
+    loopView.setLoop(true);
 
     try {
       loopView.show(myLoopModel, 1);

@@ -81,7 +81,7 @@ public class VisualView implements IView {
   }
 
   @Override
-  public void setLooping() {
+  public void setLoop(boolean loop) {
     //nothing should happen
   }
 }

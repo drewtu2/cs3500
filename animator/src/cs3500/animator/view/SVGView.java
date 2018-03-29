@@ -297,8 +297,8 @@ public class SVGView implements IView {
   /**
    * Set the looping of the animation to true;
    */
-  public void setLooping() {
-    loopable = true;
+  public void setLoop(boolean loop) {
+    loopable = loop;
   }
 
   /**

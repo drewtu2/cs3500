@@ -18,5 +18,5 @@ public interface IView {
    */
   void show(IModelView state, int tempo) throws IOException;
 
-  void setLooping();
+  void setLoop(boolean loop);
 }
