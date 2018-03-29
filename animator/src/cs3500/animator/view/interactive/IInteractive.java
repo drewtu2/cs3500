@@ -49,9 +49,15 @@ public interface IInteractive extends IView {
   void setLoop(boolean loop);
 
   /**
-   * Set the listeners for the different components
+   * Set the listeners for the different components.
    * @param button the button listener
    * @param slider the speed change listener
    */
   void setListeners(ActionListener button, ChangeListener slider);
+
+  /**
+   * Set the given shape as enabled or disabled.
+   * @param name the name of the shape
+   */
+  void toggleShape(String name);
 }

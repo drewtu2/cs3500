@@ -1,5 +1,7 @@
 package cs3500.animator.controller;
 
+import static util.MyUtil.checkNull;
+
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.IAnimatorModel;
 import cs3500.animator.model.IModelView;
@@ -163,6 +165,9 @@ public class AnimatorController implements IController {
   }
 
   private ActionListener configureButtonListener() {
+    checkNull(myModel);
+    checkNull(myView);
+
     if(!(myView instanceof IInteractive)) {
       throw new IllegalArgumentException("Not interactive view...");
     }
@@ -179,6 +184,10 @@ public class AnimatorController implements IController {
     buttonClickedMap.put("export",()->{ interactiveView.export();});
     buttonClickedMap.put("dont loop",()->{ interactiveView.setLoop(false);});
     buttonClickedMap.put("loop",()->{ interactiveView.setLoop(true);});
+
+    for(String key : myModel.getFullState().keySet()) {
+      buttonClickedMap.put(key, ()->interactiveView.toggleShape(key));
+    }
 
     buttonListener.setButtonClickedActionMap(buttonClickedMap);
     return buttonListener;

@@ -5,7 +5,8 @@ import static util.MyUtil.checkNull;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.BoxLayout;
@@ -22,6 +23,8 @@ import javax.swing.ScrollPaneConstants;
 public class ShapePane extends JPanel {
 
   protected Map<String, IAnimatedShape> state;
+  protected Map<String, JCheckBox> buttons;
+  protected ActionListener buttonListener;
 
   /**
    * Default constructor.
@@ -37,35 +40,40 @@ public class ShapePane extends JPanel {
   public void setModelView(IModelView mv) {
     checkNull(mv);
 
-    System.out.println("Shape list model view set");
-
     state = mv.getFullState();
-    Map<String, JCheckBox> buttons = new HashMap<>();
+    buttons = new HashMap<>();
 
     JCheckBox button;
-    JPanel buttonContainer = new JPanel(new FlowLayout());
+    JPanel buttonContainer = new JPanel();
+    //buttonContainer.setLayout(new BoxLayout(buttonContainer, BoxLayout.PAGE_AXIS));
+    buttonContainer.setLayout(new GridLayout(0, 4));
 
     for (IAnimatedShape shape : state.values()) {
       button = new JCheckBox(shape.getName());
       button.setActionCommand(shape.getName());
       button.setSelected(true);
+      button.addActionListener(buttonListener);
       buttonContainer.add(button);
 
       buttons.put(button.getName(), button);
-      System.out.println("Added shape " + button.getName());
     }
 
     JScrollPane listScroller;
     listScroller = new JScrollPane(buttonContainer,
         ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-    listScroller.add(buttonContainer);
+        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    listScroller.setPreferredSize(new Dimension(50, 50));
+    //listScroller.setAlignmentX(LEFT_ALIGNMENT);
 
-
-    this.setPreferredSize(new Dimension(30, 50));
 
     this.add(listScroller);
+    this.setPreferredSize(new Dimension(50, 50));
+    this.repaint();
 
+  }
+
+  public void setListeners(ActionListener l) {
+    buttonListener = l;
   }
 
 }
