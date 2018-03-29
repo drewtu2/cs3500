@@ -265,4 +265,13 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
   public int getEndTick() {
     return animationEnd;
   }
+
+  @Override
+  public void addMap(Map<String, IAnimatedShape> fullState, Map<String, Boolean> shapeEnabled) {
+    for(String name: fullState.keySet()) {
+      if(shapeEnabled.get(name) == true) {
+        shapes.put(name, ShapeFactory.getShape(fullState.get(name)));
+      }
+    }
+  }
 }

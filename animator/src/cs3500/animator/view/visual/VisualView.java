@@ -80,9 +80,5 @@ public class VisualView implements IView {
     System.out.println("Started Timer...");
   }
 
-  @Override
-  public void setLoop(boolean loop) {
-    //nothing should happen
-  }
 }
 

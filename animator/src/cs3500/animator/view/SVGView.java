@@ -296,13 +296,6 @@ public class SVGView implements IView {
   }
 
   /**
-   * Set the looping of the animation to true;
-   */
-  public void setLoop(boolean loop) {
-    loopable = loop;
-  }
-
-  /**
    * Returns the time for a corresponding tick.
    *
    * @param tick the tick.
