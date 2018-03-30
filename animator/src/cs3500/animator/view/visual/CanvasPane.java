@@ -156,7 +156,11 @@ public class CanvasPane extends JPanel {
    * @return true if the shape can be displayed
    */
   private boolean shouldDisplay(IShape shape) {
-    return enabledMap.get(shape.getName()) && shape.getOpacity() != 0;
+    if(enabledMap != null && enabledMap.containsKey(shape.getName())) {
+      return enabledMap.get(shape.getName()) && shape.getOpacity() != 0;
+    } else {
+      return shape.getOpacity() != 0;
+    }
   }
 
   /**
