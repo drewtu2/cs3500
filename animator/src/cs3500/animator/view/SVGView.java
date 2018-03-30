@@ -130,7 +130,7 @@ public class SVGView implements IView {
               "</rect>\n\n");
     }
 
-    output.append("</svg>");
+    output.append("</svg>\n\n");
 
     if (output.getClass() == FileWriter.class) {
       ((FileWriter) output).flush();
@@ -258,7 +258,12 @@ public class SVGView implements IView {
 
     StringBuilder builder = new StringBuilder();
 
-    builder.append("\n\t<animate attributeType=\"xml\" begin=\"base.begin+");
+    if(loopable) {
+      builder.append("\n\t<animate attributeType=\"xml\" begin=\"base.begin+");
+    }
+    else {
+      builder.append("\n\t<animate attributeType=\"xml\" begin=\"");
+    }
     builder.append(tick2Time(startTick));
     builder.append("s\" dur=\"");
     builder.append(tick2Time(endTick));
@@ -284,8 +289,12 @@ public class SVGView implements IView {
 
     StringBuilder builder = new StringBuilder();
 
-    builder.append("\n\t<animate attributeType=\"xml\" begin=\"base.begin+");
-    builder.append(tick2Time(tick));
+    if(loopable) {
+      builder.append("\n\t<animate attributeType=\"xml\" begin=\"base.begin+");
+    }
+    else {
+      builder.append("\n\t<animate attributeType=\"xml\" begin=\"");
+    }    builder.append(tick2Time(tick));
     builder.append("s\" dur=\"");
     builder.append(0);
     builder.append("s\" attributeName=\"");
