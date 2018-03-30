@@ -92,16 +92,16 @@ public class SVGViewTest {
             "<rect id=\"R\" x=\"200\" y=\"200\" width=\"50\" height=\"100\" "
             + "fill=\"rgb(255,0,0)\" visibility=\"visible\" >\n"
             +
-            "\t<animate attributeType=\"xml\" begin=\"base.begin+1.0s\" dur=\"3.0s\" "
+            "\t<animate attributeType=\"xml\" begin=\"1.0s\" dur=\"3.0s\" "
             + "attributeName=\"x\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
             +
-            "\t<animate attributeType=\"xml\" begin=\"base.begin+4.0s\" dur=\"6.0s\" "
+            "\t<animate attributeType=\"xml\" begin=\"4.0s\" dur=\"6.0s\" "
             + "attributeName=\"width\" from=\"50\" to=\"20\" fill=\"freeze\" />\n"
             +
-            "\t<animate attributeType=\"xml\" begin=\"base.begin+4.0s\" dur=\"6.0s\" "
+            "\t<animate attributeType=\"xml\" begin=\"4.0s\" dur=\"6.0s\" "
             + "attributeName=\"height\" from=\"100\" to=\"20\" fill=\"freeze\" />\n"
             +
-            "\t<animate attributeType=\"xml\" begin=\"base.begin+2.0s\" dur=\"3.0s\" "
+            "\t<animate attributeType=\"xml\" begin=\"2.0s\" dur=\"3.0s\" "
             + "attributeName=\"fill\" from=\"Color: (1.0, 0.0, 0.0)\" "
             + "to=\"Color: (0.0, 1.0, 0.0)\" fill=\"freeze\" />\n"
             +
@@ -110,13 +110,13 @@ public class SVGViewTest {
             "<ellipse id=\"C\" cx=\"500\" cy=\"100\" rx=\"60\" ry=\"30\" "
             + "fill=\"rgb(0,0,255)\" visibility=\"visible\" >\n"
             +
-            "\t<animate attributeType=\"xml\" begin=\"base.begin+0.0s\" dur=\"0s\" "
+            "\t<animate attributeType=\"xml\" begin=\"0.0s\" dur=\"0s\" "
             + "attributeName=\"visibility\" fill=\"freeze\" />\n"
             +
-            "\t<animate attributeType=\"xml\" begin=\"base.begin+2.0s\" dur=\"3.0s\" "
+            "\t<animate attributeType=\"xml\" begin=\"2.0s\" dur=\"3.0s\" "
             + "attributeName=\"cx\" from=\"500\" to=\"600\" fill=\"freeze\" />\n"
             +
-            "\t<animate attributeType=\"xml\" begin=\"base.begin+2.0s\" dur=\"3.0s\" "
+            "\t<animate attributeType=\"xml\" begin=\"2.0s\" dur=\"3.0s\" "
             + "attributeName=\"cy\" from=\"100\" to=\"400\" fill=\"freeze\" />\n"
             +
             "</ellipse>\n" +
