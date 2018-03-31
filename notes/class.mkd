@@ -1,3 +1,73 @@
+# Friday, Mar 30, 2018
+# Shesh
+
+## Drawbacks of the Visitor Pattern
+1. **Visitors by definition break encapsulation.**
+  Encapsulation in OOD states that all the methods/data on an object reside w/in the
+  object itself. Visitors break this because you FORCE operations on the data to
+  exists OUTSIDE of the class itself, in the visitor class.
+  Functions in a visitor have been separated from the class...
+2. **Adding new class that needs to be visited breaks the interface**
+  Adding a new class means that the visitor interface needs to be updated to
+  reflect the new type of class that needs to be handled. This is exactly the
+  reason we moved into OOD -> Visitor reflects a more functional pattern where
+  the functions are responsible for handling the how to respond to data.
+
+# Friday, Mar 23, 2018
+# Ben Lerner
+
+Tic-Tac-Toe
+
+Strategies
+3. Play in corner
+4. Play wherever
+2. Block Opponent
+1. Try to win
+
+Represents a "Combinator Pattern"
+``` java
+interface TTTStrategy {
+  Posn chooseMove(Board b, Player p);
+}
+
+class PlayInCorner implements TTTStrategy {
+  public Posn chooseMove(Board b, Player p) {
+    if(b.getPieceAt(0,0)) == Empty) {
+      return new Posn(0,0);
+    } else if(...) {
+      ...
+    } else if(...) {
+      ...
+    } else if(...) {
+
+    } else {
+      return null;
+    }
+  }
+}
+
+class TryTwo implements TTTStrategy {
+  TTTStrategy strat1, strat2;
+
+  TryTwo(TTTStrategy s1, TTTStrategy s2) {
+    strat1 = s1;
+    strat2 = s2;
+  }
+
+  public Posn chooseMove(Board b, Player p){
+    Posn ans = strat1.chooseMove(p, b);
+    if(ans != null) {
+      return ans;
+    }
+
+    return strat2.chooseMove(p, b);
+  }
+}
+```
+
+Can use this exactly like we used `cons` in fundies1.
+Represents a linked data structure.
+
 
 # Tuesday, Mar 20, 2018
 # Shesh
