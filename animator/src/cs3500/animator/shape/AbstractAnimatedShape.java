@@ -16,6 +16,8 @@ import java.util.Map;
 public abstract class AbstractAnimatedShape extends AbstractShape implements IAnimatedShape {
 
   protected Map<AnimationType, List<IAnimation>> animationList;
+  protected int creationIndex;
+  protected static int numCreated = 0;
 
   @Override
   public void addAnimation(IAnimation animation) throws IllegalArgumentException {
@@ -46,7 +48,7 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
   private boolean validAddition(List<IAnimation> myList, IAnimation addition) {
 
     for (int index = 0; index < myList.size(); ++index) {
-      // If this animaiton overlaps
+      // If this anmiation overlaps
       if (myList.get(index).inBounds(addition.getStartTime())
           || myList.get(index).inBounds(addition.getEndTime())) {
         return false;
@@ -105,5 +107,15 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
   @Override
   public Map<AnimationType, List<IAnimation>> getAnimations() {
     return new HashMap<>(animationList);
+  }
+
+  @Override
+  public int getCreationIndex() {
+    return creationIndex;
+  }
+
+  @Override
+  public int compareTo(IAnimatedShape o) {
+      return this.creationIndex - o.getCreationIndex();
   }
 }

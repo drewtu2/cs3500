@@ -13,6 +13,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -24,7 +27,7 @@ public class CanvasPane extends JPanel {
 
   private Map<String, IAnimatedShape> state;
   private Map<String, Boolean> enabledMap;
-  private Map<String, IShape> originalState;
+  private Map<String, IAnimatedShape> originalState;
   private int tickNum;
   private Dimension area;
 
@@ -117,8 +120,11 @@ public class CanvasPane extends JPanel {
     RGBColor shapeColor;
     IShape shapeState;
 
+    List<IAnimatedShape> shapes = new ArrayList<>(state.values());
+    Collections.sort(shapes);
+
     if (state != null) {
-      for (IAnimatedShape shape : state.values()) {
+      for (IAnimatedShape shape : shapes) {
         shapeColor = shape.getColor();
         shapeState = shape.stateAt(tickNum);
 
@@ -126,13 +132,13 @@ public class CanvasPane extends JPanel {
         if (shouldDisplay(shape)) {
           switch (shapeState.getType()) {
             case RECTANGLE:
-              g.drawRect((int) shapeState.getPosition().getX(),
+              g.fillRect((int) shapeState.getPosition().getX(),
                   (int) shapeState.getPosition().getY(),
                   (int) ((WidthHeightDim) shapeState.getDimension()).getWidth(),
                   (int) ((WidthHeightDim) shapeState.getDimension()).getHeight());
               break;
             case OVAL:
-              g.drawOval((int) shapeState.getPosition().getX(),
+              g.fillOval((int) shapeState.getPosition().getX(),
                   (int) shapeState.getPosition().getY(),
                   (int) ((WidthHeightDim) shapeState.getDimension()).getWidth(),
                   (int) ((WidthHeightDim) shapeState.getDimension()).getHeight());
@@ -150,7 +156,7 @@ public class CanvasPane extends JPanel {
 
 
   /**
-   * Returs true if the given shape should be displayed.
+   * Returns true if the given shape should be displayed.
    * Opacity cannot be 0 and the shape must be enabled.
    * @param shape the shape
    * @return true if the shape can be displayed

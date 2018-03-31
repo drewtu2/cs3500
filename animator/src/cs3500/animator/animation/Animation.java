@@ -41,7 +41,12 @@ public abstract class Animation implements IAnimation {
 
   @Override
   public int compareTo(IAnimation o) {
-    return (int) (this.startTime - o.getStartTime());
+    int startTime = (int) (this.startTime - o.getStartTime());
+    if (startTime == 0) {
+      return this.creationIndex - o.getCreationIndex();
+    } else {
+      return startTime;
+    }
   }
 
   @Override

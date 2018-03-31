@@ -31,6 +31,8 @@ public class Oval extends AbstractAnimatedShape {
     this.opacity = (float) 0.0;
     this.dimension = new WidthHeightDim(width, height);
     this.animationList = new HashMap<>();
+    this.creationIndex = numCreated;
+    numCreated++;
   }
 
   /**
@@ -46,6 +48,7 @@ public class Oval extends AbstractAnimatedShape {
     this.opacity = copy.opacity;
     this.dimension = copy.dimension;
     this.animationList = copy.animationList;
+    this.creationIndex = copy.creationIndex;
 
   }
 

@@ -1,5 +1,7 @@
 package cs3500.animator.model;
 
+import static util.MyUtil.duplicateMap;
+
 import cs3500.animator.animation.AnimationFactory;
 import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.AnimationType;
@@ -143,6 +145,12 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
 
   }
 
+  public AnimatorModel(AnimatorModel model) {
+    shapes = duplicateMap(model.getFullState());
+    animationEnd = model.animationEnd;
+
+  }
+
   @Override
   public void addShape(IAnimatedShape newShape) throws IllegalArgumentException {
 
@@ -176,7 +184,6 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
 
     // If the animation conflicts with another animation, an exception will be thrown and propagated
     // up.
-    // TODO: make sure this updates the object in the map. Should work b/c java passes by reference
     requestedShape.addAnimation(animation);
 
     // If this animation is a destroy animation, see if its the latest occurring destroy. The latest
@@ -242,7 +249,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
 
   @Override
   public Map<String, IAnimatedShape> getFullState() {
-    return new HashMap(shapes);
+    return duplicateMap(shapes);
   }
 
   @Override

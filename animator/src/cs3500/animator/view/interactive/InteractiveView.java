@@ -41,6 +41,7 @@ public class InteractiveView implements IInteractive {
   private boolean loop;
 
   private IModelView myMV;
+  private IModelView originalMV;
 
   private Map<String, Boolean> shapeEnabled;
 
@@ -101,6 +102,7 @@ public class InteractiveView implements IInteractive {
     speed = tempo;
     running = true;
     myMV = state;
+    originalMV = new AnimatorModel((AnimatorModel)state);
     canvas.setModelView(myMV);
     canvas.setEnabledMap(shapeEnabled);
     cp.setModelView(myMV);
@@ -147,8 +149,8 @@ public class InteractiveView implements IInteractive {
   public void export() {
     try {
       IView exToSVG = ViewFactory.getView("svg", cp.getExportFilename(), loop);
-      IModelView exportModel = new AnimatorModel();
-      exportModel.addMap(myMV.getFullState(), shapeEnabled);
+      IModelView exportModel = new AnimatorModel((AnimatorModel)originalMV);
+      exportModel.addMap(exportModel.getFullState(), shapeEnabled);
       exToSVG.show(exportModel, speed);
       System.out.println("Export");
       System.out.println("File name: " + cp.getExportFilename());

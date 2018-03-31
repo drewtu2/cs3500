@@ -136,5 +136,4 @@ public abstract class AbstractShape implements IShape {
         this.position);
   }
 
-
 }

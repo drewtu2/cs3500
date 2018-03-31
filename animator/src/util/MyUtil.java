@@ -1,7 +1,6 @@
 package util;
 
 import cs3500.animator.shape.IAnimatedShape;
-import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.ShapeFactory;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,8 +49,8 @@ public class MyUtil {
    *
    * @param current the given String->Animated Shape map.
    */
-  public static Map<String, IShape> duplicateMap(Map<String, IAnimatedShape> current) {
-    Map<String, IShape> newMap = new HashMap<>();
+  public static Map<String, IAnimatedShape> duplicateMap(Map<String, IAnimatedShape> current) {
+    Map<String, IAnimatedShape> newMap = new HashMap<>();
 
     for (String key : current.keySet()) {
       newMap.put(key, ShapeFactory.getShape(current.get(key)));
