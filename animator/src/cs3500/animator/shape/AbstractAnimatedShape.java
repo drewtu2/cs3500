@@ -116,6 +116,6 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
 
   @Override
   public int compareTo(IAnimatedShape o) {
-      return this.creationIndex - o.getCreationIndex();
+    return this.creationIndex - o.getCreationIndex();
   }
 }

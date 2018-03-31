@@ -11,7 +11,8 @@ public interface IInteractive extends IView {
 
   /**
    * Sets the speed of the animation.
-   * @param speed
+   *
+   * @param speed the speed of the animation
    */
   void setSpeed(int speed);
 
@@ -26,8 +27,7 @@ public interface IInteractive extends IView {
   void pause();
 
   /**
-   * Reset the animation to the beginning. Leaves the animaiton in
-   * a paused state.
+   * Reset the animation to the beginning. Leaves the animaiton in a paused state.
    */
   void reset();
 
@@ -37,19 +37,20 @@ public interface IInteractive extends IView {
   void resume();
 
   /**
-   * Export the animation as an SVG to the file specified by the control panel
-   * text field.
+   * Export the animation as an SVG to the file specified by the control panel text field.
    */
   void export();
 
   /**
    * Set whether or not the animation should loop.
+   *
    * @param loop whether or not the animation should loop.
    */
   void setLoop(boolean loop);
 
   /**
    * Set the listeners for the different components.
+   *
    * @param button the button listener
    * @param slider the speed change listener
    */
@@ -57,6 +58,7 @@ public interface IInteractive extends IView {
 
   /**
    * Set the given shape as enabled or disabled.
+   *
    * @param name the name of the shape
    */
   void toggleShape(String name);

@@ -85,6 +85,7 @@ public class ControlPane extends JPanel {
 
   /**
    * Pipe model view to shape pane.
+   *
    * @param mv the model view
    */
   public void setModelView(IModelView mv) {

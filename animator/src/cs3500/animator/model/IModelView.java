@@ -50,13 +50,15 @@ public interface IModelView {
 
   /**
    * Returns the end tick of the animation.
+   *
    * @return the end ticke of the animation
    */
   int getEndTick();
 
   /**
-   * Populates the map in the model with only shapes with values of true in the given
-   * shapeEnabled map.
+   * Populates the map in the model with only shapes with values of true in the given shapeEnabled
+   * map.
+   *
    * @param fullState previous populated model map
    * @param shapeEnabled shapes to be exclusively included in this model's map
    */

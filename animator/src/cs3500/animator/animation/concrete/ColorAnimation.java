@@ -10,8 +10,8 @@ import cs3500.animator.shape.RGBColor;
  */
 public class ColorAnimation extends Animation {
 
-  RGBColor startColor;
-  RGBColor endColor;
+  protected RGBColor startColor;
+  protected RGBColor endColor;
 
   /**
    * Constructs a color animation.
@@ -49,7 +49,6 @@ public class ColorAnimation extends Animation {
 
   @Override
   public void setState(IShape current, int time) {
-    // TODO: See interface for explanation
     float newRed = interpolate(startColor.getRed(), endColor.getRed(), time);
     float newGreen = interpolate(startColor.getGreen(), endColor.getGreen(), time);
     float newBlue = interpolate(startColor.getBlue(), endColor.getBlue(), time);
@@ -79,6 +78,7 @@ public class ColorAnimation extends Animation {
 
   /**
    * Returns the start color.
+   *
    * @return the start color.
    */
   public RGBColor getStartColor() {
@@ -87,6 +87,7 @@ public class ColorAnimation extends Animation {
 
   /**
    * Returns the end color.
+   *
    * @return the end color.
    */
   public RGBColor getEndColor() {

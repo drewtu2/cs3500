@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * Class representing the start, pause, reset, resume button features.
+ */
 public class ButtonPane extends JPanel {
 
   private JButton startButton;
@@ -12,6 +15,9 @@ public class ButtonPane extends JPanel {
   private JButton resetButton;
   private JButton resumeButton;
 
+  /**
+   * Default Constructor.
+   */
   ButtonPane() {
     setLayout(new FlowLayout());
 
@@ -33,6 +39,11 @@ public class ButtonPane extends JPanel {
 
   }
 
+  /**
+   * Set the listeners for these buttons.
+   *
+   * @param l the listener for all four buttons
+   */
   public void setListeners(ActionListener l) {
     startButton.addActionListener(l);
     pauseButton.addActionListener(l);

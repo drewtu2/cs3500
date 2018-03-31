@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The interfce for a general an animated shape. Animated shapes can be thought of as shapes whose
+ * The interface for a general an animated shape. Animated shapes can be thought of as shapes whose
  * state is a function of time.
  */
-public interface IAnimatedShape extends IShape, Comparable<IAnimatedShape>{
+public interface IAnimatedShape extends IShape, Comparable<IAnimatedShape> {
 
   /**
    * Adds an animation to the given shape.
@@ -47,6 +47,7 @@ public interface IAnimatedShape extends IShape, Comparable<IAnimatedShape>{
 
   /**
    * Returns the creation index.
+   *
    * @return the creation index.
    */
   int getCreationIndex();

@@ -33,6 +33,7 @@ public class ExportPane extends JPanel {
 
   /**
    * Set the listeners for the export button.
+   *
    * @param button the listener.
    */
   public void setListeners(ActionListener button) {
@@ -41,6 +42,7 @@ public class ExportPane extends JPanel {
 
   /**
    * Get the current state of the text field (corresponding to file name).
+   *
    * @return the contents of the file name.
    */
   public String getFilename() {

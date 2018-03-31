@@ -13,13 +13,13 @@ import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeFactory;
 import cs3500.animator.shape.dimension.IDimension;
 import cs3500.animator.shape.dimension.WidthHeightDim;
-import util.TweenModelBuilder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import util.TweenModelBuilder;
 
 /**
  * A concrete implementation of an animator animator.model.
@@ -55,7 +55,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
       myOval.addAnimation(AnimationFactory.getAppearAnimation(startOfLife));
       myOval.addAnimation(AnimationFactory.getDisappearAnimation(endOfLife));
 
-      if(endOfLife > endTick) {
+      if (endOfLife > endTick) {
         endTick = endOfLife;
       }
 
@@ -78,7 +78,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
       myRec.addAnimation(AnimationFactory.getAppearAnimation(startOfLife));
       myRec.addAnimation(AnimationFactory.getDisappearAnimation(endOfLife));
 
-      if(endOfLife > endTick) {
+      if (endOfLife > endTick) {
         endTick = endOfLife;
       }
 
@@ -139,12 +139,22 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
     shapes = new HashMap<>();
   }
 
+  /**
+   * Constructs a model from a builder.
+   *
+   * @param b the builder
+   */
   public AnimatorModel(Builder b) {
     shapes = new HashMap(b.shapes);
     animationEnd = b.endTick;
 
   }
 
+  /**
+   * Copy Constructor.
+   *
+   * @param model the model to copy.
+   */
   public AnimatorModel(AnimatorModel model) {
     shapes = duplicateMap(model.getFullState());
     animationEnd = model.animationEnd;
@@ -189,7 +199,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
     // If this animation is a destroy animation, see if its the latest occurring destroy. The latest
     // occurring destroy. The latest destroy represents the end of the animation.
     if (animation.getType() == AnimationType.DESTROY) {
-      if(animation.getEndTime() > animationEnd) {
+      if (animation.getEndTime() > animationEnd) {
         animationEnd = animation.getEndTime();
       }
     }
@@ -275,8 +285,8 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
 
   @Override
   public void addMap(Map<String, IAnimatedShape> fullState, Map<String, Boolean> shapeEnabled) {
-    for(String name: fullState.keySet()) {
-      if(shapeEnabled.get(name) == true) {
+    for (String name : fullState.keySet()) {
+      if (shapeEnabled.get(name)) {
         shapes.put(name, ShapeFactory.getShape(fullState.get(name)));
       }
     }

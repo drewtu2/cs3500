@@ -102,7 +102,7 @@ public class InteractiveView implements IInteractive {
     speed = tempo;
     running = true;
     myMV = state;
-    originalMV = new AnimatorModel((AnimatorModel)state);
+    originalMV = new AnimatorModel((AnimatorModel) state);
     canvas.setModelView(myMV);
     canvas.setEnabledMap(shapeEnabled);
     cp.setModelView(myMV);
@@ -149,7 +149,7 @@ public class InteractiveView implements IInteractive {
   public void export() {
     try {
       IView exToSVG = ViewFactory.getView("svg", cp.getExportFilename(), loop);
-      IModelView exportModel = new AnimatorModel((AnimatorModel)originalMV);
+      IModelView exportModel = new AnimatorModel((AnimatorModel) originalMV);
       exportModel.addMap(exportModel.getFullState(), shapeEnabled);
       exToSVG.show(exportModel, speed);
       System.out.println("Export");
@@ -169,7 +169,7 @@ public class InteractiveView implements IInteractive {
   public void toggleShape(String name) {
     checkNull(name);
 
-    if(shapeEnabled.containsKey(name)) {
+    if (shapeEnabled.containsKey(name)) {
       shapeEnabled.put(name, !shapeEnabled.get(name));
       System.out.println(name + " set to " + shapeEnabled.get(name).toString());
     } else {
@@ -203,7 +203,8 @@ public class InteractiveView implements IInteractive {
   }
 
   /**
-   * Initialize all values as being true
+   * Initialize all values as being true.
+   *
    * @param mv the model view
    */
   private void configureVisibilityMap(IModelView mv) {

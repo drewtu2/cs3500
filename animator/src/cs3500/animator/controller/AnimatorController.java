@@ -144,11 +144,11 @@ public class AnimatorController implements IController {
     speed = inputSpeed;
 
     // Configure the listeners if we're using the interactive view
-    if((myView instanceof IInteractive)) {
+    if ((myView instanceof IInteractive)) {
       ActionListener buttons = configureButtonListener();
       ChangeListener speedListener = configureSpeedListener();
-      ((IInteractive)myView).setListeners(buttons, speedListener);
-      ((IInteractive)myView).setSpeed(speed);
+      ((IInteractive) myView).setListeners(buttons, speedListener);
+      ((IInteractive) myView).setSpeed(speed);
     }
   }
 
@@ -164,40 +164,62 @@ public class AnimatorController implements IController {
     }
   }
 
+  /**
+   * Set up the button listener.
+   * @return an action listener for the buttons.
+   */
   private ActionListener configureButtonListener() {
     checkNull(myModel);
     checkNull(myView);
 
-    if(!(myView instanceof IInteractive)) {
+    if (!(myView instanceof IInteractive)) {
       throw new IllegalArgumentException("Not interactive view...");
     }
 
     Map<String, Runnable> buttonClickedMap = new HashMap<>();
     ButtonListener buttonListener = new ButtonListener();
 
-    IInteractive interactiveView = (IInteractive)myView;
+    IInteractive interactiveView = (IInteractive) myView;
 
-    buttonClickedMap.put("start",()-> { interactiveView.start();});
-    buttonClickedMap.put("pause",()->{ interactiveView.pause();});
-    buttonClickedMap.put("resume",()->{ interactiveView.resume();});
-    buttonClickedMap.put("reset",()->{ interactiveView.reset();});
-    buttonClickedMap.put("export",()->{ interactiveView.export();});
-    buttonClickedMap.put("dont loop",()->{ interactiveView.setLoop(false);});
-    buttonClickedMap.put("loop",()->{ interactiveView.setLoop(true);});
+    buttonClickedMap.put("start", () -> {
+      interactiveView.start();
+    });
+    buttonClickedMap.put("pause", () -> {
+      interactiveView.pause();
+    });
+    buttonClickedMap.put("resume", () -> {
+      interactiveView.resume();
+    });
+    buttonClickedMap.put("reset", () -> {
+      interactiveView.reset();
+    });
+    buttonClickedMap.put("export", () -> {
+      interactiveView.export();
+    });
+    buttonClickedMap.put("dont loop", () -> {
+      interactiveView.setLoop(false);
+    });
+    buttonClickedMap.put("loop", () -> {
+      interactiveView.setLoop(true);
+    });
 
-    for(String key : myModel.getFullState().keySet()) {
-      buttonClickedMap.put(key, ()->interactiveView.toggleShape(key));
+    for (String key : myModel.getFullState().keySet()) {
+      buttonClickedMap.put(key, () -> interactiveView.toggleShape(key));
     }
 
     buttonListener.setButtonClickedActionMap(buttonClickedMap);
     return buttonListener;
   }
 
+  /**
+   * Configure listener for the speed slider.
+   * @return the change listener
+   */
   private ChangeListener configureSpeedListener() {
-    if(!(myView instanceof IInteractive)) {
+    if (!(myView instanceof IInteractive)) {
       throw new IllegalArgumentException("Not interactive view...");
     }
-    ChangeListener listener = new SliderChangeListener((IInteractive)myView);
+    ChangeListener listener = new SliderChangeListener((IInteractive) myView);
     return listener;
   }
 

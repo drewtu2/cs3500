@@ -53,7 +53,7 @@ public class ViewFactory {
     checkNull(name);
 
     // Handle System.out case
-    if(outputFile == null || outputFile.equals("out")){
+    if (outputFile == null || outputFile.equals("out")) {
       myAppendable = System.out;
     } else { // Handle file case
       myAppendable = new FileWriter(outputFile, true); //true tells to append data.
@@ -89,7 +89,7 @@ public class ViewFactory {
     checkNull(loopable);
 
     // Handle System.out case
-    if(outputFile == null || outputFile.equals("out")){
+    if (outputFile == null || outputFile.equals("out")) {
       myAppendable = System.out;
     } else { // Handle file case
       myAppendable = new FileWriter(outputFile, true); //true tells to append data.

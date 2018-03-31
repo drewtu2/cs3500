@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 // Useful Notes: https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
+
 /**
  * Information regarding the shapes in the animation.
  */
@@ -37,6 +38,11 @@ public class ShapePane extends JPanel {
     this.add(title);
   }
 
+  /**
+   * Set the model view for this shape pane.
+   *
+   * @param mv the model view to use
+   */
   public void setModelView(IModelView mv) {
     checkNull(mv);
 
@@ -65,13 +71,17 @@ public class ShapePane extends JPanel {
     listScroller.setPreferredSize(new Dimension(50, 50));
     //listScroller.setAlignmentX(LEFT_ALIGNMENT);
 
-
     this.add(listScroller);
     this.setPreferredSize(new Dimension(50, 50));
     this.repaint();
 
   }
 
+  /**
+   * Set the action listener for these buttons.
+   *
+   * @param l the action listener.
+   */
   public void setListeners(ActionListener l) {
     buttonListener = l;
   }

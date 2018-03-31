@@ -28,7 +28,7 @@ public class ShapeFactory {
    * Copy constructor.
    */
   public static IAnimatedShape getShape(IShape shape) {
-    switch(shape.getType()) {
+    switch (shape.getType()) {
       case OVAL:
         return new Oval((Oval) shape);
       case RECTANGLE:

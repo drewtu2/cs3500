@@ -10,8 +10,8 @@ import cs3500.animator.shape.dimension.IDimension;
  */
 public class ScaleAnimation extends Animation {
 
-  IDimension startDimension;
-  IDimension endDimension;
+  protected IDimension startDimension;
+  protected IDimension endDimension;
 
   /**
    * Constructs a scale animation.
@@ -81,6 +81,7 @@ public class ScaleAnimation extends Animation {
 
   /**
    * Returns the start position.
+   *
    * @return the start position.
    */
   public IDimension getStartDimension() {
@@ -89,6 +90,7 @@ public class ScaleAnimation extends Animation {
 
   /**
    * Returns the end dimension.
+   *
    * @return the end dimension.
    */
   public IDimension getEndDimension() {

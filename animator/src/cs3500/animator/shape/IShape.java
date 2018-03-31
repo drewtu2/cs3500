@@ -72,6 +72,7 @@ public interface IShape {
 
   /**
    * Sets the state of the shape to the same properties as a given state.
+   *
    * @param state the state to duplicate
    */
   void setState(IShape state);

@@ -156,13 +156,14 @@ public class CanvasPane extends JPanel {
 
 
   /**
-   * Returns true if the given shape should be displayed.
-   * Opacity cannot be 0 and the shape must be enabled.
+   * Returns true if the given shape should be displayed. Opacity cannot be 0 and the shape must be
+   * enabled.
+   *
    * @param shape the shape
    * @return true if the shape can be displayed
    */
   private boolean shouldDisplay(IShape shape) {
-    if(enabledMap != null && enabledMap.containsKey(shape.getName())) {
+    if (enabledMap != null && enabledMap.containsKey(shape.getName())) {
       return enabledMap.get(shape.getName()) && shape.getOpacity() != 0;
     } else {
       return shape.getOpacity() != 0;

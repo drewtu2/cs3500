@@ -84,6 +84,7 @@ public class MoveAnimation extends Animation {
 
   /**
    * Returns the start position.
+   *
    * @return the start position.
    */
   public Position2D getStartPos() {
@@ -92,6 +93,7 @@ public class MoveAnimation extends Animation {
 
   /**
    * Returns the end position.
+   *
    * @return the end position.
    */
   public Position2D getEndPos() {

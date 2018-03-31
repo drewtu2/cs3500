@@ -5,10 +5,13 @@ import cs3500.animator.animation.AnimationType;
 import cs3500.animator.shape.IShape;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+/**
+ * Represents a name animation. So far not used.
+ */
 public class NameAnimation extends Animation {
 
-  String oldName;
-  String newName;
+  protected String oldName;
+  protected String newName;
 
   /**
    * Constructs a name change animation.

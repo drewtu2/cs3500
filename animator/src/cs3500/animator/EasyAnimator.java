@@ -11,6 +11,7 @@ public class EasyAnimator {
 
   /**
    * The main method.
+   *
    * @param args input args.
    */
   public static void main(String[] args) {

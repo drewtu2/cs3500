@@ -102,7 +102,7 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setState(IShape state) {
-    if(this.type != state.getType()) {
+    if (this.type != state.getType()) {
       throw new IllegalArgumentException("Shapes need to be the same type");
     }
 

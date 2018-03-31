@@ -122,12 +122,12 @@ public class SVGView implements IView {
       output.append("\n" + endTag + "\n\n");
     }
 
-    if(loopable) {
+    if (loopable) {
       output.append("<rect>\n" +
-              "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"" + Double.toString
-              (tick2Time(lastAnimTime) + 0.001) +
-              "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n" +
-              "</rect>\n\n");
+          "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"" + Double.toString
+          (tick2Time(lastAnimTime) + 0.001) +
+          "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n" +
+          "</rect>\n\n");
     }
 
     output.append("</svg>\n\n");
@@ -235,10 +235,11 @@ public class SVGView implements IView {
 
   /**
    * Finds the last animation in the animator to account for when to loopback.
+   *
    * @param animation one animation to compare with current last end time
    */
   private void findLastAnimation(IAnimation animation) {
-    if(animation.getEndTime() > lastAnimTime) {
+    if (animation.getEndTime() > lastAnimTime) {
       lastAnimTime = animation.getEndTime();
     }
   }
@@ -258,10 +259,9 @@ public class SVGView implements IView {
 
     StringBuilder builder = new StringBuilder();
 
-    if(loopable) {
+    if (loopable) {
       builder.append("\n\t<animate attributeType=\"xml\" begin=\"base.begin+");
-    }
-    else {
+    } else {
       builder.append("\n\t<animate attributeType=\"xml\" begin=\"");
     }
     builder.append(tick2Time(startTick));
@@ -289,12 +289,12 @@ public class SVGView implements IView {
 
     StringBuilder builder = new StringBuilder();
 
-    if(loopable) {
+    if (loopable) {
       builder.append("\n\t<animate attributeType=\"xml\" begin=\"base.begin+");
-    }
-    else {
+    } else {
       builder.append("\n\t<animate attributeType=\"xml\" begin=\"");
-    }    builder.append(tick2Time(tick));
+    }
+    builder.append(tick2Time(tick));
     builder.append("s\" dur=\"");
     builder.append(0);
     builder.append("s\" attributeName=\"");
