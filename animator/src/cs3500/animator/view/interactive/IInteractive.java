@@ -17,6 +17,11 @@ public interface IInteractive extends IView {
   void setSpeed(int speed);
 
   /**
+   * Gets the speed of the animation.
+   */
+  int getSpeed();
+
+  /**
    * Start the animation.
    */
   void start();

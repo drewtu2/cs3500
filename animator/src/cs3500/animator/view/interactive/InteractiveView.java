@@ -121,6 +121,11 @@ public class InteractiveView implements IInteractive {
   }
 
   @Override
+  public int getSpeed() {
+    return this.speed;
+  }
+
+  @Override
   public void start() {
     System.out.println("Started");
     running = true;
