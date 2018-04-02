@@ -86,7 +86,7 @@ public class SVGViewTest {
       System.out.print("invalid input");
 
     }
-    assertEquals("<svg width=\"700\" height=\"500\" version=\"1.1\"\n" +
+    assertEquals("<svg width=\"1000\" height=\"900\" version=\"1.1\"\n" +
             "\txmlns=\"http://www.w3.org/2000/svg\">\n" +
             "\n" +
             "<rect id=\"R\" x=\"200\" y=\"200\" width=\"50\" height=\"100\" "
@@ -96,8 +96,8 @@ public class SVGViewTest {
             + "attributeName=\"x\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"2.0s\" dur=\"3.0s\" "
-            + "attributeName=\"fill\" from=\"Color: (1.0, 0.0, 0.0)\" "
-            + "to=\"Color: (0.0, 1.0, 0.0)\" fill=\"freeze\" />\n"
+            + "attributeName=\"fill\" from=\"rgb(255,0,0)\" "
+            + "to=\"rgb(0,255,0)\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"4.0s\" dur=\"6.0s\" "
             + "attributeName=\"width\" from=\"50\" to=\"20\" fill=\"freeze\" />\n"
@@ -166,7 +166,7 @@ public class SVGViewTest {
       System.out.print("invalid input");
 
     }
-    assertEquals("<svg width=\"700\" height=\"500\" version=\"1.1\"\n" +
+    assertEquals("<svg width=\"1000\" height=\"900\" version=\"1.1\"\n" +
             "\txmlns=\"http://www.w3.org/2000/svg\">\n" +
             "\n" +
             "<rect id=\"R\" x=\"200\" y=\"200\" width=\"50\" height=\"100\" "
@@ -176,8 +176,8 @@ public class SVGViewTest {
             + "attributeName=\"x\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"base.begin+2.0s\" dur=\"3.0s\" "
-            + "attributeName=\"fill\" from=\"Color: (1.0, 0.0, 0.0)\" "
-            + "to=\"Color: (0.0, 1.0, 0.0)\" fill=\"freeze\" />\n"
+            + "attributeName=\"fill\" from=\"rgb(255,0,0)\" "
+            + "to=\"rgb(0,255,0)\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"base.begin+4.0s\" dur=\"6.0s\" "
             + "attributeName=\"width\" from=\"50\" to=\"20\" fill=\"freeze\" />\n"

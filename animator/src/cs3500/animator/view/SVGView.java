@@ -12,6 +12,7 @@ import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
+import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeType;
 import cs3500.animator.shape.concrete.Oval;
 import cs3500.animator.shape.concrete.Rectangle;
@@ -29,8 +30,8 @@ import java.util.Map;
  */
 public class SVGView implements IView {
 
-  private int width = 700;
-  private int height = 500;
+  private int width = 1000;
+  private int height = 900;
   private Appendable output;
   private float speed;
   private boolean loopable;
@@ -112,11 +113,9 @@ public class SVGView implements IView {
         output.append("\" ry=\"");
         output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
             .getHeight())));
-        output.append("\" fill=\"rgb(");
-        output.append(Integer.toString(Math.round(255 * curShape.getColor().getRed())));
-        output.append("," + Integer.toString(Math.round(255 * curShape.getColor().getGreen())));
-        output.append("," + Integer.toString(Math.round(255 * curShape.getColor().getBlue())));
-        output.append(")\" visibility=");
+        output.append("\" fill=\"");
+        output.append(colorToRGB(curShape.getColor()));
+        output.append("\" visibility=");
         if (curShape.getOpacity() > 0.0) {
           output.append("\"visible\" >");
         } else {
@@ -196,8 +195,8 @@ public class SVGView implements IView {
           case COLOR:
             strBuild.append(printAnimationHelper(
                 "fill",
-                ((ColorAnimation) animation).getStartColor().toString(),
-                ((ColorAnimation) animation).getEndColor().toString(),
+                colorToRGB(((ColorAnimation) animation).getStartColor()),
+                colorToRGB(((ColorAnimation) animation).getEndColor()),
                 animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime()));
             break;
@@ -238,6 +237,14 @@ public class SVGView implements IView {
             throw new IOException("invalid type used");
         }
       return strBuild.toString();
+  }
+
+  private String colorToRGB(RGBColor startColor) {
+    String red = Integer.toString(Math.round(startColor.getRed()*255));
+    String green = Integer.toString(Math.round(startColor.getGreen()*255));
+    String blue = Integer.toString(Math.round(startColor.getBlue()*255));
+
+    return "rgb(" + red + "," + green + "," + blue + ")";
   }
 
   /**
