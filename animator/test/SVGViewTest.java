@@ -185,6 +185,18 @@ public class SVGViewTest {
             "\t<animate attributeType=\"xml\" begin=\"base.begin+4.0s\" dur=\"6.0s\" "
             + "attributeName=\"height\" from=\"100\" to=\"20\" fill=\"freeze\" />\n"
             +
+            "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
+            "attributeName=\"x\" to=\"200\" fill=\"freeze\" />\n"
+            +
+            "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
+            "attributeName=\"width\" to=\"50\" fill=\"freeze\" />\n"
+            +
+            "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
+            "attributeName=\"height\" to=\"100\" fill=\"freeze\" />\n"
+            +
+            "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
+            "attributeName=\"fill\" to=\"rgb(255,0,0)\" fill=\"freeze\" />\n"
+            +
             "</rect>\n" +
             "\n" +
             "<ellipse id=\"C\" cx=\"500\" cy=\"100\" rx=\"60\" ry=\"30\" "
@@ -199,14 +211,22 @@ public class SVGViewTest {
             "\t<animate attributeType=\"xml\" begin=\"base.begin+2.0s\" dur=\"3.0s\" "
             + "attributeName=\"cy\" from=\"100\" to=\"400\" fill=\"freeze\" />\n"
             +
+            "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
+            "attributeName=\"cx\" to=\"500\" fill=\"freeze\" />\n"
+            +
+            "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
+            "attributeName=\"cy\" to=\"100\" fill=\"freeze\" />\n"
+            +
             "</ellipse>\n\n"
             +
             "<rect>\n"
             +
             "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"10.001"
             + "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n"
-            + "</rect>\n\n"
-            + "</svg>\n", loopTestString.toString());
+            +
+            "</rect>\n\n"
+            +
+            "</svg>\n", loopTestString.toString());
 
   }
 }

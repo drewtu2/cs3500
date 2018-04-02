@@ -36,6 +36,7 @@ public class SVGView implements IView {
   private float speed;
   private boolean loopable;
   private float lastAnimTime;
+  private StringBuilder resetString;
 
   /**
    * Constructs an instance of an svgview setting the output to be the appendable. Setting speed
@@ -88,11 +89,9 @@ public class SVGView implements IView {
         output.append("\" height=\"");
         output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
             .getHeight())));
-        output.append("\" fill=\"rgb(");
-        output.append(Integer.toString(Math.round(255 * curShape.getColor().getRed())));
-        output.append("," + Integer.toString(Math.round(255 * curShape.getColor().getGreen())));
-        output.append("," + Integer.toString(Math.round(255 * curShape.getColor().getBlue())));
-        output.append(")\" visibility=");
+        output.append("\" fill=\"");
+        output.append(colorToRGB(curShape.getColor()));
+        output.append("\" visibility=");
         if (curShape.getOpacity() > 0.0) {
           output.append("\"visible\" >");
         } else {
@@ -122,6 +121,7 @@ public class SVGView implements IView {
           output.append("\"invisible\" >");
         }
       }
+      resetString = new StringBuilder();
 
       List<AnimationSummary> animationSummaries = getSummary(curShape);
 
@@ -131,6 +131,9 @@ public class SVGView implements IView {
           output.append(summary.getDescription());
         }
 
+        if(loopable) {
+          output.append(resetString.toString());
+        }
       output.append("\n" + endTag + "\n\n");
     }
 
@@ -159,7 +162,7 @@ public class SVGView implements IView {
     String attName1 = "";
     String attName2 = "";
     StringBuilder strBuild = new StringBuilder();
-
+//<animate attributeType="xml" begin="base.end" dur="1ms" attributeName="fill" to="rgb(255,255,255)" fill="freeze" />
         switch (animation.getType()) {
           case MOVE:
             if (s.getType().equals(ShapeType.OVAL)) {
@@ -179,6 +182,8 @@ public class SVGView implements IView {
                       .getX())),
                   animation.getStartTime(),
                   animation.getEndTime() - animation.getStartTime()));
+              resetString.append(printAnimationHelper(attName1, Integer.toString(Math.round(((MoveAnimation) animation).getStartPos()
+                      .getX()))));
             }
             if (typeOfMove(((MoveAnimation) animation).getStartPos(),
                 ((MoveAnimation) animation).getEndPos()).contains("y")) {
@@ -190,6 +195,9 @@ public class SVGView implements IView {
                       .getY())),
                   animation.getStartTime(),
                   animation.getEndTime() - animation.getStartTime()));
+              resetString.append(printAnimationHelper(attName2, Integer.toString(Math.round((
+                      (MoveAnimation) animation).getStartPos()
+                      .getY()))));
             }
             break;
           case COLOR:
@@ -199,6 +207,7 @@ public class SVGView implements IView {
                 colorToRGB(((ColorAnimation) animation).getEndColor()),
                 animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime()));
+            resetString.append(printAnimationHelper("fill", colorToRGB(((ColorAnimation) animation).getStartColor())));
             break;
           case SCALE:
             if (s.getType().equals(ShapeType.OVAL)) {
@@ -217,6 +226,9 @@ public class SVGView implements IView {
                     .getWidth())),
                 animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime()));
+            resetString.append(printAnimationHelper(attName1, Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
+                    .getStartDimension()).getWidth()))));
+
             strBuild.append(printAnimationHelper(
                 attName2,
                 Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
@@ -226,6 +238,9 @@ public class SVGView implements IView {
                     .getHeight())),
                 animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime()));
+            resetString.append(printAnimationHelper(attName2, Integer.toString(Math.round((
+                    (WidthHeightDim) ((ScaleAnimation) animation)
+                    .getStartDimension()).getHeight()))));
             break;
           case CREATE:
             strBuild.append(printAnimationHelper("visibility", animation.getStartTime()));
@@ -236,8 +251,9 @@ public class SVGView implements IView {
           default:
             throw new IOException("invalid type used");
         }
-      return strBuild.toString();
+    return strBuild.toString();
   }
+
 
   private String colorToRGB(RGBColor startColor) {
     String red = Integer.toString(Math.round(startColor.getRed()*255));
@@ -313,6 +329,30 @@ public class SVGView implements IView {
     builder.append(startState);
     builder.append("\" to=\"");
     builder.append(endState);
+    builder.append("\" fill=\"freeze\" />");
+
+    return builder.toString();
+  }
+
+
+
+  /**
+   * Returns the string given an animation to reset during looping.
+   *
+   * @param attName the attribute on which the animation occurs
+   * @param startState value to reset animation to
+   * @return a string representing the animation
+   */
+  private String printAnimationHelper(String attName, String startState){
+
+    StringBuilder builder = new StringBuilder();
+
+      builder.append("\n\t<animate attributeType=\"xml\" begin=\"base.end");
+    builder.append("\" dur=\"0.5ms\"");
+    builder.append(" attributeName=\"");
+    builder.append(attName);
+    builder.append("\" to=\"");
+    builder.append(startState);
     builder.append("\" fill=\"freeze\" />");
 
     return builder.toString();
