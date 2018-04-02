@@ -95,15 +95,15 @@ public class SVGViewTest {
             "\t<animate attributeType=\"xml\" begin=\"1.0s\" dur=\"3.0s\" "
             + "attributeName=\"x\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
             +
+            "\t<animate attributeType=\"xml\" begin=\"2.0s\" dur=\"3.0s\" "
+            + "attributeName=\"fill\" from=\"Color: (1.0, 0.0, 0.0)\" "
+            + "to=\"Color: (0.0, 1.0, 0.0)\" fill=\"freeze\" />\n"
+            +
             "\t<animate attributeType=\"xml\" begin=\"4.0s\" dur=\"6.0s\" "
             + "attributeName=\"width\" from=\"50\" to=\"20\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"4.0s\" dur=\"6.0s\" "
             + "attributeName=\"height\" from=\"100\" to=\"20\" fill=\"freeze\" />\n"
-            +
-            "\t<animate attributeType=\"xml\" begin=\"2.0s\" dur=\"3.0s\" "
-            + "attributeName=\"fill\" from=\"Color: (1.0, 0.0, 0.0)\" "
-            + "to=\"Color: (0.0, 1.0, 0.0)\" fill=\"freeze\" />\n"
             +
             "</rect>\n" +
             "\n" +
@@ -121,7 +121,7 @@ public class SVGViewTest {
             +
             "</ellipse>\n" +
             "\n" +
-            "</svg>", testString.toString());
+            "</svg>\n", testString.toString());
 
   }
 
@@ -175,15 +175,15 @@ public class SVGViewTest {
             "\t<animate attributeType=\"xml\" begin=\"base.begin+1.0s\" dur=\"3.0s\" "
             + "attributeName=\"x\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
             +
+            "\t<animate attributeType=\"xml\" begin=\"base.begin+2.0s\" dur=\"3.0s\" "
+            + "attributeName=\"fill\" from=\"Color: (1.0, 0.0, 0.0)\" "
+            + "to=\"Color: (0.0, 1.0, 0.0)\" fill=\"freeze\" />\n"
+            +
             "\t<animate attributeType=\"xml\" begin=\"base.begin+4.0s\" dur=\"6.0s\" "
             + "attributeName=\"width\" from=\"50\" to=\"20\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"base.begin+4.0s\" dur=\"6.0s\" "
             + "attributeName=\"height\" from=\"100\" to=\"20\" fill=\"freeze\" />\n"
-            +
-            "\t<animate attributeType=\"xml\" begin=\"base.begin+2.0s\" dur=\"3.0s\" "
-            + "attributeName=\"fill\" from=\"Color: (1.0, 0.0, 0.0)\" "
-            + "to=\"Color: (0.0, 1.0, 0.0)\" fill=\"freeze\" />\n"
             +
             "</rect>\n" +
             "\n" +
@@ -206,7 +206,7 @@ public class SVGViewTest {
             "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"10.001"
             + "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n"
             + "</rect>\n\n"
-            + "</svg>", loopTestString.toString());
+            + "</svg>\n", loopTestString.toString());
 
   }
 }
