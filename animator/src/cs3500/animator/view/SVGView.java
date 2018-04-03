@@ -80,8 +80,8 @@ public class SVGView implements IView {
       if (curShape.getType().equals(ShapeType.RECTANGLE)) {
         endTag = "</rect>";
         curShape = (Rectangle) curShape;
-        output.append(String.format("<rect id=\"%s\" x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" " +
-                        "fill=\"%s\" " +
+        output.append(String.format("<rect id=\"%s\" x=\"%s\" y=\"%s\" " +
+                        "width=\"%s\" height=\"%s\" " + "fill=\"%s\" " +
                         "visibility=", curShape.getName(),
                 Integer.toString(Math.round(curShape.getPosition().getX())),
                 Integer.toString(Math.round(curShape.getPosition().getY())),
@@ -98,9 +98,8 @@ public class SVGView implements IView {
       } else if (curShape.getType().equals(ShapeType.OVAL)) {
         endTag = "</ellipse>";
         curShape = (Oval) curShape;
-        output.append(String.format("<ellipse id=\"%s\" cx=\"%s\" cy=\"%s\" rx=\"%s\" " +
-                        "ry=\"%s\" " +
-                        "fill=\"%s\" " +
+        output.append(String.format("<ellipse id=\"%s\" cx=\"%s\" cy=\"%s\" " +
+                        "rx=\"%s\" " + "ry=\"%s\" " + "fill=\"%s\" " +
                         "visibility=", curShape.getName(),
                 Integer.toString(Math.round(curShape.getPosition().getX())),
                 Integer.toString(Math.round(curShape.getPosition().getY())),
@@ -132,11 +131,10 @@ public class SVGView implements IView {
     }
 
     if (loopable) {
-      output.append("<rect>\n" +
-              "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"" + Double.toString
-              (tick2Time(lastAnimTime) + 0.001) +
-              "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n" +
-              "</rect>\n\n");
+      output.append("<rect>\n" + "\t<animate id=\"base\" begin=\"0;base.end\" dur=\""
+              + Double.toString(tick2Time(lastAnimTime) + 0.001)
+              + "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n"
+              + "</rect>\n\n");
     }
 
     output.append("</svg>\n");
