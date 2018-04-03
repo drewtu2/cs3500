@@ -1,3 +1,39 @@
+# Assignment 7 Updates
+In Assignment 7, we developed a new view called the interactive view. This view
+took advantage of our previously developed canvas pane and svg views in order to
+resuse the maximum amount of code. The interactive view (implmenting a new interface)
+makes an additional control panel who is responsible for creating all the button
+buttons and interface objects. The control panel creates button panels, sliders, 
+check boxes and even text fields that are used to interact with the user. The
+controller creates and utilizes two listeners, an action listener responsible 
+for handlin any button clicks, and a change listener responsible for adjusting
+the speed of the animation. The interactive interface exposes a number of panels
+useful to the manipulation of the animation. 
+
+We handled showing and hiding shapes using a JSwing check box. We create an 
+"enabled" map parallel to the shapes in our model to determine whether a shape
+is visible on the screen. In our canvas pane, we check whether or not a shape from
+our view model is visible before deciding to draw it. We represent this feature
+in our export function by creating an new view model that only contains the enabled
+shapes at export time. This allows us to simply pass the newly constructed 
+view model to the SVG view held inside the interactive view and producing the 
+desired exported file. By using composition with our SVG view, implementing the
+SVG export functionality becomes a trivial problem. 
+
+## Modificaitons and Updates
+In assignment 7, we made some modificaitons to our previously written code to 
+allow our SVG view to handle for looping. We also added a static counter to keep 
+track of the number of abstract shapes made in order to correctly layer our 
+shapes within the animation. AbstractAnimatedShapes now implement the comparable
+interface which allows them to be sorted by creation index, much like the way
+we can sort Animation summaries. We also added some utilities to facilite creating
+copies of data objects since we realized certain objects (like maps and lists) 
+passed around references to objects when being copied. We therefore had to implement
+several methods to facilite deep copying to avoid this problem. 
+
+No other significant changes were made. 
+
+
 # Assignment 6 Model Updates
 There were two primary changes made to our model in this assignment. The first change involved
 adding the requested TweenModelBuilder interface and implementation to our class to allow it to
@@ -9,7 +45,7 @@ to a read only version of the model. As part of implementing this new interface,
 new method, `getFullState()` which returns the map of AnimatedShapes to the caller. This allows the
 model to directly access the state of the model and draw the contained shapes at any time.
 
-# Further Development
+## Further Development
 We created an IView interface that represents all views of the animator. In this interface, there
 exists a show method that takes in the tempo of the animation at this time and performs view
 implementation dependent on type of view. As of right now, each class that implements the IView
