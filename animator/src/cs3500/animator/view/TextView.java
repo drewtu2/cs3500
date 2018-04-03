@@ -18,7 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The text view implementation.
+ * The text view implementation. Produces a text output of a given model view and puts the output
+ * into a given appendable.
  */
 public class TextView implements IView {
 

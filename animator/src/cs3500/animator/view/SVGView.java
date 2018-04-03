@@ -10,7 +10,6 @@ import cs3500.animator.animation.concrete.MoveAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
-import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeType;
@@ -26,7 +25,9 @@ import java.util.Map;
 
 
 /**
- * Class representing the SVG view of an animator.
+ * Class representing the SVG view of an animator. The view will produce the corresponding SVG text
+ * output and puts it into an appendable. If a file is produced, the animation can be viewed in a
+ * web browser.
  */
 public class SVGView implements IView {
 

@@ -1,4 +1,6 @@
-package cs3500.animator.view.interactive.listeners;
+package cs3500.animator.controller.listeners;
+
+import static util.MyUtil.checkNull;
 
 import cs3500.animator.view.interactive.IInteractive;
 import javax.swing.JSlider;
@@ -21,6 +23,7 @@ public class SliderChangeListener implements ChangeListener {
 
   @Override
   public void stateChanged(ChangeEvent e) {
+    checkNull(e);
     JSlider source = (JSlider)e.getSource();
     if (!source.getValueIsAdjusting()) {
       int fps = (int)source.getValue();

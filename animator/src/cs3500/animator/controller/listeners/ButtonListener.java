@@ -1,4 +1,6 @@
-package cs3500.animator.view.interactive.listeners;
+package cs3500.animator.controller.listeners;
+
+import static util.MyUtil.checkNull;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +28,7 @@ public class ButtonListener implements ActionListener{
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    checkNull(e);
     if (buttonClickedActions.containsKey(e.getActionCommand())) {
       buttonClickedActions.get(e.getActionCommand()).run();
     }

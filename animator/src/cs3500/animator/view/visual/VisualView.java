@@ -14,7 +14,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.Timer;
 
 /**
- * Class representing the visual view of an animator.
+ * Class representing the visual view of an animator. Displays the given model view animation on a
+ * canvas pane at the specified speed.
  */
 public class VisualView implements IView {
 
@@ -23,8 +24,11 @@ public class VisualView implements IView {
   private final CanvasPane canvas;
 
   private Timer timer;
+  private Timer timer2;
 
-  private int secondsCount;
+  private int drawRate;
+
+  private int drawCount;
 
   /**
    * The visual view implementation.
@@ -35,6 +39,8 @@ public class VisualView implements IView {
 
     int panelWidth = 500;
     int panelHeight = 500;
+
+    drawRate = 50;
 
     // Overall frame
     frame = new JFrame("Simple Animator");
@@ -56,16 +62,18 @@ public class VisualView implements IView {
     frame.pack();
     frame.setVisible(true);
 
-    secondsCount = 0;
+    drawCount = 0;
 
-    timer = new Timer(1000,
+    timer = new Timer(drawRate,
         (ActionEvent e) -> {
-          System.out.println("Timer Event fired");
-          canvas.setTickNumber(secondsCount * speed);
+          //System.out.println("Timer Event fired");
+          canvas.incrementTickNumber((drawRate * speed)/1000.0);
+          //canvas.setTickNumber((drawCount * drawRate /1000.0) * speed);
           canvas.revalidate();
           canvas.repaint();
-          secondsCount++;
+          drawCount++;
         });
+    //timer2 = new Timer(1000, (ActionEvent e) -> System.out.println("1second"));
 
   }
 
@@ -77,6 +85,7 @@ public class VisualView implements IView {
     canvas.setModelView(state);
     System.out.println("Set Model...");
     timer.start();
+    //timer2.start();
     System.out.println("Started Timer...");
   }
 
