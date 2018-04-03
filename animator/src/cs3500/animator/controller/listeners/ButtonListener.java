@@ -17,11 +17,8 @@ public class ButtonListener implements ActionListener {
    * Empty default constructor.
    */
   public ButtonListener() {
-<<<<<<< HEAD:animator/src/cs3500/animator/view/interactive/listeners/ButtonListener.java
-    //default empty constructor
-=======
+    // default empty constructor
     // Need to set map through setButtonClickedActionMap....
->>>>>>> 27c5db066e3f29e9532da9272e178ae2f1713bc5:animator/src/cs3500/animator/controller/listeners/ButtonListener.java
   }
 
   /**
