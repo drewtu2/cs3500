@@ -1,3 +1,4 @@
+
 package cs3500.animator.view;
 
 import static util.MyUtil.checkNull;
@@ -10,7 +11,6 @@ import cs3500.animator.animation.concrete.MoveAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
-import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeType;
@@ -26,7 +26,9 @@ import java.util.Map;
 
 
 /**
- * Class representing the SVG view of an animator.
+ * Class representing the SVG view of an animator. SVG is a type of xml file that can show
+ * an animation when opened in a browser. Methods in this class output a correctly formatted file
+ * for shapes and respective animations and looping.
  */
 public class SVGView implements IView {
 
@@ -63,12 +65,12 @@ public class SVGView implements IView {
     String endTag = "";
     Map<String, IAnimatedShape> mMap = model.getFullState();
     output.append("<svg width=\""
-        + Integer.toString(width)
-        + "\" height=\""
-        + Integer.toString(height)
-        + "\" version=\"1.1\""
-        + "\n\txmlns=\"http://www.w3.org/2000/svg\""
-        + ">\n\n");
+            + Integer.toString(width)
+            + "\" height=\""
+            + Integer.toString(height)
+            + "\" version=\"1.1\""
+            + "\n\txmlns=\"http://www.w3.org/2000/svg\""
+            + ">\n\n");
 
     List<IAnimatedShape> shapes = new ArrayList<>(mMap.values());
     Collections.sort(shapes);
@@ -85,10 +87,10 @@ public class SVGView implements IView {
         output.append(Integer.toString(Math.round(curShape.getPosition().getY())));
         output.append("\" width=\"");
         output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-            .getWidth())));
+                .getWidth())));
         output.append("\" height=\"");
         output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-            .getHeight())));
+                .getHeight())));
         output.append("\" fill=\"");
         output.append(colorToRGB(curShape.getColor()));
         output.append("\" visibility=");
@@ -108,10 +110,10 @@ public class SVGView implements IView {
         output.append(Integer.toString(Math.round(curShape.getPosition().getY())));
         output.append("\" rx=\"");
         output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-            .getWidth())));
+                .getWidth())));
         output.append("\" ry=\"");
         output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-            .getHeight())));
+                .getHeight())));
         output.append("\" fill=\"");
         output.append(colorToRGB(curShape.getColor()));
         output.append("\" visibility=");
@@ -125,24 +127,24 @@ public class SVGView implements IView {
 
       List<AnimationSummary> animationSummaries = getSummary(curShape);
 
-        Collections.sort(animationSummaries);
+      Collections.sort(animationSummaries);
 
-        for (AnimationSummary summary : animationSummaries) {
-          output.append(summary.getDescription());
-        }
+      for (AnimationSummary summary : animationSummaries) {
+        output.append(summary.getDescription());
+      }
 
-        if(loopable) {
-          output.append(resetString.toString());
-        }
+      if(loopable) {
+        output.append(resetString.toString());
+      }
       output.append("\n" + endTag + "\n\n");
     }
 
     if (loopable) {
       output.append("<rect>\n" +
-          "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"" + Double.toString
-          (tick2Time(lastAnimTime) + 0.001) +
-          "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n" +
-          "</rect>\n\n");
+              "\t<animate id=\"base\" begin=\"0;base.end\" dur=\"" + Double.toString
+              (tick2Time(lastAnimTime) + 0.001) +
+              "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n" +
+              "</rect>\n\n");
     }
 
     output.append("</svg>\n");
@@ -163,94 +165,92 @@ public class SVGView implements IView {
     String attName2 = "";
     StringBuilder strBuild = new StringBuilder();
 //<animate attributeType="xml" begin="base.end" dur="1ms" attributeName="fill" to="rgb(255,255,255)" fill="freeze" />
-        switch (animation.getType()) {
-          case MOVE:
-            if (s.getType().equals(ShapeType.OVAL)) {
-              attName1 = "cx";
-              attName2 = "cy";
-            } else if (s.getType().equals(ShapeType.RECTANGLE)) {
-              attName1 = "x";
-              attName2 = "y";
-            }
-            if (typeOfMove(((MoveAnimation) animation).getStartPos(),
+    switch (animation.getType()) {
+      case MOVE:
+        if (s.getType().equals(ShapeType.OVAL)) {
+          attName1 = "cx";
+          attName2 = "cy";
+        } else if (s.getType().equals(ShapeType.RECTANGLE)) {
+          attName1 = "x";
+          attName2 = "y";
+        }
+        if (typeOfMove(((MoveAnimation) animation).getStartPos(),
                 ((MoveAnimation) animation).getEndPos()).contains("x")) {
-              strBuild.append(printAnimationHelper(
+          strBuild.append(printAnimationHelper(
                   attName1,
                   Integer.toString(Math.round(((MoveAnimation) animation).getStartPos()
-                      .getX())),
+                          .getX())),
                   Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
-                      .getX())),
+                          .getX())),
                   animation.getStartTime(),
                   animation.getEndTime() - animation.getStartTime()));
-              resetString.append(printAnimationHelper(attName1, Integer.toString(Math.round(((MoveAnimation) animation).getStartPos()
-                      .getX()))));
-            }
-            if (typeOfMove(((MoveAnimation) animation).getStartPos(),
+          resetString.append(printAnimationHelper(attName1, Float.toString(s.getPosition().getX()
+          )));
+        }
+        if (typeOfMove(((MoveAnimation) animation).getStartPos(),
                 ((MoveAnimation) animation).getEndPos()).contains("y")) {
-              strBuild.append(printAnimationHelper(
+          strBuild.append(printAnimationHelper(
                   attName2,
                   Integer.toString(Math.round(((MoveAnimation) animation).getStartPos()
-                      .getY())),
+                          .getY())),
                   Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
-                      .getY())),
+                          .getY())),
                   animation.getStartTime(),
                   animation.getEndTime() - animation.getStartTime()));
-              resetString.append(printAnimationHelper(attName2, Integer.toString(Math.round((
-                      (MoveAnimation) animation).getStartPos()
-                      .getY()))));
-            }
-            break;
-          case COLOR:
-            strBuild.append(printAnimationHelper(
+          resetString.append(printAnimationHelper(attName2, Float.toString(s.getPosition().getY()
+          )));
+        }
+        break;
+      case COLOR:
+        strBuild.append(printAnimationHelper(
                 "fill",
                 colorToRGB(((ColorAnimation) animation).getStartColor()),
                 colorToRGB(((ColorAnimation) animation).getEndColor()),
                 animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime()));
-            resetString.append(printAnimationHelper("fill", colorToRGB(((ColorAnimation) animation).getStartColor())));
-            break;
-          case SCALE:
-            if (s.getType().equals(ShapeType.OVAL)) {
-              attName1 = "rx";
-              attName2 = "ry";
-            } else if (s.getType().equals(ShapeType.RECTANGLE)) {
-              attName1 = "width";
-              attName2 = "height";
-            }
-            strBuild.append(printAnimationHelper(
+        resetString.append(printAnimationHelper("fill", colorToRGB(s.getColor())));
+        break;
+      case SCALE:
+        if (s.getType().equals(ShapeType.OVAL)) {
+          attName1 = "rx";
+          attName2 = "ry";
+        } else if (s.getType().equals(ShapeType.RECTANGLE)) {
+          attName1 = "width";
+          attName2 = "height";
+        }
+        strBuild.append(printAnimationHelper(
                 attName1,
                 Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
-                    .getStartDimension()).getWidth())),
+                        .getStartDimension()).getWidth())),
                 Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
-                    .getEndDimension())
-                    .getWidth())),
+                        .getEndDimension())
+                        .getWidth())),
                 animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime()));
-            resetString.append(printAnimationHelper(attName1, Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
-                    .getStartDimension()).getWidth()))));
+        resetString.append(printAnimationHelper(attName1, Float.toString(((WidthHeightDim)s
+                .getDimension()).getWidth())));
 
-            strBuild.append(printAnimationHelper(
+        strBuild.append(printAnimationHelper(
                 attName2,
                 Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
-                    .getStartDimension()).getHeight())),
+                        .getStartDimension()).getHeight())),
                 Integer.toString(Math.round(((WidthHeightDim) ((ScaleAnimation) animation)
-                    .getEndDimension())
-                    .getHeight())),
+                        .getEndDimension())
+                        .getHeight())),
                 animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime()));
-            resetString.append(printAnimationHelper(attName2, Integer.toString(Math.round((
-                    (WidthHeightDim) ((ScaleAnimation) animation)
-                    .getStartDimension()).getHeight()))));
-            break;
-          case CREATE:
-            strBuild.append(printAnimationHelper("visibility", animation.getStartTime()));
-            break;
-          case DESTROY:
-            strBuild.append(printAnimationHelper("visibility", animation.getEndTime()));
-            break;
-          default:
-            throw new IOException("invalid type used");
-        }
+        resetString.append(printAnimationHelper(attName2, Float.toString(((WidthHeightDim)s
+                .getDimension()).getHeight())));
+        break;
+      case CREATE:
+        strBuild.append(printAnimationHelper("visibility", animation.getStartTime()));
+        break;
+      case DESTROY:
+        strBuild.append(printAnimationHelper("visibility", animation.getEndTime()));
+        break;
+      default:
+        throw new IOException("invalid type used");
+    }
     return strBuild.toString();
   }
 
@@ -311,7 +311,7 @@ public class SVGView implements IView {
    * @return a string representing the animation
    */
   private String printAnimationHelper(String attName, String startState, String
-      endState, float startTick, float endTick) {
+          endState, float startTick, float endTick) {
 
     StringBuilder builder = new StringBuilder();
 
@@ -347,7 +347,7 @@ public class SVGView implements IView {
 
     StringBuilder builder = new StringBuilder();
 
-      builder.append("\n\t<animate attributeType=\"xml\" begin=\"base.end");
+    builder.append("\n\t<animate attributeType=\"xml\" begin=\"base.end");
     builder.append("\" dur=\"0.5ms\"");
     builder.append(" attributeName=\"");
     builder.append(attName);
@@ -412,3 +412,4 @@ public class SVGView implements IView {
     return result;
   }
 }
+

@@ -7,20 +7,21 @@ import java.util.Map;
 /**
  * Button Listener class taken from example code.
  */
-public class ButtonListener implements ActionListener{
+public class ButtonListener implements ActionListener {
 
-  Map<String,Runnable> buttonClickedActions;
+  Map<String, Runnable> buttonClickedActions;
 
   /**
-   * Empty default constructor
+   * Empty default constructor.
    */
   public ButtonListener() {
+    //default empty constructor
   }
 
   /**
    * Set the map for key typed events. Key typed events in Java Swing are characters
    */
-  public void setButtonClickedActionMap(Map<String,Runnable> map) {
+  public void setButtonClickedActionMap(Map<String, Runnable> map) {
     buttonClickedActions = map;
   }
 

@@ -186,17 +186,18 @@ public class SVGViewTest {
             + "attributeName=\"height\" from=\"100\" to=\"20\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
-            "attributeName=\"x\" to=\"200\" fill=\"freeze\" />\n"
+            "attributeName=\"x\" to=\"200.0\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
-            "attributeName=\"width\" to=\"50\" fill=\"freeze\" />\n"
+            "attributeName=\"width\" to=\"50.0\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
-            "attributeName=\"height\" to=\"100\" fill=\"freeze\" />\n"
+            "attributeName=\"height\" to=\"100.0\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
             "attributeName=\"fill\" to=\"rgb(255,0,0)\" fill=\"freeze\" />\n"
             +
+
             "</rect>\n" +
             "\n" +
             "<ellipse id=\"C\" cx=\"500\" cy=\"100\" rx=\"60\" ry=\"30\" "
@@ -212,10 +213,10 @@ public class SVGViewTest {
             + "attributeName=\"cy\" from=\"100\" to=\"400\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
-            "attributeName=\"cx\" to=\"500\" fill=\"freeze\" />\n"
+            "attributeName=\"cx\" to=\"500.0\" fill=\"freeze\" />\n"
             +
             "\t<animate attributeType=\"xml\" begin=\"base.end\" dur=\"0.5ms\" " +
-            "attributeName=\"cy\" to=\"100\" fill=\"freeze\" />\n"
+            "attributeName=\"cy\" to=\"100.0\" fill=\"freeze\" />\n"
             +
             "</ellipse>\n\n"
             +

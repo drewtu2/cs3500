@@ -1,6 +1,7 @@
 package cs3500.animator.view.interactive.listeners;
 
 import cs3500.animator.view.interactive.IInteractive;
+
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -13,7 +14,7 @@ public class SliderChangeListener implements ChangeListener {
   private IInteractive view;
 
   /**
-   * Default constructor
+   * Default constructor.
    */
   public SliderChangeListener(IInteractive view) {
     this.view = view;
@@ -21,9 +22,9 @@ public class SliderChangeListener implements ChangeListener {
 
   @Override
   public void stateChanged(ChangeEvent e) {
-    JSlider source = (JSlider)e.getSource();
+    JSlider source = (JSlider) e.getSource();
     if (!source.getValueIsAdjusting()) {
-      int fps = (int)source.getValue();
+      int fps = (int) source.getValue();
       view.setSpeed(fps);
     }
   }
