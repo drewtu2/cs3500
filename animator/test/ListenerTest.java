@@ -5,8 +5,8 @@ import cs3500.animator.model.IAnimatorModel;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.view.interactive.IInteractive;
 import cs3500.animator.view.interactive.InteractiveView;
-import cs3500.animator.view.interactive.listeners.ButtonListener;
-import cs3500.animator.view.interactive.listeners.SliderChangeListener;
+import cs3500.animator.controller.listeners.ButtonListener;
+import cs3500.animator.controller.listeners.SliderChangeListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.HashMap;
@@ -80,6 +80,16 @@ public class ListenerTest {
     assertEquals(10, view.getSpeed());
 
 
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void testNullActionEvent() {
+    al.actionPerformed(null);
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void testNullChangeEvent() {
+    cl.stateChanged(null);
   }
 
 }

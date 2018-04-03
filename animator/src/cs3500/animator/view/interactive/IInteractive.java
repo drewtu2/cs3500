@@ -32,7 +32,7 @@ public interface IInteractive extends IView {
   void pause();
 
   /**
-   * Reset the animation to the beginning. Leaves the animaiton in a paused state.
+   * Reset the animation to the beginning. Leaves the animation in a paused state.
    */
   void reset();
 

@@ -28,7 +28,7 @@ public class CanvasPane extends JPanel {
   private Map<String, IAnimatedShape> state;
   private Map<String, Boolean> enabledMap;
   private Map<String, IAnimatedShape> originalState;
-  private int tickNum;
+  private double tickNum;
   private Dimension area;
 
   /**
@@ -90,9 +90,9 @@ public class CanvasPane extends JPanel {
    *
    * @param number the tick number.
    */
-  public void setTickNumber(int number) {
+  public void setTickNumber(double number) {
     tickNum = number;
-    System.out.println("Tick num: " + Integer.toString(tickNum));
+    System.out.println("Tick num: " + Integer.toString((int)tickNum));
   }
 
   /**
@@ -100,9 +100,9 @@ public class CanvasPane extends JPanel {
    *
    * @param numTicks the number of ticks to increment by.
    */
-  public void incrementTickNumber(int numTicks) {
+  public void incrementTickNumber(double numTicks) {
     tickNum += numTicks;
-    System.out.println("Tick num: " + Integer.toString(tickNum));
+    System.out.println("Tick num: " + Integer.toString((int)tickNum));
   }
 
   /**
@@ -111,7 +111,7 @@ public class CanvasPane extends JPanel {
    * @return the current tick number of the animation.
    */
   public int getTickNumber() {
-    return tickNum;
+    return (int)tickNum;
   }
 
   @Override
@@ -126,7 +126,7 @@ public class CanvasPane extends JPanel {
     if (state != null) {
       for (IAnimatedShape shape : shapes) {
         shapeColor = shape.getColor();
-        shapeState = shape.stateAt(tickNum);
+        shapeState = shape.stateAt((int)tickNum);
 
         g.setColor(new Color(shapeColor.getRed(), shapeColor.getGreen(), shapeColor.getBlue()));
         if (shouldDisplay(shape)) {

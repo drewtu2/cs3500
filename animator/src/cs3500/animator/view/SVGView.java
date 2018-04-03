@@ -133,7 +133,7 @@ public class SVGView implements IView {
         output.append(summary.getDescription());
       }
 
-      if(loopable) {
+      if (loopable) {
         output.append(resetString.toString());
       }
       output.append("\n" + endTag + "\n\n");
@@ -256,9 +256,9 @@ public class SVGView implements IView {
 
 
   private String colorToRGB(RGBColor startColor) {
-    String red = Integer.toString(Math.round(startColor.getRed()*255));
-    String green = Integer.toString(Math.round(startColor.getGreen()*255));
-    String blue = Integer.toString(Math.round(startColor.getBlue()*255));
+    String red = Integer.toString(Math.round(startColor.getRed() * 255));
+    String green = Integer.toString(Math.round(startColor.getGreen() * 255));
+    String blue = Integer.toString(Math.round(startColor.getBlue() * 255));
 
     return "rgb(" + red + "," + green + "," + blue + ")";
   }
@@ -280,7 +280,7 @@ public class SVGView implements IView {
    * @param shape the shape containing the animation summaries.
    * @return the list of summaries.
    */
-  private List<AnimationSummary> getSummary(IAnimatedShape shape) throws IOException{
+  private List<AnimationSummary> getSummary(IAnimatedShape shape) throws IOException {
     checkNull(shape);
 
     List<AnimationSummary> animationSummaries = new ArrayList<>();
@@ -291,8 +291,8 @@ public class SVGView implements IView {
       for (IAnimation animation : aList) {
         findLastAnimation(animation);
         summary = new AnimationSummary(animation.getStartTime(),
-                showAnimations(animation, shape),
-                animation.getCreationIndex());
+            showAnimations(animation, shape),
+            animation.getCreationIndex());
         animationSummaries.add(summary);
       }
     }
@@ -335,7 +335,6 @@ public class SVGView implements IView {
   }
 
 
-
   /**
    * Returns the string given an animation to reset during looping.
    *
@@ -343,7 +342,7 @@ public class SVGView implements IView {
    * @param startState value to reset animation to
    * @return a string representing the animation
    */
-  private String printAnimationHelper(String attName, String startState){
+  private String printAnimationHelper(String attName, String startState) {
 
     StringBuilder builder = new StringBuilder();
 

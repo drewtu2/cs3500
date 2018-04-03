@@ -29,6 +29,8 @@ import javax.swing.event.ChangeListener;
 public class InteractiveView implements IInteractive {
 
   private int speed; // tics/second
+  private int drawRate; // fps
+  private int drawCount;
 
   private final CanvasPane canvas;
 
@@ -58,6 +60,9 @@ public class InteractiveView implements IInteractive {
     int panelHeight = 500;
     running = false;
     loop = false;
+
+    drawRate = 50;
+    drawCount = 0;
 
     // Overall frame
     frame = new JFrame("Interactive Animator");
@@ -188,10 +193,10 @@ public class InteractiveView implements IInteractive {
    * @return the timer
    */
   private Timer createTimer() {
-    return new Timer(1000,
+    return new Timer(drawRate,
         (ActionEvent e) -> {
           if (running && speed > 0) {
-            canvas.incrementTickNumber(speed);
+            canvas.incrementTickNumber((drawRate * speed) / 1000.0);
             if (loop && canvas.getTickNumber() > myMV.getEndTick()) {
               System.out.println("Looping!");
               System.out
@@ -203,6 +208,7 @@ public class InteractiveView implements IInteractive {
             }
             canvas.revalidate();
             canvas.repaint();
+            drawCount++;
           }
         });
   }

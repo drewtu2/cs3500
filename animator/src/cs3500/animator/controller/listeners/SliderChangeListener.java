@@ -1,4 +1,6 @@
-package cs3500.animator.view.interactive.listeners;
+package cs3500.animator.controller.listeners;
+
+import static util.MyUtil.checkNull;
 
 import cs3500.animator.view.interactive.IInteractive;
 
@@ -22,7 +24,12 @@ public class SliderChangeListener implements ChangeListener {
 
   @Override
   public void stateChanged(ChangeEvent e) {
+<<<<<<< HEAD:animator/src/cs3500/animator/view/interactive/listeners/SliderChangeListener.java
     JSlider source = (JSlider) e.getSource();
+=======
+    checkNull(e);
+    JSlider source = (JSlider)e.getSource();
+>>>>>>> 27c5db066e3f29e9532da9272e178ae2f1713bc5:animator/src/cs3500/animator/controller/listeners/SliderChangeListener.java
     if (!source.getValueIsAdjusting()) {
       int fps = (int) source.getValue();
       view.setSpeed(fps);
