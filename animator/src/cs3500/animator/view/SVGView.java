@@ -17,6 +17,7 @@ import cs3500.animator.shape.ShapeType;
 import cs3500.animator.shape.concrete.Oval;
 import cs3500.animator.shape.concrete.Rectangle;
 import cs3500.animator.shape.dimension.WidthHeightDim;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -79,21 +80,16 @@ public class SVGView implements IView {
       if (curShape.getType().equals(ShapeType.RECTANGLE)) {
         endTag = "</rect>";
         curShape = (Rectangle) curShape;
-        output.append("<rect id=\"");
-        output.append(curShape.getName());
-        output.append("\" x=\"");
-        output.append(Integer.toString(Math.round(curShape.getPosition().getX())));
-        output.append("\" y=\"");
-        output.append(Integer.toString(Math.round(curShape.getPosition().getY())));
-        output.append("\" width=\"");
-        output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-                .getWidth())));
-        output.append("\" height=\"");
-        output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-                .getHeight())));
-        output.append("\" fill=\"");
-        output.append(colorToRGB(curShape.getColor()));
-        output.append("\" visibility=");
+        output.append(String.format("<rect id=\"%s\" x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" " +
+                        "fill=\"%s\" " +
+                        "visibility=", curShape.getName(),
+                Integer.toString(Math.round(curShape.getPosition().getX())),
+                Integer.toString(Math.round(curShape.getPosition().getY())),
+                Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
+                        .getWidth())),
+                Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
+                        .getHeight())),
+                colorToRGB(curShape.getColor())));
         if (curShape.getOpacity() > 0.0) {
           output.append("\"visible\" >");
         } else {
@@ -102,21 +98,17 @@ public class SVGView implements IView {
       } else if (curShape.getType().equals(ShapeType.OVAL)) {
         endTag = "</ellipse>";
         curShape = (Oval) curShape;
-        output.append("<ellipse id=\"");
-        output.append(curShape.getName());
-        output.append("\" cx=\"");
-        output.append(Integer.toString(Math.round(curShape.getPosition().getX())));
-        output.append("\" cy=\"");
-        output.append(Integer.toString(Math.round(curShape.getPosition().getY())));
-        output.append("\" rx=\"");
-        output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-                .getWidth())));
-        output.append("\" ry=\"");
-        output.append(Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
-                .getHeight())));
-        output.append("\" fill=\"");
-        output.append(colorToRGB(curShape.getColor()));
-        output.append("\" visibility=");
+        output.append(String.format("<ellipse id=\"%s\" cx=\"%s\" cy=\"%s\" rx=\"%s\" " +
+                        "ry=\"%s\" " +
+                        "fill=\"%s\" " +
+                        "visibility=", curShape.getName(),
+                Integer.toString(Math.round(curShape.getPosition().getX())),
+                Integer.toString(Math.round(curShape.getPosition().getY())),
+                Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
+                        .getWidth())),
+                Integer.toString(Math.round(((WidthHeightDim) curShape.getDimension())
+                        .getHeight())),
+                colorToRGB(curShape.getColor())));
         if (curShape.getOpacity() > 0.0) {
           output.append("\"visible\" >");
         } else {
@@ -164,7 +156,7 @@ public class SVGView implements IView {
     String attName1 = "";
     String attName2 = "";
     StringBuilder strBuild = new StringBuilder();
-//<animate attributeType="xml" begin="base.end" dur="1ms" attributeName="fill" to="rgb(255,255,255)" fill="freeze" />
+    
     switch (animation.getType()) {
       case MOVE:
         if (s.getType().equals(ShapeType.OVAL)) {
@@ -227,7 +219,7 @@ public class SVGView implements IView {
                         .getWidth())),
                 animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime()));
-        resetString.append(printAnimationHelper(attName1, Float.toString(((WidthHeightDim)s
+        resetString.append(printAnimationHelper(attName1, Float.toString(((WidthHeightDim) s
                 .getDimension()).getWidth())));
 
         strBuild.append(printAnimationHelper(
@@ -239,7 +231,7 @@ public class SVGView implements IView {
                         .getHeight())),
                 animation.getStartTime(),
                 animation.getEndTime() - animation.getStartTime()));
-        resetString.append(printAnimationHelper(attName2, Float.toString(((WidthHeightDim)s
+        resetString.append(printAnimationHelper(attName2, Float.toString(((WidthHeightDim) s
                 .getDimension()).getHeight())));
         break;
       case CREATE:
@@ -257,6 +249,7 @@ public class SVGView implements IView {
 
   /**
    * Converts a color to its representation as string for svg formatting.
+   *
    * @param startColor rgb to convert
    * @return string rep of rgb
    */
@@ -296,8 +289,8 @@ public class SVGView implements IView {
       for (IAnimation animation : aList) {
         findLastAnimation(animation);
         summary = new AnimationSummary(animation.getStartTime(),
-            showAnimations(animation, shape),
-            animation.getCreationIndex());
+                showAnimations(animation, shape),
+                animation.getCreationIndex());
         animationSummaries.add(summary);
       }
     }
@@ -308,11 +301,11 @@ public class SVGView implements IView {
   /**
    * Returns the string given an animation.
    *
-   * @param startTick the start tick.
-   * @param endTick the end tick.
+   * @param startTick  the start tick.
+   * @param endTick    the end tick.
    * @param startState the start state as a string.
-   * @param endState the end state as a string.
-   * @param attName attribute on which the animation occurs
+   * @param endState   the end state as a string.
+   * @param attName    attribute on which the animation occurs
    * @return a string representing the animation
    */
   private String printAnimationHelper(String attName, String startState, String
@@ -343,7 +336,7 @@ public class SVGView implements IView {
   /**
    * Returns the string given an animation to reset during looping.
    *
-   * @param attName the attribute on which the animation occurs
+   * @param attName    the attribute on which the animation occurs
    * @param startState value to reset animation to
    * @return a string representing the animation
    */
@@ -366,7 +359,7 @@ public class SVGView implements IView {
    * Returns the string given an animation.
    *
    * @param attName the attribute on which the animation occurs
-   * @param tick the tick the action occurs
+   * @param tick    the tick the action occurs
    * @return a string representing the animation
    */
   private String printAnimationHelper(String attName, float tick) {
@@ -402,7 +395,7 @@ public class SVGView implements IView {
    * Determine if the position moves in either x-dir, y-dir, or both.
    *
    * @param start position from
-   * @param end position dest
+   * @param end   position dest
    * @return string x, y, or xy representing the direction of motion
    */
   private String typeOfMove(Position2D start, Position2D end) {
