@@ -255,6 +255,11 @@ public class SVGView implements IView {
   }
 
 
+  /**
+   * Converts a color to its representation as string for svg formatting.
+   * @param startColor rgb to convert
+   * @return string rep of rgb
+   */
   private String colorToRGB(RGBColor startColor) {
     String red = Integer.toString(Math.round(startColor.getRed() * 255));
     String green = Integer.toString(Math.round(startColor.getGreen() * 255));
