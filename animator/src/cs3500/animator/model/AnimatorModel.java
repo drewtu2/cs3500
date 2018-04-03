@@ -289,6 +289,9 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
       if (shapeEnabled.get(name)) {
         shapes.put(name, ShapeFactory.getShape(fullState.get(name)));
       }
+      else {
+        shapes.remove(name);
+      }
     }
   }
 }
