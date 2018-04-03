@@ -17,7 +17,6 @@ public class ButtonListener implements ActionListener {
    * Empty default constructor.
    */
   public ButtonListener() {
-    // default empty constructor
     // Need to set map through setButtonClickedActionMap....
   }
 

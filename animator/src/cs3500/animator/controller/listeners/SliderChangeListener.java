@@ -15,7 +15,7 @@ public class SliderChangeListener implements ChangeListener {
   private IInteractive view;
 
   /**
-   * Default constructor.
+   * Default constructor. Sets the view that is currently being manipulated.
    */
   public SliderChangeListener(IInteractive view) {
     this.view = view;
@@ -24,7 +24,7 @@ public class SliderChangeListener implements ChangeListener {
   @Override
   public void stateChanged(ChangeEvent e) {
     checkNull(e);
-    JSlider source = (JSlider) e.getSource();
+    JSlider source = (JSlider)e.getSource();
     if (!source.getValueIsAdjusting()) {
       int fps = (int) source.getValue();
       view.setSpeed(fps);

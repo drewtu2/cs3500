@@ -156,7 +156,7 @@ public class SVGView implements IView {
     String attName1 = "";
     String attName2 = "";
     StringBuilder strBuild = new StringBuilder();
-    
+
     switch (animation.getType()) {
       case MOVE:
         if (s.getType().equals(ShapeType.OVAL)) {
