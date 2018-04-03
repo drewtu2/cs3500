@@ -196,7 +196,7 @@ public class InteractiveView implements IInteractive {
     return new Timer(drawRate,
         (ActionEvent e) -> {
           if (running && speed > 0) {
-            canvas.incrementTickNumber((drawRate * speed)/1000.0);
+            canvas.incrementTickNumber((drawRate * speed) / 1000.0);
             if (loop && canvas.getTickNumber() > myMV.getEndTick()) {
               System.out.println("Looping!");
               System.out

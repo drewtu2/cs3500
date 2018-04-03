@@ -15,7 +15,7 @@ public class SliderChangeListener implements ChangeListener {
   private IInteractive view;
 
   /**
-   * Default constructor
+   * Default constructor.
    */
   public SliderChangeListener(IInteractive view) {
     this.view = view;

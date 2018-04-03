@@ -67,7 +67,7 @@ public class VisualView implements IView {
     timer = new Timer(drawRate,
         (ActionEvent e) -> {
           //System.out.println("Timer Event fired");
-          canvas.incrementTickNumber((drawRate * speed)/1000.0);
+          canvas.incrementTickNumber((drawRate * speed) / 1000.0);
           //canvas.setTickNumber((drawCount * drawRate /1000.0) * speed);
           canvas.revalidate();
           canvas.repaint();
