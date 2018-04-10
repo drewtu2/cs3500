@@ -41,7 +41,7 @@ public class TextViewTest {
   }
 
   @Test
-  public void testAddShape() {
+  public void testAddShapeAndAnimations() {
 
     myModel.addShape(ShapeFactory.getRectangle(
             "test",

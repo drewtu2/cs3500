@@ -46,7 +46,7 @@ public class ListenerTest {
   }
 
   @Test
-  public void testCl() {
+  public void testChangeListener() {
     JSlider slider;
     slider = new JSlider(JSlider.HORIZONTAL, 0, 100, 7);
     slider.setMajorTickSpacing(10);
@@ -63,7 +63,7 @@ public class ListenerTest {
   }
 
   @Test
-  public void TestAl() {
+  public void TestActionListener() {
 
     JButton button = new JButton("test");
     button.setActionCommand("test");

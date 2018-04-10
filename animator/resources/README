@@ -29,7 +29,12 @@ interface which allows them to be sorted by creation index, much like the way
 we can sort Animation summaries. We also added some utilities to facilite creating
 copies of data objects since we realized certain objects (like maps and lists) 
 passed around references to objects when being copied. We therefore had to implement
-several methods to facilite deep copying to avoid this problem. 
+several methods to facilite deep copying to avoid this problem.
+
+We also updated our previous canvas view to allow for smoother animations by increasing the number
+of times we draw the animation state per second. Where before we were drawing at 1 frame per second,
+we now draw at 20 frames per second. We further filled in the shapes in our visual animaitons
+(instead of shape outlines).
 
 No other significant changes were made. 
 
