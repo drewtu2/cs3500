@@ -11,8 +11,8 @@ import cs3500.animator.shape.Position2D;
  */
 public class MoveAnimation extends Animation {
 
-  protected Position2D startPos;
-  protected Position2D endPos;
+  protected IPosition startPos;
+  protected IPosition endPos;
 
   /**
    * Constructs a move animation.
@@ -22,7 +22,7 @@ public class MoveAnimation extends Animation {
    * @param startTime the start time
    * @param endTime the end time
    */
-  public MoveAnimation(Position2D startPos, Position2D endPos, int startTime, int endTime) {
+  public MoveAnimation(IPosition startPos, IPosition endPos, int startTime, int endTime) {
 
     if (endTime < startTime || startTime < 0) {
       throw new IllegalArgumentException("Invalid times");
@@ -88,7 +88,7 @@ public class MoveAnimation extends Animation {
    *
    * @return the start position.
    */
-  public Position2D getStartPos() {
+  public IPosition getStartPos() {
     return new Position2D(startPos);
   }
 
@@ -97,7 +97,7 @@ public class MoveAnimation extends Animation {
    *
    * @return the end position.
    */
-  public Position2D getEndPos() {
+  public IPosition getEndPos() {
     return new Position2D(endPos);
   }
 }

@@ -5,6 +5,7 @@ import cs3500.animator.animation.concrete.ColorAnimation;
 import cs3500.animator.animation.concrete.DisappearAnimation;
 import cs3500.animator.animation.concrete.MoveAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
+import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.dimension.IDimension;
@@ -58,8 +59,8 @@ public class AnimationFactory {
    * @param endTime the time the move finishes by
    * @return the animation representing the move
    */
-  public static IAnimation getMoveAnimation(Position2D start, Position2D end, int startTime,
-      int endTime) {
+  public static IAnimation getMoveAnimation(IPosition start, IPosition end, int startTime,
+                                            int endTime) {
     return new MoveAnimation(start, end, startTime, endTime);
   }
 
