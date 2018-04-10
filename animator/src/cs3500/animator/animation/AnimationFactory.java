@@ -104,4 +104,15 @@ public class AnimationFactory {
     throw new NotImplementedException();
   }
 
+  /**
+   * Creates an animation summary based on the given parameters.
+   * @param time the start time of the animation
+   * @param description the description
+   * @param creationIndex the creation index
+   * @return
+   */
+  public static IAnimationSummary getAnimationSummary(int time, String description, int creationIndex) {
+    return new AnimationSummary(time, description, creationIndex);
+  }
+
 }

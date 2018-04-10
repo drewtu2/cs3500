@@ -5,9 +5,9 @@ import static util.MyUtil.duplicateMap;
 
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
+import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.IShape;
-import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -178,7 +178,7 @@ public class CanvasPane extends JPanel {
    */
   private boolean updateArea(IShape shape) {
     boolean changed = false;
-    Position2D pos = shape.getPosition();
+    IPosition pos = shape.getPosition();
     WidthHeightDim dim = (WidthHeightDim) shape.getDimension();
 
     int thisWidth = (int) (pos.getX() + dim.getWidth());
