@@ -12,8 +12,8 @@ import cs3500.animator.animation.concrete.MoveAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
+import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IRGBColor;
-import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.ShapeType;
 import cs3500.animator.shape.concrete.Oval;
 import cs3500.animator.shape.concrete.Rectangle;
@@ -99,7 +99,7 @@ public class SVGView implements IView {
    * @param shapes list of shapes in the map
    * @throws IOException thrown by appendable
    */
-  private void printShape(List<IAnimatedShape> shapes) throws IOException{
+  private void printShape(List<IAnimatedShape> shapes) throws IOException {
     String endTag = "";
 
     for (IAnimatedShape curShape : shapes) {
@@ -408,7 +408,7 @@ public class SVGView implements IView {
    * @param end   position dest
    * @return string x, y, or xy representing the direction of motion
    */
-  private String typeOfMove(Position2D start, Position2D end) {
+  private String typeOfMove(IPosition start, IPosition end) {
     String result = "";
     if (start.getX() != end.getX()) {
       result = result + "x";

@@ -13,7 +13,7 @@ public abstract class AbstractShape implements IShape {
 
   protected String name;
   protected ShapeType type;
-  protected Position2D position;
+  protected IPosition position;
   protected IDimension dimension;
   protected IRGBColor color;
   protected float opacity;
@@ -54,7 +54,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setPosition(Position2D pos) {
+  public void setPosition(IPosition pos) {
     checkNull(pos);
 
     this.position = pos;
@@ -86,7 +86,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public Position2D getPosition() {
+  public IPosition getPosition() {
     return this.position;
   }
 

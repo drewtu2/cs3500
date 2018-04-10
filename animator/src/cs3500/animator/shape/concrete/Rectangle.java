@@ -1,8 +1,8 @@
 package cs3500.animator.shape.concrete;
 
 import cs3500.animator.shape.AbstractAnimatedShape;
+import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IRGBColor;
-import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.ShapeType;
 import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class Rectangle extends AbstractAnimatedShape {
    * @param width the width
    * @param height the height
    */
-  public Rectangle(String name, Position2D pos, IRGBColor col, float width, float height) {
+  public Rectangle(String name, IPosition pos, IRGBColor col, float width, float height) {
     this.name = name;
     this.type = ShapeType.RECTANGLE;
     this.position = pos;

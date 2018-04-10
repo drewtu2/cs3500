@@ -2,6 +2,7 @@ package cs3500.animator.animation.concrete;
 
 import cs3500.animator.animation.Animation;
 import cs3500.animator.animation.AnimationType;
+import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
 
@@ -58,7 +59,7 @@ public class MoveAnimation extends Animation {
     float currentX = this.interpolate(startPos.getX(), endPos.getX(), time);
     float currentY = this.interpolate(startPos.getY(), endPos.getY(), time);
 
-    Position2D newPos = new Position2D(currentX, currentY);
+    IPosition newPos = new Position2D(currentX, currentY);
 
     state.setPosition(newPos);
   }
