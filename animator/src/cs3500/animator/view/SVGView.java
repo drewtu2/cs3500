@@ -58,12 +58,12 @@ public class SVGView implements IView {
     lastAnimTime = 0;
   }
 
+
   @Override
   public void show(IModelView model, int tempo) throws IOException {
     checkNull(model);
 
     speed = tempo;
-    String endTag = "";
     Map<String, IAnimatedShape> mMap = model.getFullState();
     output.append("<svg width=\""
             + Integer.toString(width)
@@ -75,6 +75,32 @@ public class SVGView implements IView {
 
     List<IAnimatedShape> shapes = new ArrayList<>(mMap.values());
     Collections.sort(shapes);
+
+    printShape(shapes);
+
+    if (loopable) {
+      output.append("<rect>\n" + "\t<animate id=\"base\" begin=\"0;base.end\" dur=\""
+              + Double.toString(tick2Time(lastAnimTime) + 0.001)
+              + "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n"
+              + "</rect>\n\n");
+    }
+
+    output.append("</svg>\n");
+
+    if (output.getClass() == FileWriter.class) {
+      ((FileWriter) output).flush();
+      ((FileWriter) output).close();
+    }
+  }
+
+
+  /**
+   * Prints the shape svg desciptions to the appendable.
+   * @param shapes list of shapes in the map
+   * @throws IOException thrown by appendable
+   */
+  private void printShape(List<IAnimatedShape> shapes) throws IOException{
+    String endTag = "";
 
     for (IAnimatedShape curShape : shapes) {
       if (curShape.getType().equals(ShapeType.RECTANGLE)) {
@@ -128,20 +154,6 @@ public class SVGView implements IView {
         output.append(resetString.toString());
       }
       output.append("\n" + endTag + "\n\n");
-    }
-
-    if (loopable) {
-      output.append("<rect>\n" + "\t<animate id=\"base\" begin=\"0;base.end\" dur=\""
-              + Double.toString(tick2Time(lastAnimTime) + 0.001)
-              + "s\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n"
-              + "</rect>\n\n");
-    }
-
-    output.append("</svg>\n");
-
-    if (output.getClass() == FileWriter.class) {
-      ((FileWriter) output).flush();
-      ((FileWriter) output).close();
     }
   }
 
