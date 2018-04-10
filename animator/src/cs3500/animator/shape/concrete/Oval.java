@@ -2,12 +2,8 @@ package cs3500.animator.shape.concrete;
 
 
 import cs3500.animator.shape.AbstractAnimatedShape;
-<<<<<<< HEAD
-import cs3500.animator.shape.IRGBColor;
-=======
 import cs3500.animator.shape.IPosition;
->>>>>>> 8f81794a4a7684293b80e42c4d54b06716664825
-import cs3500.animator.shape.Position2D;
+import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.ShapeType;
 import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.util.HashMap;
