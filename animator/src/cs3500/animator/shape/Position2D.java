@@ -36,8 +36,8 @@ public final class Position2D implements IPosition{
   /**
    * Copy constructor.
    */
-  public Position2D(Position2D v) {
-    this(v.x, v.y);
+  public Position2D(IPosition v) {
+    this(((Position2D)v).x, ((Position2D)v).y);
   }
 
   @Override
