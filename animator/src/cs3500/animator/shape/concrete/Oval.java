@@ -2,6 +2,7 @@ package cs3500.animator.shape.concrete;
 
 
 import cs3500.animator.shape.AbstractAnimatedShape;
+import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeType;
@@ -23,7 +24,7 @@ public class Oval extends AbstractAnimatedShape {
    * @param width the width
    * @param height the height
    */
-  public Oval(String name, Position2D pos, RGBColor col, float width, float height) {
+  public Oval(String name, IPosition pos, RGBColor col, float width, float height) {
     this.name = name;
     this.type = ShapeType.OVAL;
     this.position = pos;

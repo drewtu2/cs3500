@@ -26,14 +26,14 @@ public interface IShape {
    *
    * @param pos the Position2D to set it to
    */
-  void setPosition(Position2D pos);
+  void setPosition(IPosition pos);
 
   /**
    * Returns the position of the shape.
    *
    * @return the position of the shape
    */
-  Position2D getPosition();
+  IPosition getPosition();
 
   /**
    * Sets the dimension of a shape to a given value.
