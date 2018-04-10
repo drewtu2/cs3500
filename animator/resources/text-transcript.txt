@@ -1,8 +1,4 @@
 Shapes:
-Name: disk3
-Type: rectangle
-Min-corner: (145.000000, 240.000000), Width: 110.0 Height: 30.0, Color: (0.044487324, 0.17937791, 0.6875181), Opacity: 0.0
-
 Name: disk1
 Type: rectangle
 Min-corner: (190.000000, 180.000000), Width: 20.0 Height: 30.0, Color: (0.0018560142, 0.19547537, 0.35467055), Opacity: 0.0
@@ -10,6 +6,10 @@ Min-corner: (190.000000, 180.000000), Width: 20.0 Height: 30.0, Color: (0.001856
 Name: disk2
 Type: rectangle
 Min-corner: (167.500000, 210.000000), Width: 65.0 Height: 30.0, Color: (0.02582317, 0.9691984, 0.16393086), Opacity: 0.0
+
+Name: disk3
+Type: rectangle
+Min-corner: (145.000000, 240.000000), Width: 110.0 Height: 30.0, Color: (0.044487324, 0.17937791, 0.6875181), Opacity: 0.0
 
 
 Animations:
