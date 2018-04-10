@@ -54,14 +54,14 @@ public class NameAnimation extends Animation {
     throw new NotImplementedException();
 
     /*
-    RGBColor deltColor = endColor.subtract(startColor);
+    IRGBColor deltColor = endColor.subtract(startColor);
 
     float deltT = duration();
     int slopeR = (int) (deltColor.getRed() / duration());
     int slopeG = (int) (deltColor.getGreen() / duration());
     int slopeB = (int) (deltColor.getBlue() / duration());
 
-    RGBColor newColor = new RGBColor(
+    IRGBColor newColor = new RGBColor(
         (int) (startColor.getRed() + (slopeR * time)),
         (int) (startColor.getGreen() + (slopeG * time)),
         (int) (startColor.getBlue() + (slopeB * time)));

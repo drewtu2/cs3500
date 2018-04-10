@@ -6,7 +6,9 @@ import cs3500.animator.animation.AnimationFactory;
 import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
+import cs3500.animator.animation.IAnimationSummary;
 import cs3500.animator.shape.IAnimatedShape;
+import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
@@ -47,7 +49,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
         float yRadius, float red, float green, float blue, int startOfLife, int endOfLife) {
       // Creates a shape
       Position2D center = new Position2D(cx, cy);
-      RGBColor color = new RGBColor(red, green, blue);
+      IRGBColor color = new RGBColor(red, green, blue);
 
       IAnimatedShape myOval = ShapeFactory.getOval(name, center, color, xRadius, yRadius);
 
@@ -71,7 +73,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
         float height, float red, float green, float blue, int startOfLife, int endOfLife) {
       // Creates a shape
       Position2D center = new Position2D(lx, ly);
-      RGBColor color = new RGBColor(red, green, blue);
+      IRGBColor color = new RGBColor(red, green, blue);
 
       IAnimatedShape myRec = ShapeFactory.getRectangle(name, center, color, width, height);
 
@@ -103,8 +105,8 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
     @Override
     public TweenModelBuilder<AnimatorModel> addColorChange(String name, float oldR, float oldG,
         float oldB, float newR, float newG, float newB, int startTime, int endTime) {
-      RGBColor original = new RGBColor(oldR, oldG, oldB);
-      RGBColor newCol = new RGBColor(newR, newG, newB);
+      IRGBColor original = new RGBColor(oldR, oldG, oldB);
+      IRGBColor newCol = new RGBColor(newR, newG, newB);
       shapes.get(name).addAnimation(AnimationFactory.getColorAnimation(original, newCol, startTime,
           endTime));
       // Add animation to shape
@@ -208,7 +210,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
   @Override
   public String toString() {
     StringBuilder myStringBuilder = new StringBuilder();
-    List<AnimationSummary> summaries = new ArrayList<>();
+    List<IAnimationSummary> summaries = new ArrayList<>();
 
     myStringBuilder.append("Shapes:\n");
 
@@ -224,7 +226,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
     Collections.sort(summaries);
 
     // Add the summaries to the string builder
-    for (AnimationSummary summary : summaries) {
+    for (IAnimationSummary summary : summaries) {
       myStringBuilder.append(summary.getDescription());
       myStringBuilder.append("\n");
     }
@@ -234,7 +236,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
 
   @Override
   public String toString(int time) {
-    List<AnimationSummary> summaries = new ArrayList<>();
+    List<IAnimationSummary> summaries = new ArrayList<>();
 
     StringBuilder myStringBuilder = new StringBuilder();
 
@@ -249,7 +251,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
     Collections.sort(summaries);
 
     // Add the summaries to the string builder
-    for (AnimationSummary summary : summaries) {
+    for (IAnimationSummary summary : summaries) {
       myStringBuilder.append(summary.getDescription());
       myStringBuilder.append("\n");
     }

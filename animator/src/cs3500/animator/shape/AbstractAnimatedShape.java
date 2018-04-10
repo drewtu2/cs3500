@@ -3,6 +3,7 @@ package cs3500.animator.shape;
 import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
+import cs3500.animator.animation.IAnimationSummary;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -87,10 +88,10 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
   }
 
   @Override
-  public List<AnimationSummary> getSummary() {
-    AnimationSummary summary;
+  public List<IAnimationSummary> getSummary() {
+    IAnimationSummary summary;
 
-    List<AnimationSummary> los = new ArrayList<>();
+    List<IAnimationSummary> los = new ArrayList<>();
 
     for (List<IAnimation> aList : animationList.values()) {
       for (IAnimation animation : aList) {

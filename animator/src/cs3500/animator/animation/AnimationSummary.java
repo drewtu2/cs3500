@@ -3,7 +3,7 @@ package cs3500.animator.animation;
 /**
  * Represents a tuple of (start time, description) for animations that is sortable by start time.
  */
-public class AnimationSummary implements Comparable<AnimationSummary> {
+public class AnimationSummary implements IAnimationSummary {
 
   protected final float time;
   protected final int creationIndex;
@@ -18,31 +18,27 @@ public class AnimationSummary implements Comparable<AnimationSummary> {
     this.creationIndex = creationIndex;
   }
 
-  /**
-   * Returns the time.
-   *
-   * @return the time
-   */
+  @Override
   public float getTime() {
 
     return time;
   }
 
-  /**
-   * Returns the description.
-   *
-   * @return the description
-   */
+  @Override
   public String getDescription() {
-
     return description;
   }
 
   @Override
-  public int compareTo(AnimationSummary o) {
+  public int getCreationIndex() {
+    return creationIndex;
+  }
+
+  @Override
+  public int compareTo(IAnimationSummary o) {
     int startTime = (int) (this.time - o.getTime());
     if (startTime == 0) {
-      return this.creationIndex - o.creationIndex;
+      return this.creationIndex - o.getCreationIndex();
     } else {
       return startTime;
     }

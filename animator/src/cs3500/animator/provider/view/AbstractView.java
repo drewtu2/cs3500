@@ -1,6 +1,6 @@
 package cs3500.animator.provider.view;
 
-import cs3500.animator.view.IView;
+import cs3500.animator.provider.view.IView;
 import java.io.IOException;
 import java.util.List;
 

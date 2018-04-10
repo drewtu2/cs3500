@@ -5,6 +5,7 @@ import static util.MyUtil.checkNull;
 import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
+import cs3500.animator.animation.IAnimationSummary;
 import cs3500.animator.animation.concrete.ColorAnimation;
 import cs3500.animator.animation.concrete.MoveAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
@@ -44,7 +45,7 @@ public class TextView implements IView {
     speed = tempo;
 
     Map<String, IAnimatedShape> shapeMap = myMV.getFullState();
-    List<AnimationSummary> animationSummaries = new ArrayList<>();
+    List<IAnimationSummary> animationSummaries = new ArrayList<>();
 
     try {
       output.append("Shapes:\n");
@@ -60,7 +61,7 @@ public class TextView implements IView {
       output.append("\nAnimations:\n");
       Collections.sort(animationSummaries);
 
-      for (AnimationSummary summary : animationSummaries) {
+      for (IAnimationSummary summary: animationSummaries) {
         output.append(summary.getDescription());
       }
 
@@ -109,12 +110,12 @@ public class TextView implements IView {
    * @param shape the shape containing the animation summaries.
    * @return the list of summaries.
    */
-  private List<AnimationSummary> getSummary(IAnimatedShape shape) {
+  private List<IAnimationSummary> getSummary(IAnimatedShape shape) {
     checkNull(shape);
 
-    List<AnimationSummary> animationSummaries = new ArrayList<>();
+    List<IAnimationSummary> animationSummaries = new ArrayList<>();
     Map<AnimationType, List<IAnimation>> animationMap = shape.getAnimations();
-    AnimationSummary summary;
+    IAnimationSummary summary;
 
     for (List<IAnimation> aList : animationMap.values()) {
       for (IAnimation animation : aList) {

@@ -11,7 +11,7 @@ public class ShapeFactory {
   /**
    * Creates a rectangle.
    */
-  public static IAnimatedShape getRectangle(String name, Position2D pos, RGBColor color,
+  public static IAnimatedShape getRectangle(String name, Position2D pos, IRGBColor color,
       float width, float height) {
     return new Rectangle(name, pos, color, width, height);
   }
@@ -19,7 +19,7 @@ public class ShapeFactory {
   /**
    * Creates oval.
    */
-  public static IAnimatedShape getOval(String name, Position2D pos, RGBColor color,
+  public static IAnimatedShape getOval(String name, Position2D pos, IRGBColor color,
       float width, float height) {
     return new Oval(name, pos, color, width, height);
   }

@@ -1,8 +1,8 @@
 package cs3500.animator.shape;
 
-import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
+import cs3500.animator.animation.IAnimationSummary;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +43,7 @@ public interface IAnimatedShape extends IShape, Comparable<IAnimatedShape> {
    *
    * @return list of the animation objects.
    */
-  List<AnimationSummary> getSummary();
+  List<IAnimationSummary> getSummary();
 
   /**
    * Returns the creation index.

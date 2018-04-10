@@ -2,6 +2,7 @@ package cs3500.animator.animation.concrete;
 
 import cs3500.animator.animation.Animation;
 import cs3500.animator.animation.AnimationType;
+import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.RGBColor;
 
@@ -10,8 +11,8 @@ import cs3500.animator.shape.RGBColor;
  */
 public class ColorAnimation extends Animation {
 
-  protected RGBColor startColor;
-  protected RGBColor endColor;
+  protected IRGBColor startColor;
+  protected IRGBColor endColor;
 
   /**
    * Constructs a color animation.
@@ -21,7 +22,7 @@ public class ColorAnimation extends Animation {
    * @param startTime the starting time
    * @param endTime the ending time
    */
-  public ColorAnimation(RGBColor startColor, RGBColor endColor, int startTime, int endTime) {
+  public ColorAnimation(IRGBColor startColor, IRGBColor endColor, int startTime, int endTime) {
     if (endTime < startTime || startTime < 0) {
       throw new IllegalArgumentException("Invalid times");
     }
@@ -53,7 +54,7 @@ public class ColorAnimation extends Animation {
     float newGreen = interpolate(startColor.getGreen(), endColor.getGreen(), time);
     float newBlue = interpolate(startColor.getBlue(), endColor.getBlue(), time);
 
-    RGBColor newColor = new RGBColor(newRed, newGreen, newBlue);
+    IRGBColor newColor = new RGBColor(newRed, newGreen, newBlue);
     current.setColor(newColor);
   }
 
@@ -81,8 +82,9 @@ public class ColorAnimation extends Animation {
    *
    * @return the start color.
    */
-  public RGBColor getStartColor() {
-    return new RGBColor(startColor);
+  public IRGBColor getStartColor() {
+    return new RGBColor(startColor) {
+    };
   }
 
   /**
@@ -90,7 +92,7 @@ public class ColorAnimation extends Animation {
    *
    * @return the end color.
    */
-  public RGBColor getEndColor() {
+  public IRGBColor getEndColor() {
     return new RGBColor(endColor);
   }
 }

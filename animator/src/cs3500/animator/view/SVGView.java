@@ -6,18 +6,18 @@ import static util.MyUtil.checkNull;
 import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
+import cs3500.animator.animation.IAnimationSummary;
 import cs3500.animator.animation.concrete.ColorAnimation;
 import cs3500.animator.animation.concrete.MoveAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
+import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.Position2D;
-import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeType;
 import cs3500.animator.shape.concrete.Oval;
 import cs3500.animator.shape.concrete.Rectangle;
 import cs3500.animator.shape.dimension.WidthHeightDim;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -142,11 +142,11 @@ public class SVGView implements IView {
       }
       resetString = new StringBuilder();
 
-      List<AnimationSummary> animationSummaries = getSummary(curShape);
+      List<IAnimationSummary> animationSummaries = getSummary(curShape);
 
       Collections.sort(animationSummaries);
 
-      for (AnimationSummary summary : animationSummaries) {
+      for (IAnimationSummary summary : animationSummaries) {
         output.append(summary.getDescription());
       }
 
@@ -263,7 +263,7 @@ public class SVGView implements IView {
    * @param startColor rgb to convert
    * @return string rep of rgb
    */
-  private String colorToRGB(RGBColor startColor) {
+  private String colorToRGB(IRGBColor startColor) {
     String red = Integer.toString(Math.round(startColor.getRed() * 255));
     String green = Integer.toString(Math.round(startColor.getGreen() * 255));
     String blue = Integer.toString(Math.round(startColor.getBlue() * 255));
@@ -288,12 +288,12 @@ public class SVGView implements IView {
    * @param shape the shape containing the animation summaries.
    * @return the list of summaries.
    */
-  private List<AnimationSummary> getSummary(IAnimatedShape shape) throws IOException {
+  private List<IAnimationSummary> getSummary(IAnimatedShape shape) throws IOException {
     checkNull(shape);
 
-    List<AnimationSummary> animationSummaries = new ArrayList<>();
+    List<IAnimationSummary> animationSummaries = new ArrayList<>();
     Map<AnimationType, List<IAnimation>> animationMap = shape.getAnimations();
-    AnimationSummary summary;
+    IAnimationSummary summary;
 
     for (List<IAnimation> aList : animationMap.values()) {
       for (IAnimation animation : aList) {

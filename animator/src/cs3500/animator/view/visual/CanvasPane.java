@@ -5,9 +5,9 @@ import static util.MyUtil.duplicateMap;
 
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
+import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
-import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -117,7 +117,7 @@ public class CanvasPane extends JPanel {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    RGBColor shapeColor;
+    IRGBColor shapeColor;
     IShape shapeState;
 
     List<IAnimatedShape> shapes = new ArrayList<>(state.values());

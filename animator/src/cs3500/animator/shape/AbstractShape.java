@@ -15,7 +15,7 @@ public abstract class AbstractShape implements IShape {
   protected ShapeType type;
   protected Position2D position;
   protected IDimension dimension;
-  protected RGBColor color;
+  protected IRGBColor color;
   protected float opacity;
 
   @Override
@@ -48,7 +48,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setColor(RGBColor color) {
+  public void setColor(IRGBColor color) {
     checkNull(color);
     this.color = color;
   }
@@ -81,7 +81,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public RGBColor getColor() {
+  public IRGBColor getColor() {
     return this.color;
   }
 

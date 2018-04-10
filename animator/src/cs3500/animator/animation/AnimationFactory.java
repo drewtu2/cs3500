@@ -5,8 +5,8 @@ import cs3500.animator.animation.concrete.ColorAnimation;
 import cs3500.animator.animation.concrete.DisappearAnimation;
 import cs3500.animator.animation.concrete.MoveAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
+import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.Position2D;
-import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.dimension.IDimension;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -44,7 +44,7 @@ public class AnimationFactory {
    * @param endTime the time the color change finishes by
    * @return the animation representing the color change
    */
-  public static IAnimation getColorAnimation(RGBColor start, RGBColor end, int startTime,
+  public static IAnimation getColorAnimation(IRGBColor start, IRGBColor end, int startTime,
       int endTime) {
     return new ColorAnimation(start, end, startTime, endTime);
   }

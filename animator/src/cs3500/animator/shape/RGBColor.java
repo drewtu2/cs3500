@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Represents an RGB Color.
  */
-public class RGBColor {
+public class RGBColor implements IRGBColor{
 
   protected float red;
   protected float green;
@@ -42,6 +42,18 @@ public class RGBColor {
   }
 
   /**
+   * Copy constructor for a IRGBColor.
+   *
+   * @param copy thing to copy
+   */
+  public RGBColor(IRGBColor copy) {
+    this.red = copy.getRed();
+    this.green = copy.getGreen();
+    this.blue = copy.getBlue();
+
+  }
+
+  /**
    * Returns true if the given float is a valid RGB value.
    *
    * @param value the value
@@ -51,69 +63,39 @@ public class RGBColor {
     return value >= 0 && value <= 1;
   }
 
-
-  /**
-   * Returns this color - subtractColor.
-   *
-   * @param subtractColor the color to subtract
-   * @return the difference betweent the colors
-   */
-  public RGBColor subtract(RGBColor subtractColor) {
+  @Override
+  public IRGBColor subtract(RGBColor subtractColor) {
     return new RGBColor(this.red - subtractColor.red,
         this.green - subtractColor.green,
         this.blue - subtractColor.blue);
   }
 
-  /**
-   * Sets the red value to a given amount.
-   *
-   * @param value the value to set to
-   */
+  @Override
   public void setRed(float value) {
     this.red = value;
   }
 
-  /**
-   * Sets the blue value to a given amount.
-   *
-   * @param value the value to set to
-   */
+  @Override
   public void setGreen(float value) {
     this.green = value;
   }
 
-  /**
-   * Sets the blue value to a given amount.
-   *
-   * @param value the value to set to
-   */
+  @Override
   public void setBlue(float value) {
     this.blue = value;
   }
 
-  /**
-   * Returns the red value.
-   *
-   * @return the red value
-   */
+  @Override
   public float getRed() {
     return this.red;
   }
 
-  /**
-   * Returns the green value.
-   *
-   * @return the green value
-   */
+  @Override
   public float getGreen() {
     return this.green;
   }
 
-  /**
-   * Returns the blue value.
-   *
-   * @return the blue value
-   */
+  @Override
   public float getBlue() {
     return this.blue;
   }

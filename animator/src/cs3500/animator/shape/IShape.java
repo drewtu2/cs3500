@@ -12,14 +12,14 @@ public interface IShape {
    *
    * @param color the RGB color to set the shape to
    */
-  void setColor(RGBColor color);
+  void setColor(IRGBColor color);
 
   /**
    * Returns the color of the shape.
    *
    * @return the color the shape
    */
-  RGBColor getColor();
+  IRGBColor getColor();
 
   /**
    * Sets the position of a shape to a given value.
