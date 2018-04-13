@@ -3,8 +3,8 @@ package cs3500.animator.provider.model;
 import java.util.List;
 import java.util.Map;
 
-import cs3500.animator.model.animation.AbstractAnimation;
-import cs3500.animator.model.shape.AbstractShape;
+import cs3500.animator.provider.model.animation.AbstractAnimation;
+import cs3500.animator.provider.model.shape.AbstractShape;
 
 /**
  * Represents the operations that can be performed on a model that holds animations for use on

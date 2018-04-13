@@ -24,7 +24,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import cs3500.animator.controller.HybridViewController;
-import cs3500.animator.controller.IInteractiveController;
+import cs3500.animator.provider.controller.IInteractiveController;
 import cs3500.animator.model.animation.AbstractAnimation;
 import cs3500.animator.model.animation.Move;
 import cs3500.animator.model.shape.AbstractShape;
