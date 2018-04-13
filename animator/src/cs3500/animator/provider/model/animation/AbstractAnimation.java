@@ -115,6 +115,8 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @return the animation string description
    */
   public String toString(AbstractShape s) {
+    //TODO: IDK.....
+    return s.toString();
   }
 
   /**
@@ -124,6 +126,8 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @return the starting coefficient
    */
   protected double getStartCoef(int ticksElapsed) {
+    //TODO: What is a coef?
+    return 0;
   }
 
   /**
@@ -133,5 +137,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @return the ending coefficient
    */
   protected double getEndCoef(int ticksElapsed) {
+    //TODO: What is a coef?
+    return 0;
   }
 }

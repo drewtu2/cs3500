@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cs3500.animator.provider.model.Color;
 import cs3500.animator.provider.model.animation.AbstractAnimation;
 import cs3500.animator.provider.model.shape.AbstractShape;
 import cs3500.animator.provider.model.shape.Oval;
 import cs3500.animator.provider.model.shape.Rectangle;
+import cs3500.animator.provider.model.Color;
 import cs3500.animator.provider.util.NumUtil;
 
 /**

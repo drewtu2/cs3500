@@ -1,13 +1,10 @@
 package cs3500.animator.provider.view;
 
-import cs3500.animator.provider.view.IView;
-import java.io.IOException;
-import java.util.List;
-
-import javax.swing.JFrame;
-
 import cs3500.animator.provider.model.animation.AbstractAnimation;
 import cs3500.animator.provider.model.shape.AbstractShape;
+import java.io.IOException;
+import java.util.List;
+import javax.swing.JFrame;
 
 /**
  * This class represents a general view that has a tempo in ticks per second. The tempo

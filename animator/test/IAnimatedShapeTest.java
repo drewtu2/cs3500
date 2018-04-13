@@ -1,17 +1,15 @@
 import static junit.framework.TestCase.assertEquals;
 
 import cs3500.animator.animation.AnimationFactory;
-import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.IAnimation;
+import cs3500.animator.animation.IAnimationSummary;
 import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeFactory;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,7 +48,7 @@ public class IAnimatedShapeTest {
   @Test
   public void testGoodAddAnimation() {
     s.addAnimation(mv1);
-    List<AnimationSummary> sums = s.getSummary();
+    List<IAnimationSummary> sums = s.getSummary();
 
     List<String> expected = new ArrayList<>();
     expected.add(mv1.toString(s.getName()));
@@ -65,7 +63,7 @@ public class IAnimatedShapeTest {
     s.addAnimation(r2g);
     s.addAnimation(mv1);
 
-    List<AnimationSummary> sums = s.getSummary();
+    List<IAnimationSummary> sums = s.getSummary();
 
     List<String> expected = new ArrayList<>();
     expected.add(r2g.toString(s.getName()));
