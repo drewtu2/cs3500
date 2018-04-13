@@ -2,7 +2,7 @@ package cs3500.animator.provider.controller;
 
 import java.util.List;
 
-import cs3500.animator.model.shape.AbstractShape;
+import cs3500.animator.provider.model.shape.AbstractShape;
 
 /**
  * Represents an interface to control any visual view by receiving commands from the view and

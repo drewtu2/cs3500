@@ -169,4 +169,5 @@ public abstract class AbstractShape extends AbstractCanvasObject {
     this.location = this.originalLocation;
 
   }
+
 }

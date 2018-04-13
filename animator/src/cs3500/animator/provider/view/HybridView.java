@@ -23,12 +23,12 @@ import javax.swing.BoxLayout;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import cs3500.animator.controller.HybridViewController;
+import cs3500.animator.provider.controller.HybridViewController;
 import cs3500.animator.provider.controller.IInteractiveController;
-import cs3500.animator.model.animation.AbstractAnimation;
+import cs3500.animator.provider.model.animation.AbstractAnimation;
 import cs3500.animator.model.animation.Move;
-import cs3500.animator.model.shape.AbstractShape;
-import cs3500.animator.util.NumUtil;
+import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.util.NumUtil;
 
 /**
 * This class represents a hybrid view of the animations and shapes. The animation will be

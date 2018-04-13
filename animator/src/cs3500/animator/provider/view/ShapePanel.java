@@ -6,10 +6,10 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import cs3500.animator.model.shape.AbstractShape;
-import cs3500.animator.model.shape.Oval;
-import cs3500.animator.model.shape.Rectangle;
-import cs3500.animator.util.NumUtil;
+import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.model.shape.Oval;
+import cs3500.animator.provider.model.shape.Rectangle;
+import cs3500.animator.provider.util.NumUtil;
 
 /**
  * This class represents a panel to draw a list of shapes. It can also can show a list of

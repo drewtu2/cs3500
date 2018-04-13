@@ -6,8 +6,8 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-import cs3500.animator.model.animation.AbstractAnimation;
-import cs3500.animator.model.shape.AbstractShape;
+import cs3500.animator.provider.model.animation.AbstractAnimation;
+import cs3500.animator.provider.model.shape.AbstractShape;
 
 /**
  * This class represents a general view that has a tempo in ticks per second. The tempo
