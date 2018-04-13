@@ -10,7 +10,19 @@ public class Posn {
   private final float x;
   private final float y;
 
+  /**
+   * Initialize this object to the specified position.
+   */
+  public Posn(float x, float y) {
+    this.x = x;
+    this.y = y;
+  }
 
+  /**
+   * Returns the x value.
+   *
+   * @return the x value
+   */
   public float getX() {
     return x;
   }
@@ -22,15 +34,6 @@ public class Posn {
    */
   public float getY() {
     return y;
-  }
-
-
-  /**
-   * Initialize this object to the specified position.
-   */
-  public Posn(float x, float y) {
-    this.x = x;
-    this.y = y;
   }
 
 

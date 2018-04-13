@@ -163,10 +163,14 @@ public abstract class AbstractShape extends AbstractCanvasObject {
 
   @Override
   public int hashCode() {
+    // TODO write the actual hash function
+    return 0;
   }
 
   @Override
   public String toString() {
+    // TODO write the actual string
+    return "";
   }
 
   /**

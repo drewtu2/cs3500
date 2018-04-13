@@ -3,31 +3,31 @@ package cs3500.animator.provider.model;
 import java.util.Objects;
 
 /**
-   * Represents an Color.
+ * Represents an Color.
+ */
+public class Color {
+
+  protected float red;
+  protected float green;
+  protected float blue;
+
+  /**
+   * Constructs a Color.
+   *
+   * @param red the red value
+   * @param green the green value
+   * @param blue the blue value
    */
-  public class Color {
-
-    protected float red;
-    protected float green;
-    protected float blue;
-
-    /**
-     * Constructs a Color.
-     *
-     * @param red the red value
-     * @param green the green value
-     * @param blue the blue value
-     */
-    public Color(float red, float green, float blue) {
-      if (!validRange(red) || !validRange(green) || !validRange(blue)) {
-        throw new IllegalArgumentException("Invalid RGB color");
-      }
-
-      this.red = red;
-      this.green = green;
-      this.blue = blue;
-
+  public Color(float red, float green, float blue) {
+    if (!validRange(red) || !validRange(green) || !validRange(blue)) {
+      throw new IllegalArgumentException("Invalid RGB color");
     }
+
+    this.red = red;
+    this.green = green;
+    this.blue = blue;
+
+  }
 
   /**
    * Returns true if the given float is a valid RGB value.
@@ -63,29 +63,52 @@ import java.util.Objects;
     return this.blue;
   }
 
-    @Override
-    public boolean equals(Object a) {
-      if (this == a) {
-        return true;
-      }
-      if (!(a instanceof Color)) {
-        return false;
-      }
-
-      Color that = (Color) a;
-
-      return ((Math.abs(this.red - that.red) < 0.01)
-              && (Math.abs(this.green - that.green) < 0.01)
-              && (Math.abs(this.blue - that.blue) < 0.01));
+  @Override
+  public boolean equals(Object a) {
+    if (this == a) {
+      return true;
+    }
+    if (!(a instanceof Color)) {
+      return false;
     }
 
-    @Override
-    public int hashCode() {
-      return Objects.hash(this.red, this.green, this.blue);
-    }
+    Color that = (Color) a;
+
+    return ((Math.abs(this.red - that.red) < 0.01)
+        && (Math.abs(this.green - that.green) < 0.01)
+        && (Math.abs(this.blue - that.blue) < 0.01));
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.red, this.green, this.blue);
+  }
 
 
+  /**
+   * Returns a java awt version of this color.
+   * @return a java awt version of this color
+   */
   public java.awt.Color transformToAwt() {
     return new java.awt.Color(red, green, blue);
+  }
+
+  /**
+   * Returns the SVG text version of this color.
+   * @return the SVG text version of this color
+   */
+  public String toSVG() {
+    // TODO
+    return "";
+  }
+
+  /**
+   * Returns a color from the given string.
+   * @param input
+   * @return
+   */
+  public static Color parseString(String input) {
+    // TODO ????
+    return new Color(0, 0, 0);
   }
 }

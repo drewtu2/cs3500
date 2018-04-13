@@ -7,11 +7,6 @@ import cs3500.animator.provider.model.Posn;
  * Represents a circle shape object.
  */
 public class Oval extends AbstractShape {
-  private int startTime;
-  private int endTime;
-  private String name;
-  private Posn location;
-  private Color color;
   private float radiusX;
   private float radiusY;
 
@@ -47,16 +42,25 @@ public class Oval extends AbstractShape {
 
   @Override
   public AbstractShape clone() {
-    return null;
+    return new Oval(this.getStartTime(),
+        this.getEndTime(),
+        this.getName(),
+        this.getLocation(),
+        this.getColor(),
+        radiusX,
+        radiusY);
   }
 
   @Override
   public void scale(double scaleX, double scaleY) {
-
+    this.radiusX *= scaleX;
+    this.radiusY *= scaleY;
   }
 
   @Override
   public void updateSize(double width, double height) {
+    this.radiusX = (float) width;
+    this.radiusY = (float) height;
 
   }
 }
