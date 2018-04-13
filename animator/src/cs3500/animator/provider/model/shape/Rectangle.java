@@ -1,31 +1,36 @@
-package cs3500.animator.provider.model.shape;
-import cs3500.animator.provider.model.Color;
-import cs3500.animator.provider.model.Posn;
+package cs3500.animator.model.shape;
+
+import cs3500.animator.model.Color;
+import cs3500.animator.model.Posn;
 
 /**
- * Represents a rectangle shape object.
+ * Represents a standard rectangle shape with a basic width and height.
  */
 public class Rectangle extends AbstractShape {
-  private int startTime;
-  private int endTime;
-  private String name;
-  private Posn location;
-  private Color color;
-  private float width;
-  private float height;
+  public static final String ERROR_WIDTH_BOUNDS =
+          "Width must be greater than 0.";
+  public static final String ERROR_HEIGHT_BOUNDS =
+          "Height must be greater than 0.";
 
-  public Rectangle(int startTime, int endTime, String name, Posn location, Color color, float width, float height) {
-    super(startTime, endTime, name, location, color);
-    this.width = width;
-    this.height = height;
-  }
+  private double originalWidth;
+  private double originalHeight;
+  private double width;
+  private double height;
 
-  public float getWidth() {
-    return width;
-  }
-
-  public float getHeight() {
-    return height;
+  /**
+   * Constructs a rectangle with the given width and height.
+   *
+   * @param startTime the time to show the object
+   * @param endTime   the time to hide the object
+   * @param name      the object's name
+   * @param location  the object's location on a canvas
+   * @param color     the object's color
+   * @param width     the width of the rectangle
+   * @param height    the height of the rectangle
+   * @throws IllegalArgumentException if the width or height is 0 or less
+   */
+  public Rectangle(int startTime, int endTime, String name, Posn location, Color color,
+                   double width, double height) throws IllegalArgumentException {
   }
 
   @Override
@@ -34,28 +39,60 @@ public class Rectangle extends AbstractShape {
   }
 
   @Override
-  public String getAttributes() {
-    return Integer.toString(startTime) + " " + Integer.toString(endTime)+ " " + this.name
-            + location.toString() + color.toString();
-  }
-
-  @Override
-  public String getSizeDescriptionWithScale(double scaleX, double scaleY) {
-    return null;
-  }
-
-  @Override
-  public AbstractShape clone() {
-    return null;
+  public Rectangle clone() {
   }
 
   @Override
   public void scale(double scaleX, double scaleY) {
-
   }
 
   @Override
   public void updateSize(double width, double height) {
+  }
 
+  @Override
+  public String getAttributes() {
+    StringBuilder builder = new StringBuilder();
+
+    builder.append("Min-corner: ")
+            .append(this.getLocation().toString())
+            .append(", ")
+            .append(this.getSizeDescription())
+            .append(", Color: ")
+            .append(this.getColor().toString());
+
+    return builder.toString();
+  }
+
+  @Override
+  public String getSizeDescriptionWithScale(double scaleX, double scaleY) {
+    StringBuilder builder = new StringBuilder();
+
+    builder.append("Width: ")
+            .append(this.width * scaleX)
+            .append(", Height: ")
+            .append(this.height * scaleY);
+
+    return builder.toString();
+  }
+
+  /**
+   * A getter for the width.
+   *
+   * @return the width value
+   */
+  public double getWidth() {
+  }
+
+  /**
+   * A getter for the height.
+   *
+   * @return the height value
+   */
+  public double getHeight() {
+  }
+
+  @Override
+  public void reset() {
   }
 }

@@ -1,8 +1,8 @@
-package cs3500.animator.provider.model.shape;
+package cs3500.animator.model.shape;
 
-import cs3500.animator.provider.model.Color;
-import cs3500.animator.provider.model.AbstractCanvasObject;
-import cs3500.animator.provider.model.Posn;
+import cs3500.animator.model.Color;
+import cs3500.animator.model.AbstractCanvasObject;
+import cs3500.animator.model.Posn;
 
 /**
  * Represents an abstract shape that can be placed in a canvas.
@@ -36,16 +36,6 @@ public abstract class AbstractShape extends AbstractCanvasObject {
    */
   public AbstractShape(int startTime, int endTime, String name, Posn location, Color color)
           throws IllegalArgumentException {
-
-    super(startTime, endTime);
-
-    this.name = name;
-
-    this.originalColor = color;
-    this.color = color;
-
-    this.originalLocation = location;
-    this.location = location;
   }
 
   /**
@@ -113,7 +103,7 @@ public abstract class AbstractShape extends AbstractCanvasObject {
    * @return the size attribute description string
    */
   public String getSizeDescription() {
-    //TODO get description of size
+    return getSizeDescriptionWithScale(1.0, 1.0);
   }
 
   /**
@@ -122,7 +112,6 @@ public abstract class AbstractShape extends AbstractCanvasObject {
    * @param newLocation the location to move this shape to
    */
   public void move(Posn newLocation) {
-    this.location = newLocation;
   }
 
   /**
@@ -146,28 +135,39 @@ public abstract class AbstractShape extends AbstractCanvasObject {
    * @param newColor the color to change this shape to
    */
   public void changeColor(Color newColor) {
-    this.color = newColor;
   }
 
   @Override
   public boolean equals(Object other) {
+    // two shapes should only be considered the same if they are the same in memory
+    return this == other;
   }
 
   @Override
   public int hashCode() {
+    return this.getName().hashCode();
   }
 
   @Override
   public String toString() {
+    StringBuilder builder = new StringBuilder();
+
+    builder.append("Name: ").append(this.name);
+    builder.append("\n");
+    builder.append("Type: ").append(this.getType());
+    builder.append("\n");
+    builder.append(this.getAttributes());
+    builder.append("\n");
+    builder.append("Appears at t=").append(this.getStartTime());
+    builder.append("\n");
+    builder.append("Disappears at t=").append(this.getEndTime());
+
+    return builder.toString();
   }
 
   /**
    * Sets the properties of this shape to its original properties at construction.
    */
   public void reset() {
-    this.color = this.originalColor;
-    this.location = this.originalLocation;
-
   }
-
 }

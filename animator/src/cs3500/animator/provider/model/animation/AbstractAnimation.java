@@ -1,7 +1,7 @@
-package cs3500.animator.provider.model.animation;
+package cs3500.animator.model.animation;
 
-import cs3500.animator.provider.model.AbstractCanvasObject;
-import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.model.AbstractCanvasObject;
+import cs3500.animator.model.shape.AbstractShape;
 
 /**
  * Represents an abstract animation that can be placed in a canvas.
@@ -30,10 +30,6 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    */
   public AbstractAnimation(int startTime, int endTime, AbstractShape shape) throws
           IllegalArgumentException {
-    super(startTime, endTime);
-
-    this.shape = shape;
-
   }
 
   /**
@@ -45,11 +41,6 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @throws IllegalArgumentException if the given animation is null
    */
   public boolean conflictsWithAnimation(AbstractAnimation other) throws IllegalArgumentException {
-    if(this.getClass() == other.getClass()) {
-      return this.timeOverlaps(other);
-    }
-
-    return false;
   }
 
   /**
@@ -59,14 +50,6 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @return true if the execution periods overlap at all, false otherwise
    */
   public boolean timeOverlaps(AbstractAnimation other) {
-
-    boolean thisBefore = this.getStartTime() < other.getStartTime()
-        && this.getEndTime() > other.getStartTime();
-
-    boolean otherBefore = other.getStartTime() < this.getStartTime()
-        && other.getEndTime() > this.getStartTime();
-
-    return thisBefore && otherBefore;
   }
 
   /**
@@ -97,7 +80,6 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @return this object's shape
    */
   public AbstractShape getShape() {
-    return this.shape;
   }
 
   /**
@@ -115,6 +97,18 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @return the animation string description
    */
   public String toString(AbstractShape s) {
+    StringBuilder builder = new StringBuilder();
+
+    builder.append("Shape ")
+            .append(s.getName())
+            .append(" ")
+            .append(this.getAction(s))
+            .append(" from t=")
+            .append(this.getStartTime())
+            .append(" to t=")
+            .append(this.getEndTime());
+
+    return builder.toString();
   }
 
   /**
@@ -124,6 +118,8 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @return the starting coefficient
    */
   protected double getStartCoef(int ticksElapsed) {
+    return ((double) (this.getEndTime() - ticksElapsed)
+            / (this.getEndTime() - this.getStartTime()));
   }
 
   /**
@@ -133,5 +129,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @return the ending coefficient
    */
   protected double getEndCoef(int ticksElapsed) {
+    return ((double) (ticksElapsed - this.getStartTime())
+            / (this.getEndTime() - this.getStartTime()));
   }
 }

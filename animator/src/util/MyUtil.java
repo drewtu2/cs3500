@@ -8,8 +8,7 @@ import java.util.Map;
 /**
  * General purpose utilities.
  */
-public class MyUtil {
-
+public class MyUtil implements IMyUtil {
   /**
    * Performs a linear interpolation on the given values.
    *
@@ -20,12 +19,12 @@ public class MyUtil {
    * @param time the time we're requesting
    * @return the value at the requested time
    */
-  public static float interpolate(
-      float startValue,
-      float endValue,
-      int startTime,
-      int endTime,
-      int time) {
+  static float interpolate(
+          float startValue,
+          float endValue,
+          int startTime,
+          int endTime,
+          int time) {
     float componentA = startValue * (endTime - time) / (endTime - startTime);
     float componentB = endValue * (time - startTime) / (endTime - startTime);
 
@@ -37,7 +36,7 @@ public class MyUtil {
    *
    * @param input input to check
    */
-  public static void checkNull(Object input) {
+  static void checkNull(Object input) {
     if (input == null) {
       throw new NullPointerException("Input cannot be null");
     }
@@ -49,7 +48,7 @@ public class MyUtil {
    *
    * @param current the given String->Animated Shape map.
    */
-  public static Map<String, IAnimatedShape> duplicateMap(Map<String, IAnimatedShape> current) {
+  static Map<String, IAnimatedShape> duplicateMap(Map<String, IAnimatedShape> current) {
     Map<String, IAnimatedShape> newMap = new HashMap<>();
 
     for (String key : current.keySet()) {
@@ -58,5 +57,4 @@ public class MyUtil {
 
     return newMap;
   }
-
 }

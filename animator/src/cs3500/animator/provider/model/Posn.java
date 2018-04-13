@@ -1,51 +1,51 @@
-package cs3500.animator.provider.model;
+package cs3500.animator.model;
 
 import java.util.Objects;
 
 /**
- * Represents position (x and y).
+ * Represents a 2D position with x and y coordinates.
  */
 public class Posn {
-
-  private final float x;
-  private final float y;
-
-
-  public float getX() {
-    return x;
-  }
+  private double x;
+  private double y;
 
   /**
-   * Returns the pos y value.
+   * Constructs a posn with the given x and y coordinates.
    *
-   * @return the pos y value
+   * @param x the x coordinate of this posn
+   * @param y the y coordinate of this posn
    */
-  public float getY() {
-    return y;
-  }
-
-
-  /**
-   * Initialize this object to the specified position.
-   */
-  public Posn(float x, float y) {
+  public Posn(double x, double y) {
     this.x = x;
     this.y = y;
   }
 
+  /**
+   * A getter for the x position.
+   *
+   * @return the x position value
+   */
+  public double getX() {
+    return this.x;
+  }
+
+  /**
+   * A getter for the y position.
+   *
+   * @return the y position value
+   */
+  public double getY() {
+    return this.y;
+  }
 
   @Override
-  public boolean equals(Object a) {
-    if (this == a) {
-      return true;
-    }
-    if (!(a instanceof Posn)) {
+  public boolean equals(Object o) {
+    if (!(o instanceof Posn)) {
       return false;
     }
 
-    Posn that = (Posn) a;
-
-    return ((Math.abs(this.x - that.x) < 0.01) && (Math.abs(this.y - that.y) < 0.01));
+    Posn p = (Posn) o;
+    return this.x == p.getX() && this.y == p.getY();
   }
 
   @Override
@@ -53,4 +53,16 @@ public class Posn {
     return Objects.hash(this.x, this.y);
   }
 
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+
+    builder.append("(")
+            .append(this.x)
+            .append(",")
+            .append(this.y)
+            .append(")");
+
+    return builder.toString();
+  }
 }
