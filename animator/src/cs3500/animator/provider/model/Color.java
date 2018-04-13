@@ -1,6 +1,8 @@
-package cs3500.animator.model;
+package cs3500.animator.provider.model;
 
-import cs3500.animator.util.NumUtil;
+import java.util.Objects;
+
+import cs3500.animator.provider.util.NumUtil;
 
 /**
  * Represents an RGB color where each color code falls in the range of [0.0, 1.0].
@@ -19,6 +21,7 @@ public class Color {
   private double red;
   private double green;
   private double blue;
+
 
   /**
    * Constructs a Color object with the given red, green and blue parameters.
@@ -128,5 +131,27 @@ public class Color {
             .append(")");
 
     return builder.toString();
+
+  }
+
+  @Override
+  public boolean equals (Object a){
+    if (this == a) {
+      return true;
+    }
+    if (!(a instanceof Color)) {
+      return false;
+    }
+
+    Color that = (Color) a;
+
+    return ((Math.abs(this.red - that.red) < 0.01)
+            && (Math.abs(this.green - that.green) < 0.01)
+            && (Math.abs(this.blue - that.blue) < 0.01));
+  }
+
+  @Override
+  public int hashCode () {
+    return Objects.hash(this.red, this.green, this.blue);
   }
 }

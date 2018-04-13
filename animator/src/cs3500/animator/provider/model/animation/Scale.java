@@ -1,8 +1,10 @@
-package cs3500.animator.model.animation;
+package cs3500.animator.provider.model.animation;
 
-import cs3500.animator.model.shape.AbstractShape;
-import cs3500.animator.model.shape.Oval;
-import cs3500.animator.model.shape.Rectangle;
+import cs3500.animator.model.AbstractCanvasObject;
+import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.model.shape.Oval;
+import cs3500.animator.provider.model.shape.Rectangle;
+import cs3500.animator.model.animation.AbstractAnimation;
 
 /**
  * Represents a scaling animation to resize an object based on a scaling factor.
@@ -70,5 +72,10 @@ public class Scale extends AbstractAnimation {
             .append(s.getSizeDescriptionWithScale(scaleX, scaleY));
 
     return builder.toString();
+  }
+
+  @Override
+  public int compareTo(AbstractCanvasObject o) {
+    return 0;
   }
 }

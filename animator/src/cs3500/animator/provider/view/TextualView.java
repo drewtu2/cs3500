@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import cs3500.animator.model.animation.AbstractAnimation;
-import cs3500.animator.model.shape.AbstractShape;
+import cs3500.animator.provider.model.animation.AbstractAnimation;
+import cs3500.animator.provider.model.shape.AbstractShape;
 
 /**
  * This class represents a textual implementation of a view that can print out a string

@@ -1,21 +1,23 @@
-package cs3500.animator.model.shape;
+package cs3500.animator.provider.model.shape;
 
-import cs3500.animator.model.Color;
-import cs3500.animator.model.AbstractCanvasObject;
-import cs3500.animator.model.Posn;
+import cs3500.animator.provider.model.Color;
+import cs3500.animator.provider.model.AbstractCanvasObject;
+import cs3500.animator.provider.model.Posn;
+
 
 /**
  * Represents an abstract shape that can be placed in a canvas.
  */
 public abstract class AbstractShape extends AbstractCanvasObject {
+
   public static final String ERROR_NAME_NULL =
-          "The name cannot be null.";
+      "The name cannot be null.";
   public static final String ERROR_LOCATION_NULL =
-          "The location cannot be null.";
+      "The location cannot be null.";
   public static final String ERROR_COLOR_NULL =
-          "The color cannot be null.";
+      "The color cannot be null.";
   public static final String ERROR_NAME_HAS_SPACE =
-          "The name cannot have a space in it.";
+      "The name cannot have a space in it.";
 
   private String name;
   private Posn originalLocation;
@@ -28,14 +30,24 @@ public abstract class AbstractShape extends AbstractCanvasObject {
    * Constructs a shape with the given name and position.
    *
    * @param startTime the time to show the object
-   * @param endTime   the time to hide the object
-   * @param name      the object's name
-   * @param location  the object's location on a canvas
-   * @param color     the object's color
+   * @param endTime the time to hide the object
+   * @param name the object's name
+   * @param location the object's location on a canvas
+   * @param color the object's color
    * @throws IllegalArgumentException if the name, location or color is null
    */
   public AbstractShape(int startTime, int endTime, String name, Posn location, Color color)
-          throws IllegalArgumentException {
+      throws IllegalArgumentException {
+
+    super(startTime, endTime);
+
+    this.name = name;
+
+    this.originalColor = color;
+    this.color = color;
+
+    this.originalLocation = location;
+    this.location = location;
   }
 
   /**
@@ -97,13 +109,14 @@ public abstract class AbstractShape extends AbstractCanvasObject {
   public abstract AbstractShape clone();
 
   /**
-   * A convenience method describing the attributes associated with this shape's size and without
-   * a scale factor.
+   * A convenience method describing the attributes associated with this shape's size and without a
+   * scale factor.
    *
    * @return the size attribute description string
    */
   public String getSizeDescription() {
     return getSizeDescriptionWithScale(1.0, 1.0);
+
   }
 
   /**
@@ -124,6 +137,7 @@ public abstract class AbstractShape extends AbstractCanvasObject {
 
   /**
    * Modifies this shape's width and height to the new width and height.
+   *
    * @param width width of the shape
    * @param height height of the shape
    */
@@ -139,13 +153,17 @@ public abstract class AbstractShape extends AbstractCanvasObject {
 
   @Override
   public boolean equals(Object other) {
-    // two shapes should only be considered the same if they are the same in memory
-    return this == other;
+    if (!(other instanceof AbstractShape)) {
+      return false;
+    }
+
+    return this.name.equals(((AbstractShape) other).name);
   }
 
   @Override
   public int hashCode() {
     return this.getName().hashCode();
+
   }
 
   @Override

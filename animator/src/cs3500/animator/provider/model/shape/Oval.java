@@ -1,7 +1,7 @@
-package cs3500.animator.model.shape;
+package cs3500.animator.provider.model.shape;
 
-import cs3500.animator.model.Color;
-import cs3500.animator.model.Posn;
+import cs3500.animator.provider.model.Color;
+import cs3500.animator.provider.model.Posn;
 
 /**
  * Represents a standard oval shape with a basic x radius and y radius.
@@ -62,12 +62,20 @@ public class Oval extends AbstractShape {
     return builder.toString();
   }
 
-  @Override
-  public Oval clone() {
+  public AbstractShape clone() {
+    return new Oval(this.getStartTime(),
+        this.getEndTime(),
+        this.getName(),
+        this.getLocation(),
+        this.getColor(),
+        radiusX,
+        radiusY);
   }
 
   @Override
   public void scale(double scaleX, double scaleY) {
+    this.radiusX *= scaleX;
+    this.radiusY *= scaleY;
   }
 
   @Override

@@ -8,12 +8,12 @@ import java.util.Map;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import cs3500.animator.controller.IVisualController;
-import cs3500.animator.controller.VisualViewController;
-import cs3500.animator.model.animation.AbstractAnimation;
-import cs3500.animator.model.animation.Move;
-import cs3500.animator.model.shape.AbstractShape;
-import cs3500.animator.util.NumUtil;
+import cs3500.animator.provider.controller.IVisualController;
+import cs3500.animator.provider.controller.VisualViewController;
+import cs3500.animator.provider.model.animation.AbstractAnimation;
+import cs3500.animator.provider.model.animation.Move;
+import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.util.NumUtil;
 
 /**
  * This class represents a visual view of the animations and shapes. The animation will be

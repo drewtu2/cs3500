@@ -1,0 +1,63 @@
+
+How flexible are the interfaces you were given?
+How capable are the views?
+How convenient was it to reuse their code?
+How cleanly written and well-documented was their code?
+If you needed to request changes from them, what were they and why were they needed?
+Write a short (3-4 paragraph) review of their code. Your review should have the following sections: Design critique, implementation critique, documentation critique, design/code limitations and suggestions on how to address them.
+
+# Critique, 
+The interfaces we were initally given were moderately flexible but realied heavily
+on the use of abstract and concrete classes instead of interfaces. This made it 
+somewhat difficult to implement adapters for their model components. 
+
+Further, from the given code and documentation, it is really difficult to 
+distinguish how the components were intended to be used. Two of the major 
+components of their design were an AbstractShape, inherited by the concrete 
+implementations of the shapes, as well as animations which held Abstract shape 
+methods through composition. This provides the user with a number of different 
+knobs which is really confusing to understand where objects need to be synchronized.
+To further complicate matters, both animations and shapes are derived from an
+`AbstractCanvasObject` and both shapes and animations have start and end times. 
+It seems that the animations and shapes were very closesly coupled, and without 
+more knowledge of the inteded use and implementation, modifying our model to fit
+theirs will be somewhat difficult. 
+
+Futher, looking through the views showed that at least parts of the flow of the
+program were controlled by regexes and string matching. This is somewhat confusing
+to the user since we must implement the methods to return the string exactly as 
+expected, otherwise parts of the code may fail. There was no documentation on the
+expected output of the strings. 
+
+What we did like about their design was the managed to resuse the shape panel 
+between designs for the Hybrid and Visual View. This meant that once we were 
+able to get the visual component working for the visual view, we knew how to 
+implement the same features on the hybrid view. 
+
+We needed to request several items from our prividers including the following
+- AbstractAnimation Interface
+- AbstractShape Interface
+- Color Interface
+- Posn Interface
+- Move Interface
+We also requested a number of clarifications with regards to documentaiton
+including the following. 
+- What are the coefficients referred to in the abstract animation?
+- Examples for the strings that needed to be returned to the user from various
+String return type methods. 
+
+# Personal Review
+This experience taught us many lessons. When we first received the code from our
+providers, we were met with a sea of red squiggly lines, indicating to us just 
+how many classes we were missing from our providers. These were classes which 
+needed to be implemented. We were missing the interfaces for the objects and as
+a result, it was difficult to write crossovers between objects until the proper
+modifications were made. 
+
+As we began trying to piece together how their code worked, we found difficult
+in understanding how different strings were being used and needed to request 
+clarification and examples in the documentation. This was also an insight as to 
+why use more restrictive methods of flow control (double dispatch, enums, named
+variables, ints) is better than using strings. 
+is better l
+

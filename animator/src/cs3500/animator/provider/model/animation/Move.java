@@ -1,7 +1,10 @@
-package cs3500.animator.model.animation;
+package cs3500.animator.provider.model.animation;
 
-import cs3500.animator.model.Posn;
-import cs3500.animator.model.shape.AbstractShape;
+import cs3500.animator.model.AbstractCanvasObject;
+import cs3500.animator.provider.model.Posn;
+import cs3500.animator.provider.model.shape.AbstractShape;
+import util.MyUtil;
+import cs3500.animator.model.animation.AbstractAnimation;
 
 /**
  * Represents a translation animation to move an object to a destination location.
@@ -36,14 +39,21 @@ public class Move extends AbstractAnimation {
 
   @Override
   public void animate(AbstractShape s) {
+    s.move(end);
+
   }
 
   @Override
   public void animate(int ticksElapsed) {
+    float x = MyUtil.interpolate(start.getX(), end.getX(), this.getStartTime(), this.getEndTime(), ticksElapsed);
+    float y = MyUtil.interpolate(start.getX(), end.getX(), this.getStartTime(), this.getEndTime(), ticksElapsed);
+
+    shape.move(new Posn(x, y));
   }
 
   @Override
   public boolean sameType(AbstractAnimation other) {
+    return other instanceof Move;
   }
 
   @Override
@@ -56,5 +66,18 @@ public class Move extends AbstractAnimation {
             .append(destination.toString());
 
     return builder.toString();
+  }
+
+  /**
+   * Returns the destination of this animation.
+   * @return the destination of this animation.
+   */
+  public Posn getDestination() {
+    return end;
+  }
+
+  @Override
+  public int compareTo(AbstractCanvasObject o) {
+    return 0;
   }
 }

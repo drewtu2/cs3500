@@ -1,8 +1,9 @@
-package cs3500.animator.model.animation;
+package cs3500.animator.provider.model.animation;
 
-import cs3500.animator.model.Color;
-import cs3500.animator.model.shape.AbstractShape;
-
+import cs3500.animator.model.AbstractCanvasObject;
+import cs3500.animator.provider.model.Color;
+import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.model.animation.AbstractAnimation;
 /**
  * Represents a color change animation to alter an object's color to a target color.
  */
@@ -56,5 +57,10 @@ public class ChangeColor extends AbstractAnimation {
             .append(target.toString());
 
     return builder.toString();
+  }
+
+  @Override
+  public int compareTo(AbstractCanvasObject o) {
+    return 0;
   }
 }

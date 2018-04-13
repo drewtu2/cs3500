@@ -12,7 +12,7 @@ jar:
 	$(JC) -d $(BUILD_DIR) @$(BUILD_DIR)/sources.txt
 	cd build/; jar cvfm animator.jar ../src/META-INF/* *
 
-submission: text svg interactive
+submission: text svg 
 	@echo making submission
 	@rm -f resources/animator.jar
 	@cp $(JAR) resources/animator.jar
@@ -32,15 +32,16 @@ svg: jar
 	@echo Finished running svg view...
 
 visual: jar
-	@echo Running svg view...
+	@echo Running visual view...
 	@rm -f resources/toh-at-20.svg
 	$(RUN) -if assignment6_starter/toh-3.txt -iv visual -o resources/toh-at-20.svg -speed 20
+	#$(RUN) -if assignment6_starter/toh-3.txt -iv visual -o resources/toh-at-20.svg 
 	@echo Finished running visual view...
 
 interactive: jar
 	@echo Running interactive view...
 	@rm -f animation.svg 
 	$(RUN) -if assignment6_starter/buildings.txt -iv interactive -speed 20
-	#$(RUN) -if assignment6_starter/toh-3.txt -iv interactive -speed 20
+	#$(RUN) -if assignment6_starter/toh-3.txt -iv interactive
 	@echo Finished running interactive view...
 

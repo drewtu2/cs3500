@@ -13,4 +13,13 @@ public class NumUtil {
   public static int round(float num) {
     return Math.round(num);
   }
+
+  /**
+   * Rounds down to the nearest integer value.
+   * @param num the number.
+   * @return the rounded int.
+   */
+  public static int round(double num) {
+    return (int)(num);
+  }
 }
