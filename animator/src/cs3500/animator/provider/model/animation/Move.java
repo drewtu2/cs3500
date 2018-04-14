@@ -4,7 +4,7 @@ import cs3500.animator.model.AbstractCanvasObject;
 import cs3500.animator.provider.model.Posn;
 import cs3500.animator.provider.model.shape.AbstractShape;
 import util.MyUtil;
-import cs3500.animator.model.animation.AbstractAnimation;
+import cs3500.animator.provider.model.animation.AbstractAnimation;
 
 /**
  * Represents a translation animation to move an object to a destination location.

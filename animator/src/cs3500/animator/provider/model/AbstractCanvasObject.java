@@ -1,4 +1,4 @@
-package cs3500.animator.model;
+package cs3500.animator.provider.model;
 
 /**
  * Represents a generic canvas object that can be laid on a canvas at a certain time period.
@@ -22,6 +22,8 @@ public abstract class AbstractCanvasObject implements Comparable<AbstractCanvasO
    */
   public AbstractCanvasObject(int startTime, int endTime) throws IllegalArgumentException {
     if (endTime <= startTime) {
+
+    }
   }
 
   /**
@@ -30,6 +32,7 @@ public abstract class AbstractCanvasObject implements Comparable<AbstractCanvasO
    * @return the start time value
    */
   public int getStartTime() {
+    return startTime;
   }
 
   /**
@@ -38,11 +41,17 @@ public abstract class AbstractCanvasObject implements Comparable<AbstractCanvasO
    * @return the end time value
    */
   public int getEndTime() {
+    return endTime;
   }
 
   @Override
   public int compareTo(AbstractCanvasObject other) {
     // If this object starts before the other object, this object is less than the other object
     // If both objects have the same start time, compare this object's end time with the other object
+    if (startTime == other.startTime) {
+      return endTime - other.endTime;
+    }
+
+    return startTime - other.startTime;
   }
 }

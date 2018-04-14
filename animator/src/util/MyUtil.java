@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * General purpose utilities.
  */
-public class MyUtil implements IMyUtil {
+public class MyUtil {
   /**
    * Performs a linear interpolation on the given values.
    *
@@ -19,7 +19,7 @@ public class MyUtil implements IMyUtil {
    * @param time the time we're requesting
    * @return the value at the requested time
    */
-  static float interpolate(
+  public static float interpolate(
           float startValue,
           float endValue,
           int startTime,
@@ -36,7 +36,7 @@ public class MyUtil implements IMyUtil {
    *
    * @param input input to check
    */
-  static void checkNull(Object input) {
+  public static void checkNull(Object input) {
     if (input == null) {
       throw new NullPointerException("Input cannot be null");
     }
@@ -48,7 +48,7 @@ public class MyUtil implements IMyUtil {
    *
    * @param current the given String->Animated Shape map.
    */
-  static Map<String, IAnimatedShape> duplicateMap(Map<String, IAnimatedShape> current) {
+  public static Map<String, IAnimatedShape> duplicateMap(Map<String, IAnimatedShape> current) {
     Map<String, IAnimatedShape> newMap = new HashMap<>();
 
     for (String key : current.keySet()) {

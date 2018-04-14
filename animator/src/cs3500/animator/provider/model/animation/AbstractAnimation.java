@@ -1,7 +1,7 @@
-package cs3500.animator.model.animation;
+package cs3500.animator.provider.model.animation;
 
-import cs3500.animator.model.AbstractCanvasObject;
-import cs3500.animator.model.shape.AbstractShape;
+import cs3500.animator.provider.model.AbstractCanvasObject;
+import cs3500.animator.provider.model.shape.AbstractShape;
 import static util.MyUtil.checkNull;
 
 
