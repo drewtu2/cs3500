@@ -26,11 +26,7 @@ public class ChangeColor extends AbstractAnimation {
    * @param target    the color to change the shape to
    * @throws IllegalArgumentException if the target is null
    */
-<<<<<<< Updated upstream:animator/src/cs3500/animator/provider/object/animation/ChangeColor.java
-  public ChangeColor(int startTime, int endTime, AbstractShape shape, IColor target) throws
-=======
-  public ChangeColor(int startTime, int endTime, IShape shape, Color target) throws
->>>>>>> Stashed changes:animator/src/cs3500/animator/provider/model/animation/ChangeColor.java
+  public ChangeColor(int startTime, int endTime, IShape shape, IColor target) throws
           IllegalArgumentException {
     super(startTime, endTime, shape);
     if(startTime > endTime) {
