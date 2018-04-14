@@ -1,10 +1,10 @@
 package cs3500.animator.provider.model.animation;
 
-import cs3500.animator.model.AbstractCanvasObject;
+import cs3500.animator.provider.model.AbstractCanvasObject;
 import cs3500.animator.provider.model.shape.AbstractShape;
 import cs3500.animator.provider.model.shape.Oval;
 import cs3500.animator.provider.model.shape.Rectangle;
-import cs3500.animator.model.animation.AbstractAnimation;
+import util.MyUtil;
 
 /**
  * Represents a scaling animation to resize an object based on a scaling factor.
@@ -32,6 +32,25 @@ public class Scale extends AbstractAnimation {
    */
   public Scale(int startTime, int endTime, AbstractShape shape, double scaleX, double scaleY)
           throws IllegalArgumentException {
+    super(startTime, endTime, shape);
+    if(startTime > endTime) {
+      throw new IllegalArgumentException("invalid time");
+    }
+    this.scaleX = scaleX;
+    this.scaleY = scaleY;
+    if(shape instanceof Rectangle) {
+      this.startWidth = ((Rectangle)shape).getWidth();
+      this.startHeight = ((Rectangle)shape).getHeight();
+      this.endWidth = startWidth * scaleX;
+      this.endHeight = startHeight * scaleY;
+    }
+
+    if(shape instanceof Oval) {
+      this.startWidth = ((Oval)shape).getRadiusX();
+      this.startHeight = ((Oval)shape).getRadiusY();
+      this.endWidth = startWidth * scaleX;
+      this.endHeight = startHeight * scaleY;
+    }
   }
 
   /**
@@ -40,6 +59,7 @@ public class Scale extends AbstractAnimation {
    * @return the x scale factor value
    */
   public double getScaleX() {
+    return scaleX;
   }
 
   /**
@@ -48,18 +68,27 @@ public class Scale extends AbstractAnimation {
    * @return the y scale factor value
    */
   public double getScaleY() {
+    return scaleY;
   }
 
   @Override
   public void animate(AbstractShape s) {
+    s.scale(scaleX, scaleY);
   }
 
   @Override
   public void animate(int ticksElapsed) {
+    float width = MyUtil.interpolate((float)startWidth, (float)endWidth,
+            this.getStartTime(), this.getEndTime(), ticksElapsed);
+    float height = MyUtil.interpolate((float)startHeight, (float)endHeight,
+            this.getStartTime(), this.getEndTime(), ticksElapsed);
+
+    shape.scale(width, height);
   }
 
   @Override
   public boolean sameType(AbstractAnimation other) {
+    return other instanceof Scale;
   }
 
   @Override
@@ -76,6 +105,6 @@ public class Scale extends AbstractAnimation {
 
   @Override
   public int compareTo(AbstractCanvasObject o) {
-    return 0;
+    return o.compareTo(this);
   }
 }

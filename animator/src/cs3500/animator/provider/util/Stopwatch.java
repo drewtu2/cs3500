@@ -1,4 +1,4 @@
-package cs3500.animator.util;
+package cs3500.animator.provider.util;
 
 /**
  * A simple java stopwatch.

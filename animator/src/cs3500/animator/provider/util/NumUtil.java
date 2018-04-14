@@ -22,4 +22,13 @@ public class NumUtil {
   public static int round(double num) {
     return (int)(num);
   }
+
+  /**
+   * Converts rgb val to 1 to 255 range.
+   * @param rgb one attribute val
+   * @return converted double
+   */
+  public static double convert1To255(double rgb) {
+    return rgb * 255;
+  }
 }

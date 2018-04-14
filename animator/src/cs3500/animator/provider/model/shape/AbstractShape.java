@@ -125,6 +125,7 @@ public abstract class AbstractShape extends AbstractCanvasObject {
    * @param newLocation the location to move this shape to
    */
   public void move(Posn newLocation) {
+    this.location = newLocation;
   }
 
   /**
@@ -149,6 +150,7 @@ public abstract class AbstractShape extends AbstractCanvasObject {
    * @param newColor the color to change this shape to
    */
   public void changeColor(Color newColor) {
+    this.color = newColor;
   }
 
   @Override
@@ -187,5 +189,7 @@ public abstract class AbstractShape extends AbstractCanvasObject {
    * Sets the properties of this shape to its original properties at construction.
    */
   public void reset() {
+    this.location= originalLocation;
+    this.color = originalColor;
   }
 }

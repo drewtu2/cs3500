@@ -1,7 +1,7 @@
-package cs3500.animator.model.shape;
+package cs3500.animator.provider.model.shape;
 
-import cs3500.animator.model.Color;
-import cs3500.animator.model.Posn;
+import cs3500.animator.provider.model.Color;
+import cs3500.animator.provider.model.Posn;
 
 /**
  * Represents a standard rectangle shape with a basic width and height.
@@ -31,6 +31,14 @@ public class Rectangle extends AbstractShape {
    */
   public Rectangle(int startTime, int endTime, String name, Posn location, Color color,
                    double width, double height) throws IllegalArgumentException {
+    super(startTime, endTime, name, location, color);
+    if(startTime > endTime) {
+      throw new IllegalArgumentException("invalid time");
+    }
+    this.width = width;
+    this.height = height;
+    this.originalWidth = width;
+    this.originalHeight = height;
   }
 
   @Override
@@ -40,14 +48,20 @@ public class Rectangle extends AbstractShape {
 
   @Override
   public Rectangle clone() {
+    return new Rectangle(getStartTime(), getEndTime(), getName(), getLocation(), getColor(),
+            getWidth(), getHeight());
   }
 
   @Override
   public void scale(double scaleX, double scaleY) {
+    this.width *= scaleX;
+    this.height *= scaleY;
   }
 
   @Override
   public void updateSize(double width, double height) {
+    this.width = width;
+    this.height = height;
   }
 
   @Override
@@ -82,6 +96,7 @@ public class Rectangle extends AbstractShape {
    * @return the width value
    */
   public double getWidth() {
+    return width;
   }
 
   /**
@@ -90,9 +105,12 @@ public class Rectangle extends AbstractShape {
    * @return the height value
    */
   public double getHeight() {
+    return height;
   }
 
   @Override
   public void reset() {
+    this.width = originalWidth;
+    this.height = originalHeight;
   }
 }

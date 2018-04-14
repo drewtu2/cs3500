@@ -1,10 +1,9 @@
 package cs3500.animator.provider.model.animation;
 
-import cs3500.animator.model.AbstractCanvasObject;
+import cs3500.animator.provider.model.AbstractCanvasObject;
 import cs3500.animator.provider.model.Posn;
 import cs3500.animator.provider.model.shape.AbstractShape;
 import util.MyUtil;
-import cs3500.animator.provider.model.animation.AbstractAnimation;
 
 /**
  * Represents a translation animation to move an object to a destination location.
@@ -27,26 +26,25 @@ public class Move extends AbstractAnimation {
    */
   public Move(int startTime, int endTime, AbstractShape shape, Posn destination) throws
           IllegalArgumentException {
-  }
-
-  /**
-   * A getter for the destination.
-   *
-   * @return the destination posn
-   */
-  public Posn getDestination() {
+    super(startTime, endTime, shape);
+    if(startTime > endTime) {
+      throw new IllegalArgumentException("invalid time span");
+    }
+    this.startPosition = shape.getLocation();
+    this.destination = destination;
   }
 
   @Override
   public void animate(AbstractShape s) {
-    s.move(end);
-
+    s.move(destination);
   }
 
   @Override
   public void animate(int ticksElapsed) {
-    float x = MyUtil.interpolate(start.getX(), end.getX(), this.getStartTime(), this.getEndTime(), ticksElapsed);
-    float y = MyUtil.interpolate(start.getX(), end.getX(), this.getStartTime(), this.getEndTime(), ticksElapsed);
+    float x = MyUtil.interpolate((float)startPosition.getX(), (float)destination.getX(),
+            this.getStartTime(), this.getEndTime(), ticksElapsed);
+    float y = MyUtil.interpolate((float)startPosition.getX(), (float)destination.getX(),
+            this.getStartTime(), this.getEndTime(), ticksElapsed);
 
     shape.move(new Posn(x, y));
   }
@@ -73,11 +71,11 @@ public class Move extends AbstractAnimation {
    * @return the destination of this animation.
    */
   public Posn getDestination() {
-    return end;
+    return destination;
   }
 
   @Override
   public int compareTo(AbstractCanvasObject o) {
-    return 0;
+    return o.compareTo(this);
   }
 }

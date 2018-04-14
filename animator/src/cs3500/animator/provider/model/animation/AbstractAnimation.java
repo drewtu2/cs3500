@@ -66,6 +66,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @return true if the execution periods overlap at all, false otherwise
    */
   public boolean timeOverlaps(AbstractAnimation other) {
+    return other.getStartTime() <= this.getEndTime() && this.getStartTime() <= other.getEndTime();
   }
 
   /**
@@ -74,6 +75,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @return this object's shape
    */
   public AbstractShape getShape() {
+    return shape;
   }
 
   /**
@@ -95,8 +97,6 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
             .append(this.getEndTime());
 
     return builder.toString();
-    //TODO: IDK.....
-    return s.toString();
   }
 
   /**

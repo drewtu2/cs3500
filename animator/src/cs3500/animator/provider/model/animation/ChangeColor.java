@@ -1,9 +1,10 @@
 package cs3500.animator.provider.model.animation;
 
-import cs3500.animator.model.AbstractCanvasObject;
+import cs3500.animator.provider.model.AbstractCanvasObject;
 import cs3500.animator.provider.model.Color;
 import cs3500.animator.provider.model.shape.AbstractShape;
-import cs3500.animator.model.animation.AbstractAnimation;
+import util.MyUtil;
+
 /**
  * Represents a color change animation to alter an object's color to a target color.
  */
@@ -25,6 +26,12 @@ public class ChangeColor extends AbstractAnimation {
    */
   public ChangeColor(int startTime, int endTime, AbstractShape shape, Color target) throws
           IllegalArgumentException {
+    super(startTime, endTime, shape);
+    if(startTime > endTime) {
+      throw new IllegalArgumentException("invalid time span");
+    }
+    this.startColor = shape.getColor();
+    this.target = target;
   }
 
   /**
@@ -33,18 +40,29 @@ public class ChangeColor extends AbstractAnimation {
    * @return the target color
    */
   public Color getTarget() {
+    return target;
   }
 
   @Override
   public void animate(AbstractShape s) {
+    s.changeColor(target);
   }
 
   @Override
   public void animate(int ticksElapsed) {
+    float red = MyUtil.interpolate((float)startColor.getRed(), (float)target.getRed(),
+            this.getStartTime(), this.getEndTime(), ticksElapsed);
+    float green = MyUtil.interpolate((float)startColor.getGreen(), (float)target.getGreen(),
+            this.getStartTime(), this.getEndTime(), ticksElapsed);
+    float blue = MyUtil.interpolate((float)startColor.getBlue(), (float)target.getBlue(),
+            this.getStartTime(), this.getEndTime(), ticksElapsed);
+
+    shape.changeColor(new Color(red, green, blue));
   }
 
   @Override
   public boolean sameType(AbstractAnimation other) {
+    return other instanceof ChangeColor;
   }
 
   @Override
@@ -61,6 +79,6 @@ public class ChangeColor extends AbstractAnimation {
 
   @Override
   public int compareTo(AbstractCanvasObject o) {
-    return 0;
+    return o.compareTo(this);
   }
 }
