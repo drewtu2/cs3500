@@ -1,11 +1,8 @@
 package cs3500.animator.provider.object.animation;
 
 import cs3500.animator.provider.object.Color;
-import cs3500.animator.provider.object.ICanvasObject;
 import cs3500.animator.provider.object.IColor;
-import cs3500.animator.provider.object.shape.AbstractShape;
 import cs3500.animator.provider.object.shape.IShape;
-import util.MyUtil;
 
 /**
  * Represents a color change animation to alter an object's color to a target color.
@@ -26,13 +23,14 @@ public class ChangeColor extends AbstractAnimation {
    * @param target    the color to change the shape to
    * @throws IllegalArgumentException if the target is null
    */
-  public ChangeColor(int startTime, int endTime, AbstractShape shape, IColor target) throws
+  public ChangeColor(int startTime, int endTime, IShape shape, IColor target) throws
           IllegalArgumentException {
     super(startTime, endTime, shape);
-    if(startTime > endTime) {
-      throw new IllegalArgumentException("invalid time span");
+
+    if (target == null) {
+      throw new IllegalArgumentException(ERROR_TARGET_NULL);
     }
-    this.startColor = shape.getColor();
+
     this.target = target;
   }
 
@@ -42,24 +40,27 @@ public class ChangeColor extends AbstractAnimation {
    * @return the target color
    */
   public IColor getTarget() {
-    return target;
+    return this.target;
   }
 
   @Override
   public void animate(IShape s) {
-    s.changeColor(target);
+    s.changeColor(this.target);
   }
 
   @Override
   public void animate(int ticksElapsed) {
-    float red = MyUtil.interpolate((float)startColor.getRed(), (float)target.getRed(),
-            this.getStartTime(), this.getEndTime(), ticksElapsed);
-    float green = MyUtil.interpolate((float)startColor.getGreen(), (float)target.getGreen(),
-            this.getStartTime(), this.getEndTime(), ticksElapsed);
-    float blue = MyUtil.interpolate((float)startColor.getBlue(), (float)target.getBlue(),
-            this.getStartTime(), this.getEndTime(), ticksElapsed);
-
-    shape.changeColor(new Color(red, green, blue));
+    if (!this.animationStarted) {
+      this.startColor = shape.getColor();
+      this.animationStarted = true;
+    }
+    double newR = this.startColor.getRed() * this.getStartCoef(ticksElapsed)
+            + this.target.getRed() * this.getEndCoef(ticksElapsed);
+    double newG = this.startColor.getGreen() * this.getStartCoef(ticksElapsed)
+            + this.target.getGreen() * this.getEndCoef(ticksElapsed);
+    double newB = this.startColor.getBlue() * this.getStartCoef(ticksElapsed)
+            + this.target.getBlue() * this.getEndCoef(ticksElapsed);
+    shape.changeColor(new Color(newR, newG, newB));
   }
 
   @Override
@@ -79,8 +80,4 @@ public class ChangeColor extends AbstractAnimation {
     return builder.toString();
   }
 
-  @Override
-  public int compareTo(ICanvasObject o) {
-    return o.compareTo(this);
   }
-}

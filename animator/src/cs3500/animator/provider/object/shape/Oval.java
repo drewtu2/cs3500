@@ -30,13 +30,20 @@ public class Oval extends AbstractShape {
   public Oval(int startTime, int endTime, String name, Posn location, IColor color,
               double radiusX, double radiusY) throws IllegalArgumentException {
     super(startTime, endTime, name, location, color);
-    if(startTime > endTime) {
-      throw new IllegalArgumentException("invalid time");
+    if (radiusX <= 0 || radiusY <= 0) {
+      throw new IllegalArgumentException(ERROR_RADIUS_BOUNDS);
     }
-    this.radiusX = radiusX;
-    this.radiusY = radiusY;
+
     this.originalRadiusX = radiusX;
     this.originalRadiusY = radiusY;
+    this.radiusX = radiusX;
+    this.radiusY = radiusY;
+  }
+
+
+  @Override
+  public String getType() {
+    return "oval";
   }
 
   @Override
@@ -47,11 +54,6 @@ public class Oval extends AbstractShape {
   @Override
   public double getY() {
     return this.getRadiusY();
-  }
-
-  @Override
-  public String getType() {
-    return "oval";
   }
 
   @Override
@@ -102,18 +104,13 @@ public class Oval extends AbstractShape {
     this.radiusY = height;
   }
 
-  @Override
-  public void changeColor(IColor newColor) {
-    this.changeColor(newColor);
-  }
-
   /**
    * A getter for the x radius.
    *
    * @return the x radius value
    */
   public double getRadiusX() {
-    return radiusX;
+    return this.radiusX;
   }
 
   /**
@@ -122,13 +119,12 @@ public class Oval extends AbstractShape {
    * @return the y radius value
    */
   public double getRadiusY() {
-    return radiusY;
+    return this.radiusY;
   }
 
   @Override
   public void reset() {
     super.reset();
-
     this.radiusX = originalRadiusX;
     this.radiusY = originalRadiusY;
   }

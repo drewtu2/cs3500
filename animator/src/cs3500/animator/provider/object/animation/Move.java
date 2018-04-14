@@ -27,31 +27,29 @@ public class Move extends AbstractAnimation {
   public Move(int startTime, int endTime, IShape shape, Posn destination) throws
           IllegalArgumentException {
     super(startTime, endTime, shape);
-    if(startTime > endTime) {
-      throw new IllegalArgumentException("invalid time span");
+    if (destination == null) {
+      throw new IllegalArgumentException(ERROR_DESTINATION_NULL);
     }
-    this.startPosition = shape.getLocation();
     this.destination = destination;
+    this.startPosition = this.shape.getLocation();
   }
 
   @Override
   public void animate(IShape s) {
-    s.move(destination);
+    s.move(this.destination);
   }
 
   @Override
   public void animate(int ticksElapsed) {
-    float x = MyUtil.interpolate((float)startPosition.getX(), (float)destination.getX(),
-            this.getStartTime(), this.getEndTime(), ticksElapsed);
-    float y = MyUtil.interpolate((float)startPosition.getX(), (float)destination.getX(),
-            this.getStartTime(), this.getEndTime(), ticksElapsed);
-
-    shape.move(new Posn(x, y));
-  }
-
-  @Override
-  public String toString(IShape s) {
-    return null;
+    if (!this.animationStarted) {
+      this.startPosition = shape.getLocation();
+      this.animationStarted = true;
+    }
+    double newX = this.startPosition.getX() * this.getStartCoef(ticksElapsed)
+            + this.destination.getX() * this.getEndCoef(ticksElapsed);
+    double newY = this.startPosition.getY() * this.getStartCoef(ticksElapsed)
+            + this.destination.getY() * this.getEndCoef(ticksElapsed);
+    shape.move(new Posn(newX, newY));
   }
 
   @Override
@@ -76,11 +74,7 @@ public class Move extends AbstractAnimation {
    * @return the destination of this animation.
    */
   public Posn getDestination() {
-    return destination;
+    return this.destination;
   }
 
-  @Override
-  public int compareTo(ICanvasObject o) {
-    return o.compareTo(this);
   }
-}

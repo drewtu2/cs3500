@@ -42,13 +42,24 @@ public abstract class AbstractShape extends AbstractCanvasObject implements ISha
 
     super(startTime, endTime);
 
-    this.name = name;
-
-    this.originalColor = color;
-    this.color = color;
+    if (name == null) {
+      throw new IllegalArgumentException(ERROR_NAME_NULL);
+    }
+    if (location == null) {
+      throw new IllegalArgumentException(ERROR_LOCATION_NULL);
+    }
+    if (color == null) {
+      throw new IllegalArgumentException(ERROR_COLOR_NULL);
+    }
+    if (name.contains(" ")) {
+      throw new IllegalArgumentException(ERROR_NAME_HAS_SPACE);
+    }
 
     this.originalLocation = location;
+    this.originalColor = color;
+    this.name = name;
     this.location = location;
+    this.color = color;
   }
 
   /**
@@ -107,7 +118,7 @@ public abstract class AbstractShape extends AbstractCanvasObject implements ISha
    *
    * @return the cloned shape
    */
-  public abstract AbstractShape clone();
+  public abstract IShape clone();
 
   /**
    * A convenience method describing the attributes associated with this shape's size and without a
@@ -150,17 +161,14 @@ public abstract class AbstractShape extends AbstractCanvasObject implements ISha
    *
    * @param newColor the color to change this shape to
    */
-  public void changeColor(Color newColor) {
+  public void changeColor(IColor newColor) {
     this.color = newColor;
   }
 
   @Override
   public boolean equals(Object other) {
-    if (!(other instanceof AbstractShape)) {
-      return false;
-    }
-
-    return this.name.equals(((AbstractShape) other).name);
+    // two shapes should only be considered the same if they are the same in memory
+    return this == other;
   }
 
   @Override
@@ -189,8 +197,15 @@ public abstract class AbstractShape extends AbstractCanvasObject implements ISha
   /**
    * Sets the properties of this shape to its original properties at construction.
    */
+  @Override
   public void reset() {
     this.location= originalLocation;
     this.color = originalColor;
   }
+
+  @Override
+  public abstract double getX();
+
+  @Override
+  public abstract double getY();
 }
