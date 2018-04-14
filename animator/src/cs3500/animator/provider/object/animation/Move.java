@@ -1,8 +1,8 @@
-package cs3500.animator.provider.model.animation;
+package cs3500.animator.provider.object.animation;
 
-import cs3500.animator.provider.model.AbstractCanvasObject;
-import cs3500.animator.provider.model.Posn;
-import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.object.ICanvasObject;
+import cs3500.animator.provider.object.Posn;
+import cs3500.animator.provider.object.shape.IShape;
 import util.MyUtil;
 
 /**
@@ -24,7 +24,7 @@ public class Move extends AbstractAnimation {
    * @param destination the destination to move the shape to
    * @throws IllegalArgumentException if the destination is null
    */
-  public Move(int startTime, int endTime, AbstractShape shape, Posn destination) throws
+  public Move(int startTime, int endTime, IShape shape, Posn destination) throws
           IllegalArgumentException {
     super(startTime, endTime, shape);
     if(startTime > endTime) {
@@ -35,7 +35,7 @@ public class Move extends AbstractAnimation {
   }
 
   @Override
-  public void animate(AbstractShape s) {
+  public void animate(IShape s) {
     s.move(destination);
   }
 
@@ -50,12 +50,17 @@ public class Move extends AbstractAnimation {
   }
 
   @Override
-  public boolean sameType(AbstractAnimation other) {
+  public String toString(IShape s) {
+    return null;
+  }
+
+  @Override
+  public boolean sameType(IAnimation other) {
     return other instanceof Move;
   }
 
   @Override
-  public String getAction(AbstractShape s) {
+  public String getAction(IShape s) {
     StringBuilder builder = new StringBuilder();
 
     builder.append("moves from ")
@@ -75,7 +80,7 @@ public class Move extends AbstractAnimation {
   }
 
   @Override
-  public int compareTo(AbstractCanvasObject o) {
+  public int compareTo(ICanvasObject o) {
     return o.compareTo(this);
   }
 }

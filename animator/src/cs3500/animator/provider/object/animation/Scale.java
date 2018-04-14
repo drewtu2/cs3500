@@ -1,9 +1,11 @@
-package cs3500.animator.provider.model.animation;
+package cs3500.animator.provider.object.animation;
 
-import cs3500.animator.provider.model.AbstractCanvasObject;
-import cs3500.animator.provider.model.shape.AbstractShape;
-import cs3500.animator.provider.model.shape.Oval;
-import cs3500.animator.provider.model.shape.Rectangle;
+import cs3500.animator.provider.object.AbstractCanvasObject;
+import cs3500.animator.provider.object.ICanvasObject;
+import cs3500.animator.provider.object.shape.AbstractShape;
+import cs3500.animator.provider.object.shape.IShape;
+import cs3500.animator.provider.object.shape.Oval;
+import cs3500.animator.provider.object.shape.Rectangle;
 import util.MyUtil;
 
 /**
@@ -30,7 +32,7 @@ public class Scale extends AbstractAnimation {
    * @param scaleY    the factor to scale the shape to in the y direction
    * @throws IllegalArgumentException if the either scaleX or scaleY is null
    */
-  public Scale(int startTime, int endTime, AbstractShape shape, double scaleX, double scaleY)
+  public Scale(int startTime, int endTime, IShape shape, double scaleX, double scaleY)
           throws IllegalArgumentException {
     super(startTime, endTime, shape);
     if(startTime > endTime) {
@@ -72,7 +74,7 @@ public class Scale extends AbstractAnimation {
   }
 
   @Override
-  public void animate(AbstractShape s) {
+  public void animate(IShape s) {
     s.scale(scaleX, scaleY);
   }
 
@@ -87,12 +89,12 @@ public class Scale extends AbstractAnimation {
   }
 
   @Override
-  public boolean sameType(AbstractAnimation other) {
+  public boolean sameType(IAnimation other) {
     return other instanceof Scale;
   }
 
   @Override
-  public String getAction(AbstractShape s) {
+  public String getAction(IShape s) {
     StringBuilder builder = new StringBuilder();
 
     builder.append("scales from ")
@@ -104,7 +106,7 @@ public class Scale extends AbstractAnimation {
   }
 
   @Override
-  public int compareTo(AbstractCanvasObject o) {
+  public int compareTo(ICanvasObject o) {
     return o.compareTo(this);
   }
 }

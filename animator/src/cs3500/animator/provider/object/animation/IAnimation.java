@@ -1,6 +1,6 @@
-package cs3500.animator.provider.model.animation;
-import cs3500.animator.provider.model.ICanvasObject;
-import cs3500.animator.provider.model.shape.IShape;
+package cs3500.animator.provider.object.animation;
+import cs3500.animator.provider.object.ICanvasObject;
+import cs3500.animator.provider.object.shape.IShape;
 
 /**
  * This interface contains all of the methods that an animation should have when being constructed.

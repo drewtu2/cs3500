@@ -1,7 +1,9 @@
 package cs3500.animator.provider.controller;
 
-import cs3500.animator.provider.model.animation.AbstractAnimation;
-import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.object.animation.AbstractAnimation;
+import cs3500.animator.provider.object.animation.IAnimation;
+import cs3500.animator.provider.object.shape.AbstractShape;
+import cs3500.animator.provider.object.shape.IShape;
 import cs3500.animator.provider.view.VisualView;
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -11,9 +13,9 @@ import javax.swing.Timer;
 public class VisualViewController implements IVisualController {
 
   private VisualView visualView;
-  private List<AbstractAnimation> animations;
-  private List<AbstractShape> shapes;
-  private Map<AbstractShape, Integer> order;
+  private List<IAnimation> animations;
+  private List<IShape> shapes;
+  private Map<IShape, Integer> order;
   private double tempo;
   private Timer timer;
 
@@ -25,8 +27,9 @@ public class VisualViewController implements IVisualController {
    * @param shapeOrder
    * @param tempo
    */
-  public VisualViewController(VisualView view, List<AbstractAnimation> animations,
-      List<AbstractShape> shapes, Map<AbstractShape, Integer> shapeOrder, double tempo) {
+  public VisualViewController(VisualView view, List<IAnimation> animations,
+                              List<IShape> shapes, Map<IShape, Integer> shapeOrder,
+                              double tempo) {
       this.visualView = view;
       this.animations = animations;
       this.shapes = shapes;
@@ -47,7 +50,7 @@ public class VisualViewController implements IVisualController {
     }
 
     @Override
-    public List<AbstractShape> getVisibleShapes () {
+    public List<IShape> getVisibleShapes () {
       return null;
     }
   }

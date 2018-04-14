@@ -1,6 +1,7 @@
 package cs3500.animator.provider.controller;
 
-import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.object.shape.AbstractShape;
+import cs3500.animator.provider.object.shape.IShape;
 
 /**
  * Represents an interface to control any interactive view by receiving commands from the view and
@@ -45,7 +46,7 @@ public interface IInteractiveController extends IVisualController {
    * @param shape the shape to change the visibility of
    * @param selected whether or not the checkbox is selected
    */
-  void onShapeVisibilityChanged(AbstractShape shape, boolean selected);
+  void onShapeVisibilityChanged(IShape shape, boolean selected);
 
   /**
    * Handles when the SVG export button is pressed.

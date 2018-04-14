@@ -1,8 +1,8 @@
 package cs3500.animator.provider.adapter;
 
-import cs3500.animator.provider.model.Color;
-import cs3500.animator.provider.model.Posn;
-import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.object.Color;
+import cs3500.animator.provider.object.Posn;
+import cs3500.animator.provider.object.shape.AbstractShape;
 
 public class ShapeAdapter extends AbstractShape{
 

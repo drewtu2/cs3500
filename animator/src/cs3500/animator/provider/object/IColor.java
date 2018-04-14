@@ -1,6 +1,6 @@
-package cs3500.animator.provider.model;
+package cs3500.animator.provider.object;
 
-  public interface IColor {
+public interface IColor {
     /**
      * A getter for the red color.
      *

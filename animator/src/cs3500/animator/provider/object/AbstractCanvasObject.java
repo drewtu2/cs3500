@@ -1,6 +1,4 @@
-package cs3500.animator.provider.model;
-
-import cs3500.animator.provider.model.shape.AbstractShape;
+package cs3500.animator.provider.object;
 
 /**
  * Represents a generic canvas object that can be laid on a canvas at a certain time period.

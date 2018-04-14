@@ -1,8 +1,7 @@
-package cs3500.animator.provider.model.animation;
+package cs3500.animator.provider.object.animation;
 
-import cs3500.animator.provider.model.AbstractCanvasObject;
-import cs3500.animator.provider.model.shape.AbstractShape;
-import cs3500.animator.provider.model.shape.IShape;
+import cs3500.animator.provider.object.AbstractCanvasObject;
+import cs3500.animator.provider.object.shape.IShape;
 
 import static util.MyUtil.checkNull;
 
@@ -51,7 +50,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
    * @param other the animation to check this one against
    * @throws IllegalArgumentException if the given animation is null
    */
-  public boolean conflictsWithAnimation(AbstractAnimation other) throws IllegalArgumentException {
+  public boolean conflictsWithAnimation(IAnimation other) throws IllegalArgumentException {
     checkNull(other);
 
     if (this.getClass() == other.getClass()) {
@@ -67,7 +66,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
    * @param other the animation to check this one against
    * @return true if the execution periods overlap at all, false otherwise
    */
-  public boolean timeOverlaps(AbstractAnimation other) {
+  public boolean timeOverlaps(IAnimation other) {
     return other.getStartTime() <= this.getEndTime() && this.getStartTime() <= other.getEndTime();
   }
 
@@ -87,7 +86,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
    * @param s the shape that the action is being performed on
    * @return the animation string description
    */
-  public String toString(AbstractShape s) {
+  public String toString(IShape s) {
     StringBuilder builder = new StringBuilder();
 
     builder.append("Shape ")
@@ -132,7 +131,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
    *
    * @param s the shape to animate
    */
-  public abstract void animate(AbstractShape s);
+  public abstract void animate(IShape s);
 
   /**
    * Performs a fraction of an animation based on ticks elapsed.
@@ -147,7 +146,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
    * @param other the animatino to check this one against
    * @return true if the animation types are the same, false otherwise
    */
-  public abstract boolean sameType(AbstractAnimation other);
+  public abstract boolean sameType(IAnimation other);
 
 
   /**
@@ -156,6 +155,6 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
    * @param s the shape that the action is being performed on
    * @return the action string
    */
-  public abstract String getAction(AbstractShape s);
+  public abstract String getAction(IShape s);
 
 }

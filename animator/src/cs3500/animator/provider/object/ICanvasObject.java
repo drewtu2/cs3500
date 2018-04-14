@@ -1,4 +1,4 @@
-package cs3500.animator.provider.model;
+package cs3500.animator.provider.object;
 
 /**
  * This interface contains all of the methods that a canvas object should have. A canvas object

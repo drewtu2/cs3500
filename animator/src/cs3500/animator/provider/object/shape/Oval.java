@@ -1,7 +1,7 @@
-package cs3500.animator.provider.model.shape;
+package cs3500.animator.provider.object.shape;
 
-import cs3500.animator.provider.model.Color;
-import cs3500.animator.provider.model.Posn;
+import cs3500.animator.provider.object.IColor;
+import cs3500.animator.provider.object.Posn;
 
 /**
  * Represents a standard oval shape with a basic x radius and y radius.
@@ -27,7 +27,7 @@ public class Oval extends AbstractShape {
    * @param radiusY   the y radius of the oval
    * @throws IllegalArgumentException if the x radius or y radius is 0 or less
    */
-  public Oval(int startTime, int endTime, String name, Posn location, Color color,
+  public Oval(int startTime, int endTime, String name, Posn location, IColor color,
               double radiusX, double radiusY) throws IllegalArgumentException {
     super(startTime, endTime, name, location, color);
     if(startTime > endTime) {
@@ -37,6 +37,16 @@ public class Oval extends AbstractShape {
     this.radiusY = radiusY;
     this.originalRadiusX = radiusX;
     this.originalRadiusY = radiusY;
+  }
+
+  @Override
+  public double getX() {
+    return this.getRadiusX();
+  }
+
+  @Override
+  public double getY() {
+    return this.getRadiusY();
   }
 
   @Override
@@ -92,6 +102,11 @@ public class Oval extends AbstractShape {
     this.radiusY = height;
   }
 
+  @Override
+  public void changeColor(IColor newColor) {
+    this.changeColor(newColor);
+  }
+
   /**
    * A getter for the x radius.
    *
@@ -112,6 +127,8 @@ public class Oval extends AbstractShape {
 
   @Override
   public void reset() {
+    super.reset();
+
     this.radiusX = originalRadiusX;
     this.radiusY = originalRadiusY;
   }

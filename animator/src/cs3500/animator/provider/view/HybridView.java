@@ -25,9 +25,11 @@ import javax.swing.event.ChangeListener;
 
 import cs3500.animator.provider.controller.HybridViewController;
 import cs3500.animator.provider.controller.IInteractiveController;
-import cs3500.animator.provider.model.animation.AbstractAnimation;
-import cs3500.animator.provider.model.animation.Move;
-import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.object.animation.AbstractAnimation;
+import cs3500.animator.provider.object.animation.IAnimation;
+import cs3500.animator.provider.object.animation.Move;
+import cs3500.animator.provider.object.shape.AbstractShape;
+import cs3500.animator.provider.object.shape.IShape;
 import cs3500.animator.provider.util.NumUtil;
 
 /**
@@ -52,8 +54,8 @@ public class HybridView extends AbstractView implements IInteractiveView {
    * @param shapeOrder the mapping describing the ordering for each shape
    * @param tempo      the speed of the animation in ticks per second
    */
-  public HybridView(List<AbstractAnimation> animations, List<AbstractShape> shapes,
-                    Map<AbstractShape, Integer> shapeOrder, double tempo) {
+  public HybridView(List<IAnimation> animations, List<IShape> shapes,
+                    Map<IShape, Integer> shapeOrder, double tempo) {
     super(animations, shapes, tempo);
     JScrollPane scrollPane;
     JScrollPane checkboxScrollPane;
@@ -65,7 +67,7 @@ public class HybridView extends AbstractView implements IInteractiveView {
     JCheckBox loopCheckBox;
     JPanel buttonPanel;
     JPanel shapeCheckboxPanel;
-    Map<JCheckBox, AbstractShape> shapeCheckboxes;
+    Map<JCheckBox, IShape> shapeCheckboxes;
     this.setTitle("Shapes!");
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -137,8 +139,8 @@ public class HybridView extends AbstractView implements IInteractiveView {
     // shape loopCheckBox
     shapeCheckboxPanel = new JPanel();
     shapeCheckboxPanel.setLayout(new BoxLayout(shapeCheckboxPanel, BoxLayout.Y_AXIS));
-    shapeCheckboxes = new HashMap<JCheckBox, AbstractShape>();
-    for (AbstractShape shape : shapes) {
+    shapeCheckboxes = new HashMap<JCheckBox, IShape>();
+    for (IShape shape : shapes) {
       JCheckBox currentCheckBox = new JCheckBox(shape.getName(), true);
       shapeCheckboxes.put(currentCheckBox, shape);
       shapeCheckboxPanel.add(currentCheckBox);
@@ -184,12 +186,12 @@ public class HybridView extends AbstractView implements IInteractiveView {
     int maxWidth = PANEL_WIDTH;
     int maxHeight = PANEL_HEIGHT;
 
-    for (AbstractShape shape : shapes) {
+    for (IShape shape : shapes) {
       maxWidth = Integer.max(maxWidth, NumUtil.round(shape.getLocation().getX()));
       maxHeight = Integer.max(maxHeight, NumUtil.round(shape.getLocation().getY()));
     }
 
-    for (AbstractAnimation animation : animations) {
+    for (IAnimation animation : animations) {
       if (animation instanceof Move) {
         Move move = (Move) animation;
         maxWidth = Integer.max(maxWidth, NumUtil.round(move.getDestination().getX()));

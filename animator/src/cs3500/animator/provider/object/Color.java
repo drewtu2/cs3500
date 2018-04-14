@@ -1,4 +1,4 @@
-package cs3500.animator.provider.model;
+package cs3500.animator.provider.object;
 
 import java.util.Objects;
 
@@ -7,7 +7,7 @@ import cs3500.animator.provider.util.NumUtil;
 /**
  * Represents an RGB color where each color code falls in the range of [0.0, 1.0].
  */
-public class Color implements IColor{
+public class Color implements IColor {
   private static final double MIN_COLOR = 0.0;
   private static final double MAX_COLOR = 1.0;
 

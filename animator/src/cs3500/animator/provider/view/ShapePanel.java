@@ -6,9 +6,10 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import cs3500.animator.provider.model.shape.AbstractShape;
-import cs3500.animator.provider.model.shape.Oval;
-import cs3500.animator.provider.model.shape.Rectangle;
+import cs3500.animator.provider.object.shape.AbstractShape;
+import cs3500.animator.provider.object.shape.IShape;
+import cs3500.animator.provider.object.shape.Oval;
+import cs3500.animator.provider.object.shape.Rectangle;
 import cs3500.animator.provider.util.NumUtil;
 
 /**
@@ -17,13 +18,13 @@ import cs3500.animator.provider.util.NumUtil;
  */
 public class ShapePanel extends JPanel {
 
-  private List<AbstractShape> listOfShapes;
+  private List<IShape> listOfShapes;
 
   /**
    * Constructs a panel for the animation of shapes.
    * @param listOfShapes the list of shapes to be drawn
    */
-  ShapePanel(List<AbstractShape> listOfShapes) {
+  ShapePanel(List<IShape> listOfShapes) {
     this.listOfShapes = listOfShapes;
   }
 
@@ -31,7 +32,7 @@ public class ShapePanel extends JPanel {
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
 
-    for (AbstractShape shape : listOfShapes) {
+    for (IShape shape : listOfShapes) {
       int x = (int) shape.getLocation().getX();
       int y = (int) shape.getLocation().getY();
       g.setColor(shape.getColor().transformToAwt());

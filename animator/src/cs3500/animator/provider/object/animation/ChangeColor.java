@@ -1,8 +1,10 @@
-package cs3500.animator.provider.model.animation;
+package cs3500.animator.provider.object.animation;
 
-import cs3500.animator.provider.model.AbstractCanvasObject;
-import cs3500.animator.provider.model.Color;
-import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.object.Color;
+import cs3500.animator.provider.object.ICanvasObject;
+import cs3500.animator.provider.object.IColor;
+import cs3500.animator.provider.object.shape.AbstractShape;
+import cs3500.animator.provider.object.shape.IShape;
 import util.MyUtil;
 
 /**
@@ -12,8 +14,8 @@ public class ChangeColor extends AbstractAnimation {
   public static final String ERROR_TARGET_NULL =
           "Target cannot be null.";
 
-  private Color startColor;
-  private Color target;
+  private IColor startColor;
+  private IColor target;
 
   /**
    * Constructs an scale animation with a given scale factor.
@@ -24,7 +26,7 @@ public class ChangeColor extends AbstractAnimation {
    * @param target    the color to change the shape to
    * @throws IllegalArgumentException if the target is null
    */
-  public ChangeColor(int startTime, int endTime, AbstractShape shape, Color target) throws
+  public ChangeColor(int startTime, int endTime, AbstractShape shape, IColor target) throws
           IllegalArgumentException {
     super(startTime, endTime, shape);
     if(startTime > endTime) {
@@ -39,12 +41,12 @@ public class ChangeColor extends AbstractAnimation {
    *
    * @return the target color
    */
-  public Color getTarget() {
+  public IColor getTarget() {
     return target;
   }
 
   @Override
-  public void animate(AbstractShape s) {
+  public void animate(IShape s) {
     s.changeColor(target);
   }
 
@@ -61,12 +63,12 @@ public class ChangeColor extends AbstractAnimation {
   }
 
   @Override
-  public boolean sameType(AbstractAnimation other) {
+  public boolean sameType(IAnimation other) {
     return other instanceof ChangeColor;
   }
 
   @Override
-  public String getAction(AbstractShape s) {
+  public String getAction(IShape s) {
     StringBuilder builder = new StringBuilder();
 
     builder.append("changes color from ")
@@ -78,7 +80,7 @@ public class ChangeColor extends AbstractAnimation {
   }
 
   @Override
-  public int compareTo(AbstractCanvasObject o) {
+  public int compareTo(ICanvasObject o) {
     return o.compareTo(this);
   }
 }

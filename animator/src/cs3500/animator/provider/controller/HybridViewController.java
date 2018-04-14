@@ -3,8 +3,10 @@ package cs3500.animator.provider.controller;
 import java.util.List;
 import java.util.Map;
 
-import cs3500.animator.provider.model.animation.AbstractAnimation;
-import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.object.animation.AbstractAnimation;
+import cs3500.animator.provider.object.animation.IAnimation;
+import cs3500.animator.provider.object.shape.AbstractShape;
+import cs3500.animator.provider.object.shape.IShape;
 import cs3500.animator.provider.view.HybridView;
 
 /**
@@ -13,14 +15,14 @@ import cs3500.animator.provider.view.HybridView;
 public class HybridViewController implements IInteractiveController {
 
   private HybridView hView;
-  private List<AbstractAnimation> animations;
-  private List<AbstractShape> shapes;
-  private Map<AbstractShape, Integer> shapeOrder;
+  private List<IAnimation> animations;
+  private List<IShape> shapes;
+  private Map<IShape, Integer> shapeOrder;
   private double tempo;
 
 
-  public HybridViewController(HybridView hView, List<AbstractAnimation> animations,
-                              List<AbstractShape> shapes, Map<AbstractShape, Integer> shapeOrder,
+  public HybridViewController(HybridView hView, List<IAnimation> animations,
+                              List<IShape> shapes, Map<IShape, Integer> shapeOrder,
                               double tempo){
     this.hView = hView;
     this.animations = animations;
@@ -60,7 +62,7 @@ public class HybridViewController implements IInteractiveController {
   }
 
   @Override
-  public void onShapeVisibilityChanged(AbstractShape shape, boolean selected) {
+  public void onShapeVisibilityChanged(IShape shape, boolean selected) {
 
   }
 
@@ -75,7 +77,7 @@ public class HybridViewController implements IInteractiveController {
   }
 
   @Override
-  public List<AbstractShape> getVisibleShapes() {
+  public List<IShape> getVisibleShapes() {
     return null;
   }
 }

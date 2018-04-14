@@ -1,14 +1,15 @@
-package cs3500.animator.provider.model.shape;
+package cs3500.animator.provider.object.shape;
 
-import cs3500.animator.provider.model.Color;
-import cs3500.animator.provider.model.AbstractCanvasObject;
-import cs3500.animator.provider.model.Posn;
+import cs3500.animator.provider.object.Color;
+import cs3500.animator.provider.object.AbstractCanvasObject;
+import cs3500.animator.provider.object.IColor;
+import cs3500.animator.provider.object.Posn;
 
 
 /**
  * Represents an abstract shape that can be placed in a canvas.
  */
-public abstract class AbstractShape extends AbstractCanvasObject {
+public abstract class AbstractShape extends AbstractCanvasObject implements IShape {
 
   public static final String ERROR_NAME_NULL =
       "The name cannot be null.";
@@ -22,8 +23,8 @@ public abstract class AbstractShape extends AbstractCanvasObject {
   private String name;
   private Posn originalLocation;
   private Posn location;
-  private Color originalColor;
-  private Color color;
+  private IColor originalColor;
+  private IColor color;
 
 
   /**
@@ -36,7 +37,7 @@ public abstract class AbstractShape extends AbstractCanvasObject {
    * @param color the object's color
    * @throws IllegalArgumentException if the name, location or color is null
    */
-  public AbstractShape(int startTime, int endTime, String name, Posn location, Color color)
+  public AbstractShape(int startTime, int endTime, String name, Posn location, IColor color)
       throws IllegalArgumentException {
 
     super(startTime, endTime);
@@ -73,7 +74,7 @@ public abstract class AbstractShape extends AbstractCanvasObject {
    *
    * @return the color object
    */
-  public Color getColor() {
+  public IColor getColor() {
     return this.color;
   }
 

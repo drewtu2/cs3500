@@ -2,7 +2,8 @@ package cs3500.animator.provider.controller;
 
 import java.util.List;
 
-import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.object.shape.AbstractShape;
+import cs3500.animator.provider.object.shape.IShape;
 
 /**
  * Represents an interface to control any visual view by receiving commands from the view and
@@ -19,5 +20,5 @@ public interface IVisualController {
    *
    * @return the list of visible shapes
    */
-  List<AbstractShape> getVisibleShapes();
+  List<IShape> getVisibleShapes();
 }

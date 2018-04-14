@@ -1,8 +1,8 @@
-package cs3500.animator.provider.model.shape;
+package cs3500.animator.provider.object.shape;
 
-import cs3500.animator.provider.model.ICanvasObject;
-import cs3500.animator.provider.model.IColor;
-import cs3500.animator.provider.model.Posn;
+import cs3500.animator.provider.object.ICanvasObject;
+import cs3500.animator.provider.object.IColor;
+import cs3500.animator.provider.object.Posn;
 
 /**
  * This interface contains all of the methods that a shape should have when being constructed

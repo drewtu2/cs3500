@@ -6,11 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cs3500.animator.provider.model.animation.AbstractAnimation;
-import cs3500.animator.provider.model.shape.AbstractShape;
-import cs3500.animator.provider.model.shape.Oval;
-import cs3500.animator.provider.model.shape.Rectangle;
-import cs3500.animator.provider.model.Color;
+import cs3500.animator.provider.object.IColor;
+import cs3500.animator.provider.object.animation.IAnimation;
+import cs3500.animator.provider.object.shape.IShape;
+import cs3500.animator.provider.object.shape.Oval;
+import cs3500.animator.provider.object.shape.Rectangle;
+import cs3500.animator.provider.object.Color;
 import cs3500.animator.provider.util.NumUtil;
 
 /**
@@ -30,11 +31,11 @@ public class SVGView extends TextualView {
    * @param tempo the speed of the animation in ticks per second
    * @param out the appendable object to append the animation to
    */
-  public SVGView(List<AbstractAnimation> animations, double tempo, Appendable out) {
+  public SVGView(List<IAnimation> animations, double tempo, Appendable out) {
     super(animations, tempo, out);
 
-    for (AbstractAnimation animation : animations) {
-      AbstractShape currentShape = animation.getShape();
+    for (IAnimation animation : animations) {
+      IShape currentShape = animation.getShape();
       if (currentShape instanceof Rectangle
               && !rectangles.containsKey(currentShape)) {
         rectangles.put((Rectangle) currentShape, new ArrayList<String>());
@@ -156,8 +157,8 @@ public class SVGView extends TextualView {
     if (animationTextual.contains("changes color")) {
       String startColorString = animationTextual.split(" ")[4];
       String endColorString = animationTextual.split(" ")[6];
-      Color startColor = Color.parseString(startColorString);
-      Color endColor = Color.parseString(endColorString);
+      IColor startColor = Color.parseString(startColorString);
+      IColor endColor = Color.parseString(endColorString);
 
       builder.append("fill\"")
               .append(" from=\"")
