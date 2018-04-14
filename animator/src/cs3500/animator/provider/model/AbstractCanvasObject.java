@@ -1,9 +1,11 @@
 package cs3500.animator.provider.model;
 
+import cs3500.animator.provider.model.shape.AbstractShape;
+
 /**
  * Represents a generic canvas object that can be laid on a canvas at a certain time period.
  */
-public abstract class AbstractCanvasObject implements Comparable<AbstractCanvasObject> {
+public abstract class AbstractCanvasObject implements ICanvasObject, Comparable<ICanvasObject> {
   public static final String ERROR_END_TIME_BEFORE_START_TIME =
           "The start time must come before the end time.";
   public static final String ERROR_START_TIME_NEGATIVE =
@@ -45,13 +47,13 @@ public abstract class AbstractCanvasObject implements Comparable<AbstractCanvasO
   }
 
   @Override
-  public int compareTo(AbstractCanvasObject other) {
+  public int compareTo(ICanvasObject other) {
     // If this object starts before the other object, this object is less than the other object
     // If both objects have the same start time, compare this object's end time with the other object
-    if (startTime == other.startTime) {
-      return endTime - other.endTime;
+    if (startTime == ((AbstractCanvasObject)other).startTime) {
+      return endTime - ((AbstractCanvasObject)other).endTime;
     }
 
-    return startTime - other.startTime;
+    return startTime - ((AbstractCanvasObject)other).startTime;
   }
 }

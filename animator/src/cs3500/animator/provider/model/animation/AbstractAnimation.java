@@ -2,13 +2,15 @@ package cs3500.animator.provider.model.animation;
 
 import cs3500.animator.provider.model.AbstractCanvasObject;
 import cs3500.animator.provider.model.shape.AbstractShape;
+import cs3500.animator.provider.model.shape.IShape;
+
 import static util.MyUtil.checkNull;
 
 
 /**
  * Represents an abstract animation that can be placed in a canvas.
  */
-public abstract class AbstractAnimation extends AbstractCanvasObject {
+public abstract class AbstractAnimation extends AbstractCanvasObject implements IAnimation  {
 
   public static final String ERROR_NULL_SHAPE =
       "The shape cannot be null.";
@@ -19,7 +21,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
   public static final String ERROR_NULL_ANIMATION =
       "The animation cannot be null.";
 
-  protected AbstractShape shape;
+  protected IShape shape;
   protected boolean animationStarted;
 
 
@@ -31,7 +33,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @param shape the shape to apply the animation to
    * @throws IllegalArgumentException if the shape is null
    */
-  public AbstractAnimation(int startTime, int endTime, AbstractShape shape) throws
+  public AbstractAnimation(int startTime, int endTime, IShape shape) throws
       IllegalArgumentException {
 
     super(startTime, endTime);
@@ -74,7 +76,8 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    *
    * @return this object's shape
    */
-  public AbstractShape getShape() {
+  @Override
+  public IShape getShape() {
     return shape;
   }
 
@@ -105,7 +108,8 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @param ticksElapsed total ticks elapsed
    * @return the starting coefficient
    */
-  protected double getStartCoef(int ticksElapsed) {
+  @Override
+  public double getStartCoef(int ticksElapsed) {
     return ((double) (this.getEndTime() - ticksElapsed)
             / (this.getEndTime() - this.getStartTime()));
   }
@@ -116,7 +120,8 @@ public abstract class AbstractAnimation extends AbstractCanvasObject {
    * @param ticksElapsed total ticks elapsed
    * @return the ending coefficient
    */
-  protected double getEndCoef(int ticksElapsed) {
+  @Override
+  public double getEndCoef(int ticksElapsed) {
     return ((double) (ticksElapsed - this.getStartTime())
             / (this.getEndTime() - this.getStartTime()));
 
