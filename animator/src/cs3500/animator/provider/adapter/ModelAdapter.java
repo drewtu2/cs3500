@@ -23,6 +23,7 @@ import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,18 +69,33 @@ public class ModelAdapter implements IAnimatorModel {
 
   @Override
   public String getAnimatorDescription() {
-    // TODO this...
-    return null;
+    StringBuilder out = new StringBuilder();
+
+    out.append("Shapes:\n");
+
+    for(IShape shape: shapeMap.values()) {
+      out.append(shape.toString());
+    }
+
+    for(IAnimation animation: animationList) {
+      out.append(animation.toString(animation.getShape()));
+    }
+
+    return out.toString();
   }
 
   @Override
   public List<IAnimation> getAnimations() {
+    Collections.sort(animationList);
     return animationList;
   }
 
   @Override
   public List<IShape> getShapes() {
-    return new ArrayList<>(shapeOrder.keySet());
+    ArrayList shapesOut = new ArrayList(shapeOrder.keySet());
+    Collections.sort(shapesOut);
+
+    return shapesOut;
   }
 
   @Override
