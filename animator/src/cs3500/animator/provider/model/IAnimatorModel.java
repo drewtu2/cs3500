@@ -3,8 +3,8 @@ package cs3500.animator.provider.model;
 import java.util.List;
 import java.util.Map;
 
-import cs3500.animator.provider.object.animation.AbstractAnimation;
-import cs3500.animator.provider.object.shape.AbstractShape;
+import cs3500.animator.provider.object.animation.IAnimation;
+import cs3500.animator.provider.object.shape.IShape;
 
 /**
  * Represents the operations that can be performed on a model that holds animations for use on
@@ -22,7 +22,7 @@ public interface IAnimatorModel {
    * @throws IllegalArgumentException if an animation is added that conflicts with existing
    *                                  animations
    */
-  void addAnimation(AbstractAnimation anim) throws IllegalArgumentException;
+  void addAnimation(IAnimation anim) throws IllegalArgumentException;
 
   /**
    * Produces a String representing all of the shapes and animations held by the model.
@@ -36,25 +36,25 @@ public interface IAnimatorModel {
    *
    * @return the list of animation copies
    */
-  List<AbstractAnimation> getAnimations();
+  List<IAnimation> getAnimations();
 
   /**
    * Produces a copy of each shape held by the model.
    *
    * @return the list of abstract shape copies
    */
-  List<AbstractShape> getShapes();
+  List<IShape> getShapes();
 
   /**
    * Sets the order mapping in which the shapes should appear.
    * @param shapeOrder the order mapping in which the shapes should appear
    */
-  void setShapeOrder(Map<AbstractShape, Integer> shapeOrder);
+  void setShapeOrder(Map<IShape, Integer> shapeOrder);
 
   /**
    * Produces a copy of the shape order mapping.
    *
    * @return the shape order mapping copy
    */
-  Map<AbstractShape, Integer> getShapeOrder();
+  Map<IShape, Integer> getShapeOrder();
 }

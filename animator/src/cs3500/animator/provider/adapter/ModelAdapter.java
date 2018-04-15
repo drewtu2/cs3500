@@ -11,7 +11,6 @@ import cs3500.animator.provider.model.IAnimatorModel;
 import cs3500.animator.provider.object.Color;
 import cs3500.animator.provider.object.IColor;
 import cs3500.animator.provider.object.Posn;
-import cs3500.animator.provider.object.animation.AbstractAnimation;
 import cs3500.animator.provider.object.animation.ChangeColor;
 import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.object.animation.Move;
@@ -54,6 +53,16 @@ public class ModelAdapter implements IAnimatorModel {
 
   @Override
   public void addAnimation(IAnimation anim) throws IllegalArgumentException {
+    checkNull(anim);
+
+    // Check to make sure this is a valid animaiton
+    for(IAnimation animation : animationList) {
+      if(anim.conflictsWithAnimation(animation)) {
+        throw new IllegalArgumentException("Overlap with another animation. cannot add!");
+      }
+    }
+
+    // If we got here, we can safely add.
     animationList.add(anim);
   }
 
