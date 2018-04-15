@@ -2,6 +2,8 @@ package cs3500.animator.view;
 
 import static util.MyUtil.checkNull;
 
+import cs3500.animator.provider.view.HybridView;
+import cs3500.animator.provider.view.TextualView;
 import cs3500.animator.view.interactive.InteractiveView;
 import cs3500.animator.view.visual.VisualView;
 import java.io.FileWriter;
@@ -34,6 +36,12 @@ public class ViewFactory {
         return new TextView(myAppendable);
       case "svg":
         return new SVGView(myAppendable, false);
+      case "providerText":
+        return new TextualView();
+      case "providerSVG":
+        return new cs3500.animator.provider.view.SVGView();
+      case "providerVisual":
+        return new cs3500.animator.provider.view.VisualView();
       default:
         throw new IllegalArgumentException("invalid view type");
     }
@@ -68,6 +76,14 @@ public class ViewFactory {
         return new TextView(myAppendable);
       case "svg":
         return new SVGView(myAppendable, false);
+      case "provider":
+        return new HybridView();
+      case "providerText":
+        return new TextualView();
+      case "providerSVG":
+        return new cs3500.animator.provider.view.SVGView();
+      case "providerVisual":
+        return new cs3500.animator.provider.view.VisualView();
       default:
         throw new IllegalArgumentException("invalid view type");
     }
@@ -104,6 +120,14 @@ public class ViewFactory {
         return new TextView(myAppendable);
       case "svg":
         return new SVGView(myAppendable, loopable);
+      case "provider":
+        return new HybridView();
+      case "providerText":
+        return new TextualView();
+      case "providerSVG":
+        return new cs3500.animator.provider.view.SVGView();
+      case "providerVisual":
+        return new cs3500.animator.provider.view.VisualView();
       default:
         throw new IllegalArgumentException("invalid view type");
     }

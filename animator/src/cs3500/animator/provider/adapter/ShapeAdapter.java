@@ -1,6 +1,7 @@
 package cs3500.animator.provider.adapter;
 
 import cs3500.animator.provider.object.Color;
+import cs3500.animator.provider.object.IColor;
 import cs3500.animator.provider.object.Posn;
 import cs3500.animator.provider.object.shape.AbstractShape;
 
@@ -17,7 +18,7 @@ public class ShapeAdapter extends AbstractShape{
    * @throws IllegalArgumentException if the name, location or color is null
    */
   public ShapeAdapter(int startTime, int endTime, String name,
-      Posn location, Color color)
+      Posn location, IColor color)
       throws IllegalArgumentException {
     super(startTime, endTime, name, location, color);
   }
