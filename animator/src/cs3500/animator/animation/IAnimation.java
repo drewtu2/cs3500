@@ -59,4 +59,11 @@ public interface IAnimation extends Comparable<IAnimation> {
    */
   String toString(String name);
 
+  /**
+   * Returns an animation summary object.
+   * @param descripton the description
+   * @return the summary of the animation, sortable.
+   */
+  IAnimationSummary getAnimationSummary(String descripton);
+
 }

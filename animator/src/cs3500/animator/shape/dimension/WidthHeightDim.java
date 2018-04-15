@@ -27,6 +27,7 @@ public class WidthHeightDim implements IDimension {
    *
    * @return the width
    */
+  @Override
   public float getWidth() {
     return width;
   }
@@ -36,6 +37,7 @@ public class WidthHeightDim implements IDimension {
    *
    * @return the height
    */
+  @Override
   public float getHeight() {
     return height;
   }

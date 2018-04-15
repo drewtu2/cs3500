@@ -2,7 +2,6 @@ package cs3500.animator.view;
 
 import static util.MyUtil.checkNull;
 
-import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
 import cs3500.animator.animation.IAnimationSummary;
@@ -119,9 +118,7 @@ public class TextView implements IView {
 
     for (List<IAnimation> aList : animationMap.values()) {
       for (IAnimation animation : aList) {
-        summary = new AnimationSummary(animation.getStartTime(),
-            reprAnimation(animation, shape.getName()),
-            animation.getCreationIndex());
+        summary = animation.getAnimationSummary(reprAnimation(animation, shape.getName()));
         animationSummaries.add(summary);
       }
     }

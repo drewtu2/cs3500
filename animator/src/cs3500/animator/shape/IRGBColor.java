@@ -11,7 +11,7 @@ public interface IRGBColor {
    * @param subtractColor the color to subtract
    * @return the difference betweent the colors
    */
-  public IRGBColor subtract(RGBColor subtractColor);
+  public IRGBColor subtract(IRGBColor subtractColor);
 
   /**
    * Sets the red value to a given amount.

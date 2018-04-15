@@ -64,10 +64,10 @@ public class RGBColor implements IRGBColor{
   }
 
   @Override
-  public IRGBColor subtract(RGBColor subtractColor) {
-    return new RGBColor(this.red - subtractColor.red,
-        this.green - subtractColor.green,
-        this.blue - subtractColor.blue);
+  public IRGBColor subtract(IRGBColor subtractColor) {
+    return new RGBColor(this.red - subtractColor.getRed(),
+        this.green - subtractColor.getGreen(),
+        this.blue - subtractColor.getBlue());
   }
 
   @Override

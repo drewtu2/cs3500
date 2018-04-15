@@ -55,6 +55,11 @@ public abstract class Animation implements IAnimation {
   @Override
   public abstract String toString(String name);
 
+  @Override
+  public IAnimationSummary getAnimationSummary(String descripton) {
+    return new AnimationSummary(this.startTime, descripton, this.creationIndex);
+  }
+
 
   /**
    * Returns the total duration of the animation.

@@ -31,5 +31,17 @@ public interface IDimension {
    * @return copy of this IDimension
    */
   IDimension getCopy();
+
+  /**
+   * Returns the width of this dimension.
+   * @return the width of this dimension
+   */
+  float getWidth();
+
+  /**
+   * Returns the height of this dimension.
+   * @return the height of this dimension
+   */
+  float getHeight();
 }
 
