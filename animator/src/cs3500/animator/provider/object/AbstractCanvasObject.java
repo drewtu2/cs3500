@@ -3,7 +3,7 @@ package cs3500.animator.provider.object;
 /**
  * Represents a generic canvas object that can be laid on a canvas at a certain time period.
  */
-public abstract class AbstractCanvasObject implements ICanvasObject, Comparable<ICanvasObject> {
+public abstract class AbstractCanvasObject implements ICanvasObject {
   public static final String ERROR_END_TIME_BEFORE_START_TIME =
           "The start time must come before the end time.";
   public static final String ERROR_START_TIME_NEGATIVE =
@@ -22,8 +22,14 @@ public abstract class AbstractCanvasObject implements ICanvasObject, Comparable<
    */
   public AbstractCanvasObject(int startTime, int endTime) throws IllegalArgumentException {
     if (endTime <= startTime) {
-
+      throw new IllegalArgumentException(ERROR_END_TIME_BEFORE_START_TIME);
     }
+    if (startTime < 0) {
+      throw new IllegalArgumentException(ERROR_START_TIME_NEGATIVE);
+    }
+
+    this.startTime = startTime;
+    this.endTime = endTime;
   }
 
   /**

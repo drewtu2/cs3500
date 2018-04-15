@@ -35,24 +35,13 @@ public class Scale extends AbstractAnimation {
   public Scale(int startTime, int endTime, IShape shape, double scaleX, double scaleY)
           throws IllegalArgumentException {
     super(startTime, endTime, shape);
-    if(startTime > endTime) {
-      throw new IllegalArgumentException("invalid time");
-    }
-    this.scaleX = scaleX;
-    this.scaleY = scaleY;
-    if(shape instanceof Rectangle) {
-      this.startWidth = ((Rectangle)shape).getWidth();
-      this.startHeight = ((Rectangle)shape).getHeight();
-      this.endWidth = startWidth * scaleX;
-      this.endHeight = startHeight * scaleY;
+
+    if (scaleX <= 0 || scaleY <= 0) {
+      throw new IllegalArgumentException(ERROR_SCALE_FACTOR_BOUNDS);
     }
 
-    if(shape instanceof Oval) {
-      this.startWidth = ((Oval)shape).getRadiusX();
-      this.startHeight = ((Oval)shape).getRadiusY();
-      this.endWidth = startWidth * scaleX;
-      this.endHeight = startHeight * scaleY;
-    }
+    this.scaleX = scaleX;
+    this.scaleY = scaleY;
   }
 
   /**
@@ -61,7 +50,7 @@ public class Scale extends AbstractAnimation {
    * @return the x scale factor value
    */
   public double getScaleX() {
-    return scaleX;
+    return this.scaleX;
   }
 
   /**
@@ -70,22 +59,37 @@ public class Scale extends AbstractAnimation {
    * @return the y scale factor value
    */
   public double getScaleY() {
-    return scaleY;
+    return this.scaleY;
   }
 
   @Override
   public void animate(IShape s) {
-    s.scale(scaleX, scaleY);
+    s.scale(this.scaleX, this.scaleY);
   }
 
   @Override
   public void animate(int ticksElapsed) {
-    float width = MyUtil.interpolate((float)startWidth, (float)endWidth,
-            this.getStartTime(), this.getEndTime(), ticksElapsed);
-    float height = MyUtil.interpolate((float)startHeight, (float)endHeight,
-            this.getStartTime(), this.getEndTime(), ticksElapsed);
+    if (!this.animationStarted) {
+      if (this.shape instanceof Rectangle) {
+        Rectangle rect = (Rectangle) this.shape;
+        this.startWidth = rect.getWidth();
+        this.startHeight = rect.getHeight();
+      }
+      else if (this.shape instanceof Oval) {
+        Oval oval = (Oval) this.shape;
+        this.startWidth = oval.getRadiusX();
+        this.startHeight = oval.getRadiusY();
 
-    shape.scale(width, height);
+      }
+      this.endWidth = this.startWidth * this.scaleX;
+      this.endHeight = this.startHeight * this.scaleY;
+      this.animationStarted = true;
+    }
+    double newWidth = this.startWidth * this.getStartCoef(ticksElapsed)
+            + this.endWidth * this.getEndCoef(ticksElapsed);
+    double newHeight = this.startHeight * this.getStartCoef(ticksElapsed)
+            + this.endHeight * this.getEndCoef(ticksElapsed);
+    shape.updateSize(newWidth, newHeight);
   }
 
   @Override
@@ -105,8 +109,4 @@ public class Scale extends AbstractAnimation {
     return builder.toString();
   }
 
-  @Override
-  public int compareTo(ICanvasObject o) {
-    return o.compareTo(this);
   }
-}

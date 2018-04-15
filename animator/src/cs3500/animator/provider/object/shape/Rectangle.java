@@ -1,6 +1,5 @@
 package cs3500.animator.provider.object.shape;
 
-import cs3500.animator.provider.object.Color;
 import cs3500.animator.provider.object.IColor;
 import cs3500.animator.provider.object.Posn;
 
@@ -33,13 +32,17 @@ public class Rectangle extends AbstractShape {
   public Rectangle(int startTime, int endTime, String name, Posn location, IColor color,
                    double width, double height) throws IllegalArgumentException {
     super(startTime, endTime, name, location, color);
-    if(startTime > endTime) {
-      throw new IllegalArgumentException("invalid time");
+    if (width <= 0) {
+      throw new IllegalArgumentException(ERROR_WIDTH_BOUNDS);
     }
-    this.width = width;
-    this.height = height;
+    if (height <= 0) {
+      throw new IllegalArgumentException(ERROR_HEIGHT_BOUNDS);
+    }
+
     this.originalWidth = width;
     this.originalHeight = height;
+    this.width = width;
+    this.height = height;
   }
 
   @Override
@@ -55,19 +58,14 @@ public class Rectangle extends AbstractShape {
 
   @Override
   public void scale(double scaleX, double scaleY) {
-    this.width *= scaleX;
-    this.height *= scaleY;
+    this.width = this.width * scaleX;
+    this.height = this.height * scaleY;
   }
 
   @Override
   public void updateSize(double width, double height) {
     this.width = width;
     this.height = height;
-  }
-
-  @Override
-  public void changeColor(IColor newColor) {
-    this.changeColor(newColor);
   }
 
   @Override

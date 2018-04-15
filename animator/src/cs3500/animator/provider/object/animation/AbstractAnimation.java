@@ -3,8 +3,6 @@ package cs3500.animator.provider.object.animation;
 import cs3500.animator.provider.object.AbstractCanvasObject;
 import cs3500.animator.provider.object.shape.IShape;
 
-import static util.MyUtil.checkNull;
-
 
 /**
  * Represents an abstract animation that can be placed in a canvas.
@@ -37,9 +35,20 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
 
     super(startTime, endTime);
 
-    checkNull(shape);
+    if (shape == null) {
+      throw new IllegalArgumentException(ERROR_NULL_SHAPE);
+    }
+
+    if (this.getStartTime() < shape.getStartTime()) {
+      throw new IllegalArgumentException(ERROR_START_TOO_EARLY);
+    }
+
+    if (this.getStartTime() > shape.getEndTime()) {
+      throw new IllegalArgumentException(ERROR_START_TOO_LATE);
+    }
 
     this.shape = shape;
+    this.animationStarted = false;
     }
 
   /**
@@ -51,13 +60,22 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
    * @throws IllegalArgumentException if the given animation is null
    */
   public boolean conflictsWithAnimation(IAnimation other) throws IllegalArgumentException {
-    checkNull(other);
-
-    if (this.getClass() == other.getClass()) {
-      return this.timeOverlaps(other);
+    if (other == null) {
+      throw new IllegalArgumentException(ERROR_NULL_ANIMATION);
     }
 
-    return false;
+    // check if the shapes that the animations are operating on are different
+    if (!this.shape.equals(other.getShape())) {
+      return false;
+    }
+
+    // check if the two animations are being performed at different times
+    if (!this.timeOverlaps(other)) {
+      return false;
+    }
+
+    // if the two animations are the same type of animation, then they conflict
+    return this.sameType(other);
   }
 
   /**
@@ -67,7 +85,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
    * @return true if the execution periods overlap at all, false otherwise
    */
   public boolean timeOverlaps(IAnimation other) {
-    return other.getStartTime() <= this.getEndTime() && this.getStartTime() <= other.getEndTime();
+    return this.getStartTime() < other.getEndTime() && this.getEndTime() > other.getStartTime();
   }
 
   /**
