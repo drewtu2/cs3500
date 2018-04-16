@@ -1,9 +1,7 @@
 package cs3500.animator.provider.object.animation;
 
-import cs3500.animator.provider.object.ICanvasObject;
 import cs3500.animator.provider.object.Posn;
 import cs3500.animator.provider.object.shape.IShape;
-import util.MyUtil;
 
 /**
  * Represents a translation animation to move an object to a destination location.

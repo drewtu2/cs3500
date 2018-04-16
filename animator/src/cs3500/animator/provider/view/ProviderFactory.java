@@ -1,12 +1,11 @@
 package cs3500.animator.provider.view;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import static util.MyUtil.checkNull;
 
 import cs3500.animator.model.IAnimatorModel;
 import cs3500.animator.provider.adapter.ModelAdapter;
-
-import static util.MyUtil.checkNull;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ProviderFactory {
 
@@ -20,14 +19,17 @@ public class ProviderFactory {
    * @return IView instance
    */
   public static cs3500.animator.provider.view.IView getView(IAnimatorModel model, String view,
-                                                            String outputFile,
-                                                            int speed) throws
-          IOException {
+      String outputFile,
+      int speed) throws
+      IOException {
     Appendable myAppendable;
-    ModelAdapter mAdapt = new ModelAdapter(model);
 
     // Handle null case
     checkNull(view);
+    checkNull(model);
+
+    // Create the adapter
+    ModelAdapter mAdapt = new ModelAdapter(model);
 
     // Handle System.out case
     if (outputFile == null || outputFile.equals("out")) {
@@ -38,15 +40,15 @@ public class ProviderFactory {
 
     switch (view.toLowerCase()) {
       case "provider":
-        return new HybridView(mAdapt.getAnimations(),mAdapt.getShapes(), mAdapt.getShapeOrder(),
-                ((double)speed));
+        return new HybridView(mAdapt.getAnimations(), mAdapt.getShapes(), mAdapt.getShapeOrder(),
+            ((double) speed));
       case "providertext":
-        return new TextualView(mAdapt.getAnimations(), ((double)speed), myAppendable);
+        return new TextualView(mAdapt.getAnimations(), ((double) speed), myAppendable);
       case "providersvg":
-        return new SVGView(mAdapt.getAnimations(), ((double)speed), myAppendable);
+        return new SVGView(mAdapt.getAnimations(), ((double) speed), myAppendable);
       case "providervisual":
-        return new VisualView(mAdapt.getAnimations(),mAdapt.getShapes(), mAdapt.getShapeOrder(),
-                ((double)speed));
+        return new VisualView(mAdapt.getAnimations(), mAdapt.getShapes(), mAdapt.getShapeOrder(),
+            ((double) speed));
       default:
         throw new IllegalArgumentException("invalid view type");
     }
