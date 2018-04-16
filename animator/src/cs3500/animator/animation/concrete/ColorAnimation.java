@@ -82,6 +82,7 @@ public class ColorAnimation extends Animation {
    *
    * @return the start color.
    */
+  @Override
   public IRGBColor getStartColor() {
     return new RGBColor(startColor) {
     };
@@ -92,6 +93,7 @@ public class ColorAnimation extends Animation {
    *
    * @return the end color.
    */
+  @Override
   public IRGBColor getEndColor() {
     return new RGBColor(endColor);
   }

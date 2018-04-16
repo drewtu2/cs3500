@@ -6,9 +6,6 @@ import static util.MyUtil.checkNull;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
 import cs3500.animator.animation.IAnimationSummary;
-import cs3500.animator.animation.concrete.ColorAnimation;
-import cs3500.animator.animation.concrete.MoveAnimation;
-import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IPosition;
@@ -175,26 +172,26 @@ public class SVGView implements IView {
           attName1 = "x";
           attName2 = "y";
         }
-        if (typeOfMove(((MoveAnimation) animation).getStartPos(),
-            ((MoveAnimation) animation).getEndPos()).contains("x")) {
+        if (typeOfMove((animation).getStartPos(),
+            (animation).getEndPos()).contains("x")) {
           strBuild.append(printAnimationHelper(
               attName1,
-              Integer.toString(Math.round(((MoveAnimation) animation).getStartPos()
+              Integer.toString(Math.round((animation).getStartPos()
                   .getX())),
-              Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
+              Integer.toString(Math.round((animation).getEndPos()
                   .getX())),
               animation.getStartTime(),
               animation.getEndTime() - animation.getStartTime()));
           resetString.append(printAnimationHelper(attName1, Float.toString(s.getPosition().getX()
           )));
         }
-        if (typeOfMove(((MoveAnimation) animation).getStartPos(),
-            ((MoveAnimation) animation).getEndPos()).contains("y")) {
+        if (typeOfMove((animation).getStartPos(),
+            (animation).getEndPos()).contains("y")) {
           strBuild.append(printAnimationHelper(
               attName2,
-              Integer.toString(Math.round(((MoveAnimation) animation).getStartPos()
+              Integer.toString(Math.round((animation).getStartPos()
                   .getY())),
-              Integer.toString(Math.round(((MoveAnimation) animation).getEndPos()
+              Integer.toString(Math.round((animation).getEndPos()
                   .getY())),
               animation.getStartTime(),
               animation.getEndTime() - animation.getStartTime()));
@@ -205,8 +202,8 @@ public class SVGView implements IView {
       case COLOR:
         strBuild.append(printAnimationHelper(
             "fill",
-            colorToRGB(((ColorAnimation) animation).getStartColor()),
-            colorToRGB(((ColorAnimation) animation).getEndColor()),
+            colorToRGB((animation).getStartColor()),
+            colorToRGB((animation).getEndColor()),
             animation.getStartTime(),
             animation.getEndTime() - animation.getStartTime()));
         resetString.append(printAnimationHelper("fill", colorToRGB(s.getColor())));
@@ -221,9 +218,9 @@ public class SVGView implements IView {
         }
         strBuild.append(printAnimationHelper(
             attName1,
-            Integer.toString(Math.round((((ScaleAnimation) animation)
+            Integer.toString(Math.round(((animation)
                 .getStartDimension()).getWidth())),
-            Integer.toString(Math.round((((ScaleAnimation) animation)
+            Integer.toString(Math.round(((animation)
                 .getEndDimension())
                 .getWidth())),
             animation.getStartTime(),
@@ -233,9 +230,9 @@ public class SVGView implements IView {
 
         strBuild.append(printAnimationHelper(
             attName2,
-            Integer.toString(Math.round((((ScaleAnimation) animation)
+            Integer.toString(Math.round(((animation)
                 .getStartDimension()).getHeight())),
-            Integer.toString(Math.round((((ScaleAnimation) animation)
+            Integer.toString(Math.round(((animation)
                 .getEndDimension())
                 .getHeight())),
             animation.getStartTime(),

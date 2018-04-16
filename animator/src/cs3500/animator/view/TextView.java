@@ -5,9 +5,6 @@ import static util.MyUtil.checkNull;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
 import cs3500.animator.animation.IAnimationSummary;
-import cs3500.animator.animation.concrete.ColorAnimation;
-import cs3500.animator.animation.concrete.MoveAnimation;
-import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
 import java.io.FileWriter;
@@ -145,8 +142,8 @@ public class TextView implements IView {
       case COLOR:
         builder.append(printAnimationHelper(
             "changes",
-            ((ColorAnimation) animation).getStartColor().toString(),
-            ((ColorAnimation) animation).getEndColor().toString(),
+            animation.getStartColor().toString(),
+            animation.getEndColor().toString(),
             animation.getStartTime(),
             animation.getEndTime()));
         break;
@@ -156,16 +153,16 @@ public class TextView implements IView {
       case MOVE:
         builder.append(printAnimationHelper(
             "moves",
-            ((MoveAnimation) animation).getStartPos().toString(),
-            ((MoveAnimation) animation).getEndPos().toString(),
+            animation.getStartPos().toString(),
+            animation.getEndPos().toString(),
             animation.getStartTime(),
             animation.getEndTime()));
         break;
       case SCALE:
         builder.append(printAnimationHelper(
             "scales",
-            ((ScaleAnimation) animation).getStartDimension().toString(),
-            ((ScaleAnimation) animation).getEndDimension().toString(),
+            animation.getStartDimension().toString(),
+            animation.getEndDimension().toString(),
             animation.getStartTime(),
             animation.getEndTime()));
         break;

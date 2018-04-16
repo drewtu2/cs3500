@@ -134,14 +134,14 @@ public class CanvasPane extends JPanel {
             case RECTANGLE:
               g.fillRect((int) shapeState.getPosition().getX(),
                   (int) shapeState.getPosition().getY(),
-                  (int) ((WidthHeightDim) shapeState.getDimension()).getWidth(),
-                  (int) ((WidthHeightDim) shapeState.getDimension()).getHeight());
+                  (int) shapeState.getDimension().getWidth(),
+                  (int) shapeState.getDimension().getHeight());
               break;
             case OVAL:
               g.fillOval((int) shapeState.getPosition().getX(),
                   (int) shapeState.getPosition().getY(),
-                  (int) ((WidthHeightDim) shapeState.getDimension()).getWidth(),
-                  (int) ((WidthHeightDim) shapeState.getDimension()).getHeight());
+                  (int) shapeState.getDimension().getWidth(),
+                  (int) shapeState.getDimension().getHeight());
               break;
             default:
               System.err.println("Unexpected Shape Type...");

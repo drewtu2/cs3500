@@ -88,6 +88,7 @@ public class MoveAnimation extends Animation {
    *
    * @return the start position.
    */
+  @Override
   public IPosition getStartPos() {
     return new Position2D(startPos);
   }
@@ -97,6 +98,7 @@ public class MoveAnimation extends Animation {
    *
    * @return the end position.
    */
+  @Override
   public IPosition getEndPos() {
     return new Position2D(endPos);
   }

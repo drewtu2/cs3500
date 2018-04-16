@@ -1,6 +1,9 @@
 package cs3500.animator.animation;
 
+import cs3500.animator.shape.IPosition;
+import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.IShape;
+import cs3500.animator.shape.dimension.IDimension;
 
 /**
  * Represents any animation that can be applied to a shape.
@@ -65,5 +68,47 @@ public interface IAnimation extends Comparable<IAnimation> {
    * @return the summary of the animation, sortable.
    */
   IAnimationSummary getAnimationSummary(String descripton);
+
+  /**
+   * Returns the start position of the animation if applicable.
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @return the start position of the animation.
+   */
+  IPosition getStartPos();
+
+  /**
+   * Returns the end position of the animation if applicable.
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @return the end position of the animation.
+   */
+  IPosition getEndPos();
+
+  /**
+   * Returns the start color of the animation if applicable.
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @return the start color of the animation of applicable
+   */
+  IRGBColor getStartColor();
+
+  /**
+   * Returns the end color of the animation if applicable.
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @return the end color of the animation of applicable
+   */
+  IRGBColor getEndColor();
+
+   /**
+   * Returns the start dimension of the animation if applicable.
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @return the start dimension of the animation of applicable
+   */
+  IDimension getStartDimension();
+
+  /**
+   * Returns the end dimension of the animation if applicable.
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @return the end dimension of the animation of applicable
+   */
+  IDimension getEndDimension();
 
 }

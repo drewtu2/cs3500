@@ -1,6 +1,9 @@
 package cs3500.animator.animation;
 
+import cs3500.animator.shape.IPosition;
+import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.IShape;
+import cs3500.animator.shape.dimension.IDimension;
 import util.MyUtil;
 
 /**
@@ -60,6 +63,35 @@ public abstract class Animation implements IAnimation {
     return new AnimationSummary(this.startTime, descripton, this.creationIndex);
   }
 
+  @Override
+  public IPosition getStartPos() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public IPosition getEndPos() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public IRGBColor getStartColor() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public IRGBColor getEndColor() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public IDimension getStartDimension() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public IDimension getEndDimension(){
+    throw new UnsupportedOperationException();
+  }
 
   /**
    * Returns the total duration of the animation.

@@ -84,6 +84,7 @@ public class ScaleAnimation extends Animation {
    *
    * @return the start position.
    */
+  @Override
   public IDimension getStartDimension() {
     return startDimension.getCopy();
   }
@@ -93,6 +94,7 @@ public class ScaleAnimation extends Animation {
    *
    * @return the end dimension.
    */
+  @Override
   public IDimension getEndDimension() {
     return endDimension.getCopy();
   }
