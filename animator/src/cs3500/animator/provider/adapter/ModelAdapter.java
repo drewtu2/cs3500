@@ -3,9 +3,6 @@ package cs3500.animator.provider.adapter;
 import static util.MyUtil.checkNull;
 
 import cs3500.animator.animation.AnimationType;
-import cs3500.animator.animation.concrete.ColorAnimation;
-import cs3500.animator.animation.concrete.MoveAnimation;
-import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.provider.model.IAnimatorModel;
 import cs3500.animator.provider.object.Color;
@@ -21,6 +18,7 @@ import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.RGBColor;
+import cs3500.animator.shape.dimension.IDimension;
 import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,6 +46,7 @@ public class ModelAdapter implements IAnimatorModel {
 
     myMv = inputMv;
     shapeMap = new HashMap<>();
+    getShapeMapFromMv();
     shapeOrder = getShapeOrderFromMv();
     animationList = getAllIAnimations();
   }
@@ -106,6 +105,20 @@ public class ModelAdapter implements IAnimatorModel {
   @Override
   public Map<IShape, Integer> getShapeOrder() {
     return shapeOrder;
+  }
+
+  /**
+   * Returns a map of IShapes to the keys where key is the shape name.
+   */
+  private Map<String, IShape> getShapeMapFromMv() {
+    Map<String, IAnimatedShape> animatedShapes = myMv.getFullState();
+    Map<String, IShape> order = new HashMap<>();
+
+    for (String key : animatedShapes.keySet()) {
+      order.put(key, convertShape(animatedShapes.get(key)));
+    }
+
+    return order;
   }
 
   /**
@@ -180,7 +193,7 @@ public class ModelAdapter implements IAnimatorModel {
     checkNull(shape);
 
     // Short circuit: if the shape already exists in the map, just return it directly
-    if (shapeMap.containsKey(shape.getName())) {
+    if (shapeMap != null && shapeMap.containsKey(shape.getName())) {
       return shapeMap.get(shape.getName());
     }
 
@@ -223,38 +236,45 @@ public class ModelAdapter implements IAnimatorModel {
     List<IAnimation> loa = new ArrayList<>();
 
     // Grab the move animaitons
-    for (cs3500.animator.animation.IAnimation animation : shape.getAnimations()
-        .get(AnimationType.MOVE)) {
-      Posn target = convertPosn(((MoveAnimation) animation).getEndPos());
+    if(shape.getAnimations().get(AnimationType.MOVE) != null) {
+      for (cs3500.animator.animation.IAnimation animation : shape.getAnimations()
+          .get(AnimationType.MOVE)) {
+        Posn target = convertPosn(animation.getEndPos());
 
-      loa.add(
-          new Move(animation.getStartTime(), animation.getEndTime(), convertShape(shape), target));
+        loa.add(
+            new Move(animation.getStartTime(), animation.getEndTime(), convertShape(shape),
+                target));
+      }
     }
 
     // Grab the color animations
-    for (cs3500.animator.animation.IAnimation animation : shape.getAnimations()
-        .get(AnimationType.COLOR)) {
-      IColor target = convertColor(((ColorAnimation) animation).getEndColor());
+    if(shape.getAnimations().get(AnimationType.COLOR) != null) {
+      for (cs3500.animator.animation.IAnimation animation : shape.getAnimations()
+          .get(AnimationType.COLOR)) {
+        IColor target = convertColor((animation).getEndColor());
 
-      loa.add(
-          new ChangeColor(animation.getStartTime(), animation.getEndTime(), convertShape(shape),
-              target));
+        loa.add(
+            new ChangeColor(animation.getStartTime(), animation.getEndTime(), convertShape(shape),
+                target));
 
+      }
     }
 
     // Grab the scale animations
-    for (cs3500.animator.animation.IAnimation animation : shape.getAnimations()
-        .get(AnimationType.SCALE)) {
-      WidthHeightDim start = (WidthHeightDim) ((ScaleAnimation) animation).getStartDimension();
-      WidthHeightDim end = (WidthHeightDim) ((ScaleAnimation) animation).getStartDimension();
+    if(shape.getAnimations().get(AnimationType.SCALE) != null) {
+      for (cs3500.animator.animation.IAnimation animation : shape.getAnimations()
+          .get(AnimationType.SCALE)) {
+        IDimension start = animation.getStartDimension();
+        IDimension end = animation.getStartDimension();
 
-      float scaleWidth = end.getWidth() / start.getWidth();
-      float scaleHeight = end.getHeight() / start.getHeight();
+        float scaleWidth = end.getWidth() / start.getWidth();
+        float scaleHeight = end.getHeight() / start.getHeight();
 
-      loa.add(
-          new Scale(animation.getStartTime(), animation.getEndTime(), convertShape(shape),
-              scaleWidth, scaleHeight));
+        loa.add(
+            new Scale(animation.getStartTime(), animation.getEndTime(), convertShape(shape),
+                scaleWidth, scaleHeight));
 
+      }
     }
 
     return loa;
