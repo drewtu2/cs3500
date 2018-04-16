@@ -3,7 +3,6 @@ package cs3500.animator.model;
 import static util.MyUtil.duplicateMap;
 
 import cs3500.animator.animation.AnimationFactory;
-import cs3500.animator.animation.AnimationSummary;
 import cs3500.animator.animation.AnimationType;
 import cs3500.animator.animation.IAnimation;
 import cs3500.animator.animation.IAnimationSummary;
@@ -283,6 +282,11 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
   @Override
   public int getEndTick() {
     return animationEnd;
+  }
+
+  @Override
+  public IModelView getCopy() {
+    return new AnimatorModel(this);
   }
 
   @Override

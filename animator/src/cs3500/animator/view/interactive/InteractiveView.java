@@ -2,7 +2,6 @@ package cs3500.animator.view.interactive;
 
 import static util.MyUtil.checkNull;
 
-import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.view.IView;
@@ -107,7 +106,7 @@ public class InteractiveView implements IInteractive {
     speed = tempo;
     running = true;
     myMV = state;
-    originalMV = new AnimatorModel((AnimatorModel) state);
+    originalMV = state.getCopy();
     canvas.setModelView(myMV);
     canvas.setEnabledMap(shapeEnabled);
     cp.setModelView(myMV);
@@ -159,7 +158,7 @@ public class InteractiveView implements IInteractive {
   public void export() {
     try {
       IView exToSVG = ViewFactory.getView("svg", cp.getExportFilename(), loop);
-      IModelView exportModel = new AnimatorModel((AnimatorModel) originalMV);
+      IModelView exportModel = originalMV.getCopy();
       exportModel.addMap(exportModel.getFullState(), shapeEnabled);
       exToSVG.show(exportModel, speed);
       System.out.println("Export");

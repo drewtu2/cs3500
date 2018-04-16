@@ -56,6 +56,12 @@ public interface IModelView {
   int getEndTick();
 
   /**
+   * Returns a copy of this shape.
+   * @return
+   */
+  IModelView getCopy();
+
+  /**
    * Populates the map in the model with only shapes with values of true in the given shapeEnabled
    * map.
    *
