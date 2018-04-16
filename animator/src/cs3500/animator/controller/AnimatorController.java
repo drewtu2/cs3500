@@ -6,7 +6,6 @@ import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.IAnimatorModel;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.view.IView;
-import cs3500.animator.view.ViewFactory;
 import cs3500.animator.view.interactive.IInteractive;
 import cs3500.animator.controller.listeners.ButtonListener;
 import cs3500.animator.controller.listeners.SliderChangeListener;
@@ -21,6 +20,10 @@ import util.AnimationFileReader;
  * A controller for our animation.
  */
 public class AnimatorController implements IController {
+
+  public AnimatorController() {
+    //does nothing
+  }
 
   /**
    * Builder class for our controller.
@@ -77,10 +80,7 @@ public class AnimatorController implements IController {
 
       IAnimatorModel myModel = mr.readFile(inputFile, mb);
 
-      IView myView = ViewFactory.getView(vt, outputFile);
-
-      return new AnimatorController(myModel, myView, speed);
-
+      return ControllerFactory.getController(myModel, vt, outputFile, speed);
     }
 
     @Override
@@ -127,9 +127,9 @@ public class AnimatorController implements IController {
     }
   }
 
-  private IAnimatorModel myModel;
-  private IView myView;
-  private int speed;
+  protected IAnimatorModel myModel;
+  private IView myView = null;
+  protected int speed;
 
   /**
    * Constructs a controller.
@@ -138,7 +138,7 @@ public class AnimatorController implements IController {
    * @param inputView the view we're using.
    * @param inputSpeed the speed we're using.
    */
-  public AnimatorController(IAnimatorModel inputModel, IView inputView, int inputSpeed) {
+  public AnimatorController(IAnimatorModel inputModel, cs3500.animator.view.IView inputView, int inputSpeed) {
     myModel = inputModel;
     myView = inputView;
     speed = inputSpeed;
@@ -152,12 +152,14 @@ public class AnimatorController implements IController {
     }
   }
 
+
   @Override
   public void playAnimation() {
     IModelView myMV = myModel;
 
     try {
-      myView.show(myMV, speed);
+        myView.show(myMV, speed);
+
     } catch (IOException e) {
       System.err.println("IOException occured...");
       System.err.println(e.toString());
