@@ -4,7 +4,7 @@ import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.object.shape.IShape;
 import cs3500.animator.provider.view.HybridView;
 import cs3500.animator.provider.view.IView;
-import cs3500.animator.provider.view.ProviderFactory;
+import cs3500.animator.provider.adapter.ProviderFactory;
 import java.awt.event.ActionEvent;
 import java.io.FileWriter;
 import java.io.IOException;

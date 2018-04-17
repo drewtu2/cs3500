@@ -7,6 +7,7 @@ import cs3500.animator.controller.listeners.SliderChangeListener;
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.IAnimatorModel;
 import cs3500.animator.model.IModelView;
+import cs3500.animator.provider.adapter.ControllerFactory;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.interactive.IInteractive;
 import java.awt.event.ActionListener;

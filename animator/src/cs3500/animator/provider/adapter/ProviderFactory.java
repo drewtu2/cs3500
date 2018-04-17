@@ -1,10 +1,13 @@
-package cs3500.animator.provider.view;
+package cs3500.animator.provider.adapter;
 
 import static util.MyUtil.checkNull;
 
 import cs3500.animator.model.IAnimatorModel;
-import cs3500.animator.provider.adapter.ModelAdapter;
 import cs3500.animator.provider.object.animation.IAnimation;
+import cs3500.animator.provider.view.HybridView;
+import cs3500.animator.provider.view.SVGView;
+import cs3500.animator.provider.view.TextualView;
+import cs3500.animator.provider.view.VisualView;
 import java.util.List;
 
 /**

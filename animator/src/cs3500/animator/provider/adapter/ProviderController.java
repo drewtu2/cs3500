@@ -1,5 +1,6 @@
-package cs3500.animator.controller;
+package cs3500.animator.provider.adapter;
 
+import cs3500.animator.controller.AnimatorController;
 import cs3500.animator.provider.view.HybridView;
 import cs3500.animator.provider.view.SVGView;
 import cs3500.animator.provider.view.TextualView;

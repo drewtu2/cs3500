@@ -1,9 +1,10 @@
-package cs3500.animator.controller;
+package cs3500.animator.provider.adapter;
 
 import static util.MyUtil.checkNull;
 
+import cs3500.animator.controller.AnimatorController;
+import cs3500.animator.controller.IController;
 import cs3500.animator.model.IAnimatorModel;
-import cs3500.animator.provider.view.ProviderFactory;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.ViewFactory;
 import java.io.FileWriter;
