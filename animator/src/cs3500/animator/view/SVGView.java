@@ -101,7 +101,6 @@ public class SVGView implements IView {
     for (IAnimatedShape curShape : shapes) {
       if (curShape.getType().equals(ShapeType.RECTANGLE)) {
         endTag = "</rect>";
-        curShape = (Rectangle) curShape;
         output.append(String.format("<rect id=\"%s\" x=\"%s\" y=\"%s\" " +
                 "width=\"%s\" height=\"%s\" " + "fill=\"%s\" " +
                 "visibility=", curShape.getName(),
@@ -119,7 +118,6 @@ public class SVGView implements IView {
         }
       } else if (curShape.getType().equals(ShapeType.OVAL)) {
         endTag = "</ellipse>";
-        curShape = (Oval) curShape;
         output.append(String.format("<ellipse id=\"%s\" cx=\"%s\" cy=\"%s\" " +
                 "rx=\"%s\" " + "ry=\"%s\" " + "fill=\"%s\" " +
                 "visibility=", curShape.getName(),

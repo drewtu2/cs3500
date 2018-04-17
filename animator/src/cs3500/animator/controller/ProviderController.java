@@ -2,8 +2,6 @@ package cs3500.animator.controller;
 
 import java.io.IOException;
 
-import cs3500.animator.model.IAnimatorModel;
-import cs3500.animator.model.IModelView;
 import cs3500.animator.provider.view.HybridView;
 import cs3500.animator.provider.view.SVGView;
 import cs3500.animator.provider.view.TextualView;
