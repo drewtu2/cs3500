@@ -217,7 +217,8 @@ public class ModelAdapter implements IAnimatorModel {
     IColor thisColor = convertColor(shape.getColor());
     WidthHeightDim thisDim = (WidthHeightDim) shape.getDimension();
 
-    // Add the shape to our map so we can access the reference later (without having to create it again)
+    // Add the shape to our map so we can access the reference later (without having to create it
+    // again)
     shapeMap.put(shape.getName(), ProviderShapeFactory
         .getShape(shape.getType(), shape.getName(), startTick, endTick, thisPosn, thisColor,
             thisDim.getWidth(), thisDim.getHeight()));

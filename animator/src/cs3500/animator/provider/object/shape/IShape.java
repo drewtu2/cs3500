@@ -12,14 +12,14 @@ import cs3500.animator.provider.object.Posn;
 public interface IShape extends ICanvasObject {
 
   /**
-   * gets the x dimension of this shape
+   * gets the x dimension of this shape.
    *
    * @return x dimension of this shape
    */
   double getX();
 
   /**
-   * gets the y dimension of this shape
+   * gets the y dimension of this shape.
    *
    * @return the y dimension of this shape
    */

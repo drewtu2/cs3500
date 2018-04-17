@@ -62,7 +62,7 @@ public class VisualViewController implements IVisualController {
   }
 
   /**
-   * Returns if the given value is in bounds of the start and end
+   * Returns if the given value is in bounds of the start and end.
    *
    * @param animation the animation we're testing bounds for
    * @param test the test value

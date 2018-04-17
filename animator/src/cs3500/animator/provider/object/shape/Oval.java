@@ -83,6 +83,7 @@ public class Oval extends AbstractShape {
     return builder.toString();
   }
 
+  @Override
   public AbstractShape clone() {
     return new Oval(this.getStartTime(),
         this.getEndTime(),

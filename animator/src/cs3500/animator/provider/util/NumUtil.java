@@ -1,7 +1,7 @@
 package cs3500.animator.provider.util;
 
 /**
- * Utility class
+ * Utility class.
  */
 public class NumUtil {
 
