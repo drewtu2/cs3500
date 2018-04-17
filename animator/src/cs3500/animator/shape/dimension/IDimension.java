@@ -20,7 +20,7 @@ public interface IDimension {
    * @param time the time we're looking at
    * @return the dimension at that time
    * @throws IllegalArgumentException if the time is outside the duration or is not of the correct
-   *     IDimension
+   * IDimension
    */
   IDimension getIntermediate(IDimension end, int startTime, int endTime, int time)
       throws IllegalArgumentException;
@@ -34,12 +34,14 @@ public interface IDimension {
 
   /**
    * Returns the width of this dimension.
+   *
    * @return the width of this dimension
    */
   float getWidth();
 
   /**
    * Returns the height of this dimension.
+   *
    * @return the height of this dimension
    */
   float getHeight();

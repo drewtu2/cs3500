@@ -57,6 +57,7 @@ public interface IModelView {
 
   /**
    * Returns a copy of this shape.
+   *
    * @return a copy of this shape.
    */
   IModelView getCopy();

@@ -9,6 +9,7 @@ import java.util.Map;
  * General purpose utilities.
  */
 public class MyUtil {
+
   /**
    * Performs a linear interpolation on the given values.
    *
@@ -20,11 +21,11 @@ public class MyUtil {
    * @return the value at the requested time
    */
   public static float interpolate(
-          float startValue,
-          float endValue,
-          int startTime,
-          int endTime,
-          int time) {
+      float startValue,
+      float endValue,
+      int startTime,
+      int endTime,
+      int time) {
     float componentA = startValue * (endTime - time) / (endTime - startTime);
     float componentB = endValue * (time - startTime) / (endTime - startTime);
 

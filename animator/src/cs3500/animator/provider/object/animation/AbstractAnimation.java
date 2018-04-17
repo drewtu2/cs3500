@@ -7,7 +7,7 @@ import cs3500.animator.provider.object.shape.IShape;
 /**
  * Represents an abstract animation that can be placed in a canvas.
  */
-public abstract class AbstractAnimation extends AbstractCanvasObject implements IAnimation  {
+public abstract class AbstractAnimation extends AbstractCanvasObject implements IAnimation {
 
   public static final String ERROR_NULL_SHAPE =
       "The shape cannot be null.";
@@ -49,7 +49,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
 
     this.shape = shape;
     this.animationStarted = false;
-    }
+  }
 
   /**
    * Checks whether this animation makes for an incompatible move with the other animation, meaning
@@ -108,13 +108,13 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
     StringBuilder builder = new StringBuilder();
 
     builder.append("Shape ")
-            .append(s.getName())
-            .append(" ")
-            .append(this.getAction(s))
-            .append(" from t=")
-            .append(this.getStartTime())
-            .append(" to t=")
-            .append(this.getEndTime());
+        .append(s.getName())
+        .append(" ")
+        .append(this.getAction(s))
+        .append(" from t=")
+        .append(this.getStartTime())
+        .append(" to t=")
+        .append(this.getEndTime());
 
     return builder.toString();
   }
@@ -128,7 +128,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
   @Override
   public double getStartCoef(int ticksElapsed) {
     return ((double) (this.getEndTime() - ticksElapsed)
-            / (this.getEndTime() - this.getStartTime()));
+        / (this.getEndTime() - this.getStartTime()));
   }
 
   /**
@@ -140,7 +140,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
   @Override
   public double getEndCoef(int ticksElapsed) {
     return ((double) (ticksElapsed - this.getStartTime())
-            / (this.getEndTime() - this.getStartTime()));
+        / (this.getEndTime() - this.getStartTime()));
 
   }
 

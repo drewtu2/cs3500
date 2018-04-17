@@ -8,10 +8,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * This class represents a file reader for the animation file. This reads in the
- * file in the prescribed file format, and relies on a model builder interface.
- * The user of this class should create a model builder that implements this
- * interface.
+ * This class represents a file reader for the animation file. This reads in the file in the
+ * prescribed file format, and relies on a model builder interface. The user of this class should
+ * create a model builder that implements this interface.
  */
 
 public class AnimationFileReader {
@@ -20,16 +19,15 @@ public class AnimationFileReader {
    * Read the animation file and use the builder to build a model.
    *
    * @param fileName the path of the file to be read
-   * @param builder  the builder used to build the model
-   * @param <T>      the type of model
+   * @param builder the builder used to build the model
+   * @param <T> the type of model
    * @return the model
-   * @throws FileNotFoundException  if the specified file cannot be read
-   * @throws InputMismatchException if some data value is not of the expected
-   *                                type
-   * @throws IllegalStateException  if an illegal token is read from the file
+   * @throws FileNotFoundException if the specified file cannot be read
+   * @throws InputMismatchException if some data value is not of the expected type
+   * @throws IllegalStateException if an illegal token is read from the file
    */
   public <T> T readFile(String fileName, TweenModelBuilder<T> builder) throws
-          FileNotFoundException, IllegalStateException, InputMismatchException {
+      FileNotFoundException, IllegalStateException, InputMismatchException {
     Scanner sc;
 
     sc = new Scanner(new FileInputStream(fileName));
@@ -41,57 +39,57 @@ public class AnimationFileReader {
         case "rectangle":
           RectangleInfo rinfo = readRectangleInfo(sc);
           builder.addRectangle(
-                  rinfo.getName(),
-                  rinfo.getX(), rinfo.getY(),
-                  rinfo.getWidth(), rinfo.getHeight(),
-                  rinfo.getR(), rinfo.getG(), rinfo.getB(),
-                  rinfo.getStart(), rinfo.getEnd());
+              rinfo.getName(),
+              rinfo.getX(), rinfo.getY(),
+              rinfo.getWidth(), rinfo.getHeight(),
+              rinfo.getR(), rinfo.getG(), rinfo.getB(),
+              rinfo.getStart(), rinfo.getEnd());
           break;
         case "oval":
           OvalInfo cinfo = readOvalInfo(sc);
           builder.addOval(
-                  cinfo.getName(),
-                  cinfo.getX(), cinfo.getY(),
-                  cinfo.getXRadius(), cinfo.getYRadius(),
-                  cinfo.getR(), cinfo.getG(), cinfo.getB(),
-                  cinfo.getStart(), cinfo.getEnd());
+              cinfo.getName(),
+              cinfo.getX(), cinfo.getY(),
+              cinfo.getXRadius(), cinfo.getYRadius(),
+              cinfo.getR(), cinfo.getG(), cinfo.getB(),
+              cinfo.getStart(), cinfo.getEnd());
           break;
         case "move":
           MoveInfo minfo = readMoveInfo(sc);
           builder.addMove(
-                  minfo.getName(),
-                  minfo.getFromX(),
-                  minfo.getFromY(),
-                  minfo.getToX(),
-                  minfo.getToY(),
-                  minfo.getStart(),
-                  minfo.getEnd());
+              minfo.getName(),
+              minfo.getFromX(),
+              minfo.getFromY(),
+              minfo.getToX(),
+              minfo.getToY(),
+              minfo.getStart(),
+              minfo.getEnd());
           break;
         case "change-color":
           ChangeColorInfo colorInfo = readChangeColorInfo(sc);
           builder.addColorChange(colorInfo.name,
-                  colorInfo.getFromR(),
-                  colorInfo.getFromG(),
-                  colorInfo.getFromB(),
-                  colorInfo.getToR(),
-                  colorInfo.getToG(),
-                  colorInfo.getToB(),
-                  colorInfo.getStart(),
-                  colorInfo.getEnd());
+              colorInfo.getFromR(),
+              colorInfo.getFromG(),
+              colorInfo.getFromB(),
+              colorInfo.getToR(),
+              colorInfo.getToG(),
+              colorInfo.getToB(),
+              colorInfo.getStart(),
+              colorInfo.getEnd());
           break;
         case "scale":
           ScaleByInfo scaleByInfo = readScaleByInfo(sc);
           builder.addScaleToChange(scaleByInfo.name,
-                  scaleByInfo.getFromXScale(),
-                  scaleByInfo.getFromYScale(),
-                  scaleByInfo.getToXScale(),
-                  scaleByInfo.getToYScale(),
-                  scaleByInfo.getStart(),
-                  scaleByInfo.getEnd());
+              scaleByInfo.getFromXScale(),
+              scaleByInfo.getFromYScale(),
+              scaleByInfo.getToXScale(),
+              scaleByInfo.getToYScale(),
+              scaleByInfo.getStart(),
+              scaleByInfo.getEnd());
           break;
         default:
           throw new IllegalStateException("Unidentified token " + command + " "
-                  + "read from file");
+              + "read from file");
 
       }
     }
@@ -99,7 +97,7 @@ public class AnimationFileReader {
   }
 
   private RectangleInfo readRectangleInfo(Scanner sc) throws
-          IllegalStateException, InputMismatchException {
+      IllegalStateException, InputMismatchException {
     RectangleInfo info = new RectangleInfo();
 
     while (!info.isAllInitialized()) {
@@ -133,7 +131,7 @@ public class AnimationFileReader {
           break;
         default:
           throw new IllegalStateException("Invalid attribute " + command + " for "
-                  + "rectangle");
+              + "rectangle");
       }
     }
 
@@ -141,7 +139,7 @@ public class AnimationFileReader {
   }
 
   private OvalInfo readOvalInfo(Scanner sc) throws
-          IllegalStateException, InputMismatchException {
+      IllegalStateException, InputMismatchException {
     OvalInfo info = new OvalInfo();
 
     while (!info.isAllInitialized()) {
@@ -175,7 +173,7 @@ public class AnimationFileReader {
           break;
         default:
           throw new IllegalStateException("Invalid attribute " + command + " for "
-                  + "oval");
+              + "oval");
       }
     }
 
@@ -183,7 +181,7 @@ public class AnimationFileReader {
   }
 
   private MoveInfo readMoveInfo(Scanner sc) throws
-          IllegalStateException, InputMismatchException {
+      IllegalStateException, InputMismatchException {
     MoveInfo info = new MoveInfo();
 
     while (!info.isAllInitialized()) {
@@ -206,7 +204,7 @@ public class AnimationFileReader {
           break;
         default:
           throw new IllegalStateException("Invalid attribute " + command + " for "
-                  + "move");
+              + "move");
       }
     }
 
@@ -214,7 +212,7 @@ public class AnimationFileReader {
   }
 
   private ChangeColorInfo readChangeColorInfo(Scanner sc) throws
-          IllegalStateException, InputMismatchException {
+      IllegalStateException, InputMismatchException {
     ChangeColorInfo info = new ChangeColorInfo();
 
     while (!info.isAllInitialized()) {
@@ -239,7 +237,7 @@ public class AnimationFileReader {
           break;
         default:
           throw new IllegalStateException("Invalid attribute " + command + " for "
-                  + "change-color");
+              + "change-color");
       }
     }
 
@@ -247,7 +245,7 @@ public class AnimationFileReader {
   }
 
   private ScaleByInfo readScaleByInfo(Scanner sc) throws
-          IllegalStateException, InputMismatchException {
+      IllegalStateException, InputMismatchException {
     ScaleByInfo info = new ScaleByInfo();
 
     while (!info.isAllInitialized()) {
@@ -270,7 +268,7 @@ public class AnimationFileReader {
           break;
         default:
           throw new IllegalStateException("Invalid attribute " + command + " for "
-                  + "scale-to");
+              + "scale-to");
       }
     }
 
@@ -279,6 +277,7 @@ public class AnimationFileReader {
 
 
   class Inputable {
+
     protected Map<String, Boolean> valueFlags;
 
     public Inputable() {
@@ -297,6 +296,7 @@ public class AnimationFileReader {
   }
 
   class ShapeInfo extends Inputable {
+
     private String name;
     private float r;
     private float g;
@@ -374,6 +374,7 @@ public class AnimationFileReader {
   }
 
   class RectangleInfo extends ShapeInfo {
+
     private float x;
     private float y;
     private float width;
@@ -425,6 +426,7 @@ public class AnimationFileReader {
   }
 
   class OvalInfo extends ShapeInfo {
+
     private float cx;
     private float cy;
     private float xradius;
@@ -477,6 +479,7 @@ public class AnimationFileReader {
   }
 
   class MoveInfo extends Inputable {
+
     private String name;
     private float fromX;
     private float fromY;
@@ -565,6 +568,7 @@ public class AnimationFileReader {
   }
 
   class ChangeColorInfo extends Inputable {
+
     private String name;
     private float fromR;
     private float fromG;
@@ -675,6 +679,7 @@ public class AnimationFileReader {
   }
 
   class ScaleByInfo extends Inputable {
+
     private String name;
     private float fromSx;
     private float fromSy;

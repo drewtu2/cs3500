@@ -12,6 +12,7 @@ public class ProviderController extends AnimatorController {
 
   /**
    * Constructs an controller from an input view.
+   *
    * @param inputView the input view to use.
    */
   public ProviderController(cs3500.animator.provider.view.IView inputView) {
@@ -21,6 +22,7 @@ public class ProviderController extends AnimatorController {
 
   /**
    * Constructs a provider controller from an input view and appendable.
+   *
    * @param inputView the view to use.
    * @param out the appendable to use.
    */

@@ -1,4 +1,3 @@
-
 package cs3500.animator.view;
 
 import static util.MyUtil.checkNull;

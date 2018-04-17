@@ -13,6 +13,7 @@ public class ControllerFactory {
 
   /**
    * Creates a controller based on a set of given inputs.
+   *
    * @param model the model to use
    * @param view a string representing the view to use
    * @param outputFile the outputFile to use

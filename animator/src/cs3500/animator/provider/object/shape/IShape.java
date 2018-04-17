@@ -5,20 +5,22 @@ import cs3500.animator.provider.object.IColor;
 import cs3500.animator.provider.object.Posn;
 
 /**
- * This interface contains all of the methods that a shape should have when being constructed
- * for an animation.
+ * This interface contains all of the methods that a shape should have when being constructed for an
+ * animation.
  */
 
 public interface IShape extends ICanvasObject {
 
   /**
    * gets the x dimension of this shape
+   *
    * @return x dimension of this shape
    */
   double getX();
 
   /**
    * gets the y dimension of this shape
+   *
    * @return the y dimension of this shape
    */
   double getY();
@@ -76,8 +78,8 @@ public interface IShape extends ICanvasObject {
   public abstract IShape clone();
 
   /**
-   * A convenience method describing the attributes associated with this shape's size and without
-   * a scale factor.
+   * A convenience method describing the attributes associated with this shape's size and without a
+   * scale factor.
    *
    * @return the size attribute description string
    */
@@ -100,6 +102,7 @@ public interface IShape extends ICanvasObject {
 
   /**
    * Modifies this shape's width and height to the new width and height.
+   *
    * @param width width of the shape
    * @param height height of the shape
    */

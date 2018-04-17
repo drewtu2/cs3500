@@ -1,4 +1,5 @@
 package cs3500.animator.provider.object.animation;
+
 import cs3500.animator.provider.object.ICanvasObject;
 import cs3500.animator.provider.object.shape.IShape;
 

@@ -4,7 +4,6 @@ import static util.MyUtil.checkNull;
 
 import cs3500.animator.view.interactive.InteractiveView;
 import cs3500.animator.view.visual.VisualView;
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -72,7 +71,7 @@ public class ViewFactory {
    * @return IView instance
    */
   public static IView getView(String name, Appendable myAppendable, boolean loopable) throws
-          IOException {
+      IOException {
 
     // Handle null case
     checkNull(name);

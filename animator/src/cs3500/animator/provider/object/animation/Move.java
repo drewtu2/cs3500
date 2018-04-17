@@ -7,8 +7,9 @@ import cs3500.animator.provider.object.shape.IShape;
  * Represents a translation animation to move an object to a destination location.
  */
 public class Move extends AbstractAnimation {
+
   public static final String ERROR_DESTINATION_NULL =
-          "The destination cannot be null.";
+      "The destination cannot be null.";
 
   private Posn startPosition;
   private Posn destination;
@@ -16,14 +17,14 @@ public class Move extends AbstractAnimation {
   /**
    * Constructs an move animation with a given move factor.
    *
-   * @param startTime   the time to show the object
-   * @param endTime     the time to hide the object
-   * @param shape       the shape to apply the animation to
+   * @param startTime the time to show the object
+   * @param endTime the time to hide the object
+   * @param shape the shape to apply the animation to
    * @param destination the destination to move the shape to
    * @throws IllegalArgumentException if the destination is null
    */
   public Move(int startTime, int endTime, IShape shape, Posn destination) throws
-          IllegalArgumentException {
+      IllegalArgumentException {
     super(startTime, endTime, shape);
     if (destination == null) {
       throw new IllegalArgumentException(ERROR_DESTINATION_NULL);
@@ -44,9 +45,9 @@ public class Move extends AbstractAnimation {
       this.animationStarted = true;
     }
     double newX = this.startPosition.getX() * this.getStartCoef(ticksElapsed)
-            + this.destination.getX() * this.getEndCoef(ticksElapsed);
+        + this.destination.getX() * this.getEndCoef(ticksElapsed);
     double newY = this.startPosition.getY() * this.getStartCoef(ticksElapsed)
-            + this.destination.getY() * this.getEndCoef(ticksElapsed);
+        + this.destination.getY() * this.getEndCoef(ticksElapsed);
     shape.move(new Posn(newX, newY));
   }
 
@@ -60,19 +61,20 @@ public class Move extends AbstractAnimation {
     StringBuilder builder = new StringBuilder();
 
     builder.append("moves from ")
-            .append(s.getLocation().toString())
-            .append(" to ")
-            .append(destination.toString());
+        .append(s.getLocation().toString())
+        .append(" to ")
+        .append(destination.toString());
 
     return builder.toString();
   }
 
   /**
    * Returns the destination of this animation.
+   *
    * @return the destination of this animation.
    */
   public Posn getDestination() {
     return this.destination;
   }
 
-  }
+}

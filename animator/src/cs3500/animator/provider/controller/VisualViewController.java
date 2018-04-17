@@ -17,6 +17,7 @@ public class VisualViewController implements IVisualController {
 
   /**
    * Construct a visual view controller.
+   *
    * @param view the visual view to use.
    * @param animations the list of animations.
    * @param shapes the list of shapes to use.

@@ -294,8 +294,7 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
     for (String name : fullState.keySet()) {
       if (shapeEnabled.get(name)) {
         shapes.put(name, ShapeFactory.getShape(fullState.get(name)));
-      }
-      else {
+      } else {
         shapes.remove(name);
       }
     }

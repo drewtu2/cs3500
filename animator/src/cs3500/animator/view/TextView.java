@@ -48,7 +48,7 @@ public class TextView implements IView {
       Collections.sort(shapes);
 
       // Print every shape and generate a list of all of the animations
-      for (IAnimatedShape aShape: shapes) {
+      for (IAnimatedShape aShape : shapes) {
         output.append(printShapeSummary(aShape));
         output.append("\n\n");
         animationSummaries.addAll(getSummary(aShape));
@@ -56,7 +56,7 @@ public class TextView implements IView {
       output.append("\nAnimations:\n");
       Collections.sort(animationSummaries);
 
-      for (IAnimationSummary summary: animationSummaries) {
+      for (IAnimationSummary summary : animationSummaries) {
         output.append(summary.getDescription());
       }
 

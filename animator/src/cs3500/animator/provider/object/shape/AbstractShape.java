@@ -1,6 +1,5 @@
 package cs3500.animator.provider.object.shape;
 
-import cs3500.animator.provider.object.Color;
 import cs3500.animator.provider.object.AbstractCanvasObject;
 import cs3500.animator.provider.object.IColor;
 import cs3500.animator.provider.object.Posn;
@@ -199,7 +198,7 @@ public abstract class AbstractShape extends AbstractCanvasObject implements ISha
    */
   @Override
   public void reset() {
-    this.location= originalLocation;
+    this.location = originalLocation;
     this.color = originalColor;
   }
 

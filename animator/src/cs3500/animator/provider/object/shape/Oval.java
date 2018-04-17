@@ -7,8 +7,9 @@ import cs3500.animator.provider.object.Posn;
  * Represents a standard oval shape with a basic x radius and y radius.
  */
 public class Oval extends AbstractShape {
+
   public static final String ERROR_RADIUS_BOUNDS =
-          "The radius must be greater than 0.";
+      "The radius must be greater than 0.";
 
   private double originalRadiusX;
   private double originalRadiusY;
@@ -19,16 +20,16 @@ public class Oval extends AbstractShape {
    * Constructs an oval with the given x radius and y radius.
    *
    * @param startTime the time to show the object
-   * @param endTime   the time to hide the object
-   * @param name      the object's name
-   * @param location  the object's location on a canvas
-   * @param color     the object's color
-   * @param radiusX   the x radius of the oval
-   * @param radiusY   the y radius of the oval
+   * @param endTime the time to hide the object
+   * @param name the object's name
+   * @param location the object's location on a canvas
+   * @param color the object's color
+   * @param radiusX the x radius of the oval
+   * @param radiusY the y radius of the oval
    * @throws IllegalArgumentException if the x radius or y radius is 0 or less
    */
   public Oval(int startTime, int endTime, String name, Posn location, IColor color,
-              double radiusX, double radiusY) throws IllegalArgumentException {
+      double radiusX, double radiusY) throws IllegalArgumentException {
     super(startTime, endTime, name, location, color);
     if (radiusX <= 0 || radiusY <= 0) {
       throw new IllegalArgumentException(ERROR_RADIUS_BOUNDS);
@@ -61,11 +62,11 @@ public class Oval extends AbstractShape {
     StringBuilder builder = new StringBuilder();
 
     builder.append("Center: ")
-            .append(this.getLocation().toString())
-            .append(", ")
-            .append(this.getSizeDescription())
-            .append(", Color: ")
-            .append(this.getColor().toString());
+        .append(this.getLocation().toString())
+        .append(", ")
+        .append(this.getSizeDescription())
+        .append(", Color: ")
+        .append(this.getColor().toString());
 
     return builder.toString();
   }
@@ -75,9 +76,9 @@ public class Oval extends AbstractShape {
     StringBuilder builder = new StringBuilder();
 
     builder.append("X radius: ")
-            .append(this.radiusX * scaleX)
-            .append(", Y radius: ")
-            .append(this.radiusY * scaleY);
+        .append(this.radiusX * scaleX)
+        .append(", Y radius: ")
+        .append(this.radiusY * scaleY);
 
     return builder.toString();
   }

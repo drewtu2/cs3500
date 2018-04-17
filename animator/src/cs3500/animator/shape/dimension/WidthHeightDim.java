@@ -1,7 +1,7 @@
 package cs3500.animator.shape.dimension;
 
-import util.MyUtil;
 import java.util.Objects;
+import util.MyUtil;
 
 /**
  * Represents the dimensions for a Width x Height rectangle.
