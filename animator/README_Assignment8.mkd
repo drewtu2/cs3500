@@ -1,0 +1,50 @@
+# Assignment 8
+
+## What works
+We were able to get our providers code working to the same degree of completion
+that they were able to achieve, i.e., whatever they got working, we have working.
+All 4 provider views can be launched from the command line with the following
+tags.
+- text view: -iv providertext
+- svg view: -iv providersvg
+- visual view: -iv providervisual
+- interactive: -iv provider
+
+Unless otherwise noted, all functionality of each of the views works.
+
+**Text View**
+- all working
+
+**SVG View**
+- does not handle shape order properly, and as a result, producing/exporting the svg
+view of the buildings does not render properly. (not working for providers)
+- does not handle looping, if produced from the interactive view. (not working for providers)
+
+**Visual View**
+- windows are drawn off main canvas, but can be scrolled to and seen before they
+appear. (not working for providers)
+
+**Interactive View**
+- windows are drawn off main canvas, but can be scrolled to and seen before they
+appear. (not working for providers)
+
+
+## Changed for customers
+We had to make a couple changes for our customers, to better allow them to work with
+our code. Initially, we used concrete classes to represent positions, colors,
+and animation summaries. After receiving code from our providers and realizing
+how many issues we had with their code, we quickly realized our own code needed to be
+refactored to use interfaces.
+
+This included moving functionality out of concrete classes and putting it into intefaces.
+Most notably, this occured by moving the getters out of the concrete animation
+implementations, and into the interfaces, thereby, reducing the need to cast animations
+to a specific implementation to access the getters. The trade off for to this is now
+OperationNotSupported errors must be thrown whenever a getter is used for an inappropriate
+attribute of a particular animation.
+
+Furthermore, there were a number of instances, where our code was being assigned to an interface,
+but a coupling was created at creation time (i.e. `new ConcreteImplementation()`). We resolved these
+instances by adding factory methods to the most appropriate classes to create them. For example,
+a couple between IAnimationSummary and AnimatonSummary was removed by adding a factory method to
+IAnimation, thereby guarenteeing IAnimations will produce their corresponding summaries.
