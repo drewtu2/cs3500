@@ -6,8 +6,9 @@ How cleanly written and well-documented was their code?
 If you needed to request changes from them, what were they and why were they needed?
 Write a short (3-4 paragraph) review of their code. Your review should have the following sections: Design critique, implementation critique, documentation critique, design/code limitations and suggestions on how to address them.
 
+
 # Critique, 
-The interfaces we were initally given were moderately flexible but realied heavily
+The interfaces we were initally given were moderately flexible but relied heavily
 on the use of abstract and concrete classes instead of interfaces. This made it 
 somewhat difficult to implement adapters for their model components. 
 
@@ -29,18 +30,21 @@ to the user since we must implement the methods to return the string exactly as
 expected, otherwise parts of the code may fail. There was no documentation on the
 expected output of the strings. 
 
-What we did like about their design was the managed to resuse the shape panel 
+What we did like about their design was the managed to reuse the shape panel
 between designs for the Hybrid and Visual View. This meant that once we were 
 able to get the visual component working for the visual view, we knew how to 
 implement the same features on the hybrid view. 
 
-We needed to request several items from our prividers including the following
+We needed to request several items from our providers including the following
 - AbstractAnimation Interface
 - AbstractShape Interface
 - Color Interface
 - Posn Interface
 - Move Interface
-We also requested a number of clarifications with regards to documentaiton
+- Controller Interfaces
+- AbstractCanvasObject interface
+-
+We also requested a number of clarifications with regards to documentation
 including the following. 
 - What are the coefficients referred to in the abstract animation?
 - Examples for the strings that needed to be returned to the user from various
@@ -54,10 +58,19 @@ needed to be implemented. We were missing the interfaces for the objects and as
 a result, it was difficult to write crossovers between objects until the proper
 modifications were made. 
 
+
+
+Extra to be added in (Nikitha):
 As we began trying to piece together how their code worked, we found difficult
-in understanding how different strings were being used and needed to request 
+in understanding how different things were being used (like looping functionality and how data
+existed in their model)and needed to request
 clarification and examples in the documentation. This was also an insight as to 
-why use more restrictive methods of flow control (double dispatch, enums, named
-variables, ints) is better than using strings. 
-is better l
+why you should use more restrictive methods of flow control (double dispatch, enums, named
+variables, ints).
+
+Some of the lessons we learned really enforced the importance of decoupling as much
+as possible in order to not restrict future users of our code. It is also really important
+to be consistent in your methods across implementations of interfaces. This was evident in
+the methods that existed across multiple classes implementing the same interface, and the method had
+ the same purpose in
 
