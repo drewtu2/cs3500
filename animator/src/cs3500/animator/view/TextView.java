@@ -7,7 +7,6 @@ import cs3500.animator.animation.IAnimation;
 import cs3500.animator.animation.IAnimationSummary;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,11 +58,6 @@ public class TextView implements IView {
 
       for (IAnimationSummary summary: animationSummaries) {
         output.append(summary.getDescription());
-      }
-
-      if (output.getClass() == FileWriter.class) {
-        ((FileWriter) output).flush();
-        ((FileWriter) output).close();
       }
 
     } catch (IOException e) {
