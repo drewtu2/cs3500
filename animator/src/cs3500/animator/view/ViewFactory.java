@@ -43,21 +43,12 @@ public class ViewFactory {
    * Factory method that creates a specific instance of a view dependent on given input.
    *
    * @param name String representing the type of view required
-   * @param outputFile where to put the output
    * @return IView instance
    */
-  public static IView getView(String name, String outputFile) throws IOException {
-    Appendable myAppendable;
+  public static IView getView(String name, Appendable myAppendable) throws IOException {
 
     // Handle null case
     checkNull(name);
-
-    // Handle System.out case
-    if (outputFile == null || outputFile.equals("out")) {
-      myAppendable = System.out;
-    } else { // Handle file case
-      myAppendable = new FileWriter(outputFile, true); //true tells to append data.
-    }
 
     switch (name.toLowerCase()) {
       case "interactive":
@@ -77,23 +68,15 @@ public class ViewFactory {
    * Factory method that creates a specific instance of a view dependent on given input.
    *
    * @param name String representing the type of view required
-   * @param outputFile where to put the output
    * @param loopable is the animation looping or not
    * @return IView instance
    */
-  public static IView getView(String name, String outputFile, boolean loopable) throws IOException {
-    Appendable myAppendable;
+  public static IView getView(String name, Appendable myAppendable, boolean loopable) throws
+          IOException {
 
     // Handle null case
     checkNull(name);
     checkNull(loopable);
-
-    // Handle System.out case
-    if (outputFile == null || outputFile.equals("out")) {
-      myAppendable = System.out;
-    } else { // Handle file case
-      myAppendable = new FileWriter(outputFile, true); //true tells to append data.
-    }
 
     switch (name.toLowerCase()) {
       case "interactive":

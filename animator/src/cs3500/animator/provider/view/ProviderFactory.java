@@ -1,6 +1,5 @@
 package cs3500.animator.provider.view;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,15 +20,12 @@ public class ProviderFactory {
    *
    * @param model ianimator model with shape and animation info
    * @param view String representing the type of view required
-   * @param outputFile where to put the output
    * @param speed int how fast the rate of animation is
    * @return IView instance
    */
   public static cs3500.animator.provider.view.IView getView(IAnimatorModel model, String view,
-      String outputFile,
-      int speed) throws
-      IOException {
-    Appendable myAppendable;
+      Appendable myAppendable,
+      int speed) {
 
     // Handle null case
     checkNull(view);
@@ -37,13 +33,6 @@ public class ProviderFactory {
 
     // Create the adapter
     ModelAdapter mAdapt = new ModelAdapter(model);
-
-    // Handle System.out case
-    if (outputFile == null || outputFile.equals("out")) {
-      myAppendable = System.out;
-    } else { // Handle file case
-      myAppendable = new FileWriter(outputFile, true); //true tells to append data.
-    }
 
     switch (view.toLowerCase()) {
       case "provider":
@@ -67,23 +56,15 @@ public class ProviderFactory {
    *
    * @param animationList list of ianimation from the model
    * @param view String representing the type of view required
-   * @param outputFile where to put the output
    * @param speed int how fast the rate of animation is
    * @return IView instance
    */
   public static cs3500.animator.provider.view.IView getView(List<IAnimation> animationList, String
-          view, String outputFile, int speed) throws IOException {
-    Appendable myAppendable;
+          view, Appendable myAppendable, int speed) {
 
     // Handle null case
     checkNull(view);
 
-    // Handle System.out case
-    if (outputFile == null || outputFile.equals("out")) {
-      myAppendable = System.out;
-    } else { // Handle file case
-      myAppendable = new FileWriter(outputFile, true); //true tells to append data.
-    }
 
     switch (view.toLowerCase()) {
       case "providertext":
