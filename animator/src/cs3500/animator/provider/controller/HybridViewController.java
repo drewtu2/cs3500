@@ -1,14 +1,16 @@
 package cs3500.animator.provider.controller;
 
+import cs3500.animator.provider.adapter.ProviderFactory;
 import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.object.shape.IShape;
 import cs3500.animator.provider.view.HybridView;
 import cs3500.animator.provider.view.IView;
-import cs3500.animator.provider.adapter.ProviderFactory;
 import java.awt.event.ActionEvent;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.Timer;
@@ -149,9 +151,12 @@ public class HybridViewController implements IInteractiveController {
   public void onExportClicked(String filename) {
     try {
       Appendable myApp = new FileWriter(filename);
-      Collections.sort(animations);
+
+      List<IAnimation> newAnimations = getVisibleAnimationCopies(animations);
+
+      Collections.sort(newAnimations);
       IView view = ProviderFactory
-          .getView(this.animations, "providersvg", myApp, (int) this.tempo);
+          .getView(newAnimations, "providersvg", myApp, (int) this.tempo);
 
       view.writeAnimatorDescription();
       ((FileWriter) myApp).flush();
@@ -210,5 +215,63 @@ public class HybridViewController implements IInteractiveController {
       // Do nothing, this animation hasn't started yet
       return;
     }
+  }
+
+  /**
+   * Produces a sorted list of visible animaitons of all the animaitons in this model. Each shape is
+   * cloned so that it can be modified.
+   *
+   * @return a sorted list of copied animaitons
+   */
+  private List<IAnimation> getVisibleAnimationCopies(List<IAnimation> animations_in) {
+    List<IAnimation> newAnimations = new ArrayList<IAnimation>();
+    Map<String, IShape> shapesTracker = new HashMap<>();
+    double currentX;
+    double currentY;
+
+    /*
+    for (IAnimation animation : animations_in) {
+      IShape tempShape = animation.getShape();
+
+      if (!shapesTracker.containsKey(tempShape.getName())) {
+        IColor currentColor = tempShape.getColor();
+        Posn currentPosn = tempShape.getLocation();
+        currentX = tempShape.getX();
+        currentY = tempShape.getY();
+
+        tempShape.reset();
+        shapesTracker.put(tempShape.getName(), tempShape.clone());
+
+        tempShape.updateSize(currentX, currentY);
+        tempShape.changeColor(currentColor);
+        tempShape.move(currentPosn);
+      }
+
+      if (animation instanceof Move) {
+        newAnimations.add(new Move(animation.getStartTime(), animation.getEndTime(),
+            shapesTracker.get(tempShape.getName()), ((Move) animation).getDestination()));
+      } else if (animation instanceof ChangeColor) {
+        newAnimations.add(new ChangeColor(animation.getStartTime(), animation.getEndTime(),
+            shapesTracker.get(tempShape.getName()), ((ChangeColor) animation).getTarget()));
+      } else if (animation instanceof Scale) {
+        newAnimations.add(new Scale(animation.getStartTime(), animation.getEndTime(),
+            shapesTracker.get(tempShape.getName()), ((Scale) animation).getScaleX(),
+            ((Scale) animation).getScaleY()));
+      }
+    }
+
+    return newAnimations;
+    */
+
+    for (IShape shape : this.shapes) {
+      shape.reset();
+    }
+
+    for (IAnimation animation : animations_in) {
+      if (this.shapes.contains(animation.getShape())) {
+        newAnimations.add(animation);
+      }
+    }
+    return newAnimations;
   }
 }
