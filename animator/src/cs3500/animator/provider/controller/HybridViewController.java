@@ -29,6 +29,15 @@ public class HybridViewController implements IInteractiveController {
   private boolean looping;
 
 
+  /**
+   * Constructs a HybridViewController with the given inputs.
+   *
+   * @param hView the hybrid view to use.
+   * @param animations a list of animations to apply.
+   * @param shapes the list of shapes in this animation.
+   * @param shapeOrder the order of the shapes.
+   * @param tempoIn the speed in.
+   */
   public HybridViewController(HybridView hView, List<IAnimation> animations,
       List<IShape> shapes, Map<IShape, Integer> shapeOrder,
       double tempoIn) {

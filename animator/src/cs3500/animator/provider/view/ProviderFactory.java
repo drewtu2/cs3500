@@ -50,7 +50,8 @@ public class ProviderFactory {
 
 
   /**
-   * Factory method that creates a specific instance of a text or svg view dependent on given input.
+   * Factory method that creates a specific instance of a text or svg view dependent on given
+   * input.
    *
    * @param animationList list of ianimation from the model
    * @param view String representing the type of view required
@@ -58,17 +59,16 @@ public class ProviderFactory {
    * @return IView instance
    */
   public static cs3500.animator.provider.view.IView getView(List<IAnimation> animationList, String
-          view, Appendable myAppendable, int speed) {
+      view, Appendable myAppendable, int speed) {
 
     // Handle null case
     checkNull(view);
 
-
     switch (view.toLowerCase()) {
       case "providertext":
-        return new TextualView(animationList, ((double)speed), myAppendable);
+        return new TextualView(animationList, ((double) speed), myAppendable);
       case "providersvg":
-        return new SVGView(animationList, ((double)speed), myAppendable);
+        return new SVGView(animationList, ((double) speed), myAppendable);
       default:
         throw new IllegalArgumentException("invalid view type");
     }

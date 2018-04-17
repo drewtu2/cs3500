@@ -56,8 +56,8 @@ public class ModelAdapter implements IAnimatorModel {
     checkNull(anim);
 
     // Check to make sure this is a valid animaiton
-    for(IAnimation animation : animationList) {
-      if(anim.conflictsWithAnimation(animation)) {
+    for (IAnimation animation : animationList) {
+      if (anim.conflictsWithAnimation(animation)) {
         throw new IllegalArgumentException("Overlap with another animation. cannot add!");
       }
     }
@@ -72,11 +72,11 @@ public class ModelAdapter implements IAnimatorModel {
 
     out.append("Shapes:\n");
 
-    for(IShape shape: shapeMap.values()) {
+    for (IShape shape : shapeMap.values()) {
       out.append(shape.toString());
     }
 
-    for(IAnimation animation: animationList) {
+    for (IAnimation animation : animationList) {
       out.append(animation.toString(animation.getShape()));
     }
 
@@ -236,7 +236,7 @@ public class ModelAdapter implements IAnimatorModel {
     List<IAnimation> loa = new ArrayList<>();
 
     // Grab the move animaitons
-    if(shape.getAnimations().get(AnimationType.MOVE) != null) {
+    if (shape.getAnimations().get(AnimationType.MOVE) != null) {
       for (cs3500.animator.animation.IAnimation animation : shape.getAnimations()
           .get(AnimationType.MOVE)) {
         Posn target = convertPosn(animation.getEndPos());
@@ -248,7 +248,7 @@ public class ModelAdapter implements IAnimatorModel {
     }
 
     // Grab the color animations
-    if(shape.getAnimations().get(AnimationType.COLOR) != null) {
+    if (shape.getAnimations().get(AnimationType.COLOR) != null) {
       for (cs3500.animator.animation.IAnimation animation : shape.getAnimations()
           .get(AnimationType.COLOR)) {
         IColor target = convertColor((animation).getEndColor());
@@ -261,7 +261,7 @@ public class ModelAdapter implements IAnimatorModel {
     }
 
     // Grab the scale animations
-    if(shape.getAnimations().get(AnimationType.SCALE) != null) {
+    if (shape.getAnimations().get(AnimationType.SCALE) != null) {
       for (cs3500.animator.animation.IAnimation animation : shape.getAnimations()
           .get(AnimationType.SCALE)) {
         IDimension start = animation.getStartDimension();

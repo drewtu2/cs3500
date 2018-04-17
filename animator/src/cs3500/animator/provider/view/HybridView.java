@@ -1,27 +1,6 @@
 package cs3500.animator.provider.view;
 
 //import java.awt.*;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JCheckBox;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.DefaultBoundedRangeModel;
-import javax.swing.JOptionPane;
-import javax.swing.BoxLayout;
-
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import cs3500.animator.provider.controller.HybridViewController;
 import cs3500.animator.provider.controller.IInteractiveController;
@@ -29,13 +8,32 @@ import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.object.animation.Move;
 import cs3500.animator.provider.object.shape.IShape;
 import cs3500.animator.provider.util.NumUtil;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
-* This class represents a hybrid view of the animations and shapes. The animation will be
-* played inside a window. Each animation will be displayed as specified by the list of
-* animations and according the the tempo. The user will also be provided with the option to
-* export the view to an svg file.
-*/
+ * This class represents a hybrid view of the animations and shapes. The animation will be played
+ * inside a window. Each animation will be displayed as specified by the list of animations and
+ * according the the tempo. The user will also be provided with the option to export the view to an
+ * svg file.
+ */
 public class HybridView extends AbstractView implements IInteractiveView {
 
   private JPanel shapePanel;
@@ -48,12 +46,12 @@ public class HybridView extends AbstractView implements IInteractiveView {
    * Constructs a HybridView with the given animations.
    *
    * @param animations the animations associated with this view
-   * @param shapes     the shapes associated with this view
+   * @param shapes the shapes associated with this view
    * @param shapeOrder the mapping describing the ordering for each shape
-   * @param tempo      the speed of the animation in ticks per second
+   * @param tempo the speed of the animation in ticks per second
    */
   public HybridView(List<IAnimation> animations, List<IShape> shapes,
-                    Map<IShape, Integer> shapeOrder, double tempo) {
+      Map<IShape, Integer> shapeOrder, double tempo) {
     super(animations, shapes, tempo);
     JScrollPane scrollPane;
     JScrollPane checkboxScrollPane;
@@ -85,7 +83,7 @@ public class HybridView extends AbstractView implements IInteractiveView {
     loopCheckBox = new JCheckBox("Loop", false);
     this.sliderText = new JLabel("Tempo: " + String.valueOf(tempo));
     DefaultBoundedRangeModel model = new DefaultBoundedRangeModel((int) tempo, 0, 0,
-            Integer.max(100, (int) tempo));
+        Integer.max(100, (int) tempo));
     this.slider = new JSlider(model);
 
     start.addActionListener(new ActionListener() {
@@ -165,7 +163,6 @@ public class HybridView extends AbstractView implements IInteractiveView {
       }
     });
     buttonPanel.add(exportToSVG);
-
 
     this.pack();
     this.animate();

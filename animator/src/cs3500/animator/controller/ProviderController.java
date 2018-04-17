@@ -10,11 +10,20 @@ public class ProviderController extends AnimatorController {
 
   private cs3500.animator.provider.view.IView providerView;
 
+  /**
+   * Constructs an controller from an input view.
+   * @param inputView the input view to use.
+   */
   public ProviderController(cs3500.animator.provider.view.IView inputView) {
     super();
     providerView = inputView;
   }
 
+  /**
+   * Constructs a provider controller from an input view and appendable.
+   * @param inputView the view to use.
+   * @param out the appendable to use.
+   */
   public ProviderController(cs3500.animator.provider.view.IView inputView, Appendable out) {
     super();
     providerView = inputView;
@@ -25,10 +34,9 @@ public class ProviderController extends AnimatorController {
   public void playAnimation() {
 
     try {
-      if(providerView instanceof HybridView || providerView instanceof VisualView) {
+      if (providerView instanceof HybridView || providerView instanceof VisualView) {
         providerView.animate();
-      }
-      else if(providerView instanceof TextualView || providerView instanceof SVGView) {
+      } else if (providerView instanceof TextualView || providerView instanceof SVGView) {
         providerView.writeAnimatorDescription();
       }
     } catch (IOException e) {

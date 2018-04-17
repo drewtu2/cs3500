@@ -2,14 +2,13 @@ package cs3500.animator.provider.view;
 
 import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.object.shape.IShape;
-
 import java.io.IOException;
 import java.util.List;
 import javax.swing.JFrame;
 
 /**
- * This class represents a general view that has a tempo in ticks per second. The tempo
- * determines the speed of the animations.
+ * This class represents a general view that has a tempo in ticks per second. The tempo determines
+ * the speed of the animations.
  */
 public abstract class AbstractView extends JFrame implements IView {
 
@@ -21,8 +20,9 @@ public abstract class AbstractView extends JFrame implements IView {
 
   /**
    * Constructs a View with the given animations.
+   *
    * @param animations the animations associated with this view
-   *                   @param shapes the shapes associated with this view
+   * @param shapes the shapes associated with this view
    * @param tempo the speed of the animation in ticks per second
    */
   AbstractView(List<IAnimation> animations, List<IShape> shapes, double tempo) {

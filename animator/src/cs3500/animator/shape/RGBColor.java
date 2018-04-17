@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Represents an RGB Color.
  */
-public class RGBColor implements IRGBColor{
+public class RGBColor implements IRGBColor {
 
   protected float red;
   protected float green;

@@ -9,7 +9,6 @@ import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.dimension.IDimension;
-import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -93,7 +92,7 @@ public class CanvasPane extends JPanel {
    */
   public void setTickNumber(double number) {
     tickNum = number;
-    System.out.println("Tick num: " + Integer.toString((int)tickNum));
+    System.out.println("Tick num: " + Integer.toString((int) tickNum));
   }
 
   /**
@@ -103,7 +102,7 @@ public class CanvasPane extends JPanel {
    */
   public void incrementTickNumber(double numTicks) {
     tickNum += numTicks;
-    System.out.println("Tick num: " + Integer.toString((int)tickNum));
+    System.out.println("Tick num: " + Integer.toString((int) tickNum));
   }
 
   /**
@@ -112,7 +111,7 @@ public class CanvasPane extends JPanel {
    * @return the current tick number of the animation.
    */
   public int getTickNumber() {
-    return (int)tickNum;
+    return (int) tickNum;
   }
 
   @Override
@@ -127,7 +126,7 @@ public class CanvasPane extends JPanel {
     if (state != null) {
       for (IAnimatedShape shape : shapes) {
         shapeColor = shape.getColor();
-        shapeState = shape.stateAt((int)tickNum);
+        shapeState = shape.stateAt((int) tickNum);
 
         g.setColor(new Color(shapeColor.getRed(), shapeColor.getGreen(), shapeColor.getBlue()));
         if (shouldDisplay(shape)) {

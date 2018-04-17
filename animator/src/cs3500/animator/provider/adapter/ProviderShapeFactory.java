@@ -11,6 +11,7 @@ public class ProviderShapeFactory {
 
   /**
    * Creates an abstract shape of the given type with the appropriate parameters.
+   *
    * @param type the type of shape
    * @param name the unique id of the shape
    * @param startTick the start tick
@@ -21,10 +22,10 @@ public class ProviderShapeFactory {
    * @param height the height of the shape
    * @return an abstract shape of the providers type
    */
-  public static IShape getShape(ShapeType type, String name, int startTick, int endTick, Posn thisPosn,
-      IColor thisColor, float width, float height)
-  {
-    switch(type) {
+  public static IShape getShape(ShapeType type, String name, int startTick, int endTick,
+      Posn thisPosn,
+      IColor thisColor, float width, float height) {
+    switch (type) {
       case RECTANGLE:
         return new Rectangle(startTick, endTick, name, thisPosn, thisColor, width, height);
       case OVAL:

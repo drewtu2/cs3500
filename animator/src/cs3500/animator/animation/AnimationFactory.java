@@ -7,7 +7,6 @@ import cs3500.animator.animation.concrete.MoveAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IRGBColor;
-import cs3500.animator.shape.Position2D;
 import cs3500.animator.shape.dimension.IDimension;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -60,7 +59,7 @@ public class AnimationFactory {
    * @return the animation representing the move
    */
   public static IAnimation getMoveAnimation(IPosition start, IPosition end, int startTime,
-                                            int endTime) {
+      int endTime) {
     return new MoveAnimation(start, end, startTime, endTime);
   }
 
@@ -107,12 +106,13 @@ public class AnimationFactory {
 
   /**
    * Creates an animation summary based on the given parameters.
+   *
    * @param time the start time of the animation
    * @param description the description
    * @param creationIndex the creation index
-   * @return
    */
-  public static IAnimationSummary getAnimationSummary(int time, String description, int creationIndex) {
+  public static IAnimationSummary getAnimationSummary(int time, String description,
+      int creationIndex) {
     return new AnimationSummary(time, description, creationIndex);
   }
 

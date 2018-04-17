@@ -1,16 +1,12 @@
 package cs3500.animator.provider.view;
 
-import java.awt.Graphics;
-
-import java.util.List;
-
-import javax.swing.JPanel;
-
-import cs3500.animator.provider.object.shape.AbstractShape;
 import cs3500.animator.provider.object.shape.IShape;
 import cs3500.animator.provider.object.shape.Oval;
 import cs3500.animator.provider.object.shape.Rectangle;
 import cs3500.animator.provider.util.NumUtil;
+import java.awt.Graphics;
+import java.util.List;
+import javax.swing.JPanel;
 
 /**
  * This class represents a panel to draw a list of shapes. It can also can show a list of
@@ -22,6 +18,7 @@ public class ShapePanel extends JPanel {
 
   /**
    * Constructs a panel for the animation of shapes.
+   *
    * @param listOfShapes the list of shapes to be drawn
    */
   ShapePanel(List<IShape> listOfShapes) {
@@ -41,8 +38,7 @@ public class ShapePanel extends JPanel {
         Rectangle rect = (Rectangle) shape;
         g.draw3DRect(x, y, NumUtil.round(rect.getWidth()), NumUtil.round(rect.getHeight()), true);
         g.fill3DRect(x, y, NumUtil.round(rect.getWidth()), NumUtil.round(rect.getHeight()), true);
-      }
-      else  if (shape instanceof Oval) {
+      } else if (shape instanceof Oval) {
         Oval oval = (Oval) shape;
 
         int roundedRadiusX = NumUtil.round(oval.getRadiusX());

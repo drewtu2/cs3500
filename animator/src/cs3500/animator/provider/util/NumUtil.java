@@ -7,7 +7,7 @@ public class NumUtil {
 
   /**
    * Rounds a number to its integer value.
-   * @param num
+   *
    * @return rounded int of number
    */
   public static int round(float num) {
@@ -16,15 +16,17 @@ public class NumUtil {
 
   /**
    * Rounds down to the nearest integer value.
+   *
    * @param num the number.
    * @return the rounded int.
    */
   public static int round(double num) {
-    return (int)(num);
+    return (int) (num);
   }
 
   /**
    * Converts rgb val to 1 to 255 range.
+   *
    * @param rgb one attribute val
    * @return converted double
    */

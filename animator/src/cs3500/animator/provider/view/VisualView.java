@@ -1,41 +1,39 @@
 package cs3500.animator.provider.view;
 
+import cs3500.animator.provider.controller.IVisualController;
+import cs3500.animator.provider.controller.VisualViewController;
+import cs3500.animator.provider.object.animation.IAnimation;
+import cs3500.animator.provider.object.animation.Move;
+import cs3500.animator.provider.object.shape.IShape;
+import cs3500.animator.provider.util.NumUtil;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.List;
 import java.util.Map;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import cs3500.animator.provider.controller.IVisualController;
-import cs3500.animator.provider.controller.VisualViewController;
-import cs3500.animator.provider.object.animation.AbstractAnimation;
-import cs3500.animator.provider.object.animation.IAnimation;
-import cs3500.animator.provider.object.animation.Move;
-import cs3500.animator.provider.object.shape.AbstractShape;
-import cs3500.animator.provider.object.shape.IShape;
-import cs3500.animator.provider.util.NumUtil;
-
 /**
- * This class represents a visual view of the animations and shapes. The animation will be
- * played inside a window. Each animation will be displayed as specified by the list of
- * animations and according the the tempo.
+ * This class represents a visual view of the animations and shapes. The animation will be played
+ * inside a window. Each animation will be displayed as specified by the list of animations and
+ * according the the tempo.
  */
 public class VisualView extends AbstractView {
+
   private JPanel shapePanel;
 
   private IVisualController controller;
 
   /**
    * Constructs a VisualView with the given animations.
+   *
    * @param animations the animations associated with this view
    * @param shapes the shapes associated with this view
    * @param shapeOrder the mapping describing the ordering for each shape
    * @param tempo the speed of the animation in ticks per second
    */
   public VisualView(List<IAnimation> animations, List<IShape> shapes,
-                    Map<IShape, Integer> shapeOrder, double tempo) {
+      Map<IShape, Integer> shapeOrder, double tempo) {
     super(animations, shapes, tempo);
     JScrollPane scrollPane;
 
@@ -51,7 +49,7 @@ public class VisualView extends AbstractView {
     scrollPane = new JScrollPane(shapePanel);
     scrollPane.setPreferredSize(new Dimension(PANEL_WIDTH + 250, PANEL_HEIGHT + 250));
 
-    this.add(scrollPane,BorderLayout.CENTER);
+    this.add(scrollPane, BorderLayout.CENTER);
 
     this.pack();
     this.animate();

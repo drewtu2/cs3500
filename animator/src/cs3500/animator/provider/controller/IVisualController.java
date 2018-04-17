@@ -1,15 +1,14 @@
 package cs3500.animator.provider.controller;
 
-import java.util.List;
-
-import cs3500.animator.provider.object.shape.AbstractShape;
 import cs3500.animator.provider.object.shape.IShape;
+import java.util.List;
 
 /**
  * Represents an interface to control any visual view by receiving commands from the view and
  * providing the view with updates on the UI state.
  */
 public interface IVisualController {
+
   /**
    * Begins the animation process by determining what views should be updated in the UI.
    */

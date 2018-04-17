@@ -6,6 +6,7 @@ import java.util.Objects;
  * Represents a 2D position with x and y coordinates.
  */
 public class Posn {
+
   private double x;
   private double y;
 
@@ -58,10 +59,10 @@ public class Posn {
     StringBuilder builder = new StringBuilder();
 
     builder.append("(")
-            .append(this.x)
-            .append(",")
-            .append(this.y)
-            .append(")");
+        .append(this.x)
+        .append(",")
+        .append(this.y)
+        .append(")");
 
     return builder.toString();
   }

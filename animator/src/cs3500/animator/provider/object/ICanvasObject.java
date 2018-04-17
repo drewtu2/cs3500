@@ -1,10 +1,11 @@
 package cs3500.animator.provider.object;
 
 /**
- * This interface contains all of the methods that a canvas object should have. A canvas object
- * is either an animation or a shape.
+ * This interface contains all of the methods that a canvas object should have. A canvas object is
+ * either an animation or a shape.
  */
 public interface ICanvasObject extends Comparable<ICanvasObject> {
+
   /**
    * A getter for the start time.
    *

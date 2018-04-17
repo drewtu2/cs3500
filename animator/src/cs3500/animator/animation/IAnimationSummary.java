@@ -21,6 +21,7 @@ public interface IAnimationSummary extends Comparable<IAnimationSummary> {
 
   /**
    * Returns the creation index of this animation (0 means first).
+   *
    * @return the creation index.
    */
   int getCreationIndex();

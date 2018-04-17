@@ -89,7 +89,7 @@ public abstract class Animation implements IAnimation {
   }
 
   @Override
-  public IDimension getEndDimension(){
+  public IDimension getEndDimension() {
     throw new UnsupportedOperationException();
   }
 

@@ -1,6 +1,5 @@
 package cs3500.animator.provider.controller;
 
-import cs3500.animator.provider.object.shape.AbstractShape;
 import cs3500.animator.provider.object.shape.IShape;
 
 /**
@@ -31,18 +30,21 @@ public interface IInteractiveController extends IVisualController {
 
   /**
    * Handles when the looping checkbox is checked or not checked.
+   *
    * @param selected whether or not the checkbox is checked
    */
   void onLoopingChanged(boolean selected);
 
   /**
    * Handles when the slider is moved.
+   *
    * @param tempo the tempo of the animation
    */
   void onTempoChanged(double tempo);
 
   /**
    * Handles when a shape checkbox is selected.
+   *
    * @param shape the shape to change the visibility of
    * @param selected whether or not the checkbox is selected
    */
@@ -50,6 +52,7 @@ public interface IInteractiveController extends IVisualController {
 
   /**
    * Handles when the SVG export button is pressed.
+   *
    * @param filename the name of the file being written
    */
   void onExportClicked(String filename);

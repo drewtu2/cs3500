@@ -1,17 +1,15 @@
 package cs3500.animator.provider.view;
 
+import cs3500.animator.provider.object.animation.IAnimation;
+import cs3500.animator.provider.object.shape.IShape;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import cs3500.animator.provider.object.animation.IAnimation;
-import cs3500.animator.provider.object.shape.AbstractShape;
-import cs3500.animator.provider.object.shape.IShape;
-
 /**
- * This class represents a textual implementation of a view that can print out a string
- * description of the shapes and animations.
+ * This class represents a textual implementation of a view that can print out a string description
+ * of the shapes and animations.
  */
 public class TextualView extends AbstractView {
 
@@ -19,6 +17,7 @@ public class TextualView extends AbstractView {
 
   /**
    * Constructs a TextualView with the given animations.
+   *
    * @param animations the animations associated with this view
    * @param tempo the speed of the animation in ticks per second
    * @param out the appendable object that the animation gets added to
@@ -38,8 +37,8 @@ public class TextualView extends AbstractView {
 
     for (IShape shape : shapeCopies) {
       builder.append("\n")
-              .append(shape.toString())
-              .append("\n");
+          .append(shape.toString())
+          .append("\n");
     }
 
     for (IAnimation animation : animations) {
@@ -53,7 +52,7 @@ public class TextualView extends AbstractView {
       }
 
       builder.append("\n")
-              .append(animation.toString(animationShapeCopy));
+          .append(animation.toString(animationShapeCopy));
 
       animation.animate(animationShapeCopy);
     }
@@ -64,7 +63,6 @@ public class TextualView extends AbstractView {
 
     String[] splitString = tempString.split(" t=");
     timeBuilder.append(splitString[0]);
-
 
     for (int i = 1; i < splitString.length; i++) {
       String sectionString = splitString[i];
@@ -80,10 +78,10 @@ public class TextualView extends AbstractView {
       double time = ticks / this.tempo;
 
       timeBuilder
-              .append(" t=")
-              .append(String.format("%.1f", time))
-              .append("s")
-              .append(sectionString.substring(j));
+          .append(" t=")
+          .append(String.format("%.1f", time))
+          .append("s")
+          .append(sectionString.substring(j));
     }
 
     return timeBuilder.toString();
@@ -95,8 +93,8 @@ public class TextualView extends AbstractView {
   }
 
   /**
-   * Produces a sorted list of shapes of all the shapes being animated on in this model.
-   * Each shape is cloned so that it can be modified.
+   * Produces a sorted list of shapes of all the shapes being animated on in this model. Each shape
+   * is cloned so that it can be modified.
    *
    * @return a sorted list of copied shapes
    */

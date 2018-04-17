@@ -50,6 +50,7 @@ public interface IAnimation extends Comparable<IAnimation> {
 
   /**
    * Returns the index of creation.
+   *
    * @return the index of creation
    */
   int getCreationIndex();
@@ -64,6 +65,7 @@ public interface IAnimation extends Comparable<IAnimation> {
 
   /**
    * Returns an animation summary object.
+   *
    * @param descripton the description
    * @return the summary of the animation, sortable.
    */
@@ -71,43 +73,49 @@ public interface IAnimation extends Comparable<IAnimation> {
 
   /**
    * Returns the start position of the animation if applicable.
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   *
    * @return the start position of the animation.
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
    */
   IPosition getStartPos();
 
   /**
    * Returns the end position of the animation if applicable.
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   *
    * @return the end position of the animation.
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
    */
   IPosition getEndPos();
 
   /**
    * Returns the start color of the animation if applicable.
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   *
    * @return the start color of the animation of applicable
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
    */
   IRGBColor getStartColor();
 
   /**
    * Returns the end color of the animation if applicable.
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   *
    * @return the end color of the animation of applicable
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
    */
   IRGBColor getEndColor();
 
-   /**
+  /**
    * Returns the start dimension of the animation if applicable.
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   *
    * @return the start dimension of the animation of applicable
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
    */
   IDimension getStartDimension();
 
   /**
    * Returns the end dimension of the animation if applicable.
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   *
    * @return the end dimension of the animation of applicable
+   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
    */
   IDimension getEndDimension();
 

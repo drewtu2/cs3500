@@ -1,22 +1,22 @@
 package cs3500.animator.provider.object;
 
-import java.util.Objects;
-
 import cs3500.animator.provider.util.NumUtil;
+import java.util.Objects;
 
 /**
  * Represents an RGB color where each color code falls in the range of [0.0, 1.0].
  */
 public class Color implements IColor {
+
   private static final double MIN_COLOR = 0.0;
   private static final double MAX_COLOR = 1.0;
 
   public static final String ERROR_RED_OUT_OF_BOUNDS =
-          "The red parameter must be within the range 0-1.";
+      "The red parameter must be within the range 0-1.";
   public static final String ERROR_GREEN_OUT_OF_BOUNDS =
-          "The green parameter must be within the range 0-1.";
+      "The green parameter must be within the range 0-1.";
   public static final String ERROR_BLUE_OUT_OF_BOUNDS =
-          "The blue parameter must be within the range 0-1.";
+      "The blue parameter must be within the range 0-1.";
 
   private double red;
   private double green;
@@ -26,9 +26,9 @@ public class Color implements IColor {
   /**
    * Constructs a Color object with the given red, green and blue parameters.
    *
-   * @param red   the red color this object should store
+   * @param red the red color this object should store
    * @param green the green color this object should store
-   * @param blue  the blue color this object should store
+   * @param blue the blue color this object should store
    * @throws IllegalArgumentException if any of the red, green or blue falls outside [0.0, 1.0]
    */
   public Color(double red, double green, double blue) throws IllegalArgumentException {
@@ -92,12 +92,12 @@ public class Color implements IColor {
     StringBuilder builder = new StringBuilder();
 
     builder.append("rgb(")
-            .append(NumUtil.convert1To255(this.getRed()))
-            .append(",")
-            .append(NumUtil.convert1To255(this.getGreen()))
-            .append(",")
-            .append(NumUtil.convert1To255(this.getBlue()))
-            .append(")");
+        .append(NumUtil.convert1To255(this.getRed()))
+        .append(",")
+        .append(NumUtil.convert1To255(this.getGreen()))
+        .append(",")
+        .append(NumUtil.convert1To255(this.getBlue()))
+        .append(")");
 
     return builder.toString();
   }
@@ -114,8 +114,8 @@ public class Color implements IColor {
 
     String[] colorStrings = s.split(",");
     return new Color(Double.valueOf(colorStrings[0]),
-            Double.valueOf(colorStrings[1]),
-            Double.valueOf(colorStrings[2]));
+        Double.valueOf(colorStrings[1]),
+        Double.valueOf(colorStrings[2]));
   }
 
   @Override
@@ -123,19 +123,19 @@ public class Color implements IColor {
     StringBuilder builder = new StringBuilder();
 
     builder.append("(")
-            .append(this.red)
-            .append(",")
-            .append(this.green)
-            .append(",")
-            .append(this.blue)
-            .append(")");
+        .append(this.red)
+        .append(",")
+        .append(this.green)
+        .append(",")
+        .append(this.blue)
+        .append(")");
 
     return builder.toString();
 
   }
 
   @Override
-  public boolean equals (Object a){
+  public boolean equals(Object a) {
     if (this == a) {
       return true;
     }
@@ -146,12 +146,12 @@ public class Color implements IColor {
     Color that = (Color) a;
 
     return ((Math.abs(this.red - that.red) < 0.01)
-            && (Math.abs(this.green - that.green) < 0.01)
-            && (Math.abs(this.blue - that.blue) < 0.01));
+        && (Math.abs(this.green - that.green) < 0.01)
+        && (Math.abs(this.blue - that.blue) < 0.01));
   }
 
   @Override
-  public int hashCode () {
+  public int hashCode() {
     return Objects.hash(this.red, this.green, this.blue);
   }
 }

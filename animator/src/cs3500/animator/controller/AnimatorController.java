@@ -194,7 +194,7 @@ public class AnimatorController implements IController {
 
   @Override
   public void close() {
-    if(outputAppendable instanceof FileWriter) {
+    if (outputAppendable instanceof FileWriter) {
       try {
         ((FileWriter) outputAppendable).flush();
         ((FileWriter) outputAppendable).close();

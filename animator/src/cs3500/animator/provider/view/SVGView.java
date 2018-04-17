@@ -1,32 +1,32 @@
 package cs3500.animator.provider.view;
 
+import cs3500.animator.provider.object.Color;
+import cs3500.animator.provider.object.IColor;
+import cs3500.animator.provider.object.animation.IAnimation;
+import cs3500.animator.provider.object.shape.IShape;
+import cs3500.animator.provider.object.shape.Oval;
+import cs3500.animator.provider.object.shape.Rectangle;
+import cs3500.animator.provider.util.NumUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cs3500.animator.provider.object.IColor;
-import cs3500.animator.provider.object.animation.IAnimation;
-import cs3500.animator.provider.object.shape.IShape;
-import cs3500.animator.provider.object.shape.Oval;
-import cs3500.animator.provider.object.shape.Rectangle;
-import cs3500.animator.provider.object.Color;
-import cs3500.animator.provider.util.NumUtil;
-
 /**
- * This class represents an SVG implementation of a view that can print out a string
- * XML-style description of the shapes/animations in the SVG format. See
- * https://www.w3.org/TR/SVG11/ for more information on the SVG format.
+ * This class represents an SVG implementation of a view that can print out a string XML-style
+ * description of the shapes/animations in the SVG format. See https://www.w3.org/TR/SVG11/ for more
+ * information on the SVG format.
  */
 public class SVGView extends TextualView {
 
 
-  private Map<Rectangle,List<String>> rectangles = new HashMap<>();
-  private Map<Oval,List<String>> ovals = new HashMap<>();
+  private Map<Rectangle, List<String>> rectangles = new HashMap<>();
+  private Map<Oval, List<String>> ovals = new HashMap<>();
 
   /**
    * Constructs a SVGView with the given animations.
+   *
    * @param animations the animations associated with this view
    * @param tempo the speed of the animation in ticks per second
    * @param out the appendable object to append the animation to
@@ -37,11 +37,10 @@ public class SVGView extends TextualView {
     for (IAnimation animation : animations) {
       IShape currentShape = animation.getShape();
       if (currentShape instanceof Rectangle
-              && !rectangles.containsKey(currentShape)) {
+          && !rectangles.containsKey(currentShape)) {
         rectangles.put((Rectangle) currentShape, new ArrayList<String>());
-      }
-      else if (currentShape instanceof Oval
-              && !ovals.containsKey(currentShape)) {
+      } else if (currentShape instanceof Oval
+          && !ovals.containsKey(currentShape)) {
         ovals.put((Oval) currentShape, new ArrayList<String>());
       }
     }
@@ -69,23 +68,24 @@ public class SVGView extends TextualView {
   @Override
   public String getAnimatorDescription() {
     StringBuilder builder = new StringBuilder();
-    builder.append("<svg width=\"10000\" height=\"10000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">");
+    builder.append(
+        "<svg width=\"10000\" height=\"10000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">");
     builder.append("\n");
-    
+
     for (Rectangle rect : rectangles.keySet()) {
       builder.append("<rect id=\"")
-              .append(rect.getName())
-              .append("\" x=\"")
-              .append(NumUtil.round(rect.getLocation().getX()))
-              .append("\" y=\"")
-              .append(NumUtil.round(rect.getLocation().getY()))
-              .append("\" width=\"")
-              .append(NumUtil.round(rect.getWidth()))
-              .append("\" height=\"")
-              .append(NumUtil.round(rect.getHeight()))
-              .append("\" fill=\"")
-              .append(rect.getColor().toSVG())
-                      .append("\" visibility=\"visible\" >");
+          .append(rect.getName())
+          .append("\" x=\"")
+          .append(NumUtil.round(rect.getLocation().getX()))
+          .append("\" y=\"")
+          .append(NumUtil.round(rect.getLocation().getY()))
+          .append("\" width=\"")
+          .append(NumUtil.round(rect.getWidth()))
+          .append("\" height=\"")
+          .append(NumUtil.round(rect.getHeight()))
+          .append("\" fill=\"")
+          .append(rect.getColor().toSVG())
+          .append("\" visibility=\"visible\" >");
       builder.append("\n");
 
       for (String animationTextual : rectangles.get(rect)) {
@@ -97,18 +97,18 @@ public class SVGView extends TextualView {
 
     for (Oval oval : ovals.keySet()) {
       builder.append("<ellipse id=\"")
-              .append(oval.getName())
-              .append("\" cx=\"")
-              .append(NumUtil.round(oval.getLocation().getX()))
-              .append("\" cy=\"")
-              .append(NumUtil.round(oval.getLocation().getY()))
-              .append("\" rx=\"")
-              .append(NumUtil.round(oval.getRadiusX()))
-              .append("\" ry=\"")
-              .append(NumUtil.round(oval.getRadiusY()))
-              .append("\" fill=\"")
-              .append(oval.getColor().toSVG())
-              .append("\" visibility=\"visible\" >");
+          .append(oval.getName())
+          .append("\" cx=\"")
+          .append(NumUtil.round(oval.getLocation().getX()))
+          .append("\" cy=\"")
+          .append(NumUtil.round(oval.getLocation().getY()))
+          .append("\" rx=\"")
+          .append(NumUtil.round(oval.getRadiusX()))
+          .append("\" ry=\"")
+          .append(NumUtil.round(oval.getRadiusY()))
+          .append("\" fill=\"")
+          .append(oval.getColor().toSVG())
+          .append("\" visibility=\"visible\" >");
       builder.append("\n");
 
       for (String animationTextual : ovals.get(oval)) {
@@ -119,7 +119,7 @@ public class SVGView extends TextualView {
     }
 
     builder.append("</svg>");
-    
+
     return builder.toString();
   }
 
@@ -134,7 +134,7 @@ public class SVGView extends TextualView {
    * @return the SVG description of the animation instance
    */
   private String buildAnimationSvg(String animationTextual, String locationXParam,
-                                   String locationYParam, String widthParam, String heightParam) {
+      String locationYParam, String widthParam, String heightParam) {
     StringBuilder builder = new StringBuilder();
     builder.append("    ");
 
@@ -146,11 +146,11 @@ public class SVGView extends TextualView {
 
     builder.append("<animate attributeType=\"xml\"");
     builder.append(" begin=\"")
-            .append(beginString)
-            .append("ms\"");
+        .append(beginString)
+        .append("ms\"");
     builder.append(" dur=\"")
-            .append(durationString)
-            .append("ms\"");
+        .append(durationString)
+        .append("ms\"");
 
     builder.append(" attributeName=\"");
 
@@ -161,13 +161,12 @@ public class SVGView extends TextualView {
       IColor endColor = Color.parseString(endColorString);
 
       builder.append("fill\"")
-              .append(" from=\"")
-              .append(startColor.toSVG())
-              .append("\" to=\"")
-              .append(endColor.toSVG())
-              .append("\"");
-    }
-    else if (animationTextual.contains("moves")) {
+          .append(" from=\"")
+          .append(startColor.toSVG())
+          .append("\" to=\"")
+          .append(endColor.toSVG())
+          .append("\"");
+    } else if (animationTextual.contains("moves")) {
       String startXPosition = animationTextual.split(" \\(")[1].split(",")[0];
       String endXPosition = animationTextual.split(" \\(")[2].split(",")[0];
       String startYPosition = animationTextual.split(" \\(")[1].split(",")[1].split("\\)")[0];
@@ -177,41 +176,38 @@ public class SVGView extends TextualView {
         StringBuilder endBuilder = new StringBuilder(builder);
 
         builder.append(locationXParam)
-                .append("\" from=\"")
-                .append(startXPosition)
-                .append("\" to=\"")
-                .append(endXPosition)
-                .append("\"");
+            .append("\" from=\"")
+            .append(startXPosition)
+            .append("\" to=\"")
+            .append(endXPosition)
+            .append("\"");
         builder.append(" fill=\"freeze\" />");
         builder.append("\n");
 
         endBuilder.append(locationYParam)
-                .append("\" from=\"")
-                .append(startYPosition)
-                .append("\" to=\"")
-                .append(endYPosition)
-                .append("\"");
+            .append("\" from=\"")
+            .append(startYPosition)
+            .append("\" to=\"")
+            .append(endYPosition)
+            .append("\"");
 
         builder.append(endBuilder);
-      }
-      else if (!startXPosition.equals(endXPosition)) {
+      } else if (!startXPosition.equals(endXPosition)) {
         builder.append(locationXParam)
-                .append("\" from=\"")
-                .append(startXPosition)
-                .append("\" to=\"")
-                .append(endXPosition)
-                .append("\"");
-      }
-      else if (!startYPosition.equals(endYPosition)) {
+            .append("\" from=\"")
+            .append(startXPosition)
+            .append("\" to=\"")
+            .append(endXPosition)
+            .append("\"");
+      } else if (!startYPosition.equals(endYPosition)) {
         builder.append(locationYParam)
-                .append("\" from=\"")
-                .append(startYPosition)
-                .append("\" to=\"")
-                .append(endYPosition)
-                .append("\"");
+            .append("\" from=\"")
+            .append(startYPosition)
+            .append("\" to=\"")
+            .append(endYPosition)
+            .append("\"");
       }
-    }
-    else if (animationTextual.contains("scale")) {
+    } else if (animationTextual.contains("scale")) {
       String startWidth = animationTextual.split(": ")[1].split(",")[0];
       String startHeight = animationTextual.split(": ")[2].split(" ")[0];
       String endWidth = animationTextual.split(": ")[3].split(",")[0];
@@ -221,38 +217,36 @@ public class SVGView extends TextualView {
         StringBuilder endBuilder = new StringBuilder(builder);
 
         builder.append(widthParam)
-                .append("\" from=\"")
-                .append(startWidth)
-                .append("\" to=\"")
-                .append(endWidth)
-                .append("\"");
+            .append("\" from=\"")
+            .append(startWidth)
+            .append("\" to=\"")
+            .append(endWidth)
+            .append("\"");
         builder.append(" fill=\"freeze\" />");
         builder.append("\n");
 
         endBuilder.append(heightParam)
-                .append("\" from=\"")
-                .append(startHeight)
-                .append("\" to=\"")
-                .append(endHeight)
-                .append("\"");
+            .append("\" from=\"")
+            .append(startHeight)
+            .append("\" to=\"")
+            .append(endHeight)
+            .append("\"");
 
         builder.append(endBuilder);
-      }
-      else if (!startWidth.equals(endWidth)) {
+      } else if (!startWidth.equals(endWidth)) {
         builder.append(widthParam)
-                .append("\" from=\"")
-                .append(startWidth)
-                .append("\" to=\"")
-                .append(endWidth)
-                .append("\"");
-      }
-      else if (!startHeight.equals(endHeight)) {
+            .append("\" from=\"")
+            .append(startWidth)
+            .append("\" to=\"")
+            .append(endWidth)
+            .append("\"");
+      } else if (!startHeight.equals(endHeight)) {
         builder.append(heightParam)
-                .append("\" from=\"")
-                .append(startHeight)
-                .append("\" to=\"")
-                .append(endHeight)
-                .append("\"");
+            .append("\" from=\"")
+            .append(startHeight)
+            .append("\" to=\"")
+            .append(endHeight)
+            .append("\"");
       }
     }
     builder.append(" fill=\"freeze\" />");

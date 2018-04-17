@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * This class represents a 2D position. **Taken from lecture notes.**
  */
-public final class Position2D implements IPosition{
+public final class Position2D implements IPosition {
 
   private final float x;
   private final float y;
@@ -37,7 +37,7 @@ public final class Position2D implements IPosition{
    * Copy constructor.
    */
   public Position2D(IPosition v) {
-    this(((Position2D)v).x, ((Position2D)v).y);
+    this(((Position2D) v).x, ((Position2D) v).y);
   }
 
   @Override
