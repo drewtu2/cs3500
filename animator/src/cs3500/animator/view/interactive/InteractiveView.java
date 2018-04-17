@@ -24,7 +24,9 @@ import javax.swing.Timer;
 import javax.swing.event.ChangeListener;
 
 /**
- * Class representing the visual view of an animator.
+ * Class representing the interactive view of an animator. Extends the function of the visual view
+ * by offering user the ability to control and change what objects are show, speed of animation and
+ * ability to start/pause/reset the animation.
  */
 public class InteractiveView implements IInteractive {
 

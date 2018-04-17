@@ -27,7 +27,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Class responsible for converting our model implementation to our provider's implementation.
+ * Class responsible for converting our model implementation to our provider's implementation. This
+ * class serves as the providers animator model.
  */
 public class ModelAdapter implements IAnimatorModel {
 
