@@ -75,7 +75,8 @@ public interface IAnimation extends Comparable<IAnimation> {
    * Returns the start position of the animation if applicable.
    *
    * @return the start position of the animation.
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @throws UnsupportedOperationException if the method does not apply to the specific
+   *     animation.
    */
   IPosition getStartPos();
 
@@ -83,7 +84,8 @@ public interface IAnimation extends Comparable<IAnimation> {
    * Returns the end position of the animation if applicable.
    *
    * @return the end position of the animation.
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @throws UnsupportedOperationException if the method does not apply to the specific
+   *     animation.
    */
   IPosition getEndPos();
 
@@ -91,7 +93,8 @@ public interface IAnimation extends Comparable<IAnimation> {
    * Returns the start color of the animation if applicable.
    *
    * @return the start color of the animation of applicable
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @throws UnsupportedOperationException if the method does not apply to the specific
+   *     animation.
    */
   IRGBColor getStartColor();
 
@@ -99,7 +102,8 @@ public interface IAnimation extends Comparable<IAnimation> {
    * Returns the end color of the animation if applicable.
    *
    * @return the end color of the animation of applicable
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @throws UnsupportedOperationException if the method does not apply to the specific
+   *     animation.
    */
   IRGBColor getEndColor();
 
@@ -107,7 +111,8 @@ public interface IAnimation extends Comparable<IAnimation> {
    * Returns the start dimension of the animation if applicable.
    *
    * @return the start dimension of the animation of applicable
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @throws UnsupportedOperationException if the method does not apply to the specific
+   *     animation.
    */
   IDimension getStartDimension();
 
@@ -115,7 +120,8 @@ public interface IAnimation extends Comparable<IAnimation> {
    * Returns the end dimension of the animation if applicable.
    *
    * @return the end dimension of the animation of applicable
-   * @throws UnsupportedOperationException if the method does not apply to the specific animation.
+   * @throws UnsupportedOperationException if the method does not apply to the specific
+   *     animation.
    */
   IDimension getEndDimension();
 

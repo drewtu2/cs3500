@@ -19,8 +19,8 @@ public interface IDimension {
    * @param endTime the end time we have for the transition
    * @param time the time we're looking at
    * @return the dimension at that time
-   * @throws IllegalArgumentException if the time is outside the duration or is not of the correct
-   * IDimension
+   * @throws IllegalArgumentException if the time is outside the duration or is not of the
+   *     correct IDimension
    */
   IDimension getIntermediate(IDimension end, int startTime, int endTime, int time)
       throws IllegalArgumentException;

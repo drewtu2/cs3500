@@ -19,7 +19,7 @@ public abstract class AbstractCanvasObject implements ICanvasObject {
    * @param startTime the time to show the object
    * @param endTime the time to hide the object
    * @throws IllegalArgumentException if the total duration of the object is 0 or less or if the
-   *         start time is negative
+   *     start time is negative
    */
   public AbstractCanvasObject(int startTime, int endTime) throws IllegalArgumentException {
     if (endTime <= startTime) {

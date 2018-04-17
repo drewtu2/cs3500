@@ -32,7 +32,8 @@ public interface IAnimatorModel extends IModelView {
    *
    * @param shapeName which shape is being applied to
    * @param animation the animation to be applied
-   * @throws IllegalArgumentException if the requested shape doesn't exist or if conflict occurs
+   * @throws IllegalArgumentException if the requested shape doesn't exist or if conflict
+   *     occurs
    */
   void addAnimation(String shapeName, IAnimation animation) throws IllegalArgumentException;
 

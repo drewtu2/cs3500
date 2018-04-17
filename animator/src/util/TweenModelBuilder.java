@@ -55,14 +55,14 @@ public interface TweenModelBuilder<T> {
    * Move the specified shape to the given position during the given time interval.
    *
    * @param name the unique name of the shape to be moved
-   * @param moveFromX the x-coordinate of the initial position of this shape. What this x-coordinate
-   * represents depends on the shape.
-   * @param moveFromY the y-coordinate of the initial position of this shape. what this y-coordinate
-   * represents depends on the shape.
+   * @param moveFromX the x-coordinate of the initial position of this shape. What this
+   *     x-coordinate represents depends on the shape.
+   * @param moveFromY the y-coordinate of the initial position of this shape. what this
+   *     y-coordinate represents depends on the shape.
    * @param moveToX the x-coordinate of the final position of this shape. What this x-coordinate
-   * represents depends on the shape.
+   *     represents depends on the shape.
    * @param moveToY the y-coordinate of the final position of this shape. what this y-coordinate
-   * represents depends on the shape.
+   *     represents depends on the shape.
    * @param startTime the time tick at which this movement should start
    * @param endTime the time tick at which this movement should end
    */
