@@ -1,6 +1,6 @@
 package cs3500.animator.controller.listeners;
 
-import static util.MyUtil.checkNull;
+import static util.IUtil.checkNull;
 
 import cs3500.animator.view.interactive.IInteractive;
 import javax.swing.JSlider;

@@ -1,7 +1,7 @@
 package cs3500.animator.view.visual;
 
-import static util.MyUtil.checkNull;
-import static util.MyUtil.duplicateMap;
+import static util.IUtil.checkNull;
+import static util.IUtil.duplicateMap;
 
 import cs3500.animator.model.IModelView;
 import cs3500.animator.shape.IAnimatedShape;

@@ -1,6 +1,6 @@
 package cs3500.animator.model;
 
-import static util.MyUtil.duplicateMap;
+import static util.IUtil.duplicateMap;
 
 import cs3500.animator.animation.AnimationFactory;
 import cs3500.animator.animation.AnimationType;

@@ -1,7 +1,7 @@
 package cs3500.animator.shape.dimension;
 
 import java.util.Objects;
-import util.MyUtil;
+import util.IUtil;
 
 /**
  * Represents the dimensions for a Width x Height rectangle.
@@ -51,9 +51,9 @@ public class WidthHeightDim implements IDimension {
       throw new IllegalArgumentException("Time out of bonunds");
     }
 
-    float newHeight = MyUtil.interpolate(this.height, ((WidthHeightDim) end).height,
+    float newHeight = IUtil.interpolate(this.height, ((WidthHeightDim) end).height,
         startTime, endTime, time);
-    float newWidth = MyUtil.interpolate(this.width, ((WidthHeightDim) end).width,
+    float newWidth = IUtil.interpolate(this.width, ((WidthHeightDim) end).width,
         startTime, endTime, time);
 
     return new WidthHeightDim(newWidth, newHeight);

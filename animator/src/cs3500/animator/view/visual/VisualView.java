@@ -1,6 +1,6 @@
 package cs3500.animator.view.visual;
 
-import static util.MyUtil.checkNull;
+import static util.IUtil.checkNull;
 
 import cs3500.animator.model.IModelView;
 import cs3500.animator.view.IView;

@@ -116,6 +116,11 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
   }
 
   @Override
+  public IAnimatedShape makeCopy() {
+    return ShapeFactory.getShape(this);
+  }
+
+  @Override
   public int compareTo(IAnimatedShape o) {
     return this.creationIndex - o.getCreationIndex();
   }

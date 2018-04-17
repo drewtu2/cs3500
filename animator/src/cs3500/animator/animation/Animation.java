@@ -4,7 +4,7 @@ import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.IShape;
 import cs3500.animator.shape.dimension.IDimension;
-import util.MyUtil;
+import util.IUtil;
 
 /**
  * Represents the general body of an animation.
@@ -111,7 +111,7 @@ public abstract class Animation implements IAnimation {
    * @param time the point in time we're looking for
    */
   protected float interpolate(float startValue, float endValue, int time) {
-    return MyUtil.interpolate(startValue, endValue, startTime, endTime, time);
+    return IUtil.interpolate(startValue, endValue, startTime, endTime, time);
   }
 
 }

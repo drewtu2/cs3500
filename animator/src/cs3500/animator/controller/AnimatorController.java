@@ -1,6 +1,6 @@
 package cs3500.animator.controller;
 
-import static util.MyUtil.checkNull;
+import static util.IUtil.checkNull;
 
 import cs3500.animator.controller.listeners.ButtonListener;
 import cs3500.animator.controller.listeners.SliderChangeListener;

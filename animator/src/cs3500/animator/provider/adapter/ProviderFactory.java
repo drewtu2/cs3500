@@ -1,6 +1,6 @@
 package cs3500.animator.provider.adapter;
 
-import static util.MyUtil.checkNull;
+import static util.IUtil.checkNull;
 
 import cs3500.animator.model.IAnimatorModel;
 import cs3500.animator.provider.object.animation.IAnimation;
