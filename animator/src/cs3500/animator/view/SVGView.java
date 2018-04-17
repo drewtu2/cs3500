@@ -11,8 +11,6 @@ import cs3500.animator.shape.IAnimatedShape;
 import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.ShapeType;
-import cs3500.animator.shape.concrete.Oval;
-import cs3500.animator.shape.concrete.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;

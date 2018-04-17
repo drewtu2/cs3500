@@ -3,6 +3,7 @@ package cs3500.animator.provider.controller;
 import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.object.shape.IShape;
 import cs3500.animator.provider.view.HybridView;
+import cs3500.animator.provider.view.IView;
 import cs3500.animator.provider.view.ProviderFactory;
 import java.awt.event.ActionEvent;
 import java.io.FileWriter;
@@ -123,15 +124,14 @@ public class HybridViewController implements IInteractiveController {
   public void onShapeVisibilityChanged(IShape shape, boolean selected) {
     System.out.println("Visibility changed");
 
-    if(selected)
-    {
+    if (selected) {
       shapes.add(shape);
     } else {
       shapes.remove(shape);
     }
 
     Collections.sort(shapes, (IShape o1, IShape o2) -> {
-      return shapeOrder.get(o1) - shapeOrder.get(o2);
+      return shapeOrder.get(o1).compareTo(shapeOrder.get(o2));
     });
 
   }
@@ -140,9 +140,13 @@ public class HybridViewController implements IInteractiveController {
   public void onExportClicked(String filename) {
     try {
       Appendable myApp = new FileWriter(filename);
-      ProviderFactory.getView(this.animations, "providersvg", myApp, (int) this.tempo);
-      ((FileWriter)myApp).flush();
-      ((FileWriter)myApp).close();
+      Collections.sort(animations);
+      IView view = ProviderFactory
+          .getView(this.animations, "providersvg", myApp, (int) this.tempo);
+
+      view.writeAnimatorDescription();
+      ((FileWriter) myApp).flush();
+      ((FileWriter) myApp).close();
 
     } catch (IOException e) {
       hView.showExportError(e.getMessage());

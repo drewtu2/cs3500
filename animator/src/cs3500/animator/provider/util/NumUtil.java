@@ -28,7 +28,7 @@ public class NumUtil {
    * @param rgb one attribute val
    * @return converted double
    */
-  public static double convert1To255(double rgb) {
-    return rgb * 255;
+  public static int convert1To255(double rgb) {
+    return (int) (rgb * 255);
   }
 }

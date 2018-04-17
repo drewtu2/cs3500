@@ -1,10 +1,9 @@
 package cs3500.animator.provider.model;
 
-import java.util.List;
-import java.util.Map;
-
 import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.object.shape.IShape;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Represents the operations that can be performed on a model that holds animations for use on

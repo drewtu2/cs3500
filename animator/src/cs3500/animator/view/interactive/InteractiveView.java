@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -157,14 +158,17 @@ public class InteractiveView implements IInteractive {
   @Override
   public void export() {
     try {
-      IView exToSVG = ViewFactory.getView("svg", cp.getExportFilename(), loop);
+      FileWriter writer = new FileWriter(cp.getExportFilename());
+      IView exToSVG = ViewFactory.getView("svg", writer, loop);
       IModelView exportModel = originalMV.getCopy();
       exportModel.addMap(exportModel.getFullState(), shapeEnabled);
       exToSVG.show(exportModel, speed);
       System.out.println("Export");
       System.out.println("File name: " + cp.getExportFilename());
+      writer.flush();
+      writer.close();
     } catch (IOException e) {
-      // stuff
+      System.err.println(e);
     }
   }
 
