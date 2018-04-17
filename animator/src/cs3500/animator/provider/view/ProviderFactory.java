@@ -1,13 +1,11 @@
 package cs3500.animator.provider.view;
 
-import java.io.IOException;
-import java.util.List;
+import static util.MyUtil.checkNull;
 
 import cs3500.animator.model.IAnimatorModel;
 import cs3500.animator.provider.adapter.ModelAdapter;
 import cs3500.animator.provider.object.animation.IAnimation;
-
-import static util.MyUtil.checkNull;
+import java.util.List;
 
 /**
  * Creates the provider's view.

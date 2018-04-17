@@ -19,6 +19,7 @@ public class EasyAnimator {
     try {
       IController myAnimation = new AnimatorController.Builder().buildFromInputArgs(args);
       myAnimation.playAnimation();
+      myAnimation.close();
     } catch (IOException e) {
       System.out.println("An IOException occured....");
     }

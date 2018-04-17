@@ -2,14 +2,15 @@ package cs3500.animator.controller;
 
 import static util.MyUtil.checkNull;
 
+import cs3500.animator.controller.listeners.ButtonListener;
+import cs3500.animator.controller.listeners.SliderChangeListener;
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.IAnimatorModel;
 import cs3500.animator.model.IModelView;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.interactive.IInteractive;
-import cs3500.animator.controller.listeners.ButtonListener;
-import cs3500.animator.controller.listeners.SliderChangeListener;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -129,6 +130,7 @@ public class AnimatorController implements IController {
 
   protected IAnimatorModel myModel;
   private IView myView = null;
+  protected Appendable outputAppendable;
   protected int speed;
 
   /**
@@ -138,10 +140,34 @@ public class AnimatorController implements IController {
    * @param inputView the view we're using.
    * @param inputSpeed the speed we're using.
    */
-  public AnimatorController(IAnimatorModel inputModel, cs3500.animator.view.IView inputView, int inputSpeed) {
+  public AnimatorController(IAnimatorModel inputModel, cs3500.animator.view.IView inputView,
+      int inputSpeed) {
     myModel = inputModel;
     myView = inputView;
     speed = inputSpeed;
+
+    // Configure the listeners if we're using the interactive view
+    if ((myView instanceof IInteractive)) {
+      ActionListener buttons = configureButtonListener();
+      ChangeListener speedListener = configureSpeedListener();
+      ((IInteractive) myView).setListeners(buttons, speedListener);
+      ((IInteractive) myView).setSpeed(speed);
+    }
+  }
+
+  /**
+   * Constructs a controller.
+   *
+   * @param inputModel the model we're using.
+   * @param inputView the view we're using.
+   * @param inputSpeed the speed we're using.
+   */
+  public AnimatorController(IAnimatorModel inputModel, cs3500.animator.view.IView inputView,
+      int inputSpeed, Appendable output) {
+    myModel = inputModel;
+    myView = inputView;
+    speed = inputSpeed;
+    outputAppendable = output;
 
     // Configure the listeners if we're using the interactive view
     if ((myView instanceof IInteractive)) {
@@ -158,7 +184,7 @@ public class AnimatorController implements IController {
     IModelView myMV = myModel;
 
     try {
-        myView.show(myMV, speed);
+      myView.show(myMV, speed);
 
     } catch (IOException e) {
       System.err.println("IOException occured...");
@@ -166,8 +192,21 @@ public class AnimatorController implements IController {
     }
   }
 
+  @Override
+  public void close() {
+    if(outputAppendable instanceof FileWriter) {
+      try {
+        ((FileWriter) outputAppendable).flush();
+        ((FileWriter) outputAppendable).close();
+      } catch (IOException e) {
+        System.err.println(e);
+      }
+    }
+  }
+
   /**
    * Set up the button listener.
+   *
    * @return an action listener for the buttons.
    */
   private ActionListener configureButtonListener() {
@@ -215,6 +254,7 @@ public class AnimatorController implements IController {
 
   /**
    * Configure listener for the speed slider.
+   *
    * @return the change listener
    */
   private ChangeListener configureSpeedListener() {

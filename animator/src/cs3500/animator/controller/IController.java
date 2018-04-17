@@ -10,4 +10,9 @@ public interface IController {
    */
   void playAnimation();
 
+  /**
+   * Closes the Controller gracefully. If the controller owns objects that need to be closed, that is
+   * taken care of here.
+   */
+  void close();
 }

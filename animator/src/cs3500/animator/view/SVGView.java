@@ -13,7 +13,6 @@ import cs3500.animator.shape.IRGBColor;
 import cs3500.animator.shape.ShapeType;
 import cs3500.animator.shape.concrete.Oval;
 import cs3500.animator.shape.concrete.Rectangle;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -82,10 +81,6 @@ public class SVGView implements IView {
 
     output.append("</svg>\n");
 
-    if (output.getClass() == FileWriter.class) {
-      ((FileWriter) output).flush();
-      ((FileWriter) output).close();
-    }
   }
 
 
