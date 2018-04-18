@@ -3,7 +3,7 @@ package cs3500.animator.provider.controller;
 import cs3500.animator.provider.adapter.ProviderFactory;
 import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.object.shape.IShape;
-import cs3500.animator.provider.view.HybridView;
+import cs3500.animator.provider.view.IInteractiveView;
 import cs3500.animator.provider.view.IView;
 import java.awt.event.ActionEvent;
 import java.io.FileWriter;
@@ -20,7 +20,7 @@ import javax.swing.Timer;
  */
 public class HybridViewController implements IInteractiveController {
 
-  private HybridView hView;
+  private IInteractiveView hView;
   private List<IAnimation> animations;
   private List<IShape> shapes;
   private Map<IShape, Integer> shapeOrder;
@@ -40,7 +40,7 @@ public class HybridViewController implements IInteractiveController {
    * @param shapeOrder the order of the shapes.
    * @param tempoIn the speed in.
    */
-  public HybridViewController(HybridView hView, List<IAnimation> animations,
+  public HybridViewController(IInteractiveView hView, List<IAnimation> animations,
       List<IShape> shapes, Map<IShape, Integer> shapeOrder,
       double tempoIn) {
     this.hView = hView;
@@ -223,7 +223,7 @@ public class HybridViewController implements IInteractiveController {
    *
    * @return a sorted list of copied animaitons
    */
-  private List<IAnimation> getVisibleAnimationCopies(List<IAnimation> animations_in) {
+  private List<IAnimation> getVisibleAnimationCopies(List<IAnimation> animationsIn) {
     List<IAnimation> newAnimations = new ArrayList<IAnimation>();
     Map<String, IShape> shapesTracker = new HashMap<>();
     double currentX;

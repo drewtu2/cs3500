@@ -1,11 +1,8 @@
 package cs3500.animator.provider.view;
 
-import cs3500.animator.provider.object.Color;
 import cs3500.animator.provider.object.IColor;
 import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.object.shape.IShape;
-import cs3500.animator.provider.object.shape.Oval;
-import cs3500.animator.provider.object.shape.Rectangle;
 import cs3500.animator.provider.util.NumUtil;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,8 +18,8 @@ import java.util.Map;
 public class SVGView extends TextualView {
 
 
-  private Map<Rectangle, List<String>> rectangles = new HashMap<>();
-  private Map<Oval, List<String>> ovals = new HashMap<>();
+  private Map<IShape, List<String>> rectangles = new HashMap<>();
+  private Map<IShape, List<String>> ovals = new HashMap<>();
 
   /**
    * Constructs a SVGView with the given animations.
@@ -36,12 +33,12 @@ public class SVGView extends TextualView {
 
     for (IAnimation animation : animations) {
       IShape currentShape = animation.getShape();
-      if (currentShape instanceof Rectangle
+      if (currentShape.getType().equalsIgnoreCase("rectangle")
           && !rectangles.containsKey(currentShape)) {
-        rectangles.put((Rectangle) currentShape, new ArrayList<String>());
-      } else if (currentShape instanceof Oval
+        rectangles.put(currentShape, new ArrayList<String>());
+      } else if (currentShape.getType().equalsIgnoreCase("oval")
           && !ovals.containsKey(currentShape)) {
-        ovals.put((Oval) currentShape, new ArrayList<String>());
+        ovals.put(currentShape, new ArrayList<String>());
       }
     }
 
@@ -50,13 +47,13 @@ public class SVGView extends TextualView {
     for (int i = 1; i < animationStrings.length; i++) {
       String shapeName = animationStrings[i].split(" ")[0];
 
-      for (Rectangle rect : rectangles.keySet()) {
+      for (IShape rect : rectangles.keySet()) {
         if (shapeName.equals(rect.getName())) {
           List<String> animationDescriptors = rectangles.get(rect);
           animationDescriptors.add(animationStrings[i]);
         }
       }
-      for (Oval oval : ovals.keySet()) {
+      for (IShape oval : ovals.keySet()) {
         if (shapeName.equals(oval.getName())) {
           List<String> animationDescriptors = ovals.get(oval);
           animationDescriptors.add(animationStrings[i]);
@@ -72,7 +69,7 @@ public class SVGView extends TextualView {
         "<svg width=\"10000\" height=\"10000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">");
     builder.append("\n");
 
-    for (Rectangle rect : rectangles.keySet()) {
+    for (IShape rect : rectangles.keySet()) {
       builder.append("<rect id=\"")
           .append(rect.getName())
           .append("\" x=\"")
@@ -80,9 +77,9 @@ public class SVGView extends TextualView {
           .append("\" y=\"")
           .append(NumUtil.round(rect.getLocation().getY()))
           .append("\" width=\"")
-          .append(NumUtil.round(rect.getWidth()))
+          .append(NumUtil.round(rect.getX()))
           .append("\" height=\"")
-          .append(NumUtil.round(rect.getHeight()))
+          .append(NumUtil.round(rect.getY()))
           .append("\" fill=\"")
           .append(rect.getColor().toSVG())
           .append("\" visibility=\"visible\" >");
@@ -95,7 +92,7 @@ public class SVGView extends TextualView {
       builder.append("</rect>\n");
     }
 
-    for (Oval oval : ovals.keySet()) {
+    for (IShape oval : ovals.keySet()) {
       builder.append("<ellipse id=\"")
           .append(oval.getName())
           .append("\" cx=\"")
@@ -103,9 +100,9 @@ public class SVGView extends TextualView {
           .append("\" cy=\"")
           .append(NumUtil.round(oval.getLocation().getY()))
           .append("\" rx=\"")
-          .append(NumUtil.round(oval.getRadiusX()))
+          .append(NumUtil.round(oval.getX()))
           .append("\" ry=\"")
-          .append(NumUtil.round(oval.getRadiusY()))
+          .append(NumUtil.round(oval.getY()))
           .append("\" fill=\"")
           .append(oval.getColor().toSVG())
           .append("\" visibility=\"visible\" >");
@@ -157,8 +154,8 @@ public class SVGView extends TextualView {
     if (animationTextual.contains("changes color")) {
       String startColorString = animationTextual.split(" ")[4];
       String endColorString = animationTextual.split(" ")[6];
-      IColor startColor = Color.parseString(startColorString);
-      IColor endColor = Color.parseString(endColorString);
+      IColor startColor = IColor.parseString(startColorString);
+      IColor endColor = IColor.parseString(endColorString);
 
       builder.append("fill\"")
           .append(" from=\"")
@@ -166,7 +163,7 @@ public class SVGView extends TextualView {
           .append("\" to=\"")
           .append(endColor.toSVG())
           .append("\"");
-    } else if (animationTextual.contains("moves")) {
+    } else if (animationTextual.contains("move")) {
       String startXPosition = animationTextual.split(" \\(")[1].split(",")[0];
       String endXPosition = animationTextual.split(" \\(")[2].split(",")[0];
       String startYPosition = animationTextual.split(" \\(")[1].split(",")[1].split("\\)")[0];
@@ -247,6 +244,8 @@ public class SVGView extends TextualView {
             .append("\" to=\"")
             .append(endHeight)
             .append("\"");
+      } else {
+        builder.append("\"");
       }
     }
     builder.append(" fill=\"freeze\" />");

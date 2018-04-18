@@ -39,9 +39,7 @@ public class SVGView implements IView {
    * @param out Appendable to write to.
    */
   public SVGView(Appendable out, boolean loop) {
-    if (out == null) {
-      throw new NullPointerException();
-    }
+    checkNull(out);
 
     output = out;
     speed = 1;

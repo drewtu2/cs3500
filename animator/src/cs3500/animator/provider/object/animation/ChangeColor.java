@@ -35,13 +35,14 @@ public class ChangeColor extends AbstractAnimation {
     this.target = target;
   }
 
-  /**
-   * A getter for the target.
-   *
-   * @return the target color
-   */
-  public IColor getTarget() {
+  @Override
+  public IColor getEndColor() {
     return this.target;
+  }
+
+  @Override
+  public String getType() {
+    return "change color";
   }
 
   @Override

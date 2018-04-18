@@ -2,10 +2,8 @@ package cs3500.animator.provider.view;
 
 //import java.awt.*;
 
-import cs3500.animator.provider.controller.HybridViewController;
 import cs3500.animator.provider.controller.IInteractiveController;
 import cs3500.animator.provider.object.animation.IAnimation;
-import cs3500.animator.provider.object.animation.Move;
 import cs3500.animator.provider.object.shape.IShape;
 import cs3500.animator.provider.util.NumUtil;
 import java.awt.BorderLayout;
@@ -40,7 +38,6 @@ public class HybridView extends AbstractView implements IInteractiveView {
   private JSlider slider;
   private JLabel sliderText;
   private JTextField svgFileName;
-  private IInteractiveController controller;
 
   /**
    * Constructs a HybridView with the given animations.
@@ -53,6 +50,15 @@ public class HybridView extends AbstractView implements IInteractiveView {
   public HybridView(List<IAnimation> animations, List<IShape> shapes,
       Map<IShape, Integer> shapeOrder, double tempo) {
     super(animations, shapes, tempo);
+  }
+
+  @Override
+  public void animate() {
+    this.setVisible(true);
+  }
+
+  @Override
+  public void setController(IInteractiveController controller) {
     JScrollPane scrollPane;
     JScrollPane checkboxScrollPane;
     JButton start;
@@ -69,7 +75,6 @@ public class HybridView extends AbstractView implements IInteractiveView {
 
     // create a borderlayout with drawing panel in center
     this.setLayout(new BorderLayout());
-    this.controller = new HybridViewController(this, animations, shapes, shapeOrder, tempo);
     shapePanel = new ShapePanel(controller.getVisibleShapes());
     initializeShapePanelSize();
     scrollPane = new JScrollPane(shapePanel);
@@ -81,7 +86,7 @@ public class HybridView extends AbstractView implements IInteractiveView {
     resume = new JButton("Resume");
     restart = new JButton("Restart");
     loopCheckBox = new JCheckBox("Loop", false);
-    this.sliderText = new JLabel("Tempo: " + String.valueOf(tempo));
+    sliderText = new JLabel("Tempo: " + String.valueOf(tempo));
     DefaultBoundedRangeModel model = new DefaultBoundedRangeModel((int) tempo, 0, 0,
         Integer.max(100, (int) tempo));
     this.slider = new JSlider(model);
@@ -168,11 +173,6 @@ public class HybridView extends AbstractView implements IInteractiveView {
     this.animate();
   }
 
-  @Override
-  public void animate() {
-    this.setVisible(true);
-  }
-
   /**
    * Determines the optimal size for the shape panel based on the shapes and where they move. Sets
    * this calculated size as the preferred size of the shape panel.
@@ -187,10 +187,9 @@ public class HybridView extends AbstractView implements IInteractiveView {
     }
 
     for (IAnimation animation : animations) {
-      if (animation instanceof Move) {
-        Move move = (Move) animation;
-        maxWidth = Integer.max(maxWidth, NumUtil.round(move.getDestination().getX()));
-        maxHeight = Integer.max(maxHeight, NumUtil.round(move.getDestination().getY()));
+      if (animation.getType().equalsIgnoreCase("move")) {
+        maxWidth = Integer.max(maxWidth, NumUtil.round(animation.getEndPosition().getX()));
+        maxHeight = Integer.max(maxHeight, NumUtil.round(animation.getEndPosition().getY()));
       }
     }
 

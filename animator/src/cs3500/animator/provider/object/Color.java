@@ -11,11 +11,11 @@ public class Color implements IColor {
   private static final double MIN_COLOR = 0.0;
   private static final double MAX_COLOR = 1.0;
 
-  public static final String ERROR_RED_OUT_OF_BOUNDS =
+  private static final String ERROR_RED_OUT_OF_BOUNDS =
       "The red parameter must be within the range 0-1.";
-  public static final String ERROR_GREEN_OUT_OF_BOUNDS =
+  private static final String ERROR_GREEN_OUT_OF_BOUNDS =
       "The green parameter must be within the range 0-1.";
-  public static final String ERROR_BLUE_OUT_OF_BOUNDS =
+  private static final String ERROR_BLUE_OUT_OF_BOUNDS =
       "The blue parameter must be within the range 0-1.";
 
   private double red;
@@ -47,47 +47,27 @@ public class Color implements IColor {
     this.blue = blue;
   }
 
-  /**
-   * A getter for the red color.
-   *
-   * @return this color's red value
-   */
+  @Override
   public double getRed() {
     return this.red;
   }
 
-  /**
-   * A getter for the green color.
-   *
-   * @return this color's green value
-   */
+  @Override
   public double getGreen() {
     return this.green;
   }
 
-  /**
-   * A getter for the blue color.
-   *
-   * @return this color's blue value
-   */
+  @Override
   public double getBlue() {
     return this.blue;
   }
 
-  /**
-   * Converts this color object to a Java awt color object.
-   *
-   * @return the awt color object
-   */
+  @Override
   public java.awt.Color transformToAwt() {
     return new java.awt.Color((float) this.red, (float) this.green, (float) this.blue);
   }
 
-  /**
-   * Converts the colors to an SVG string format.
-   *
-   * @return the SVG string
-   */
+  @Override
   public String toSVG() {
     StringBuilder builder = new StringBuilder();
 

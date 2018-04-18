@@ -1,6 +1,8 @@
 package cs3500.animator.provider.object.animation;
 
 import cs3500.animator.provider.object.AbstractCanvasObject;
+import cs3500.animator.provider.object.IColor;
+import cs3500.animator.provider.object.Posn;
 import cs3500.animator.provider.object.shape.IShape;
 
 
@@ -9,13 +11,13 @@ import cs3500.animator.provider.object.shape.IShape;
  */
 public abstract class AbstractAnimation extends AbstractCanvasObject implements IAnimation {
 
-  public static final String ERROR_NULL_SHAPE =
+  private static final String ERROR_NULL_SHAPE =
       "The shape cannot be null.";
-  public static final String ERROR_START_TOO_EARLY =
+  private static final String ERROR_START_TOO_EARLY =
       "The animation cannot start before the shape appears";
-  public static final String ERROR_START_TOO_LATE =
+  private static final String ERROR_START_TOO_LATE =
       "The animation cannot start after the shape has disappeared";
-  public static final String ERROR_NULL_ANIMATION =
+  private static final String ERROR_NULL_ANIMATION =
       "The animation cannot be null.";
 
   protected IShape shape;
@@ -51,14 +53,7 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
     this.animationStarted = false;
   }
 
-  /**
-   * Checks whether this animation makes for an incompatible move with the other animation, meaning
-   * that both animations perform the same type of alteration on the same shape at overlapping
-   * times.
-   *
-   * @param other the animation to check this one against
-   * @throws IllegalArgumentException if the given animation is null
-   */
+  @Override
   public boolean conflictsWithAnimation(IAnimation other) throws IllegalArgumentException {
     if (other == null) {
       throw new IllegalArgumentException(ERROR_NULL_ANIMATION);
@@ -78,32 +73,20 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
     return this.sameType(other);
   }
 
-  /**
-   * Checks whether the times of the two animations overlap one another at all, exclusively.
-   *
-   * @param other the animation to check this one against
-   * @return true if the execution periods overlap at all, false otherwise
-   */
+  @Override
   public boolean timeOverlaps(IAnimation other) {
     return this.getStartTime() < other.getEndTime() && this.getEndTime() > other.getStartTime();
   }
 
-  /**
-   * A getter for the shape.
-   *
-   * @return this object's shape
-   */
   @Override
   public IShape getShape() {
     return shape;
   }
 
-  /**
-   * Produces a string describing this animation's actions.
-   *
-   * @param s the shape that the action is being performed on
-   * @return the animation string description
-   */
+  @Override
+  public abstract String getType();
+
+  @Override
   public String toString(IShape s) {
     StringBuilder builder = new StringBuilder();
 
@@ -119,24 +102,12 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
     return builder.toString();
   }
 
-  /**
-   * Calculates the starting coefficient for any temporal animation.
-   *
-   * @param ticksElapsed total ticks elapsed
-   * @return the starting coefficient
-   */
   @Override
   public double getStartCoef(int ticksElapsed) {
     return ((double) (this.getEndTime() - ticksElapsed)
         / (this.getEndTime() - this.getStartTime()));
   }
 
-  /**
-   * Calculates the ending coefficient for any temporal animation.
-   *
-   * @param ticksElapsed total ticks elapsed
-   * @return the ending coefficient
-   */
   @Override
   public double getEndCoef(int ticksElapsed) {
     return ((double) (ticksElapsed - this.getStartTime())
@@ -144,35 +115,36 @@ public abstract class AbstractAnimation extends AbstractCanvasObject implements 
 
   }
 
-  /**
-   * Performs the full animation on the given shape by altering the shape the necessary amount.
-   *
-   * @param s the shape to animate
-   */
+  @Override
+  public Posn getEndPosition() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public IColor getEndColor() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public double getEndWidth() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public double getEndHeight() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public abstract void animate(IShape s);
 
-  /**
-   * Performs a fraction of an animation based on ticks elapsed.
-   *
-   * @param ticksElapsed total ticks elapsed
-   */
+  @Override
   public abstract void animate(int ticksElapsed);
 
-  /**
-   * Checks whether the given anmiation type is the same type as this animation type.
-   *
-   * @param other the animatino to check this one against
-   * @return true if the animation types are the same, false otherwise
-   */
+  @Override
   public abstract boolean sameType(IAnimation other);
 
-
-  /**
-   * Produces an action descriptor of what this animation does.
-   *
-   * @param s the shape that the action is being performed on
-   * @return the action string
-   */
+  @Override
   public abstract String getAction(IShape s);
 
 }

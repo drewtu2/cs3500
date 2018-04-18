@@ -1,9 +1,8 @@
 package util;
 
+import cs3500.animator.shape.IAnimatedShape;
 import java.util.HashMap;
 import java.util.Map;
-
-import cs3500.animator.shape.IAnimatedShape;
 
 public interface IUtil {
 
@@ -17,12 +16,12 @@ public interface IUtil {
    * @param time the time we're requesting
    * @return the value at the requested time
    */
-  public static float interpolate(
-          float startValue,
-          float endValue,
-          int startTime,
-          int endTime,
-          int time) {
+  static float interpolate(
+      float startValue,
+      float endValue,
+      int startTime,
+      int endTime,
+      int time) {
     float componentA = startValue * (endTime - time) / (endTime - startTime);
     float componentB = endValue * (time - startTime) / (endTime - startTime);
 
@@ -30,13 +29,13 @@ public interface IUtil {
   }
 
   /**
-   * Throws null pointer exception if the given input is null.
+   * Throws illegal argument exception if the given input is null.
    *
    * @param input input to check
    */
-  public static void checkNull(Object input) {
+  static void checkNull(Object input) {
     if (input == null) {
-      throw new NullPointerException("Input cannot be null");
+      throw new IllegalArgumentException("Input cannot be null");
     }
   }
 
@@ -46,7 +45,9 @@ public interface IUtil {
    *
    * @param current the given String->Animated Shape map.
    */
-  public static Map<String, IAnimatedShape> duplicateMap(Map<String, IAnimatedShape> current) {
+  static Map<String, IAnimatedShape> duplicateMap(Map<String, IAnimatedShape> current) {
+    checkNull(current);
+
     Map<String, IAnimatedShape> newMap = new HashMap<>();
 
     for (String key : current.keySet()) {

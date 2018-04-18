@@ -3,8 +3,12 @@ package cs3500.animator.provider.adapter;
 import static util.IUtil.checkNull;
 
 import cs3500.animator.model.IAnimatorModel;
+import cs3500.animator.provider.controller.HybridViewController;
+import cs3500.animator.provider.controller.VisualViewController;
 import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.view.HybridView;
+import cs3500.animator.provider.view.IInteractiveView;
+import cs3500.animator.provider.view.IView;
 import cs3500.animator.provider.view.SVGView;
 import cs3500.animator.provider.view.TextualView;
 import cs3500.animator.provider.view.VisualView;
@@ -32,20 +36,33 @@ public class ProviderFactory {
     checkNull(view);
     checkNull(model);
 
+    IView myView;
     // Create the adapter
     ModelAdapter mAdapt = new ModelAdapter(model);
 
     switch (view.toLowerCase()) {
       case "provider":
-        return new HybridView(mAdapt.getAnimations(), mAdapt.getShapes(), mAdapt.getShapeOrder(),
+        myView = new HybridView(mAdapt.getAnimations(), mAdapt.getShapes(), mAdapt.getShapeOrder(),
             ((double) speed));
+        ((IInteractiveView) myView).setController(
+            new HybridViewController((IInteractiveView) myView, mAdapt.getAnimations(),
+                mAdapt.getShapes(),
+                mAdapt.getShapeOrder(), (double) speed));
+
+        return myView;
       case "providertext":
         return new TextualView(mAdapt.getAnimations(), ((double) speed), myAppendable);
+
       case "providersvg":
         return new SVGView(mAdapt.getAnimations(), ((double) speed), myAppendable);
       case "providervisual":
-        return new VisualView(mAdapt.getAnimations(), mAdapt.getShapes(), mAdapt.getShapeOrder(),
+        myView = new VisualView(mAdapt.getAnimations(), mAdapt.getShapes(), mAdapt.getShapeOrder(),
             ((double) speed));
+
+        myView.setController(
+            new VisualViewController(myView, mAdapt.getAnimations(), mAdapt.getShapes(),
+                mAdapt.getShapeOrder(), (double) speed));
+        return myView;
       default:
         throw new IllegalArgumentException("invalid view type");
     }

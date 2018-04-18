@@ -93,6 +93,7 @@ public interface IShape {
 
   /**
    * Makes a copy of the shape and its values using a copy constructor.
+   *
    * @return IAnimatedShape
    */
   IAnimatedShape makeCopy();

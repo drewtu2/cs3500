@@ -5,9 +5,9 @@ package cs3500.animator.provider.object;
  */
 public abstract class AbstractCanvasObject implements ICanvasObject {
 
-  public static final String ERROR_END_TIME_BEFORE_START_TIME =
+  private static final String ERROR_END_TIME_BEFORE_START_TIME =
       "The start time must come before the end time.";
-  public static final String ERROR_START_TIME_NEGATIVE =
+  private static final String ERROR_START_TIME_NEGATIVE =
       "The start time must be non-negative.";
 
   private int startTime;
@@ -33,20 +33,12 @@ public abstract class AbstractCanvasObject implements ICanvasObject {
     this.endTime = endTime;
   }
 
-  /**
-   * A getter for the start time.
-   *
-   * @return the start time value
-   */
+  @Override
   public int getStartTime() {
     return startTime;
   }
 
-  /**
-   * A getter for the end time.
-   *
-   * @return the end time value
-   */
+  @Override
   public int getEndTime() {
     return endTime;
   }

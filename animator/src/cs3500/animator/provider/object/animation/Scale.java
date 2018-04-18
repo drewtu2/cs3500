@@ -1,8 +1,6 @@
 package cs3500.animator.provider.object.animation;
 
 import cs3500.animator.provider.object.shape.IShape;
-import cs3500.animator.provider.object.shape.Oval;
-import cs3500.animator.provider.object.shape.Rectangle;
 
 /**
  * Represents a scaling animation to resize an object based on a scaling factor.
@@ -41,22 +39,19 @@ public class Scale extends AbstractAnimation {
     this.scaleY = scaleY;
   }
 
-  /**
-   * A getter for the x scale factor.
-   *
-   * @return the x scale factor value
-   */
-  public double getScaleX() {
-    return this.scaleX;
+  @Override
+  public double getEndWidth() {
+    return this.endWidth;
   }
 
-  /**
-   * A getter for the y scale factor.
-   *
-   * @return the y scale factor value
-   */
-  public double getScaleY() {
-    return this.scaleY;
+  @Override
+  public double getEndHeight() {
+    return this.endHeight;
+  }
+
+  @Override
+  public String getType() {
+    return "scale";
   }
 
   @Override
@@ -67,16 +62,8 @@ public class Scale extends AbstractAnimation {
   @Override
   public void animate(int ticksElapsed) {
     if (!this.animationStarted) {
-      if (this.shape instanceof Rectangle) {
-        Rectangle rect = (Rectangle) this.shape;
-        this.startWidth = rect.getWidth();
-        this.startHeight = rect.getHeight();
-      } else if (this.shape instanceof Oval) {
-        Oval oval = (Oval) this.shape;
-        this.startWidth = oval.getRadiusX();
-        this.startHeight = oval.getRadiusY();
-
-      }
+      this.startWidth = this.shape.getX();
+      this.startHeight = this.shape.getY();
       this.endWidth = this.startWidth * this.scaleX;
       this.endHeight = this.startHeight * this.scaleY;
       this.animationStarted = true;

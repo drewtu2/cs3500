@@ -2,7 +2,7 @@ package cs3500.animator.provider.controller;
 
 import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.object.shape.IShape;
-import cs3500.animator.provider.view.VisualView;
+import cs3500.animator.provider.view.IView;
 import java.awt.event.ActionEvent;
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +24,7 @@ public class VisualViewController implements IVisualController {
    * @param shapeOrder the order of the given shapes.
    * @param tempo the speed to play at.
    */
-  public VisualViewController(VisualView view, List<IAnimation> animations,
+  public VisualViewController(IView view, List<IAnimation> animations,
       List<IShape> shapes, Map<IShape, Integer> shapeOrder,
       double tempo) {
 

@@ -1,5 +1,6 @@
 package cs3500.animator.provider.view;
 
+import cs3500.animator.provider.controller.IVisualController;
 import java.io.IOException;
 
 /**
@@ -13,20 +14,27 @@ public interface IView {
    *
    * @return a string that represents the textual view
    */
-  public String getAnimatorDescription();
+  String getAnimatorDescription();
 
   /**
    * Writes the animator description to an output source specified by the constructor.
    *
    * @throws IOException if the appendable object doesn't accept input
    */
-  public void writeAnimatorDescription() throws IOException;
+  void writeAnimatorDescription() throws IOException;
 
   /**
    * Produces a visual representation of the animation according to the parameters specified by the
    * model.
    */
-  public void animate();
+  void animate();
+
+  /**
+   * Performs the actions necessary when given a controller.
+   *
+   * @param controller the controller to operate with
+   */
+  void setController(IVisualController controller);
 
   /**
    * Signal the view to draw itself.

@@ -49,12 +49,12 @@ public class Oval extends AbstractShape {
 
   @Override
   public double getX() {
-    return this.getRadiusX();
+    return radiusX;
   }
 
   @Override
   public double getY() {
-    return this.getRadiusY();
+    return radiusY;
   }
 
   @Override
@@ -104,24 +104,6 @@ public class Oval extends AbstractShape {
   public void updateSize(double width, double height) {
     this.radiusX = width;
     this.radiusY = height;
-  }
-
-  /**
-   * A getter for the x radius.
-   *
-   * @return the x radius value
-   */
-  public double getRadiusX() {
-    return this.radiusX;
-  }
-
-  /**
-   * A getter for the y radius.
-   *
-   * @return the y radius value
-   */
-  public double getRadiusY() {
-    return this.radiusY;
   }
 
   @Override

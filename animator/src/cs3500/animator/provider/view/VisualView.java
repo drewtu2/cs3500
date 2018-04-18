@@ -1,9 +1,7 @@
 package cs3500.animator.provider.view;
 
 import cs3500.animator.provider.controller.IVisualController;
-import cs3500.animator.provider.controller.VisualViewController;
 import cs3500.animator.provider.object.animation.IAnimation;
-import cs3500.animator.provider.object.animation.Move;
 import cs3500.animator.provider.object.shape.IShape;
 import cs3500.animator.provider.util.NumUtil;
 import java.awt.BorderLayout;
@@ -22,8 +20,6 @@ public class VisualView extends AbstractView {
 
   private JPanel shapePanel;
 
-  private IVisualController controller;
-
   /**
    * Constructs a VisualView with the given animations.
    *
@@ -35,30 +31,33 @@ public class VisualView extends AbstractView {
   public VisualView(List<IAnimation> animations, List<IShape> shapes,
       Map<IShape, Integer> shapeOrder, double tempo) {
     super(animations, shapes, tempo);
-    JScrollPane scrollPane;
-
-    this.controller = new VisualViewController(this, animations, shapes, shapeOrder, tempo);
 
     this.setTitle("Shapes!");
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     // create a borderlayout with drawing panel in center
     this.setLayout(new BorderLayout());
-    shapePanel = new ShapePanel(controller.getVisibleShapes());
-    initializeShapePanelSize();
-    scrollPane = new JScrollPane(shapePanel);
-    scrollPane.setPreferredSize(new Dimension(PANEL_WIDTH + 250, PANEL_HEIGHT + 250));
-
-    this.add(scrollPane, BorderLayout.CENTER);
-
-    this.pack();
-    this.animate();
   }
 
   @Override
   public void animate() {
     this.setVisible(true);
-    this.controller.startAnimation();
+  }
+
+  @Override
+  public void setController(IVisualController controller) {
+    shapePanel = new ShapePanel(controller.getVisibleShapes());
+    initializeShapePanelSize();
+
+    JScrollPane scrollPane;
+    scrollPane = new JScrollPane(shapePanel);
+    scrollPane.setPreferredSize(new Dimension(PANEL_WIDTH + 250, PANEL_HEIGHT + 250));
+    this.add(scrollPane, BorderLayout.CENTER);
+
+    this.pack();
+    this.animate();
+
+    controller.startAnimation();
   }
 
   /**
@@ -75,10 +74,9 @@ public class VisualView extends AbstractView {
     }
 
     for (IAnimation animation : animations) {
-      if (animation instanceof Move) {
-        Move move = (Move) animation;
-        maxWidth = Integer.max(maxWidth, NumUtil.round(move.getDestination().getX()));
-        maxHeight = Integer.max(maxHeight, NumUtil.round(move.getDestination().getY()));
+      if (animation.getType().equalsIgnoreCase("move")) {
+        maxWidth = Integer.max(maxWidth, NumUtil.round(animation.getEndPosition().getX()));
+        maxHeight = Integer.max(maxHeight, NumUtil.round(animation.getEndPosition().getY()));
       }
     }
 

@@ -54,7 +54,7 @@ public class Rectangle extends AbstractShape {
   @Override
   public Rectangle clone() {
     return new Rectangle(getStartTime(), getEndTime(), getName(), getLocation(), getColor(),
-        getWidth(), getHeight());
+        getX(), getY());
   }
 
   @Override
@@ -95,24 +95,6 @@ public class Rectangle extends AbstractShape {
     return builder.toString();
   }
 
-  /**
-   * A getter for the width.
-   *
-   * @return the width value
-   */
-  public double getWidth() {
-    return this.width;
-  }
-
-  /**
-   * A getter for the height.
-   *
-   * @return the height value
-   */
-  public double getHeight() {
-    return this.height;
-  }
-
   @Override
   public void reset() {
     super.reset();
@@ -123,11 +105,11 @@ public class Rectangle extends AbstractShape {
 
   @Override
   public double getX() {
-    return this.getWidth();
+    return this.width;
   }
 
   @Override
   public double getY() {
-    return this.getWidth();
+    return this.height;
   }
 }

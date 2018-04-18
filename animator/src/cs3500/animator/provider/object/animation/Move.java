@@ -8,7 +8,7 @@ import cs3500.animator.provider.object.shape.IShape;
  */
 public class Move extends AbstractAnimation {
 
-  public static final String ERROR_DESTINATION_NULL =
+  private static final String ERROR_DESTINATION_NULL =
       "The destination cannot be null.";
 
   private Posn startPosition;
@@ -31,6 +31,11 @@ public class Move extends AbstractAnimation {
     }
     this.destination = destination;
     this.startPosition = this.shape.getLocation();
+  }
+
+  @Override
+  public String getType() {
+    return "moves";
   }
 
   @Override
@@ -68,12 +73,8 @@ public class Move extends AbstractAnimation {
     return builder.toString();
   }
 
-  /**
-   * Returns the destination of this animation.
-   *
-   * @return the destination of this animation.
-   */
-  public Posn getDestination() {
+  @Override
+  public Posn getEndPosition() {
     return this.destination;
   }
 

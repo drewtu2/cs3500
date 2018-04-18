@@ -1,8 +1,6 @@
 package cs3500.animator.provider.view;
 
 import cs3500.animator.provider.object.shape.IShape;
-import cs3500.animator.provider.object.shape.Oval;
-import cs3500.animator.provider.object.shape.Rectangle;
 import cs3500.animator.provider.util.NumUtil;
 import java.awt.Graphics;
 import java.util.List;
@@ -34,17 +32,14 @@ public class ShapePanel extends JPanel {
       int y = (int) shape.getLocation().getY();
       g.setColor(shape.getColor().transformToAwt());
 
-      if (shape instanceof Rectangle) {
-        Rectangle rect = (Rectangle) shape;
-        g.draw3DRect(x, y, NumUtil.round(rect.getWidth()), NumUtil.round(rect.getHeight()), true);
-        g.fill3DRect(x, y, NumUtil.round(rect.getWidth()), NumUtil.round(rect.getHeight()), true);
-      } else if (shape instanceof Oval) {
-        Oval oval = (Oval) shape;
-
-        int roundedRadiusX = NumUtil.round(oval.getRadiusX());
-        int roundedRadiusY = NumUtil.round(oval.getRadiusY());
-        int roundedWidth = NumUtil.round(oval.getRadiusX() * 2);
-        int roundedHeight = NumUtil.round(oval.getRadiusY() * 2);
+      if (shape.getType().equalsIgnoreCase("rectangle")) {
+        g.draw3DRect(x, y, NumUtil.round(shape.getX()), NumUtil.round(shape.getY()), true);
+        g.fill3DRect(x, y, NumUtil.round(shape.getX()), NumUtil.round(shape.getY()), true);
+      } else if (shape.getType().equalsIgnoreCase("oval")) {
+        int roundedRadiusX = NumUtil.round(shape.getX());
+        int roundedRadiusY = NumUtil.round(shape.getY());
+        int roundedWidth = NumUtil.round(shape.getX() * 2);
+        int roundedHeight = NumUtil.round(shape.getY() * 2);
         x = x - roundedRadiusX;
         y = y - roundedRadiusY;
 

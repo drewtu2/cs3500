@@ -1,5 +1,6 @@
 package cs3500.animator.provider.view;
 
+import cs3500.animator.provider.controller.IVisualController;
 import cs3500.animator.provider.object.animation.IAnimation;
 import cs3500.animator.provider.object.shape.IShape;
 import java.io.IOException;
@@ -44,6 +45,11 @@ public abstract class AbstractView extends JFrame implements IView {
   @Override
   public void animate() {
     return;
+  }
+
+  @Override
+  public void setController(IVisualController controller) {
+    throw new UnsupportedOperationException("This view does not need a controller.");
   }
 
   @Override

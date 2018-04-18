@@ -61,105 +61,56 @@ public abstract class AbstractShape extends AbstractCanvasObject implements ISha
     this.color = color;
   }
 
-  /**
-   * A getter for the name.
-   *
-   * @return the name String
-   */
-  public String getName() {
-    return this.name;
-  }
+  @Override
+  public abstract String getAttributes();
 
-  /**
-   * A getter for the location.
-   *
-   * @return the location Posn
-   */
-  public Posn getLocation() {
-    return this.location;
-  }
-
-  /**
-   * A getter for the color.
-   *
-   * @return the color object
-   */
+  @Override
   public IColor getColor() {
     return this.color;
   }
 
-  /**
-   * Produces a string describing the type of the object, usually the object's class name.
-   *
-   * @return the type description string
-   */
-  public abstract String getType();
-
-  /**
-   * Produces a string describing the attributes associated with the shape.
-   *
-   * @return the attribute description string
-   */
-  public abstract String getAttributes();
-
-  /**
-   * Produces a string describing the attributes associated with this shape's size if the size is
-   * multiplied by a scale factor in the x and y directions.
-   *
-   * @param scaleX the amount to scale the shape in the x direction
-   * @param scaleY the amount to scale the shape in the y direction
-   * @return the size attribute description string with the scaling factor taken into place
-   */
-  public abstract String getSizeDescriptionWithScale(double scaleX, double scaleY);
-
-  /**
-   * Produces an identical copy of this shape in a different memory location.
-   *
-   * @return the cloned shape
-   */
-  public abstract IShape clone();
-
-  /**
-   * A convenience method describing the attributes associated with this shape's size and without a
-   * scale factor.
-   *
-   * @return the size attribute description string
-   */
-  public String getSizeDescription() {
-    return getSizeDescriptionWithScale(1.0, 1.0);
-
+  @Override
+  public Posn getLocation() {
+    return this.location;
   }
 
-  /**
-   * Modifies this shape to be located at the new given location.
-   *
-   * @param newLocation the location to move this shape to
-   */
+  @Override
+  public String getName() {
+    return this.name;
+  }
+
+  @Override
+  public abstract String getType();
+
+  @Override
+  public abstract double getX();
+
+  @Override
+  public abstract double getY();
+
+  @Override
+  public abstract String getSizeDescriptionWithScale(double scaleX, double scaleY);
+
+  @Override
+  public abstract IShape clone();
+
+  @Override
+  public String getSizeDescription() {
+    return getSizeDescriptionWithScale(1.0, 1.0);
+  }
+
+  @Override
   public void move(Posn newLocation) {
     this.location = newLocation;
   }
 
-  /**
-   * Modifies this shape to scale itself by the given x and y scaling factors.
-   *
-   * @param scaleX the factor to scale in the x direction
-   * @param scaleY the factor to scale in the y direction
-   */
+  @Override
   public abstract void scale(double scaleX, double scaleY);
 
-  /**
-   * Modifies this shape's width and height to the new width and height.
-   *
-   * @param width width of the shape
-   * @param height height of the shape
-   */
+  @Override
   public abstract void updateSize(double width, double height);
 
-  /**
-   * Modifies this shape to be colored the new given color.
-   *
-   * @param newColor the color to change this shape to
-   */
+  @Override
   public void changeColor(IColor newColor) {
     this.color = newColor;
   }
@@ -193,18 +144,10 @@ public abstract class AbstractShape extends AbstractCanvasObject implements ISha
     return builder.toString();
   }
 
-  /**
-   * Sets the properties of this shape to its original properties at construction.
-   */
   @Override
   public void reset() {
     this.location = originalLocation;
     this.color = originalColor;
   }
 
-  @Override
-  public abstract double getX();
-
-  @Override
-  public abstract double getY();
 }
