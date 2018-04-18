@@ -1,29 +1,4 @@
-
-How flexible are the interfaces you were given?
-How capable are the views?
-How convenient was it to reuse their code?
-How cleanly written and well-documented was their code?
-If you needed to request changes from them, what were they and why were they needed?
-
-# Critique,
-Further, from the given code and documentation, it is really difficult to 
-distinguish how the components were intended to be used. Two of the major 
-components of their design were an AbstractShape, inherited by the concrete 
-implementations of the shapes, as well as animations which held Abstract shape 
-methods through composition. This provides the user with a number of different 
-knobs which is really confusing to understand where objects need to be synchronized.
-To further complicate matters, both animations and shapes are derived from an
-`AbstractCanvasObject` and both shapes and animations have start and end times. 
-It seems that the animations and shapes were very closely coupled, and without
-more knowledge of the intended use and implementation, modifying our model to fit
-theirs will be somewhat difficult. 
-
-Further, looking through the views showed that at least parts of the flow of the
-program were controlled by regexes and string matching. This is somewhat confusing
-to the user since we must implement the methods to return the string exactly as 
-expected, otherwise parts of the code may fail. There was no documentation on the
-expected output of the strings.
-
+# Code Critique
 ## Design Critique
 The interfaces we were initially given were moderately flexible but
 relied heavily on the use of abstract and concrete classes instead of
