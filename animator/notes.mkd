@@ -4,7 +4,6 @@ How capable are the views?
 How convenient was it to reuse their code?
 How cleanly written and well-documented was their code?
 If you needed to request changes from them, what were they and why were they needed?
-Write a short (3-4 paragraph) review of their code. Your review should have the following sections: Design critique, implementation critique, documentation critique, design/code limitations and suggestions on how to address them.
 
 
 # Critique, 
@@ -58,15 +57,6 @@ needed to be implemented. We were missing the interfaces for the objects and as
 a result, it was difficult to write crossovers between objects until the proper
 modifications were made. 
 
-
-
-Extra to be added in (Nikitha):
-As we began trying to piece together how their code worked, we found difficult
-in understanding how different things were being used (like looping functionality and how data
-existed in their model)and needed to request
-clarification and examples in the documentation. This was also an insight as to 
-why you should use more restrictive methods of flow control (double dispatch, enums, named
-variables, ints).
 
 Some of the lessons we learned really enforced the importance of decoupling as much
 as possible in order to not restrict future users of our code. It is also really important

@@ -62,7 +62,6 @@ Design/Code Limitations:
   svg view, overlaying shapes properly based on when they were created, and proper reset on export.
 
 
-
 We needed to request several items from our providers including the following
 - AbstractAnimation Interface
 - AbstractShape Interface
