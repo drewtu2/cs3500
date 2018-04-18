@@ -113,6 +113,11 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
+  public IAnimatedShape makeCopy() {
+    return ShapeFactory.getShape(this);
+  }
+
+  @Override
   public boolean equals(Object compare) {
     boolean bType = this.type.equals(((IShape) compare).getType());
     boolean bDim = this.dimension.equals(((IShape) compare).getDimension());

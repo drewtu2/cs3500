@@ -32,7 +32,8 @@ public class ControllerFactory {
     if (outputFile == null || outputFile.equals("out")) {
       myAppendable = System.out;
     } else { // Handle file case
-      myAppendable = new FileWriter(outputFile, true); //true tells to append data.
+      myAppendable = new FileWriter(outputFile, false);
+      //false tells appendable to overwrite file
     }
     // Handle null case
     checkNull(view);

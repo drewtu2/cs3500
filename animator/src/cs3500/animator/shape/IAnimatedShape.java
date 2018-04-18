@@ -51,10 +51,4 @@ public interface IAnimatedShape extends IShape, Comparable<IAnimatedShape> {
    * @return the creation index.
    */
   int getCreationIndex();
-
-  /**
-   * Makes a copy of the shape and its values using a copy constructor.
-   * @return IAnimatedShape
-   */
-  IAnimatedShape makeCopy();
 }
