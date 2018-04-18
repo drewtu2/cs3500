@@ -267,7 +267,7 @@ public class HybridViewController implements IInteractiveController {
       shape.reset();
     }
 
-    for (IAnimation animation : animations_in) {
+    for (IAnimation animation : animationsIn) {
       if (this.shapes.contains(animation.getShape())) {
         newAnimations.add(animation);
       }
