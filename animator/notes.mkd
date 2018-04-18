@@ -5,12 +5,7 @@ How convenient was it to reuse their code?
 How cleanly written and well-documented was their code?
 If you needed to request changes from them, what were they and why were they needed?
 
-
-# Critique, 
-The interfaces we were initally given were moderately flexible but relied heavily
-on the use of abstract and concrete classes instead of interfaces. This made it 
-somewhat difficult to implement adapters for their model components. 
-
+# Critique,
 Further, from the given code and documentation, it is really difficult to 
 distinguish how the components were intended to be used. Two of the major 
 components of their design were an AbstractShape, inherited by the concrete 
@@ -19,8 +14,8 @@ methods through composition. This provides the user with a number of different
 knobs which is really confusing to understand where objects need to be synchronized.
 To further complicate matters, both animations and shapes are derived from an
 `AbstractCanvasObject` and both shapes and animations have start and end times. 
-It seems that the animations and shapes were very closesly coupled, and without 
-more knowledge of the inteded use and implementation, modifying our model to fit
+It seems that the animations and shapes were very closely coupled, and without
+more knowledge of the intended use and implementation, modifying our model to fit
 theirs will be somewhat difficult. 
 
 Further, looking through the views showed that at least parts of the flow of the
@@ -29,16 +24,8 @@ to the user since we must implement the methods to return the string exactly as
 expected, otherwise parts of the code may fail. There was no documentation on the
 expected output of the strings.
 
-**Write a short (3-4 paragraph) review of their code.**
-Your review should have the following sections:
-- Design critique,
-- implementation critique,
-- documentation critique,
-- design/code limitations and suggestions on how to address them.
-
-
 ## Design Critique
-The interfaces we were initally given were moderately flexible but
+The interfaces we were initially given were moderately flexible but
 relied heavily on the use of abstract and concrete classes instead of
 interfaces. This made it somewhat difficult to implement adapters for
 their model components. Once the code was refactored to rely more heavily
@@ -53,11 +40,22 @@ ways to manipulate the state of shape object, not JUST through the animations
 as the users intended. It was not immediately clear that the lists
 of shapes and that animations held references to the same shapes in memory.
 
+It was a little strange to have SVGView extend the TextualView because they have very
+distinctly formatted outputs. It also doesn't seem like svg uses any of the method
+functionality of text, so the only reason for the coupling seems to be to use the textual
+constructor and not having to instantiate another appendable.
+
+The methods animate and writeAnimatorDescription in the IView interface
+ultimately have the same purpose. However, in SVGView and TextualView, writeAnimatorDescription is
+used to append to an appendable, and in Visual and Hybrid View, animate is used to start the timer
+and launch the view. The animate method is left without use in the Svg and Txt while the
+writeAnimatorDescription is left unused in Visual and Hybrid. It seems redundant and wasteful.
+
 The SVG view is tightly coupled to the specific implementation of the text
-view because it is built by regex'ing the output of the text view. This
+view because it is built by regex'ing the output of the text view. This again
 was not a great design choice because the text view is now locked into a
 specific implementation. Because the text view builds its output from
-methods from components (in the shape or animatino), this meant there
+methods from components (in the shape or animation), this meant there
 exists "some" coupling between these objects and the view.
 
 ## Implementation Critique
@@ -70,7 +68,7 @@ implementation of the controller for another controller in the future.
 ## Documentation Critique
 
 The documentation given was suitable to get a basic understanding of what
-each class and fucntion did, however, it was lacked clarity on seem key
+each class and function did, however, it lacked clarity on some key
 components including *how* the components were supposed to be fit together.
 
 This was strongly felt in two places: understanding the relationship
@@ -79,19 +77,19 @@ the specific string outputs.
 
 Both animations and shapes are derived from an `AbstractCanvasObject`
 and both shapes and animations have start and end times. It seems that
-the animations and shapes were very closesly coupled, and without
-more knowledge of the inteded use/implementation, understanding how this
+the animations and shapes were very closely coupled, and without
+more knowledge of the intended use/implementation, understanding how this
 was was supposed to be used was somewhat difficult. Once the design was
 explained to us in a sit down session, it was a little easier to
 comprehend and work with, however, we would not have been able to figure
 it out without the additional insight.
 
 Because the text view and SVG view were so tightly coupled, there needed
-to be significanlty more documentaion and exampels with respect to the
+to be significantly more documentation and examples with respect to the
 expected output for the text view and by extension, all the functions and
 shapes/animation who produced string outputs. Often times, this was labeled
 as "Produces an action descriptor of what this animation does." While yes,
-this does descript the function that is being described, since the output
+this does describe the function that is being described, since the output
 of this function is going to be used in a regex, an example, or more
 specific definition is in order.
 
@@ -104,17 +102,21 @@ We requested several items from our providers including the following
 - Move Interface
 - Controller Interfaces
 - AbstractCanvasObject interface
+Purpose: Get a general idea of what data was structured and manipulated in
+ the views.
 
 We requested the following decouplings
 - decouple from concrete animations (Move, Scale, ColorChange)
 - decouple from concrete shape implementations (Rectangle, Oval)
 - decouple from concrete controller implementations (Visual and Hybrid Views)
+Purpose: Not need to use any specific implementations of their model.
 
 We also requested a the following clarifications with regards to documentation
 including the following. 
 - What are the coefficients referred to in the abstract animation?
 - Examples for the strings that needed to be returned to the user from various
-String return type methods. 
+String return type methods.
+Purpose: Clarification further than one line java docs.
 
 ## Praise
 What we did like about their design was the managed to reuse the shape panel
@@ -129,24 +131,33 @@ This helped reduce the amount of duplicated code.
 Finally, we ran into an issue with our appendable object needing to be
 closed and flushed. While our design had the text and svg view handle this
 function, our providers did not. When we spoke to them, they explained
-that it was not the responsibility of the text view to maninpualte the
+that it was not the responsibility of the text view to manipulate the
 state of the appendable. After some consideration, we decided we agreed
 with this design philosophy and made changes in our code to reflect this.
+That insight was much appreciated as we were under a different impression that
+might not have been completely correct.
+
+Design/Code Limitations:
+ In terms of the capabilities of the views, they had almost everything implemented
+ except looping in svg view and overlaying shapes properly based on when they were created.
+
 
 # Personal Review
 This experience taught us many lessons. When we first received the code
 from our providers, we realized how many classes we were missing from
 our providers. Every red error line represented a coupling to a concrete
 class, whose interface we did not have. This lead us to understand how
-important decoupling from implemetions was in order to maximize code
-resuse and portability.
+important decoupling from implementations was in order to maximize code
+reuse and portability.
 
 Some of the lessons we learned really enforced the importance of
 decoupling as much as possible in order to not restrict future users of
 our code. It is also really important to be consistent in your methods
 across implementations of interfaces. This was evident in
-the methods that existed across multiple classes implementing the same
-interface, and the method had the same purpose in **TODO**
+one instance where two different methods that existed across multiple classes implementing
+the same interface and both methods had the same purpose (unnecessary duplication).
+Another instance was when our customers asked us to replace out specific data class instances
+with interface data types.
 
 As we began trying to piece together how their code worked, we found difficulty
 in understanding how different features were being implemented (looping
@@ -158,13 +169,13 @@ restrictive inputs like strings.
 Finally, we ran into an issue with our appendable object needing to be
 closed and flushed. While our design had the text and svg view handle this
 function, our providers did not. When we spoke to them, they explained
-that it was not the responsibility of the text view to maninpualte the
+that it was not the responsibility of the text view to manipulate the
 state of the appendable. After some consideration, we decided we agreed
 with this design philosophy and made changes in our code to reflect this.
 
-Working with our providers was fairly stright forward. For the most part,
+Working with our providers was fairly straight forward. For the most part,
 we were able to request whatever files we needed from them and had them
-returned to us fairly easily. Additionally, we found that communciating
+returned to us fairly easily. Additionally, we found that communicating
 over some form of group chat was a far more efficient means of communicating
 than email. More effective still, was meeting in person and asking
 questions and getting whiteboard diagrams of the code structure.
