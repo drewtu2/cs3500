@@ -13,6 +13,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -132,16 +134,10 @@ public class CanvasPane extends JPanel {
         if (shouldDisplay(shape)) {
           switch (shapeState.getType()) {
             case RECTANGLE:
-              g.fillRect((int) shapeState.getPosition().getX(),
-                  (int) shapeState.getPosition().getY(),
-                  (int) shapeState.getDimension().getWidth(),
-                  (int) shapeState.getDimension().getHeight());
+              drawRectangle(g, shapeState);
               break;
             case OVAL:
-              g.fillOval((int) shapeState.getPosition().getX(),
-                  (int) shapeState.getPosition().getY(),
-                  (int) shapeState.getDimension().getWidth(),
-                  (int) shapeState.getDimension().getHeight());
+              drawOval(g, shapeState);
               break;
             default:
               System.err.println("Unexpected Shape Type...");
@@ -194,6 +190,53 @@ public class CanvasPane extends JPanel {
     }
 
     return changed;
+  }
+
+  /**
+   * Draw a rotated rectangle.
+   * @param g the graphics this is being drawn on
+   * @param state the state of the rectangle to be drawn
+   */
+  private void drawRectangle(Graphics g, IShape state) {
+    Graphics2D gg = setupDrawShape(g, state);
+
+    gg.fillRect((int) state.getPosition().getX(), (int) state.getPosition().getY(),
+        (int) state.getDimension().getWidth(), (int) state.getDimension().getHeight());
+  }
+
+  /**
+   * Draw a rotated oval.
+   * @param g the graphics this is being drawn on
+   * @param state the state of the oval to be drawn
+   */
+  private void drawOval(Graphics g, IShape state) {
+    Graphics2D gg = setupDrawShape(g, state);
+
+    gg.fillOval((int) state.getPosition().getX(), (int) state.getPosition().getY(),
+        (int) state.getDimension().getWidth(), (int) state.getDimension().getHeight());
+
+  }
+
+  /**
+   * The Rotates the canvas that the rectangle will be drawn on.
+   * @param g the graphics that is being drawn on
+   * @param state the state of the shape to be drawn (needed for dimensions)
+   * @return the 2D graphics to that a shape can be drawn on
+   */
+  private Graphics2D setupDrawShape(Graphics g, IShape state) {
+    Graphics2D gg = (Graphics2D) g.create();
+
+    System.out.println(state.getName() + " is rotated at " + state.getRotation());
+
+    AffineTransform transform = new AffineTransform();
+    transform.rotate(Math.toRadians(state.getRotation()),
+        state.getPosition().getX(),
+        state.getPosition().getY());
+
+    AffineTransform old = gg.getTransform();
+    gg.transform(transform);
+
+    return gg;
   }
 
 

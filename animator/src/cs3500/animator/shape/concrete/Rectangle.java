@@ -31,14 +31,14 @@ public class Rectangle extends AbstractAnimatedShape {
     this.color = col;
     this.opacity = (float) 0.0;
     this.dimension = new WidthHeightDim(width, height);
-    this.rotation = 90;
+    this.rotation = 0;
     this.animationList = new HashMap<>();
     this.creationIndex = numCreated;
 
     this.originalPosition = new Position2D(pos);
     this.originalColor = new RGBColor(col);
     this.originalDimension = new WidthHeightDim(width, height);
-    this.originalRotation = 90;
+    this.originalRotation = 0;
     numCreated++;
   }
 
@@ -85,10 +85,12 @@ public class Rectangle extends AbstractAnimatedShape {
     this.dimension = copy.dimension;
     this.animationList = copy.animationList;
     this.creationIndex = copy.creationIndex;
+    this.rotation = copy.rotation;
 
     this.originalPosition = new Position2D(copy.originalPosition);
     this.originalColor = new RGBColor(copy.originalColor);
     this.originalDimension = new WidthHeightDim(copy.originalDimension);
+    this.originalRotation = copy.originalRotation;
   }
 
   @Override
