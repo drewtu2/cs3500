@@ -28,7 +28,7 @@ text: jar
 ptext: jar
 	@echo Running provider text view...
 	rm -f resources/text-transcript.txt
-	$(RUN) -if assignment6_starter/toh-3.txt -iv providertext -o resources/text-transcript.txt -speed 20
+	$(RUN) -if assignment6_starter/buildings.txt -iv providertext -o resources/text-transcript.txt -speed 20
 	@echo Finished running text view...
 
 svg: jar
@@ -40,13 +40,14 @@ svg: jar
 psvg: jar
 	@echo Running svg view...
 	@rm -f resources/toh-at-20.svg
-	$(RUN) -if assignment6_starter/toh-8.txt -iv providersvg -o resources/toh-at-20.svg -speed 20
+	$(RUN) -if assignment6_starter/toh-3.txt -iv providersvg -o resources/toh-at-20.svg -speed 20
 	@echo Finished running svg view...
 
 visual: jar
 	@echo Running visual view...
 	@rm -f resources/toh-at-20.svg
-	$(RUN) -if assignment6_starter/toh-3.txt -iv visual -o resources/toh-at-20.svg -speed 20
+	#$(RUN) -if assignment6_starter/toh-3.txt -iv visual -o resources/toh-at-20.svg -speed 20
+	$(RUN) -if assignment6_starter/rotationdemo.txt -iv visual -speed 20
 	#$(RUN) -if assignment6_starter/toh-3.txt -iv visual -o resources/toh-at-20.svg 
 	@echo Finished running visual view...
 
@@ -60,7 +61,8 @@ pvisual: jar
 interactive: jar
 	@echo Running interactive view...
 	@rm -f animation.svg 
-	$(RUN) -if assignment6_starter/buildings.txt -iv interactive -speed 20
+	#$(RUN) -if assignment6_starter/buildings.txt -iv interactive -speed 20
+	$(RUN) -if assignment6_starter/rotationdemo.txt -iv interactive -speed 20
 	#$(RUN) -if assignment6_starter/toh-3.txt -iv interactive
 	@echo Finished running interactive view...
 
@@ -68,6 +70,6 @@ pinteractive: jar
 	@echo Running interactive view...
 	@rm -f animation.svg 
 	$(RUN) -if assignment6_starter/buildings.txt -iv provider -speed 20
-	#$(RUN) -if assignment6_starter/toh-3.txt -iv interactive
+	#$(RUN) -if assignment6_starter/toh-3.txt -iv provider 
 	@echo Finished running interactive view...
 

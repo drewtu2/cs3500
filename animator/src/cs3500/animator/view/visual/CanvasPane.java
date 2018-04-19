@@ -229,7 +229,7 @@ public class CanvasPane extends JPanel {
     System.out.println(state.getName() + " is rotated at " + state.getRotation());
 
     AffineTransform transform = new AffineTransform();
-    transform.rotate(Math.toRadians(state.getRotation()),
+    transform.rotate(-Math.toRadians(state.getRotation()),
         state.getPosition().getX() + state.getDimension().getWidth()/2,
         state.getPosition().getY() + state.getDimension().getHeight()/2);
 
