@@ -45,5 +45,11 @@ public interface IDimension {
    * @return the height of this dimension
    */
   float getHeight();
+
+  /**
+   * Sets this dimension equal to the given copy.
+   * @param copy the copy to set this equal to.
+   */
+  void set(IDimension copy);
 }
 

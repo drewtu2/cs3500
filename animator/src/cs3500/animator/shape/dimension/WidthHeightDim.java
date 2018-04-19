@@ -23,23 +23,28 @@ public class WidthHeightDim implements IDimension {
   }
 
   /**
-   * Returns the width.
-   *
-   * @return the width
+   * Copy Constructor.
+   * @param copy the copy.
    */
+  public WidthHeightDim(IDimension copy) {
+    this.width = copy.getWidth();
+    this.height = copy.getHeight();
+  }
+
   @Override
   public float getWidth() {
     return width;
   }
 
-  /**
-   * Returns the height.
-   *
-   * @return the height
-   */
   @Override
   public float getHeight() {
     return height;
+  }
+
+  @Override
+  public void set(IDimension copy) {
+    this.width = copy.getWidth();
+    this.height = copy.getHeight();
   }
 
   @Override

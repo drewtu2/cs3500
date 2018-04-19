@@ -5,10 +5,10 @@ import java.util.Objects;
 /**
  * This class represents a 2D position. **Taken from lecture notes.**
  */
-public final class Position2D implements IPosition {
+public class Position2D implements IPosition {
 
-  private final float x;
-  private final float y;
+  private float x;
+  private float y;
 
 
   public float getX() {
@@ -22,6 +22,12 @@ public final class Position2D implements IPosition {
    */
   public float getY() {
     return y;
+  }
+
+  @Override
+  public void set(IPosition copy) {
+    this.x = copy.getX();
+    this.y = copy.getY();
   }
 
 

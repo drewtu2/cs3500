@@ -97,4 +97,9 @@ public interface IShape {
    * @return IAnimatedShape
    */
   IAnimatedShape makeCopy();
+
+  /**
+   * Resets the shape the original constructed values.
+   */
+  void reset();
 }

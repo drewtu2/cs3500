@@ -19,4 +19,10 @@ public interface IPosition {
    */
   float getY();
 
+  /**
+   * Sets this position equal to the given copy.
+   * @param copy the position to copy.
+   */
+  void set(IPosition copy);
+
 }

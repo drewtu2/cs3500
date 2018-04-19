@@ -4,6 +4,8 @@ package cs3500.animator.shape.concrete;
 import cs3500.animator.shape.AbstractAnimatedShape;
 import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IRGBColor;
+import cs3500.animator.shape.Position2D;
+import cs3500.animator.shape.RGBColor;
 import cs3500.animator.shape.ShapeType;
 import cs3500.animator.shape.dimension.WidthHeightDim;
 import java.util.HashMap;
@@ -32,6 +34,10 @@ public class Oval extends AbstractAnimatedShape {
     this.dimension = new WidthHeightDim(width, height);
     this.animationList = new HashMap<>();
     this.creationIndex = numCreated;
+
+    this.originalPosition = new Position2D(pos);
+    this.originalColor = new RGBColor(col);
+    this.originalDimension = new WidthHeightDim(width, height);
     numCreated++;
   }
 
@@ -49,6 +55,10 @@ public class Oval extends AbstractAnimatedShape {
     this.dimension = copy.dimension;
     this.animationList = copy.animationList;
     this.creationIndex = copy.creationIndex;
+
+    this.originalPosition = new Position2D(copy.originalPosition);
+    this.originalColor = new RGBColor(copy.originalColor);
+    this.originalDimension = new WidthHeightDim(copy.originalDimension);
 
   }
 

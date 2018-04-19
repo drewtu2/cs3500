@@ -11,56 +11,62 @@ public interface IRGBColor {
    * @param subtractColor the color to subtract
    * @return the difference betweent the colors
    */
-  public IRGBColor subtract(IRGBColor subtractColor);
+  IRGBColor subtract(IRGBColor subtractColor);
 
   /**
    * Sets the red value to a given amount.
    *
    * @param value the value to set to
    */
-  public void setRed(float value);
+  void setRed(float value);
 
   /**
    * Sets the blue value to a given amount.
    *
    * @param value the value to set to
    */
-  public void setGreen(float value);
+  void setGreen(float value);
 
   /**
    * Sets the blue value to a given amount.
    *
    * @param value the value to set to
    */
-  public void setBlue(float value);
+  void setBlue(float value);
+
+  /**
+   * Sets this color equal to the given color.
+   * @param color the color to set this equal to.
+   */
+  void set(IRGBColor color);
 
   /**
    * Returns the red value.
    *
    * @return the red value
    */
-  public float getRed();
+  float getRed();
 
   /**
    * Returns the green value.
    *
    * @return the green value
    */
-  public float getGreen();
+  float getGreen();
 
   /**
    * Returns the blue value.
    *
    * @return the blue value
    */
-  public float getBlue();
+  float getBlue();
 
-  public String toString();
-
-  @Override
-  public boolean equals(Object a);
+  String toString();
 
   @Override
-  public int hashCode();
+  boolean equals(Object a);
+
+  @Override
+  int hashCode();
 
 }

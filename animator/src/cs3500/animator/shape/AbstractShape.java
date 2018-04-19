@@ -13,10 +13,16 @@ public abstract class AbstractShape implements IShape {
 
   protected String name;
   protected ShapeType type;
+
   protected IPosition position;
   protected IDimension dimension;
   protected IRGBColor color;
   protected float opacity;
+
+  protected IPosition originalPosition;
+  protected IDimension originalDimension;
+  protected IRGBColor originalColor;
+  protected float originalOpacity;
 
   @Override
   public String toString() {
@@ -110,6 +116,14 @@ public abstract class AbstractShape implements IShape {
     this.position = state.getPosition();
     this.color = state.getColor();
     this.dimension = state.getDimension();
+  }
+
+  @Override
+  public void reset() {
+    this.color.set(this.originalColor);
+    this.position.set(this.originalPosition);
+    this.dimension.set(this.originalDimension);
+
   }
 
   @Override

@@ -125,8 +125,8 @@ public class CanvasPane extends JPanel {
 
     if (state != null) {
       for (IAnimatedShape shape : shapes) {
-        shapeColor = shape.getColor();
         shapeState = shape.stateAt((int) tickNum);
+        shapeColor = shapeState.getColor();
 
         g.setColor(new Color(shapeColor.getRed(), shapeColor.getGreen(), shapeColor.getBlue()));
         if (shouldDisplay(shape)) {

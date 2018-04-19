@@ -66,6 +66,8 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
       throw new IllegalArgumentException("Cannot have negative value");
     }
 
+    this.reset();
+
     // Iterate over every list of animations
     for (List<IAnimation> aList : animationList.values()) {
       // Iterate over every animation in the list

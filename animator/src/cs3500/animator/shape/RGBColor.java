@@ -86,6 +86,13 @@ public class RGBColor implements IRGBColor {
   }
 
   @Override
+  public void set(IRGBColor color) {
+    this.red = color.getRed();
+    this.blue = color.getBlue();
+    this.green = color.getGreen();
+  }
+
+  @Override
   public float getRed() {
     return this.red;
   }
