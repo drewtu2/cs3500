@@ -50,6 +50,12 @@ public interface IShape {
   IDimension getDimension();
 
   /**
+   * Return the rotation of the shape in degrees.
+   * @return
+   */
+  int getRotation();
+
+  /**
    * Returns the type of the shape.
    *
    * @return the type of the shape
@@ -76,6 +82,12 @@ public interface IShape {
    * @param state the state to duplicate
    */
   void setState(IShape state);
+
+  /**
+   * Set the rotation of the shape.
+   * @param rotation the rotation of the shape.
+   */
+  void setRotation(int rotation);
 
   /**
    * Returns the shape's name.

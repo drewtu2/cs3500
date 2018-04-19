@@ -4,6 +4,7 @@ import cs3500.animator.animation.concrete.AppearAnimation;
 import cs3500.animator.animation.concrete.ColorAnimation;
 import cs3500.animator.animation.concrete.DisappearAnimation;
 import cs3500.animator.animation.concrete.MoveAnimation;
+import cs3500.animator.animation.concrete.RotationAnimation;
 import cs3500.animator.animation.concrete.ScaleAnimation;
 import cs3500.animator.shape.IPosition;
 import cs3500.animator.shape.IRGBColor;
@@ -75,6 +76,20 @@ public class AnimationFactory {
   public static IAnimation getScaleAnimation(IDimension start, IDimension end, int startTime,
       int endTime) {
     return new ScaleAnimation(start, end, startTime, endTime);
+  }
+
+  /**
+   * Changes the rotation of the shape.
+   *
+   * @param start the original rotation
+   * @param end the final rotation
+   * @param startTime the time the scale shift begins
+   * @param endTime the time the scale shift ends
+   * @return a scale animation
+   */
+  public static IAnimation getRotationAnimation(int start, int end, int startTime,
+      int endTime) {
+    return new RotationAnimation(start, end, startTime, endTime);
   }
 
   /**

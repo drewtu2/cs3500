@@ -93,6 +93,17 @@ public abstract class Animation implements IAnimation {
     throw new UnsupportedOperationException();
   }
 
+  @Override
+  public int getStartRotation() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public int getEndRotation() {
+    throw new UnsupportedOperationException();
+  }
+
+
   /**
    * Returns the total duration of the animation.
    *

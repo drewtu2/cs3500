@@ -18,10 +18,12 @@ public abstract class AbstractShape implements IShape {
   protected IDimension dimension;
   protected IRGBColor color;
   protected float opacity;
+  protected int rotation;
 
   protected IPosition originalPosition;
   protected IDimension originalDimension;
   protected IRGBColor originalColor;
+  protected int originalRotation;
   protected float originalOpacity;
 
   @Override
@@ -43,6 +45,8 @@ public abstract class AbstractShape implements IShape {
     myBuilder.append(color.toString());
     myBuilder.append(", Opacity: ");
     myBuilder.append(opacity);
+    myBuilder.append("\nRotation: ");
+    myBuilder.append(rotation);
 
     return myBuilder.toString();
 
@@ -64,6 +68,11 @@ public abstract class AbstractShape implements IShape {
     checkNull(pos);
 
     this.position = pos;
+  }
+
+  @Override
+  public void setRotation(int rotation) {
+    this.rotation = rotation;
   }
 
   @Override
@@ -102,6 +111,9 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
+  public int getRotation() { return this.rotation; }
+
+  @Override
   public float getOpacity() {
     return this.opacity;
   }
@@ -116,6 +128,7 @@ public abstract class AbstractShape implements IShape {
     this.position = state.getPosition();
     this.color = state.getColor();
     this.dimension = state.getDimension();
+    this.rotation = state.getRotation();
   }
 
   @Override
@@ -123,6 +136,7 @@ public abstract class AbstractShape implements IShape {
     this.color.set(this.originalColor);
     this.position.set(this.originalPosition);
     this.dimension.set(this.originalDimension);
+    this.rotation = originalRotation;
 
   }
 
@@ -139,8 +153,9 @@ public abstract class AbstractShape implements IShape {
     boolean bPos = this.position.equals(((IShape) compare).getPosition());
     boolean bName = this.name.equals(((IShape) compare).getName());
     boolean bOpacity = this.opacity == (((IShape) compare).getOpacity());
+    boolean bRotation = this.rotation == ((IShape) compare).getRotation();
 
-    return bType && bCol && bDim && bPos && bName && bOpacity;
+    return bType && bCol && bDim && bPos && bName && bOpacity && bRotation;
   }
 
   @Override
@@ -152,7 +167,8 @@ public abstract class AbstractShape implements IShape {
         this.name,
         this.opacity,
         this.type,
-        this.position);
+        this.position,
+        this.rotation);
   }
 
 }

@@ -31,12 +31,43 @@ public class Rectangle extends AbstractAnimatedShape {
     this.color = col;
     this.opacity = (float) 0.0;
     this.dimension = new WidthHeightDim(width, height);
+    this.rotation = 90;
     this.animationList = new HashMap<>();
     this.creationIndex = numCreated;
 
     this.originalPosition = new Position2D(pos);
     this.originalColor = new RGBColor(col);
     this.originalDimension = new WidthHeightDim(width, height);
+    this.originalRotation = 90;
+    numCreated++;
+  }
+
+  /**
+   * Constructor for rectangle.
+   *
+   * @param name the name
+   * @param pos the position
+   * @param col the color
+   * @param width the width
+   * @param height the height
+   * @param rotationIn the rotation
+   */
+  public Rectangle(String name, IPosition pos, IRGBColor col, float width, float height,
+      int rotationIn) {
+    this.name = name;
+    this.type = ShapeType.RECTANGLE;
+    this.position = pos;
+    this.color = col;
+    this.opacity = (float) 0.0;
+    this.dimension = new WidthHeightDim(width, height);
+    this.rotation = rotationIn;
+    this.animationList = new HashMap<>();
+    this.creationIndex = numCreated;
+
+    this.originalPosition = new Position2D(pos);
+    this.originalColor = new RGBColor(col);
+    this.originalDimension = new WidthHeightDim(width, height);
+    this.originalRotation = rotationIn;
     numCreated++;
   }
 
@@ -77,13 +108,14 @@ public class Rectangle extends AbstractAnimatedShape {
         && this.color.equals(that.color)
         && Math.abs(this.opacity - that.opacity) < 0.01)
         && this.dimension.equals(that.dimension)
-        && this.animationList.equals(that.animationList);
+        && this.animationList.equals(that.animationList)
+        && this.originalRotation == that.rotation;
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(this.name, this.type, this.position, this.color,
-        this.opacity, this.dimension, this.animationList);
+        this.opacity, this.dimension, this.animationList, this.rotation);
   }
 
 }

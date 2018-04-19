@@ -125,4 +125,22 @@ public interface IAnimation extends Comparable<IAnimation> {
    */
   IDimension getEndDimension();
 
+  /**
+   * Returns the end rotation of the animation if applicable.
+   *
+   * @return the end rotation of the animation of applicable
+   * @throws UnsupportedOperationException if the method does not apply to the specific
+   *     animation.
+   */
+  int getEndRotation();
+
+  /**
+   * Returns the start rotation of the animation if applicable.
+   *
+   * @return the start rotation of the animation of applicable
+   * @throws UnsupportedOperationException if the method does not apply to the specific
+   *     animation.
+   */
+  int getStartRotation();
+
 }
