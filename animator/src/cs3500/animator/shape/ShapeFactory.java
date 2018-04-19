@@ -17,11 +17,27 @@ public class ShapeFactory {
   }
 
   /**
+   * Creates a rectangle.
+   */
+  public static IAnimatedShape getRectangle(String name, IPosition pos, IRGBColor color,
+      float width, float height, int rotation) {
+    return new Rectangle(name, pos, color, width, height, rotation);
+  }
+
+  /**
    * Creates oval.
    */
   public static IAnimatedShape getOval(String name, IPosition pos, IRGBColor color,
       float width, float height) {
     return new Oval(name, pos, color, width, height);
+  }
+
+  /**
+   * Creates oval.
+   */
+  public static IAnimatedShape getOval(String name, IPosition pos, IRGBColor color,
+      float width, float height, int rotation) {
+    return new Oval(name, pos, color, width, height, rotation);
   }
 
   /**

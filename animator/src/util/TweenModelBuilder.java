@@ -18,6 +18,30 @@ public interface TweenModelBuilder<T> {
    * @param red the red component of the color of the oval
    * @param green the green component of the color of the oval
    * @param blue the blue component of the color of the oval
+   * @param rotation the rotation of the oval
+   * @param startOfLife the time tick at which this oval appears
+   * @param endOfLife the time tick at which this oval disappears
+   * @return the builder object
+   */
+  TweenModelBuilder<T> addOval(
+      String name,
+      float cx, float cy,
+      float xRadius, float yRadius,
+      float red, float green, float blue,
+      int rotation,
+      int startOfLife, int endOfLife);
+
+  /**
+   * Add a new oval to the model with the given specifications.
+   *
+   * @param name the unique name given to this shape
+   * @param cx the x-coordinate of the center of the oval
+   * @param cy the y-coordinate of the center of the oval
+   * @param xRadius the x-radius of the oval
+   * @param yRadius the y-radius of the oval
+   * @param red the red component of the color of the oval
+   * @param green the green component of the color of the oval
+   * @param blue the blue component of the color of the oval
    * @param startOfLife the time tick at which this oval appears
    * @param endOfLife the time tick at which this oval disappears
    * @return the builder object
@@ -49,6 +73,30 @@ public interface TweenModelBuilder<T> {
       float lx, float ly,
       float width, float height,
       float red, float green, float blue,
+      int startOfLife, int endOfLife);
+
+  /**
+   * Add a new rectangle to the model with the given specifications.
+   *
+   * @param name the unique name given to this shape
+   * @param lx the minimum x-coordinate of a corner of the rectangle
+   * @param ly the minimum y-coordinate of a corner of the rectangle
+   * @param width the width of the rectangle
+   * @param height the height of the rectangle
+   * @param red the red component of the color of the rectangle
+   * @param green the green component of the color of the rectangle
+   * @param blue the blue component of the color of the rectangle
+   * @param rotation the rotation of the oval
+   * @param startOfLife the time tick at which this rectangle appears
+   * @param endOfLife the time tick at which this rectangle disappears
+   * @return the builder object
+   */
+  TweenModelBuilder<T> addRectangle(
+      String name,
+      float lx, float ly,
+      float width, float height,
+      float red, float green, float blue,
+      int rotation,
       int startOfLife, int endOfLife);
 
   /**
@@ -97,6 +145,20 @@ public interface TweenModelBuilder<T> {
    */
   TweenModelBuilder<T> addScaleToChange(String name, float fromSx, float
       fromSy, float toSx, float toSy, int startTime, int endTime);
+
+
+  /**
+   * Adds a rotation animation to the given shape from a start rotation to and end rotation. Values
+   * are in degrees.
+   *
+   * @param name the unique name of the shape whose rotation is to be changed
+   * @param fromRotation the starting rotation value
+   * @param toRotation the ending rotation value
+   * @param startTime the start time of the rotation
+   * @param endTime the end time of the rotation
+   */
+  TweenModelBuilder<T> addRotationChange(String name, int fromRotation, int
+      toRotation, int startTime, int endTime);
 
   /**
    * Return the model built so far.
