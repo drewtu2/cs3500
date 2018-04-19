@@ -3,6 +3,8 @@ package cs3500.animator.controller.listeners;
 import static util.IUtil.checkNull;
 
 import cs3500.animator.view.interactive.IInteractive;
+import cs3500.animator.view.interactive.ScrubberPane;
+import cs3500.animator.view.interactive.SpeedPane;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -25,9 +27,20 @@ public class SliderChangeListener implements ChangeListener {
   public void stateChanged(ChangeEvent e) {
     checkNull(e);
     JSlider source = (JSlider) e.getSource();
-    if (!source.getValueIsAdjusting()) {
-      int fps = (int) source.getValue();
-      view.setSpeed(fps);
+
+    switch (source.getName()) {
+      case SpeedPane.name:
+        view.setSpeed(source.getValue());
+        break;
+      case ScrubberPane.name:
+        if(source.getValueIsAdjusting()) {
+          view.pause();
+        }
+
+        view.setTickNum(source.getValue());
+        break;
+      default:
+        throw new IllegalArgumentException("Name not found");
     }
   }
 }

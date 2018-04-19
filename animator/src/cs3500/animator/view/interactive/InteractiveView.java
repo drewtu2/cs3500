@@ -108,12 +108,19 @@ public class InteractiveView implements IInteractive {
     checkNull(state);
     speed = tempo;
     running = true;
+
     myMV = state;
     originalMV = state.getCopy();
+    configureVisibilityMap(myMV);
+
+    // Set up the canvas
     canvas.setModelView(myMV);
     canvas.setEnabledMap(shapeEnabled);
+
+    // Set up the control panel
     cp.setModelView(myMV);
-    configureVisibilityMap(myMV);
+    cp.setScrubberMax(myMV.getEndTick());
+
     System.out.println("Set Model...");
     timer.start();
     System.out.println("Started Timer...");
@@ -125,6 +132,15 @@ public class InteractiveView implements IInteractive {
     this.speed = speed;
     // Update the control panel view of the speed as well if necessary
     cp.setSpeed(speed);
+  }
+
+  @Override
+  public void setTickNum(int tickNum) {
+    System.out.println("TickNum set to " + Integer.toString(tickNum));
+    canvas.setTickNumber(tickNum);
+
+    // Update the control panel view of the speed as well if necessary
+    cp.setScrubberTick(tickNum);
   }
 
   @Override
@@ -202,6 +218,8 @@ public class InteractiveView implements IInteractive {
         (ActionEvent e) -> {
           if (running && speed > 0) {
             canvas.incrementTickNumber((drawRate * speed) / 1000.0);
+
+            // Handle the looping case!
             if (loop && canvas.getTickNumber() > myMV.getEndTick()) {
               System.out.println("Looping!");
               System.out
@@ -211,10 +229,16 @@ public class InteractiveView implements IInteractive {
               this.reset();
               //canvas.setTickNumber(temp - myMV.getEndTick());
             }
-            canvas.revalidate();
-            canvas.repaint();
+
+            // update the scrubber bar
+            cp.setScrubberTick(canvas.getTickNumber());
             drawCount++;
           }
+
+          // Redraw everything
+          canvas.revalidate();
+          canvas.repaint();
+
         });
   }
 

@@ -22,6 +22,7 @@ public class ControlPane extends JPanel {
   private SpeedPane speedSlider;
   private LoopControl loopRadio;
   private ExportPane exportPane;
+  private ScrubberPane scrubPane;
 
   /**
    * Default Constructor.
@@ -44,23 +45,29 @@ public class ControlPane extends JPanel {
 
     exportPane = new ExportPane();
     this.add(exportPane);
+
+    scrubPane = new ScrubberPane(0, 100, 0);
+    this.add(scrubPane);
+
+
   }
 
   /**
    * Set all of the appropriate listeners.
    *
    * @param buttons the button listeners
-   * @param speed the speed listener
+   * @param slider the speed listener
    */
-  public void setListeners(ActionListener buttons, ChangeListener speed) {
+  public void setListeners(ActionListener buttons, ChangeListener slider) {
     checkNull(buttons);
-    checkNull(speed);
+    checkNull(slider);
 
     buttonPane.setListeners(buttons);
     loopRadio.setListeners(buttons);
     exportPane.setListeners(buttons);
-    speedSlider.setListeners(speed);
+    speedSlider.setListeners(slider);
     shapeList.setListeners(buttons);
+    scrubPane.setListeners(slider);
 
   }
 
@@ -71,6 +78,24 @@ public class ControlPane extends JPanel {
    */
   public void setSpeed(int speed) {
     speedSlider.setSpeed(speed);
+  }
+
+  /**
+   * Pipe maximum value to scrubber.
+   *
+   * @param max the maximum value of the scrubber.
+   */
+  public void setScrubberMax(int max) {
+    scrubPane.setMaximum(max);
+  }
+
+  /**
+   * Pipe the tick number to the scrubber.
+   *
+   * @param tickNum the tick number to set.
+   */
+  public void setScrubberTick(int tickNum) {
+    scrubPane.setTickNum(tickNum);
   }
 
   /**

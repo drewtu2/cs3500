@@ -7,11 +7,11 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
 
 /**
- * Information regarding the speed of the animation.
+ * Information regarding the scrub state of the animation.
  */
-public class SpeedPane extends JPanel {
+public class ScrubberPane extends JPanel {
 
-  public static final String name = "speed";
+  public static final String name = "scrubber";
 
   private JSlider slider;
 
@@ -22,14 +22,12 @@ public class SpeedPane extends JPanel {
    * @param max maximum speed
    * @param init initial speed
    */
-  SpeedPane(int min, int max, int init) {
+  ScrubberPane(int min, int max, int init) {
     super();
     this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
-    JLabel title = new JLabel("Speed (Ticks/Second)");
+    JLabel title = new JLabel("Tick Number");
     slider = new JSlider(JSlider.HORIZONTAL, min, max, init);
-    slider.setMajorTickSpacing(10);
-    slider.setMinorTickSpacing(1);
     slider.setPaintTicks(true);
     slider.setPaintLabels(true);
     slider.setName(name);
@@ -39,15 +37,25 @@ public class SpeedPane extends JPanel {
   }
 
   /**
-   * Handle the case where the speed is adjusted from some source that wasn't the slider. Need to
+   * Handle the case where the tick num is adjusted from some source that wasn't the slider. Need to
    * keep the two at the same value.
    *
-   * @param speed the speed to set the indicator to.
+   * @param tickNum the speed to set the indicator to.
    */
-  public void setSpeed(int speed) {
-    if (speed != slider.getValue()) {
-      slider.setValue(speed);
+  public void setTickNum(int tickNum) {
+    if (tickNum != slider.getValue()) {
+      slider.setValue(tickNum);
     }
+  }
+
+  /**
+   * Sets the scrubber maximum to a given value.
+   * @param tickMax the maximum value to set the scrubber to.
+   */
+  public void setMaximum(int tickMax) {
+    slider.setMaximum(tickMax);
+    slider.setMajorTickSpacing(tickMax/10);
+    slider.setMinorTickSpacing(tickMax/20);
   }
 
   /**

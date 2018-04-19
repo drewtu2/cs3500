@@ -67,4 +67,10 @@ public interface IInteractive extends IView {
    * @param name the name of the shape
    */
   void toggleShape(String name);
+
+  /**
+   * Set the tick number of the animation to the given tick.
+   * @param tickNum the tick number to set.
+   */
+  void setTickNum(int tickNum);
 }
