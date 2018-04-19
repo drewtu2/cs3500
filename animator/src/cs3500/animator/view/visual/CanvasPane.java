@@ -230,8 +230,8 @@ public class CanvasPane extends JPanel {
 
     AffineTransform transform = new AffineTransform();
     transform.rotate(Math.toRadians(state.getRotation()),
-        state.getPosition().getX(),
-        state.getPosition().getY());
+        state.getPosition().getX() + state.getDimension().getWidth()/2,
+        state.getPosition().getY() + state.getDimension().getHeight()/2);
 
     AffineTransform old = gg.getTransform();
     gg.transform(transform);
