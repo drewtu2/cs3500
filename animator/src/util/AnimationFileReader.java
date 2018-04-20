@@ -44,6 +44,7 @@ public class AnimationFileReader {
               rinfo.getWidth(), rinfo.getHeight(),
               rinfo.getR(), rinfo.getG(), rinfo.getB(),
               rinfo.getRotation(),
+              rinfo.getLayer(),
               rinfo.getStart(), rinfo.getEnd());
           break;
         case "oval":
@@ -54,6 +55,7 @@ public class AnimationFileReader {
               cinfo.getXRadius(), cinfo.getYRadius(),
               cinfo.getR(), cinfo.getG(), cinfo.getB(),
               cinfo.getRotation(),
+              cinfo.getLayer(),
               cinfo.getStart(), cinfo.getEnd());
           break;
         case "move":
@@ -136,6 +138,9 @@ public class AnimationFileReader {
         case "rotation":
           info.setRotation(sc.nextInt());
           break;
+        case "layer":
+          info.setLayer(sc.nextInt());
+          break;
         case "from":
           info.setStart(sc.nextInt());
           break;
@@ -180,6 +185,9 @@ public class AnimationFileReader {
           break;
         case "rotation":
           info.setRotation(sc.nextInt());
+          break;
+        case "layer":
+          info.setLayer(sc.nextInt());
           break;
         case "from":
           info.setStart(sc.nextInt());
@@ -349,6 +357,7 @@ public class AnimationFileReader {
     private int start;
     private int end;
     private int rotation;
+    private int layer;
 
 
     ShapeInfo() {
@@ -360,8 +369,10 @@ public class AnimationFileReader {
       valueFlags.put("start", false);
       valueFlags.put("end", false);
       valueFlags.put("rotation", true);
+      valueFlags.put("layer", true);
 
       rotation = 0;
+      layer = 0;
     }
 
     void setName(String name) {
@@ -399,6 +410,10 @@ public class AnimationFileReader {
       this.rotation = r;
     }
 
+    void setLayer(int layer) {
+      this.layer = layer;
+    }
+
     float getR() {
       return r;
     }
@@ -427,6 +442,9 @@ public class AnimationFileReader {
       return this.rotation;
     }
 
+    public int getLayer() {
+      return this.layer;
+    }
 
   }
 

@@ -34,6 +34,7 @@ public class Rectangle extends AbstractAnimatedShape {
     this.rotation = 0;
     this.animationList = new HashMap<>();
     this.creationIndex = numCreated;
+    this.layer = 0;
 
     this.originalPosition = new Position2D(pos);
     this.originalColor = new RGBColor(col);
@@ -51,9 +52,10 @@ public class Rectangle extends AbstractAnimatedShape {
    * @param width the width
    * @param height the height
    * @param rotationIn the rotation
+   * @param layer the input layer
    */
   public Rectangle(String name, IPosition pos, IRGBColor col, float width, float height,
-      int rotationIn) {
+      int rotationIn, int layer) {
     this.name = name;
     this.type = ShapeType.RECTANGLE;
     this.position = pos;
@@ -63,6 +65,7 @@ public class Rectangle extends AbstractAnimatedShape {
     this.rotation = rotationIn;
     this.animationList = new HashMap<>();
     this.creationIndex = numCreated;
+    this.layer = layer;
 
     this.originalPosition = new Position2D(pos);
     this.originalColor = new RGBColor(col);
@@ -86,6 +89,7 @@ public class Rectangle extends AbstractAnimatedShape {
     this.animationList = copy.animationList;
     this.creationIndex = copy.creationIndex;
     this.rotation = copy.rotation;
+    this.layer = copy.layer;
 
     this.originalPosition = new Position2D(copy.originalPosition);
     this.originalColor = new RGBColor(copy.originalColor);

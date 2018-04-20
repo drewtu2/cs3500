@@ -51,4 +51,11 @@ public interface IAnimatedShape extends IShape, Comparable<IAnimatedShape> {
    * @return the creation index.
    */
   int getCreationIndex();
+
+  /**
+   * Returns the layer of this shape.
+   *
+   * @return the layer.
+   */
+  int getLayer();
 }

@@ -19,6 +19,7 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
   protected Map<AnimationType, List<IAnimation>> animationList;
   protected int creationIndex;
   protected static int numCreated = 0;
+  protected int layer;
 
   @Override
   public void addAnimation(IAnimation animation) throws IllegalArgumentException {
@@ -117,7 +118,15 @@ public abstract class AbstractAnimatedShape extends AbstractShape implements IAn
   }
 
   @Override
+  public int getLayer() {
+    return layer;
+  }
+
+  @Override
   public int compareTo(IAnimatedShape o) {
-    return this.creationIndex - o.getCreationIndex();
+    if(this.layer == o.getLayer()) {
+      return this.creationIndex - o.getCreationIndex();
+    }
+    return this.layer - o.getLayer();
   }
 }

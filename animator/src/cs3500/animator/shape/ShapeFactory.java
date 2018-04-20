@@ -20,8 +20,8 @@ public class ShapeFactory {
    * Creates a rectangle.
    */
   public static IAnimatedShape getRectangle(String name, IPosition pos, IRGBColor color,
-      float width, float height, int rotation) {
-    return new Rectangle(name, pos, color, width, height, rotation);
+      float width, float height, int rotation, int layer) {
+    return new Rectangle(name, pos, color, width, height, rotation, layer);
   }
 
   /**
@@ -36,8 +36,8 @@ public class ShapeFactory {
    * Creates oval.
    */
   public static IAnimatedShape getOval(String name, IPosition pos, IRGBColor color,
-      float width, float height, int rotation) {
-    return new Oval(name, pos, color, width, height, rotation);
+      float width, float height, int rotation, int layer) {
+    return new Oval(name, pos, color, width, height, rotation, layer);
   }
 
   /**

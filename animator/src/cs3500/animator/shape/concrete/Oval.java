@@ -35,6 +35,7 @@ public class Oval extends AbstractAnimatedShape {
     this.animationList = new HashMap<>();
     this.creationIndex = numCreated;
     this.rotation = 0;
+    this.layer = 0;
 
     this.originalPosition = new Position2D(pos);
     this.originalColor = new RGBColor(col);
@@ -52,9 +53,10 @@ public class Oval extends AbstractAnimatedShape {
    * @param width the width
    * @param height the height
    * @param rotationIn the rotation in
+   * @param layer the input layer
    */
   public Oval(String name, IPosition pos, IRGBColor col, float width, float height,
-      int rotationIn) {
+      int rotationIn, int layer) {
     this.name = name;
     this.type = ShapeType.OVAL;
     this.position = pos;
@@ -64,6 +66,7 @@ public class Oval extends AbstractAnimatedShape {
     this.animationList = new HashMap<>();
     this.creationIndex = numCreated;
     this.rotation = rotationIn;
+    this.layer = layer;
 
     this.originalPosition = new Position2D(pos);
     this.originalColor = new RGBColor(col);
@@ -87,6 +90,7 @@ public class Oval extends AbstractAnimatedShape {
     this.animationList = copy.animationList;
     this.creationIndex = copy.creationIndex;
     this.rotation = copy.rotation;
+    this.layer = copy.layer;
 
     this.originalPosition = new Position2D(copy.originalPosition);
     this.originalColor = new RGBColor(copy.originalColor);

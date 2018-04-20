@@ -45,13 +45,14 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
 
     @Override
     public TweenModelBuilder<AnimatorModel> addOval(String name, float cx, float cy, float xRadius,
-        float yRadius, float red, float green, float blue, int rotation, int startOfLife,
+        float yRadius, float red, float green, float blue, int rotation, int layer, int startOfLife,
         int endOfLife) {
       // Creates a shape
       Position2D center = new Position2D(cx, cy);
       IRGBColor color = new RGBColor(red, green, blue);
 
-      IAnimatedShape myOval = ShapeFactory.getOval(name, center, color, xRadius, yRadius, rotation);
+      IAnimatedShape myOval = ShapeFactory
+          .getOval(name, center, color, xRadius, yRadius, rotation, layer);
 
       // Add appear animation to shape
       myOval.addAnimation(AnimationFactory.getAppearAnimation(startOfLife));
@@ -117,14 +118,14 @@ public class AnimatorModel implements IAnimatorModel, IModelView {
     @Override
     public TweenModelBuilder<AnimatorModel> addRectangle(String name, float lx, float ly,
         float width,
-        float height, float red, float green, float blue, int rotation, int startOfLife,
+        float height, float red, float green, float blue, int rotation, int layer, int startOfLife,
         int endOfLife) {
       // Creates a shape
       Position2D center = new Position2D(lx, ly);
       IRGBColor color = new RGBColor(red, green, blue);
 
       IAnimatedShape myRec = ShapeFactory
-          .getRectangle(name, center, color, width, height, rotation);
+          .getRectangle(name, center, color, width, height, rotation, layer);
 
       myRec.addAnimation(AnimationFactory.getAppearAnimation(startOfLife));
       myRec.addAnimation(AnimationFactory.getDisappearAnimation(endOfLife));

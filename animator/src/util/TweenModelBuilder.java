@@ -19,6 +19,7 @@ public interface TweenModelBuilder<T> {
    * @param green the green component of the color of the oval
    * @param blue the blue component of the color of the oval
    * @param rotation the rotation of the oval
+   * @param layer the layer this shape is on
    * @param startOfLife the time tick at which this oval appears
    * @param endOfLife the time tick at which this oval disappears
    * @return the builder object
@@ -28,7 +29,7 @@ public interface TweenModelBuilder<T> {
       float cx, float cy,
       float xRadius, float yRadius,
       float red, float green, float blue,
-      int rotation,
+      int rotation, int layer,
       int startOfLife, int endOfLife);
 
   /**
@@ -87,6 +88,7 @@ public interface TweenModelBuilder<T> {
    * @param green the green component of the color of the rectangle
    * @param blue the blue component of the color of the rectangle
    * @param rotation the rotation of the oval
+   * @param layer the layer this shape is on
    * @param startOfLife the time tick at which this rectangle appears
    * @param endOfLife the time tick at which this rectangle disappears
    * @return the builder object
@@ -96,7 +98,7 @@ public interface TweenModelBuilder<T> {
       float lx, float ly,
       float width, float height,
       float red, float green, float blue,
-      int rotation,
+      int rotation, int layer,
       int startOfLife, int endOfLife);
 
   /**
