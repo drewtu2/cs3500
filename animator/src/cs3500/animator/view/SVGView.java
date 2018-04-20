@@ -228,6 +228,26 @@ public class SVGView implements IView {
         resetString.append(printAnimationHelper(attName2, Float.toString((s
             .getDimension()).getHeight())));
         break;
+      case ROTATION:
+        float xCenter = 0;
+        float yCenter = 0;
+        if(s.getType().equals(ShapeType.RECTANGLE)) {
+          xCenter = s.getPosition().getX() + s.getDimension().getWidth()/2;
+          yCenter = s.getPosition().getY() + s.getDimension().getHeight()/2;
+        }
+        else if(s.getType().equals(ShapeType.OVAL)) {
+          xCenter = s.getPosition().getX();
+          yCenter = s.getPosition().getY();
+        }
+        strBuild.append(printTransformAnimationHelper(
+                "rotate",
+                animation.getStartRotation(),
+                animation.getEndRotation(),
+                xCenter, yCenter,
+                animation.getStartTime(),
+                animation.getEndTime() - animation.getStartTime()));
+        resetString.append(printAnimationHelper("fill", colorToRGB(s.getColor())));
+        break;
       case CREATE:
         strBuild.append(printAnimationHelper("visibility", animation.getStartTime()));
         break;
@@ -238,6 +258,42 @@ public class SVGView implements IView {
         throw new IOException("invalid type used");
     }
     return strBuild.toString();
+  }
+
+  /**
+   * Prints proper svg format for transformation animations.
+   * @param att  transform attribute
+   * @param startAngle starting angle of shape
+   * @param endAngle amount of rotation
+   * @param startTime begin time of animation
+   * @param dur duration of animation
+   * @return Formatted string
+   */
+  private String printTransformAnimationHelper(String att, int startAngle, int endAngle,
+                                              float xCenter, float yCenter,
+                                              int startTime, int dur) {
+    StringBuilder builder = new StringBuilder();
+
+    if (loopable) {
+      builder.append("\n\t<animateTransform attributeType=\"xml\" begin=\"base.begin+");
+    } else {
+      builder.append("\n\t<animateTransform attributeType=\"xml\" begin=\"");
+    }
+    builder.append(tick2Time(startTime));
+    builder.append("s\" dur=\"");
+    builder.append(tick2Time(dur));
+    builder.append("s\" attributeName=\"");
+    builder.append("transform");
+    builder.append("\" type=\"");
+    builder.append(att);
+    builder.append("\" from=\"");
+    builder.append(startAngle + " " + xCenter + " " + yCenter);
+    builder.append("\" to=\"");
+    builder.append(endAngle + " " + xCenter + " " + yCenter);
+    builder.append("\" />");
+
+    return builder.toString();
+
   }
 
 
