@@ -49,6 +49,7 @@ public class ListenerTest {
   public void testChangeListener() {
     JSlider slider;
     slider = new JSlider(JSlider.HORIZONTAL, 0, 100, 7);
+    slider.setName("speed");
     slider.setMajorTickSpacing(10);
     slider.setMinorTickSpacing(1);
     slider.setPaintTicks(true);
@@ -82,12 +83,12 @@ public class ListenerTest {
 
   }
 
-  @Test(expected = NullPointerException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testNullActionEvent() {
     al.actionPerformed(null);
   }
 
-  @Test(expected = NullPointerException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testNullChangeEvent() {
     cl.stateChanged(null);
   }
