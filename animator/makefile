@@ -47,7 +47,8 @@ visual: jar
 	@echo Running visual view...
 	@rm -f resources/toh-at-20.svg
 	#$(RUN) -if assignment6_starter/toh-3.txt -iv visual -o resources/toh-at-20.svg -speed 20
-	$(RUN) -if assignment6_starter/rotationdemo.txt -iv visual -speed 20
+	#$(RUN) -if assignment6_starter/rotationdemo.txt -iv visual -speed 20
+	$(RUN) -if assignment6_starter/layerdemo.txt -iv visual -speed 20
 	#$(RUN) -if assignment6_starter/toh-3.txt -iv visual -o resources/toh-at-20.svg 
 	@echo Finished running visual view...
 
