@@ -34,7 +34,8 @@ ptext: jar
 svg: jar
 	@echo Running svg view...
 	@rm -f resources/toh-at-20.svg
-	$(RUN) -if assignment6_starter/toh-8.txt -iv svg -o resources/toh-at-20.svg -speed 20
+	#$(RUN) -if assignment6_starter/toh-8.txt -iv svg -o resources/toh-at-20.svg -speed 20
+	$(RUN) -if assignment6_starter/rotationSVGdemo.txt -iv svg -o resources/rotation.svg -speed 20
 	@echo Finished running svg view...
 
 psvg: jar
@@ -49,6 +50,7 @@ visual: jar
 	#$(RUN) -if assignment6_starter/toh-3.txt -iv visual -o resources/toh-at-20.svg -speed 20
 	#$(RUN) -if assignment6_starter/rotationdemo.txt -iv visual -speed 20
 	$(RUN) -if assignment6_starter/layerdemo.txt -iv visual -speed 20
+	$(RUN) -if assignment6_starter/twolayerdemo.txt -iv visual -speed 20
 	#$(RUN) -if assignment6_starter/toh-3.txt -iv visual -o resources/toh-at-20.svg 
 	@echo Finished running visual view...
 
