@@ -1,0 +1,23 @@
+<svg width="1000" height="900" version="1.1"
+	xmlns="http://www.w3.org/2000/svg">
+
+<rect id="R" x="200" y="200" width="50" height="100" fill="rgb(255,0,0)" visibility="invisible" >
+	<animate attributeType="xml" begin="0.05s" dur="0s" attributeName="visibility" fill="freeze" />
+	<animateTransform attributeType="xml" begin="2.5s" dur="2.5s" attributeName="transform" type="rotate" from="0 225.0 250.0" to="360 225.0 250.0" />
+	<animateTransform attributeType="xml" begin="5.05s" dur="2.45s" attributeName="transform" type="rotate" from="360 225.0 250.0" to="45 225.0 250.0" />
+	<animate attributeType="xml" begin="7.55s" dur="1.2s" attributeName="x" from="200" to="300" fill="freeze" />
+	<animate attributeType="xml" begin="7.55s" dur="1.2s" attributeName="y" from="200" to="300" fill="freeze" />
+	<animate attributeType="xml" begin="8.8s" dur="0.7s" attributeName="x" from="300" to="200" fill="freeze" />
+	<animate attributeType="xml" begin="8.8s" dur="0.7s" attributeName="y" from="300" to="200" fill="freeze" />
+	<animate attributeType="xml" begin="10.0s" dur="0s" attributeName="visibility" fill="freeze" />
+</rect>
+
+<ellipse id="C" cx="500" cy="100" rx="60" ry="30" fill="rgb(0,0,255)" visibility="invisible" >
+	<animate attributeType="xml" begin="0.3s" dur="0s" attributeName="visibility" fill="freeze" />
+	<animateTransform attributeType="xml" begin="2.5s" dur="2.5s" attributeName="transform" type="rotate" from="0 500.0 100.0" to="360 500.0 100.0" />
+	<animate attributeType="xml" begin="5.05s" dur="0.45s" attributeName="rx" from="60" to="60" fill="freeze" />
+	<animate attributeType="xml" begin="5.05s" dur="0.45s" attributeName="ry" from="30" to="60" fill="freeze" />
+	<animate attributeType="xml" begin="10.0s" dur="0s" attributeName="visibility" fill="freeze" />
+</ellipse>
+
+</svg>
